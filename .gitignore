@@ -1,0 +1,8 @@
+/assets/themes/
+/assets/cache/*
+!/assets/cache/.keep
+/assets/uploads/*
+!/assets/uploads/.keep
+/.lpcms-mail.log
+/.DS_Store
+/.phpunit.cache/

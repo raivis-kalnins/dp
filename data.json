@@ -1,0 +1,3218 @@
+{
+  "version": "0.11.28",
+  "settings": {
+    "siteName": "DigitalPulse",
+    "baseUrl": "",
+    "defaultLang": "en",
+    "languages": [
+      {
+        "code": "en",
+        "label": "EN",
+        "name": "English"
+      },
+      {
+        "code": "lv",
+        "label": "LV",
+        "name": "Latviešu"
+      },
+      {
+        "code": "ru",
+        "label": "RU",
+        "name": "Русский"
+      },
+      {
+        "code": "fr",
+        "label": "FR",
+        "name": "Français"
+      },
+      {
+        "code": "es",
+        "label": "ES",
+        "name": "Español"
+      },
+      {
+        "code": "de",
+        "label": "DE",
+        "name": "Deutsch"
+      },
+      {
+        "code": "pl",
+        "label": "PL",
+        "name": "Polski"
+      },
+      {
+        "code": "lt",
+        "label": "LT",
+        "name": "Lietuvių"
+      },
+      {
+        "code": "et",
+        "label": "ET",
+        "name": "Eesti"
+      },
+      {
+        "code": "da",
+        "label": "DA",
+        "name": "Dansk"
+      },
+      {
+        "code": "no",
+        "label": "NO",
+        "name": "Norsk"
+      },
+      {
+        "code": "sv",
+        "label": "SV",
+        "name": "Svenska"
+      },
+      {
+        "code": "fi",
+        "label": "FI",
+        "name": "Suomi"
+      },
+      {
+        "code": "is",
+        "label": "IS",
+        "name": "Íslenska"
+      }
+    ],
+    "localization": {
+      "enabled": true,
+      "autoDetect": true,
+      "persistChoice": true,
+      "urlPrefixes": true,
+      "defaultAtRoot": true
+    },
+    "branding": {
+      "favicon": "/assets/img/digitalpulse-mark.svg",
+      "placeholderMark": "DP"
+    },
+    "mailer": {
+      "mode": "mail",
+      "fromName": "DigitalPulse",
+      "fromEmail": "",
+      "replyTo": "",
+      "smtp": {
+        "host": "",
+        "port": 587,
+        "encryption": "tls",
+        "username": "",
+        "password": "",
+        "timeout": 12,
+        "verifyPeer": true
+      }
+    },
+    "commerceIntegrations": {
+      "checkout": {
+        "mode": "order-form",
+        "paymentLink": "",
+        "adapterUrl": "",
+        "bearerToken": ""
+      },
+      "webhook": {
+        "enabled": false,
+        "url": "",
+        "bearerToken": ""
+      },
+      "providers": []
+    },
+    "seo": {
+      "title": "DigitalPulse — Web Design, WordPress, WooCommerce & LPCMS Agency",
+      "description": "Creative web solutions from Northampton and Riga: fast LPCMS landing pages, custom WordPress business websites, WooCommerce stores, web apps, hosting and maintenance.",
+      "keywords": "web design agency, WordPress development, WooCommerce development, LPCMS, ReactJS, PHP, Northampton web design, Riga web development",
+      "image": "/assets/img/digitalpulse-og.png",
+      "canonical": "",
+      "robots": "index,follow"
+    },
+    "htaccess": {
+      "autoSync": true,
+      "prettyUrls": true,
+      "forceHttps": false,
+      "removeWww": false,
+      "assetCacheDays": 365,
+      "protectJson": true
+    },
+    "theme": {
+      "brand": "#5b5cff",
+      "brand2": "#101a42",
+      "accent": "#16c7bd",
+      "text": "#10162b",
+      "muted": "#64708a",
+      "bg": "#ffffff",
+      "softBg": "#f5f7ff",
+      "radius": "24px",
+      "grid": "container",
+      "font": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "customScss": "",
+      "customCss": ":root{--dp-ink:#10162b;--dp-navy:#101a42;--dp-violet:#5b5cff;--dp-cyan:#16c7bd;--dp-pink:#ff4fa3;--dp-line:rgba(16,26,66,.10);--dp-shadow:0 24px 70px rgba(23,32,71,.12)}\nhtml{scroll-behavior:smooth}.site-header{background:rgba(255,255,255,.88)!important;backdrop-filter:blur(18px);border-bottom:1px solid rgba(16,26,66,.08)}\n.brand-mark{gap:.65rem!important;min-width:210px}.brand-mark img{width:218px!important;height:auto!important;max-height:52px!important;object-fit:contain!important}.brand-mark [contenteditable]{display:none}\n.main-nav>ul{gap:.15rem}.main-nav .nav-linkx{font-weight:700;font-size:.92rem;color:var(--dp-ink);padding:.7rem .68rem;border-radius:999px}.main-nav .nav-linkx:hover{background:#f1f3ff;color:var(--dp-violet)}\n.hero{padding-top:clamp(5.8rem,10vw,8.5rem)!important;background:radial-gradient(circle at 12% 0%,rgba(91,92,255,.16),transparent 34%),radial-gradient(circle at 88% 22%,rgba(22,199,189,.13),transparent 30%),linear-gradient(180deg,#fff 0%,#f8f9ff 100%);overflow:hidden}.hero .eyebrow{letter-spacing:.1em;text-transform:uppercase;font-size:.78rem}.hero h1{font-size:clamp(3rem,6.7vw,6.2rem);line-height:.94;letter-spacing:-.055em;max-width:11ch}.hero p{font-size:clamp(1.08rem,1.7vw,1.32rem);max-width:720px;color:#56617a;line-height:1.7}.hero-card{background:transparent!important;box-shadow:none!important;border:0!important}.hero-img{min-height:460px!important;object-fit:contain!important;background:transparent!important}.btn-cms{border-radius:999px!important;padding:.86rem 1.28rem!important;font-weight:800!important;box-shadow:0 12px 28px rgba(91,92,255,.22)}.btn-ghost{border-radius:999px!important;font-weight:800!important}\n.hero-offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2rem;position:relative;z-index:3}.hero-offer-card{display:flex;align-items:flex-start;gap:.9rem;padding:1.15rem;border:1px solid rgba(16,26,66,.09);background:rgba(255,255,255,.78);backdrop-filter:blur(14px);border-radius:22px;box-shadow:0 16px 42px rgba(23,32,71,.08);color:inherit;text-decoration:none;transition:.25s ease}.hero-offer-card:hover{transform:translateY(-4px);border-color:rgba(91,92,255,.25);box-shadow:0 24px 55px rgba(23,32,71,.13)}.hero-offer-icon{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--dp-violet),#8485ff);color:#fff;flex:0 0 auto}.hero-offer-card strong{display:block;margin-bottom:.2rem}.hero-offer-card span{font-size:.92rem;color:#65718a;line-height:1.5}\n.section{padding:clamp(4.5rem,8vw,7rem) 0}.section-title{max-width:880px;margin-bottom:2.4rem}.section-title .eyebrow,.eyebrow{color:var(--dp-violet)!important;font-weight:900;letter-spacing:.09em;text-transform:uppercase;font-size:.78rem}.section-title h2,.display-5{letter-spacing:-.04em;line-height:1.02;font-weight:850}.section-title p,.lead.muted{font-size:1.08rem;line-height:1.75;color:#65718a!important}.cms-soft{background:linear-gradient(180deg,#f7f8ff 0%,#f2f6ff 100%)!important}\n.cms-card{border:1px solid rgba(16,26,66,.085)!important;box-shadow:0 18px 55px rgba(30,39,85,.08)!important;border-radius:24px!important;background:#fff!important}.cms-card:hover{border-color:rgba(91,92,255,.22)!important}.cms-icon{border-radius:16px!important;background:linear-gradient(135deg,rgba(91,92,255,.12),rgba(22,199,189,.15))!important;color:var(--dp-violet)!important}.feature-panel{border-radius:28px!important;min-height:430px!important;object-fit:cover!important;box-shadow:var(--dp-shadow);border:1px solid rgba(16,26,66,.08)}\n#services .cms-card{height:100%;padding:1.55rem!important;position:relative;overflow:hidden}#services .cms-card:after{content:\"\";position:absolute;width:100px;height:100px;border-radius:50%;right:-45px;bottom:-45px;background:radial-gradient(circle,rgba(22,199,189,.16),transparent 68%)}#services .cms-card h3{letter-spacing:-.02em}#services .cms-card p{line-height:1.68}\n#features .cms-card{padding:1.25rem!important}.stat-card{text-align:left!important;padding:1.5rem!important;min-height:160px}.stat-number{font-size:clamp(2.2rem,5vw,4.4rem)!important;letter-spacing:-.06em!important;color:var(--dp-violet)!important}.stat-card p{font-weight:700;max-width:16ch}\n.pricing-grid{align-items:stretch}.pricing-card{height:100%;padding:1.7rem!important;position:relative;overflow:hidden}.pricing-card.featured{border-color:rgba(91,92,255,.38)!important;box-shadow:0 26px 70px rgba(91,92,255,.14)!important}.pricing-card .pricing-price{font-size:2.25rem!important;letter-spacing:-.04em}.pricing-dual-price .secondary{font-size:1.05rem;font-weight:800}.plan-badge{background:#eef0ff!important;color:#4546d7!important;border-radius:999px!important}.plan-feature{font-size:.94rem}\n.timeline-step .cms-card{padding:1.45rem!important}.timeline-step .cms-icon{width:54px;height:54px}.timeline-step h3{letter-spacing:-.025em}\n.portfolio-toolbar{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.7rem}.portfolio-filter{border:1px solid rgba(16,26,66,.12);background:#fff;border-radius:999px;padding:.68rem 1rem;font-weight:800;color:#4f5b73}.portfolio-filter.active,.portfolio-filter:hover{background:var(--dp-navy);color:#fff;border-color:var(--dp-navy)}.portfolio-card{height:100%;overflow:hidden;padding:0!important}.portfolio-image-wrap{position:relative;overflow:hidden;background:#eef1ff}.portfolio-image{width:100%;aspect-ratio:16/10;object-fit:cover;transition:.45s ease}.portfolio-card:hover .portfolio-image{transform:scale(1.025)}.portfolio-card-body{padding:1.3rem 1.35rem 1.45rem}.portfolio-meta{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.7rem}.portfolio-kind{font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--dp-violet)}.demo-pill{font-size:.7rem;padding:.35rem .55rem;border-radius:999px;background:#ecfbf8;color:#08776f;font-weight:900}.portfolio-card h3{letter-spacing:-.025em}.tech-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}.tech-chip{font-size:.72rem;font-weight:800;border-radius:999px;padding:.34rem .58rem;background:#f2f4fa;color:#57627a}.portfolio-actions{display:flex;align-items:center;gap:.75rem;margin-top:1.1rem}.portfolio-count{color:#6b748c;font-size:.9rem;margin-bottom:1rem}.portfolio-modal-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin:.35rem 0 1rem}.portfolio-external{margin-top:1.1rem;display:inline-flex!important}.product-gallery{display:flex!important;gap:.65rem;overflow:auto;margin-bottom:1.2rem}.product-gallery img{width:104px!important;height:72px!important;object-fit:cover!important;border-radius:12px!important;cursor:pointer;border:1px solid rgba(16,26,66,.1)}\n#demo-request .demo-plan-choice,#demo-request .cms-card{border-radius:22px!important}.demo-plan-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}\n#blog .cms-card{height:100%;overflow:hidden;padding:0!important}#blog .product-card-img{border-radius:0!important;aspect-ratio:16/9;object-fit:cover;margin-bottom:0!important}#blog .cms-card>small,#blog .cms-card>h3,#blog .cms-card>p,#blog .cms-card>a{margin-left:1.35rem;margin-right:1.35rem}#blog .cms-card>small{display:block;margin-top:1.2rem}#blog .cms-card>a{margin-bottom:1.35rem;display:inline-flex}\n.faq-item{border:1px solid rgba(16,26,66,.09)!important;border-radius:18px!important;margin-bottom:.75rem;background:#fff;overflow:hidden}.faq-q{font-weight:800!important;padding:1.15rem 1.25rem!important}.faq-a{padding:0 1.25rem 1.25rem!important;color:#5e6980;line-height:1.7}\n.contact-box{border-radius:26px!important;box-shadow:var(--dp-shadow)!important}.map-frame{border-radius:26px!important;min-height:100%!important}.contact-detail-icon{background:#eef0ff!important;color:var(--dp-violet)!important}.cta{border-radius:32px!important;background:radial-gradient(circle at 15% 15%,rgba(22,199,189,.25),transparent 30%),radial-gradient(circle at 85% 0%,rgba(255,79,163,.20),transparent 30%),linear-gradient(135deg,#101a42,#262f70)!important;color:#fff!important;padding:clamp(2.2rem,6vw,5rem)!important;box-shadow:0 32px 80px rgba(16,26,66,.22)}.cta .lead{color:#e7eaff!important;max-width:760px;margin:1rem auto 1.6rem}.cta .btn-ghost{background:#fff!important;color:#101a42!important;border-color:#fff!important}.site-footer{background:#0b1025!important;color:#dfe4ff!important}.site-footer a{color:#e7eaff!important}.footer-copyline{color:#aeb7d4}\n.cms-modal{border-radius:26px!important;box-shadow:0 32px 100px rgba(5,10,31,.28)!important}.product-main-lightbox{width:100%;max-height:460px;object-fit:cover;background:#f2f4ff}\n@media(max-width:1199px){.brand-mark img{width:195px!important}.main-nav{display:none!important}}\n@media(max-width:991px){.hero h1{max-width:none}.hero-img{min-height:340px!important}.hero-offer-grid{grid-template-columns:1fr}.feature-panel{min-height:320px!important}.demo-plan-grid{grid-template-columns:1fr!important}}\n@media(max-width:767px){.brand-mark{min-width:auto}.brand-mark img{width:178px!important}.hero{padding-top:5.5rem!important}.hero h1{font-size:clamp(2.7rem,15vw,4.5rem)}.hero .p-3{padding-left:0!important;padding-right:0!important}.portfolio-card-body{padding:1.15rem}.pricing-card{padding:1.35rem!important}.section{padding:4.25rem 0}.feature-panel{min-height:260px!important}.map-frame{min-height:360px!important}}\n\n/* DigitalPulse refinement pass 2026-08-21 */\n.section-pattern-1,.section-pattern-2,.section-pattern-3{overflow:clip}\n.section{padding:clamp(4rem,7vw,6.25rem) 0!important}\n.section-title{margin-bottom:clamp(1.75rem,4vw,2.6rem)!important}\n.section-title h2{max-width:16ch;margin-left:auto!important;margin-right:auto!important}\n.hero{padding-top:clamp(5.8rem,9vw,7.6rem)!important;padding-bottom:clamp(2.6rem,5vw,4rem)!important;min-height:auto!important}\n.hero-swiper{width:100%;overflow:visible!important;padding-bottom:1.2rem}.hero-swiper .swiper-slide{height:auto}.hero-slide-grid{min-height:520px}.hero-slide-copy{padding:clamp(1rem,4vw,3rem)}.hero-slide-copy h1,.hero-slide-copy h2{font-size:clamp(2.8rem,6vw,5.6rem);line-height:.96;letter-spacing:-.055em;font-weight:850;max-width:11ch}.hero-slide-copy p{font-size:clamp(1.05rem,1.6vw,1.24rem);line-height:1.72}.hero-swiper-controls{display:flex;align-items:center;gap:.65rem;margin-top:1.35rem}.hero-swiper-prev,.hero-swiper-next{position:static!important;margin:0!important;width:42px!important;height:42px!important;border-radius:50%;background:#fff;border:1px solid rgba(16,26,66,.1);box-shadow:0 10px 24px rgba(16,26,66,.08);color:var(--dp-navy)!important}.hero-swiper-prev:after,.hero-swiper-next:after{font-size:.88rem!important;font-weight:900}.hero-swiper-pagination{position:static!important;width:auto!important;display:flex;align-items:center;gap:.35rem}.hero-swiper-pagination .swiper-pagination-bullet{width:8px;height:8px;margin:0!important;background:#aeb7d4;opacity:.6}.hero-swiper-pagination .swiper-pagination-bullet-active{width:26px;border-radius:99px;background:var(--dp-violet);opacity:1}.hero .hero-card{max-width:560px;margin-left:auto}.hero .hero-img{width:100%;min-height:420px!important;max-height:560px;object-fit:contain!important}\n.tech-stack-strip{padding:1.5rem 0 2rem!important;background:#f1f3f6!important;border-top:1px solid rgba(16,26,66,.06);border-bottom:1px solid rgba(16,26,66,.07)}.tech-stack-head{display:grid;grid-template-columns:minmax(220px,.62fr) minmax(0,1.38fr);gap:2rem;align-items:end;margin-bottom:1.15rem}.tech-stack-head .eyebrow{margin-bottom:.25rem}.tech-stack-head h2{font-size:clamp(1.35rem,2.4vw,2.05rem);line-height:1.08;margin:0;letter-spacing:-.035em}.tech-stack-head p{margin:0;color:#65718a;line-height:1.55}.tech-swiper{overflow:hidden!important;padding:.2rem 0 .45rem}.tech-swiper .swiper-wrapper{transition-timing-function:linear!important;align-items:stretch}.tech-swiper .swiper-slide{width:auto!important;height:auto}.tech-pill{height:100%;display:flex;align-items:center;gap:.7rem;padding:.78rem 1rem;border-radius:14px;border:1px solid rgba(16,26,66,.08);background:rgba(255,255,255,.78);color:#4d5871;font-size:.9rem;font-weight:800;white-space:nowrap;box-shadow:0 8px 22px rgba(30,39,85,.045)}.tech-pill i{font-size:1.02rem;color:var(--dp-violet)}\n#services .row{row-gap:1.25rem!important}#services .cms-card{min-height:100%;display:flex;flex-direction:column}#services .cms-card .btn-ghost{margin-top:auto!important;align-self:flex-start}\n#features .row.g-5{--bs-gutter-y:2rem}#features .cms-card{padding:1.05rem 1.15rem!important}.feature-panel{width:100%;height:auto}\n#stats{padding-top:clamp(3.4rem,6vw,5rem)!important}.stat-card{height:100%}.stat-number{font-size:clamp(2rem,4vw,3.6rem)!important;line-height:1!important;word-break:keep-all}.stat-card p{max-width:20ch!important}\n#contact .section-title{margin-bottom:1.8rem!important}.contact-layout{align-items:stretch}.delivery-map-shell{height:100%;min-height:520px;border-radius:30px;overflow:hidden;border:1px solid rgba(16,26,66,.08);box-shadow:var(--dp-shadow);background:#eef1f6}.delivery-map-img{display:block;width:100%;height:100%;min-height:520px;object-fit:cover}.contact-box{height:100%;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(1.35rem,2.7vw,2rem)!important}.contact-locations{display:grid;gap:.75rem;margin-bottom:1.15rem}.contact-location-card{display:grid;grid-template-columns:42px 1fr;gap:.8rem;align-items:start;padding:.9rem;border-radius:17px;background:#f5f6fb;border:1px solid rgba(16,26,66,.07)}.contact-location-card>span{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#fff;color:#ef4444;box-shadow:0 7px 20px rgba(16,26,66,.07)}.contact-location-card strong{display:block;font-size:.77rem;letter-spacing:.07em;text-transform:uppercase;color:#6b748c}.contact-location-card b{display:block;color:var(--dp-navy);font-size:1rem}.contact-location-card small{display:block;color:#68738a;line-height:1.45;margin-top:.15rem}.contact-detail-list{border-top:1px solid rgba(16,26,66,.08);padding-top:.95rem}.contact-form-btn{margin-top:auto!important}\n.cta h2,.cta .display-6,.cta [contenteditable]{color:#fff!important}.cta{overflow:hidden}.cta p{margin-bottom:0!important}.cta .btn-ghost{margin-top:1rem}\n#faq .faq-item:last-child{margin-bottom:0}.site-footer{margin-top:0!important}\n@media(max-width:991px){.hero-slide-grid{min-height:auto}.hero-slide-copy h1,.hero-slide-copy h2{max-width:14ch}.hero .hero-card{margin:0 auto}.tech-stack-head{grid-template-columns:1fr;gap:.65rem}.delivery-map-shell,.delivery-map-img{min-height:380px}}\n@media(max-width:767px){.section{padding:3.7rem 0!important}.hero{padding-top:5rem!important}.hero-slide-copy{padding:.5rem 0 1.25rem}.hero-slide-copy h1,.hero-slide-copy h2{font-size:clamp(2.55rem,13vw,4rem);max-width:none}.hero .hero-img{min-height:280px!important}.hero-offer-grid{margin-top:1.25rem}.tech-stack-strip{padding:1.25rem 0 1.55rem!important}.tech-stack-head p{font-size:.94rem}.delivery-map-shell,.delivery-map-img{min-height:300px}.contact-box{padding:1.2rem!important}.contact-location-card{grid-template-columns:38px 1fr}.contact-location-card>span{width:38px;height:38px}.cta{padding:2.1rem 1.1rem!important}}\n\n.hero-swiper{overflow:hidden;padding-bottom:.5rem}\n.hero-slide-shell{padding:clamp(.35rem,1.5vw,.8rem) 0}\n.hero-copy{max-width:44rem}\n.hero-swiper-pagination{display:flex;justify-content:flex-start;gap:.4rem;padding:0 1.25rem 1rem 1.25rem}\n.hero-swiper-pagination .swiper-pagination-bullet{width:12px;height:12px;opacity:1;background:rgba(37,99,235,.18)}\n.hero-swiper-pagination .swiper-pagination-bullet-active{background:var(--cms-brand);transform:scale(1.1)}\n.hero .hero-offer-grid{margin-top:1.15rem}\n.tech-strip-section{padding-top:1rem;padding-bottom:2.5rem}\n.tech-strip-section .section-title{margin-bottom:1.25rem}\n.tech-swiper{overflow:hidden}\n.tech-pill{min-height:74px;border-radius:20px;background:#eef1f5;color:#4b5565;border:1px solid rgba(148,163,184,.22);font-weight:800;letter-spacing:.01em;box-shadow:none}\n.tech-pill img{filter:none}\n.section{padding:clamp(3.8rem,7vw,6rem) 0}\n.section.cms-soft{padding:clamp(3.9rem,7vw,6rem) 0}\n.contact-box,.delivery-map-shell{height:100%}\n.delivery-map-shell{border:1px solid rgba(15,23,42,.08);border-radius:28px;background:#fff;padding:.9rem;box-shadow:0 24px 60px rgba(15,23,42,.08)}\n.delivery-map-visual{display:block;width:100%;height:100%;min-height:520px;object-fit:cover;border-radius:22px;background:#f4f6fb}\n.contact-coverage{display:inline-flex;align-items:center;gap:.45rem;background:#eef4ff;color:var(--cms-brand);font-weight:800;padding:.45rem .9rem;border-radius:999px;margin-bottom:1rem}\n.contact-location-grid{display:grid;grid-template-columns:1fr;gap:.9rem;margin-bottom:1.15rem}\n.contact-location-card{display:flex;flex-direction:column;gap:.2rem;padding:1rem 1.05rem;border-radius:20px;background:#f8fafc;border:1px solid rgba(15,23,42,.08)}\n.contact-location-flag{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:#fff;color:var(--cms-brand);box-shadow:0 10px 20px rgba(15,23,42,.08);margin-bottom:.35rem}\n.contact-location-city{font-weight:700;color:var(--cms-text)}\n.contact-detail-list{margin-top:.5rem}\n.cta,.cta h2,.cta .lead,.cta p{color:#fff!important}\n.cta .btn-ghost{background:#fff;color:var(--cms-brand);border-color:#fff}\n@media (max-width: 991.98px){\n  .hero-swiper-pagination{justify-content:center;padding:0 0 1rem}\n  .delivery-map-visual{min-height:360px}\n}\n\n/* --- DigitalPulse refinement overrides --- */\n.hero-slide-grid{align-items:center!important}.hero-slide-copy{max-width:720px}.hero-img{min-height:380px!important;max-height:500px;object-fit:contain!important}.hero-offer-card{background:#fff!important;border-color:rgba(16,26,66,.10)!important}.hero-offer-icon{background:#394150!important;color:#fff!important;box-shadow:none!important}.hero-offer-card span{color:#556178!important}.hero-offer-card strong{color:#162033!important}.hero-swiper{overflow:visible!important}\n#pricing .pricing-grid{align-items:stretch}#pricing .pricing-card{height:100%;padding:1.4rem!important}#pricing .pricing-card .pricing-price{font-size:clamp(2.1rem,3vw,2.8rem)}\n#features .features-top-row{margin-bottom:1rem}#features .feature-panel-compact{min-height:280px!important;max-height:360px;object-fit:contain!important;background:linear-gradient(180deg,#fdfdff,#f5f7ff)!important;padding:1rem}#features .feature-grid-row{margin-top:.25rem!important}#features .feature-card-compact{padding:1.15rem!important}#features .feature-card-compact .cms-icon{width:56px;height:56px;min-width:56px}#features .feature-card-compact p{font-size:.95rem;line-height:1.6}\n.delivery-map-shell{position:relative;overflow:hidden;border-radius:28px;background:#eef1f5;border:1px solid rgba(16,26,66,.08);box-shadow:0 24px 70px rgba(30,39,85,.10);min-height:420px}.delivery-map-real{width:100%;height:100%;min-height:420px;background:#e9edf2}.delivery-map-real .leaflet-control-attribution{background:rgba(255,255,255,.8);font-size:10px}.delivery-map-pin{background:transparent!important;border:0!important}.delivery-map-pin span{display:block;width:18px;height:18px;background:#e74b4b;border:3px solid #fff;border-radius:50%;box-shadow:0 8px 18px rgba(231,75,75,.35);position:relative}.delivery-map-pin span:after{content:\"\";position:absolute;left:50%;transform:translateX(-50%);bottom:-9px;width:2px;height:10px;background:#e74b4b;border-radius:999px}.contact-socials{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.1rem}.contact-social-link{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:#1f2638;color:#fff;text-decoration:none;transition:.2s ease}.contact-social-link:hover{transform:translateY(-2px);background:#111827;color:#fff}.contact-location-card{background:#fff;border:1px solid rgba(16,26,66,.08);border-radius:18px;padding:.95rem 1rem}.contact-location-card span{width:38px;height:38px;border-radius:12px;background:#1f2638;color:#fff;display:grid;place-items:center;flex:0 0 auto}.contact-box{padding:1.4rem!important}\n@media (min-width:1200px){#pricing .pricing-grid>.col-xl-3{width:25%}#features .feature-grid-row>.col-xl-4{width:33.333333%}}\n@media (max-width:991.98px){.hero-offer-grid{grid-template-columns:1fr}.delivery-map-shell,.delivery-map-real{min-height:340px}#features .feature-panel-compact{min-height:240px!important}}\n\n\n/* --- DigitalPulse QA fixes 2026-08-21 contact/pricing/hero --- */\n/* Hero: hide neighbouring Swiper clones and keep the intended visual on the right only. */\n.hero{overflow:hidden!important}\n.hero-swiper{overflow:hidden!important;width:100%!important}\n.hero-swiper .swiper-wrapper{align-items:stretch}\n.hero-swiper .swiper-slide{overflow:hidden}\n.hero-slide-grid{position:relative;z-index:2;margin-left:0!important;margin-right:0!important}\n.hero-slide-copy{position:relative;z-index:3}\n.hero-card{position:relative;z-index:2}\n.hero-offer-grid{position:relative;z-index:5}\n.hero-offer-card .hero-offer-icon{background:#394150!important;color:#fff!important}\n.hero-offer-card .hero-offer-icon i,\n.hero-offer-card .hero-offer-icon .bi,\n.hero-offer-card .hero-offer-icon .bi:before,\n.hero-offer-card .hero-offer-icon .cms-external-icon,\n.hero-offer-card .hero-offer-icon .cms-external-icon-fallback{color:#fff!important}\n.hero-offer-card .hero-offer-icon .cms-live-icon{background:#fff!important;color:#fff!important}\n.hero-offer-card>span:not(.hero-offer-icon){color:#556178!important}\n.hero-offer-card>span:not(.hero-offer-icon)>strong{color:#162033!important}\n\n/* Pricing: independent 4-column grid with equal-height cards and aligned actions. */\n#pricing .pricing-grid-clean{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:1.15rem!important;align-items:stretch!important;width:100%!important;margin:0!important}\n#pricing .pricing-card-clean{display:flex!important;flex-direction:column!important;min-width:0!important;height:100%!important;padding:1.35rem!important;overflow:visible!important}\n#pricing .pricing-card-head{display:flex;flex-direction:column;min-width:0}\n#pricing .plan-badge{display:inline-flex!important;align-self:flex-start!important;max-width:100%;min-height:30px;margin:0 0 .95rem!important;padding:.36rem .65rem!important;white-space:normal!important;line-height:1.25!important}\n#pricing .pricing-title{font-size:clamp(1.18rem,1.6vw,1.48rem)!important;line-height:1.12!important;letter-spacing:-.025em!important;margin:0!important;min-height:2.35em}\n#pricing .pricing-dual-price{margin:.9rem 0 .75rem!important;min-height:6.3rem;display:flex;flex-direction:column;justify-content:flex-start}\n#pricing .pricing-price{font-size:clamp(1.85rem,2.35vw,2.65rem)!important;line-height:1.02!important;letter-spacing:-.05em!important;overflow-wrap:anywhere}\n#pricing .pricing-dual-price .secondary{font-size:1rem!important;line-height:1.3!important;margin-top:.38rem;color:#3e4962!important}\n#pricing .pricing-period{font-size:.82rem!important;margin-top:.25rem!important}\n#pricing .pricing-intro{font-size:.92rem!important;line-height:1.55!important;margin:0 0 1rem!important;min-height:6.1em}\n#pricing .pricing-features{display:grid!important;gap:.62rem!important;margin:0 0 1.15rem!important;flex:1 1 auto!important;align-content:start!important}\n#pricing .plan-feature{display:grid!important;grid-template-columns:24px minmax(0,1fr)!important;gap:.5rem!important;align-items:start!important;font-size:.88rem!important;line-height:1.42!important;min-width:0!important}\n#pricing .plan-feature-icon{width:24px;height:24px;border-radius:999px;background:#eef0ff;color:#4d50e5;display:grid;place-items:center;margin-top:-1px}\n#pricing .plan-feature-icon i{color:inherit!important;font-size:.8rem!important}\n#pricing .pricing-action{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:48px!important;margin-top:auto!important;padding:.75rem .8rem!important;text-align:center!important;white-space:normal!important;line-height:1.25!important;box-sizing:border-box!important}\n\n/* Contact: stable grey Leaflet map plus consistently white social glyphs. */\n#contact .delivery-map-shell{padding:0!important;min-height:500px!important;height:500px!important;background:#e9edf2!important;overflow:hidden!important;border-radius:28px!important}\n#contact .delivery-map-real{display:block!important;width:100%!important;height:500px!important;min-height:500px!important;border:0!important;border-radius:28px!important;overflow:hidden!important;z-index:1}\n#contact .delivery-map-real .leaflet-control-attribution{font-size:9px!important;background:rgba(255,255,255,.78)!important}\n#contact .contact-social-link{background:#1f2638!important;color:#fff!important;border:1px solid #1f2638!important}\n#contact .contact-social-link i,\n#contact .contact-social-link .bi,\n#contact .contact-social-link .bi:before,\n#contact .contact-social-link .cms-external-icon,\n#contact .contact-social-link .cms-external-icon-fallback{color:#fff!important}\n#contact .contact-social-link .cms-live-icon{background:#fff!important;color:#fff!important}\n#contact .contact-social-link:hover{background:#111827!important;color:#fff!important;border-color:#111827!important}\n\n@media(max-width:1199.98px){\n  #pricing .pricing-grid-clean{grid-template-columns:repeat(2,minmax(0,1fr))!important}\n  #pricing .pricing-title,#pricing .pricing-dual-price,#pricing .pricing-intro{min-height:0}\n}\n@media(max-width:767.98px){\n  #pricing .pricing-grid-clean{grid-template-columns:1fr!important;gap:1rem!important}\n  #pricing .pricing-card-clean{padding:1.2rem!important}\n  #contact .delivery-map-shell,#contact .delivery-map-real{height:360px!important;min-height:360px!important}\n}\n"
+    },
+    "themeManager": {
+      "active": "lpcms-slate",
+      "loadImportedCss": true,
+      "loadImportedJs": true,
+      "installed": [
+        {
+          "id": "theme-creative-175b79",
+          "title": "Creative",
+          "sourceType": "free",
+          "sourceLabel": "https://github.com/StartBootstrap/startbootstrap-creative",
+          "license": "MIT",
+          "installedAt": "2026-08-17T15:38:53+00:00",
+          "index": "startbootstrap-creative-master/dist/index.html.lpcms-source.txt",
+          "bootstrap": "5",
+          "compatibilityScore": 100,
+          "warnings": [
+            "Theme JavaScript was found but is disabled by default for safety. Enable imported JS only after reviewing it."
+          ],
+          "css": [
+            "startbootstrap-creative-master/dist/css/styles.css",
+            "lpcms-adapter.css"
+          ],
+          "js": [
+            "startbootstrap-creative-master/dist/js/scripts.js"
+          ],
+          "palette": {
+            "brand": "#f4623a",
+            "brand2": "#6c757d",
+            "accent": "#dc3545"
+          },
+          "files": 59,
+          "bytes": 2867963,
+          "archiveEngine": "ZipArchive"
+        }
+      ]
+    },
+    "headless": {
+      "enabled": true,
+      "restEnabled": true,
+      "graphqlEnabled": true,
+      "corsOrigins": [],
+      "cacheSeconds": 60
+    },
+    "libraries": {
+      "bootstrap": true,
+      "bootstrapIcons": true,
+      "swiper": true,
+      "aos": false,
+      "glightbox": false,
+      "sassBuilder": false
+    },
+    "analytics": {
+      "ga4Id": "",
+      "loadAfterCookieConsent": true
+    },
+    "cookies": {
+      "enabled": true,
+      "message": "We use essential cookies and, with your permission, analytics to improve the website.",
+      "acceptText": "Accept",
+      "declineText": "Decline"
+    },
+    "hcaptcha": {
+      "enabled": false,
+      "siteKey": "",
+      "secret": ""
+    },
+    "mediaSources": {
+      "provider": "free",
+      "free": {
+        "enabled": true
+      },
+      "openverse": {
+        "enabled": true
+      },
+      "commons": {
+        "enabled": true
+      },
+      "proxy": {
+        "enabled": true,
+        "baseUrl": "https://proxy.getinstantimages.com/api/",
+        "schemaVersion": "7.2.0"
+      },
+      "pexels": {
+        "enabled": true,
+        "apiKey": ""
+      },
+      "pixabay": {
+        "enabled": true,
+        "apiKey": ""
+      },
+      "unsplash": {
+        "enabled": true,
+        "apiKey": ""
+      }
+    },
+    "ai": {
+      "enabled": false,
+      "accessTier": "free",
+      "clientName": "",
+      "clientEmail": "",
+      "provider": "openai",
+      "model": "",
+      "apiKey": "",
+      "endpoint": "",
+      "systemPrompt": "You are a concise website content assistant. Return polished website copy only unless the user asks for explanations."
+    },
+    "sitePlan": {
+      "selected": "premium",
+      "platformDomain": "dev4.click",
+      "subdomain": "yourbusiness",
+      "customDomain": "",
+      "premiumGbp": "3.50",
+      "premiumEur": "4.00",
+      "premiumProGbp": "6.50",
+      "premiumProEur": "7.00"
+    },
+    "abandonedCart": {
+      "enabled": false,
+      "firstDelayMinutes": 60,
+      "secondDelayMinutes": 1440,
+      "firstSubject": "You left something in your cart",
+      "firstMessage": "You still have items waiting in your cart. Use the link below to return and finish checkout.",
+      "secondSubject": "Your cart is still waiting",
+      "secondMessage": "A quick reminder that your saved cart is still available. Return to the shop whenever you are ready.",
+      "cronKey": "",
+      "carts": []
+    },
+    "demoIntakeAdmin": {
+      "notifyEmail": "hello@digitalpulse.click",
+      "billingSubject": "Your Digital Pulse website plan is ready",
+      "billingMessage": "Your website demo has been approved and prepared. Please use the billing details below to activate the selected monthly plan.",
+      "paymentInstructions": "Add your payment link, bank transfer details, or other billing instructions here.",
+      "invoicePrefix": "DP",
+      "dueDays": 7,
+      "requests": []
+    },
+    "sectionOrder": [
+      "hero",
+      "logos",
+      "about",
+      "services",
+      "features",
+      "pricing",
+      "stats",
+      "process",
+      "gallery",
+      "demoIntake",
+      "blog",
+      "faq",
+      "contact",
+      "cta"
+    ],
+    "sectionPatterns": {
+      "hero": "1",
+      "about": "1",
+      "stats": "1",
+      "features": "1",
+      "services": "1",
+      "cards": "1",
+      "contentList": "1",
+      "logos": "1",
+      "process": "1",
+      "gallery": "1",
+      "testimonials": "1",
+      "products": "1",
+      "booking": "1",
+      "adminShowcase": "1",
+      "pricing": "1",
+      "demoIntake": "1",
+      "blog": "1",
+      "faq": "1",
+      "contact": "1",
+      "cta": "1"
+    },
+    "app": {
+      "enabled": true,
+      "name": "DigitalPulse",
+      "shortName": "DigitalPulse",
+      "description": "Install this website as a mobile app.",
+      "themeColor": "#101a42",
+      "backgroundColor": "#ffffff",
+      "icon": "/assets/img/app-icon-512.png",
+      "icon192": "/assets/img/app-icon-192.png",
+      "icon512": "/assets/img/app-icon-512.png",
+      "appleIcon": "/assets/img/apple-touch-icon.png",
+      "androidInstallUrl": "/?install=android",
+      "appleInstallUrl": "/?install=apple",
+      "footerBadgesEnabled": true,
+      "offlineMessage": "You are offline. Please reconnect to continue editing."
+    },
+    "cache": {
+      "enabled": true,
+      "htmlTtl": 300,
+      "autoClearOnSave": true,
+      "maxAgeDays": 14
+    },
+    "media": {
+      "maxImageWidth": 1920,
+      "boxWidth": 1920,
+      "boxHeight": 1920,
+      "boxPreset": "large",
+      "avifQuality": 72,
+      "browserAvif": true,
+      "strictAvif": true,
+      "keepOriginals": false
+    },
+    "users": {
+      "items": [
+        {
+          "email": "raivis@63.lv",
+          "name": "Super administrator",
+          "role": "super",
+          "active": true
+        }
+      ]
+    },
+    "forms": {
+      "emailTo": "hello@digitalpulse.click",
+      "storeSubmissions": true,
+      "submissions": []
+    }
+  },
+  "header": {
+    "logoText": "",
+    "logoImage": "/assets/img/digitalpulse-logo.svg",
+    "sticky": true,
+    "menu": [
+      {
+        "label": "Home",
+        "href": "#home",
+        "target": "_self",
+        "children": []
+      },
+      {
+        "label": "Services",
+        "href": "#services",
+        "target": "_self",
+        "children": []
+      },
+      {
+        "label": "Technologies",
+        "href": "#features",
+        "target": "_self",
+        "children": []
+      },
+      {
+        "label": "Pricing",
+        "href": "#pricing",
+        "target": "_self",
+        "children": []
+      },
+      {
+        "label": "Portfolio",
+        "href": "#gallery",
+        "target": "_self",
+        "children": []
+      },
+      {
+        "label": "How it works",
+        "href": "#process",
+        "target": "_self",
+        "children": []
+      },
+      {
+        "label": "Blog",
+        "href": "#blog",
+        "target": "_self",
+        "children": []
+      },
+      {
+        "label": "Contact",
+        "href": "#contact",
+        "target": "_self",
+        "children": []
+      }
+    ]
+  },
+  "hero": {
+    "enabled": true,
+    "slides": [
+      {
+        "eyebrow": "Northampton + Riga · Creative Web Solutions",
+        "title": "Websites built to move your business forward.",
+        "text": "Fast LPCMS landing pages, custom WordPress business websites and conversion-focused WooCommerce stores — designed, developed and supported by one experienced team.",
+        "buttonText": "Start a project",
+        "buttonHref": "#contact",
+        "mediaType": "image",
+        "image": "/assets/img/digitalpulse-hero.svg",
+        "video": "",
+        "videoPoster": "",
+        "videoAutoplay": false,
+        "videoLoop": false,
+        "bg": "",
+        "seoH1": true
+      },
+      {
+        "eyebrow": "WordPress Business Websites",
+        "title": "WordPress business & industry websites",
+        "text": "Custom WordPress websites planned around your audience, content and lead journey. We create responsive layouts, reusable editing blocks, purposeful integrations and an SEO-ready structure that stays easy to manage after launch.",
+        "buttonText": "Discuss WordPress",
+        "buttonHref": "#contact",
+        "mediaType": "image",
+        "image": "/assets/img/digitalpulse-hero-wordpress.svg",
+        "video": "",
+        "videoPoster": "",
+        "videoAutoplay": false,
+        "videoLoop": false,
+        "bg": "",
+        "seoH1": false
+      },
+      {
+        "eyebrow": "WooCommerce Stores",
+        "title": "WooCommerce e-commerce websites",
+        "text": "WooCommerce stores built for real operations — product structures, variations, payments, delivery rules, analytics, marketing integrations and conversion-focused UX. We prioritise speed, maintainability and a checkout journey with as little friction as possible.",
+        "buttonText": "Discuss WooCommerce",
+        "buttonHref": "#contact",
+        "mediaType": "image",
+        "image": "/assets/img/digitalpulse-hero-ai.svg",
+        "video": "",
+        "videoPoster": "",
+        "videoAutoplay": false,
+        "videoLoop": false,
+        "bg": "",
+        "seoH1": false
+      }
+    ],
+    "offers": [
+      {
+        "title": "LPCMS Fast Landing Pages",
+        "text": "Lean PHP + JSON + React websites for campaigns, services and fast launches.",
+        "href": "#pricing",
+        "icon": "bi bi-lightning-charge"
+      },
+      {
+        "title": "WordPress Business Websites",
+        "text": "Custom design, reusable editing blocks and SEO-ready foundations for growing companies.",
+        "href": "#services",
+        "icon": "bi bi-wordpress"
+      },
+      {
+        "title": "WooCommerce Stores",
+        "text": "Custom e-commerce experiences with payments, shipping, integrations and room to scale.",
+        "href": "#pricing",
+        "icon": "bi bi-bag-check"
+      }
+    ]
+  },
+  "about": {
+    "enabled": true,
+    "preheader": "About DigitalPulse",
+    "title": "Senior web development without the agency overhead.",
+    "subtitle": "Strategy, design, engineering and support for clients across the UK and Europe.",
+    "image": "/assets/img/digitalpulse-about.svg",
+    "body": "<p>DigitalPulse creates fast, maintainable websites for businesses that need more than a template. With 20+ years of web experience, we combine practical strategy, clean UX and dependable engineering across LPCMS, WordPress, WooCommerce and custom PHP/React applications.</p><p>We keep the process direct: understand the commercial goal, design the right customer journey, build only what adds value, test carefully and leave you with a website your team can actually own and manage.</p>"
+  },
+  "stats": {
+    "enabled": true,
+    "preheader": "Highlights",
+    "title": "Experience where it counts.",
+    "subtitle": "A small senior team, a flexible technical stack and a process built around clarity, quality and ownership.",
+    "items": [
+      {
+        "number": "20+",
+        "label": "Years of web experience"
+      },
+      {
+        "number": "14",
+        "label": "Languages supported by LPCMS"
+      },
+      {
+        "number": "UK + EU",
+        "label": "Coverage: Whole UK & Europe"
+      },
+      {
+        "number": "100%",
+        "label": "Website and code ownership at handover"
+      }
+    ]
+  },
+  "features": {
+    "enabled": true,
+    "preheader": "Technologies",
+    "title": "A practical stack for modern websites and web apps.",
+    "subtitle": "Delivery-ready technologies from real full-stack WordPress, WooCommerce and custom app work — selected for reliable builds, clean integrations, maintainability and fast iteration.",
+    "image": "/assets/img/digitalpulse-tech.svg",
+    "items": [
+      {
+        "title": "PHP + MySQL",
+        "text": "Experienced PHP development for WordPress, WooCommerce, custom themes, plugins, business logic and robust back-end systems.",
+        "icon": "bi bi-filetype-php",
+        "image": ""
+      },
+      {
+        "title": "REST API + JSON",
+        "text": "Structured REST API and JSON integration work for websites, admin tools, third-party platforms and custom applications.",
+        "icon": "bi bi-diagram-3",
+        "image": ""
+      },
+      {
+        "title": "ReactJS + JavaScript",
+        "text": "Interactive front ends and app interfaces with ReactJS, JavaScript, jQuery and component-based UI patterns where they fit best.",
+        "icon": "bi bi-filetype-jsx",
+        "image": ""
+      },
+      {
+        "title": "SCSS + Bootstrap",
+        "text": "Maintainable styling systems, responsive layouts and component libraries that keep development consistent.",
+        "icon": "bi bi-braces",
+        "image": ""
+      },
+      {
+        "title": "Figma / Adobe XD",
+        "text": "Figma and Adobe XD based workflow for wireframes, UI design, custom layouts and clear handoff into development.",
+        "icon": "bi bi-bezier2",
+        "image": ""
+      },
+      {
+        "title": "SEO + performance",
+        "text": "Performance-minded delivery plus modern AI-assisted workflow support using tools such as ChatGPT Codex, GitHub Copilot, Kimi and Grok.",
+        "icon": "bi bi-speedometer2",
+        "image": ""
+      },
+      {
+        "title": "AI workflows + automation",
+        "text": "AI-assisted content, smart search, chatbot flows, form enrichment and API-based automations that help WordPress, LPCMS and custom applications do more with less manual work.",
+        "icon": "bi bi-stars",
+        "image": ""
+      },
+      {
+        "title": "Web apps for Android + Apple",
+        "text": "Responsive React/PHP web applications and installable PWA-style experiences for Android, iPhone and iPad — connected through REST APIs and JSON for portals, dashboards, booking flows and business tools.",
+        "icon": "bi bi-phone",
+        "image": "",
+        "i18n": {
+          "lv": {
+            "title": "Tīmekļa lietotnes Android + Apple",
+            "text": "Responsīvas React/PHP tīmekļa lietotnes un instalējama PWA tipa pieredze Android, iPhone un iPad ierīcēm — ar REST API un JSON portāliem, paneļiem, rezervāciju plūsmām un biznesa rīkiem."
+          },
+          "ru": {
+            "title": "Веб-приложения для Android + Apple",
+            "text": "Адаптивные веб-приложения на React/PHP и устанавливаемые PWA-решения для Android, iPhone и iPad — с REST API и JSON для порталов, панелей, бронирования и бизнес-инструментов."
+          },
+          "fr": {
+            "title": "Applications web Android + Apple",
+            "text": "Applications web React/PHP responsives et expériences de type PWA installables sur Android, iPhone et iPad — reliées par REST API et JSON pour portails, tableaux de bord, réservations et outils métier."
+          },
+          "es": {
+            "title": "Apps web para Android + Apple",
+            "text": "Aplicaciones web responsive con React/PHP y experiencias tipo PWA instalables en Android, iPhone y iPad, conectadas mediante REST API y JSON para portales, paneles, reservas y herramientas de negocio."
+          },
+          "de": {
+            "title": "Web-Apps für Android + Apple",
+            "text": "Responsive React/PHP-Webanwendungen und installierbare PWA-Erlebnisse für Android, iPhone und iPad — angebunden über REST-APIs und JSON für Portale, Dashboards, Buchungsabläufe und Business-Tools."
+          },
+          "pl": {
+            "title": "Aplikacje webowe na Android + Apple",
+            "text": "Responsywne aplikacje webowe React/PHP oraz instalowalne rozwiązania typu PWA na Androida, iPhone’a i iPada — z REST API i JSON dla portali, paneli, rezerwacji i narzędzi biznesowych."
+          },
+          "lt": {
+            "title": "Žiniatinklio programėlės Android + Apple",
+            "text": "Responsyvios React/PHP žiniatinklio programėlės ir diegiamos PWA tipo patirtys Android, iPhone ir iPad įrenginiams — su REST API ir JSON portalams, skydeliams, rezervacijoms ir verslo įrankiams."
+          },
+          "et": {
+            "title": "Veebirakendused Androidile + Apple’ile",
+            "text": "Responsiivsed React/PHP veebirakendused ja paigaldatavad PWA-tüüpi lahendused Androidile, iPhone’ile ja iPadile — REST API ja JSON ühendustega portaalidele, juhtpaneelidele, broneeringutele ja äritööriistadele."
+          },
+          "da": {
+            "title": "Webapps til Android + Apple",
+            "text": "Responsive React/PHP-webapps og installerbare PWA-løsninger til Android, iPhone og iPad — forbundet via REST API og JSON til portaler, dashboards, bookingflows og forretningsværktøjer."
+          },
+          "no": {
+            "title": "Webapper for Android + Apple",
+            "text": "Responsive React/PHP-webapper og installerbare PWA-løsninger for Android, iPhone og iPad — koblet via REST API og JSON for portaler, dashboards, bookingflyt og forretningsverktøy."
+          },
+          "sv": {
+            "title": "Webbappar för Android + Apple",
+            "text": "Responsiva React/PHP-webbappar och installerbara PWA-lösningar för Android, iPhone och iPad — kopplade via REST API och JSON för portaler, dashboards, bokningsflöden och affärsverktyg."
+          },
+          "fi": {
+            "title": "Web-sovellukset Androidille + Applelle",
+            "text": "Responsiiviset React/PHP-verkkosovellukset ja asennettavat PWA-tyyppiset ratkaisut Androidille, iPhonelle ja iPadille — REST API- ja JSON-yhteyksillä portaaleihin, hallintanäkymiin, varauksiin ja liiketoimintatyökaluihin."
+          },
+          "is": {
+            "title": "Vefforrit fyrir Android + Apple",
+            "text": "Skalanleg React/PHP-vefforrit og uppsetjanlegar PWA-lausnir fyrir Android, iPhone og iPad — tengdar með REST API og JSON fyrir gáttir, stjórnborð, bókanir og viðskiptaverkfæri."
+          }
+        }
+      },
+      {
+        "title": "Managed cPanel hosting",
+        "text": "Managed client hosting on cPanel/WHM infrastructure with SSL, daily backups, LiteSpeed, CloudLinux isolation and practical support. The first year of hosting is included with new DigitalPulse website builds; renewal is agreed before year two.",
+        "icon": "bi bi-hdd-network",
+        "image": "",
+        "i18n": {
+          "lv": {
+            "title": "Pārvaldīts cPanel hostings",
+            "text": "Pārvaldīts klientu hostings uz cPanel/WHM infrastruktūras ar SSL, ikdienas rezerves kopijām, LiteSpeed, CloudLinux izolāciju un praktisku atbalstu. Jaunām DigitalPulse vietnēm pirmais hostinga gads ir iekļauts; atjaunošanas cena tiek saskaņota pirms otrā gada."
+          },
+          "ru": {
+            "title": "Управляемый cPanel-хостинг",
+            "text": "Управляемый клиентский хостинг на инфраструктуре cPanel/WHM с SSL, ежедневными резервными копиями, LiteSpeed, изоляцией CloudLinux и практической поддержкой. Первый год хостинга включён для новых сайтов DigitalPulse; продление согласуется до начала второго года."
+          },
+          "fr": {
+            "title": "Hébergement cPanel géré",
+            "text": "Hébergement client géré sur une infrastructure cPanel/WHM avec SSL, sauvegardes quotidiennes, LiteSpeed, isolation CloudLinux et assistance pratique. La première année d’hébergement est incluse avec les nouveaux sites DigitalPulse ; le renouvellement est convenu avant la deuxième année."
+          },
+          "es": {
+            "title": "Hosting cPanel gestionado",
+            "text": "Hosting gestionado para clientes sobre infraestructura cPanel/WHM con SSL, copias de seguridad diarias, LiteSpeed, aislamiento CloudLinux y soporte práctico. El primer año de hosting está incluido con los nuevos sitios DigitalPulse; la renovación se acuerda antes del segundo año."
+          },
+          "de": {
+            "title": "Managed cPanel Hosting",
+            "text": "Verwaltetes Kundenhosting auf cPanel/WHM-Infrastruktur mit SSL, täglichen Backups, LiteSpeed, CloudLinux-Isolierung und praktischem Support. Das erste Hosting-Jahr ist bei neuen DigitalPulse-Websites enthalten; die Verlängerung wird vor dem zweiten Jahr vereinbart."
+          },
+          "pl": {
+            "title": "Zarządzany hosting cPanel",
+            "text": "Zarządzany hosting klientów na infrastrukturze cPanel/WHM z SSL, codziennymi kopiami zapasowymi, LiteSpeed, izolacją CloudLinux i praktycznym wsparciem. Pierwszy rok hostingu jest wliczony w nowe strony DigitalPulse; odnowienie jest ustalane przed drugim rokiem."
+          },
+          "lt": {
+            "title": "Valdomas cPanel hostingas",
+            "text": "Valdomas klientų hostingas cPanel/WHM infrastruktūroje su SSL, kasdienėmis atsarginėmis kopijomis, LiteSpeed, CloudLinux izoliacija ir praktiniu palaikymu. Pirmieji hostingo metai įskaičiuoti naujoms DigitalPulse svetainėms; pratęsimas suderinamas prieš antruosius metus."
+          },
+          "et": {
+            "title": "Hallatud cPaneli hosting",
+            "text": "Hallatud kliendihosting cPanel/WHM infrastruktuuril koos SSL-i, igapäevaste varukoopiate, LiteSpeedi, CloudLinuxi isoleerimise ja praktilise toega. Uute DigitalPulse veebilehtede esimene hostingu aasta on hinna sees; pikendamine lepitakse kokku enne teist aastat."
+          },
+          "da": {
+            "title": "Administreret cPanel-hosting",
+            "text": "Administreret kundehosting på cPanel/WHM-infrastruktur med SSL, daglige backups, LiteSpeed, CloudLinux-isolering og praktisk support. Det første års hosting er inkluderet med nye DigitalPulse-websites; fornyelse aftales inden år to."
+          },
+          "no": {
+            "title": "Administrert cPanel-hosting",
+            "text": "Administrert kundehotell på cPanel/WHM-infrastruktur med SSL, daglige sikkerhetskopier, LiteSpeed, CloudLinux-isolering og praktisk støtte. Første året med hosting er inkludert for nye DigitalPulse-nettsteder; fornyelse avtales før år to."
+          },
+          "sv": {
+            "title": "Hanterad cPanel-hosting",
+            "text": "Hanterad kundhosting på cPanel/WHM-infrastruktur med SSL, dagliga säkerhetskopior, LiteSpeed, CloudLinux-isolering och praktisk support. Första årets hosting ingår med nya DigitalPulse-webbplatser; förnyelse avtalas före år två."
+          },
+          "fi": {
+            "title": "Hallittu cPanel-hosting",
+            "text": "Hallittu asiakashosting cPanel/WHM-infrastruktuurissa SSL:llä, päivittäisillä varmuuskopioilla, LiteSpeedillä, CloudLinux-eristyksellä ja käytännön tuella. Ensimmäinen hosting-vuosi sisältyy uusiin DigitalPulse-sivustoihin; jatkosta sovitaan ennen toista vuotta."
+          },
+          "is": {
+            "title": "Stýrð cPanel-hýsing",
+            "text": "Stýrð hýsing viðskiptavina á cPanel/WHM-innviðum með SSL, daglegum afritum, LiteSpeed, CloudLinux-einangrun og hagnýtum stuðningi. Fyrsta árið af hýsingu fylgir nýjum DigitalPulse-vefsíðum; endurnýjun er samin fyrir annað árið."
+          }
+        }
+      }
+    ]
+  },
+  "cards": {
+    "enabled": false,
+    "preheader": "Highlights",
+    "title": "Image cards",
+    "subtitle": "Flexible visual cards for services, categories, offers, or featured content.",
+    "columns": 3,
+    "items": [
+      {
+        "title": "Card one",
+        "text": "Add a short description and optional image.",
+        "image": "",
+        "icon": "lucide:layout-template",
+        "buttonText": "Learn more",
+        "buttonHref": "#contact"
+      },
+      {
+        "title": "Card two",
+        "text": "Use cards to guide visitors to the next step.",
+        "image": "",
+        "icon": "tabler:route",
+        "buttonText": "Learn more",
+        "buttonHref": "#contact"
+      },
+      {
+        "title": "Card three",
+        "text": "The layout stays responsive automatically.",
+        "image": "",
+        "icon": "material-symbols:responsive-layout",
+        "buttonText": "Learn more",
+        "buttonHref": "#contact"
+      }
+    ]
+  },
+  "contentList": {
+    "enabled": false,
+    "preheader": "Details",
+    "title": "Content list",
+    "subtitle": "A clean structured list for services, team members, products, or benefits.",
+    "items": [
+      {
+        "title": "Structured content item",
+        "text": "Keep information aligned and easy to scan on desktop and mobile.",
+        "image": "",
+        "icon": "lucide:list-checks",
+        "buttonText": "Read more",
+        "buttonHref": "#contact"
+      }
+    ]
+  },
+  "logos": {
+    "enabled": true,
+    "preheader": "Technology stack",
+    "title": "Available technologies for web & app development.",
+    "subtitle": "A senior full-stack toolkit covering WordPress and WooCommerce, custom applications, API integrations, UI design and AI-assisted development.",
+    "items": [
+      {
+        "label": "WordPress",
+        "icon": "bi bi-wordpress",
+        "href": "#services"
+      },
+      {
+        "label": "WooCommerce",
+        "icon": "bi bi-bag-check",
+        "href": "#services"
+      },
+      {
+        "label": "WordPress Themes & Plugins",
+        "icon": "bi bi-plugin",
+        "href": "#services"
+      },
+      {
+        "label": "PHP",
+        "icon": "bi bi-filetype-php",
+        "href": "#features"
+      },
+      {
+        "label": "MySQL",
+        "icon": "bi bi-database",
+        "href": "#features"
+      },
+      {
+        "label": "REST API",
+        "icon": "bi bi-diagram-3",
+        "href": "#features"
+      },
+      {
+        "label": "JSON",
+        "icon": "bi bi-braces-asterisk",
+        "href": "#features"
+      },
+      {
+        "label": "ReactJS",
+        "icon": "bi bi-filetype-jsx",
+        "href": "#features"
+      },
+      {
+        "label": "JavaScript",
+        "icon": "bi bi-filetype-js",
+        "href": "#features"
+      },
+      {
+        "label": "jQuery",
+        "icon": "bi bi-code-slash",
+        "href": "#features"
+      },
+      {
+        "label": "SCSS",
+        "icon": "bi bi-braces",
+        "href": "#features"
+      },
+      {
+        "label": "Bootstrap",
+        "icon": "bi bi-grid-3x3-gap",
+        "href": "#features"
+      },
+      {
+        "label": "Figma",
+        "icon": "bi bi-vector-pen",
+        "href": "#features"
+      },
+      {
+        "label": "Adobe XD",
+        "icon": "bi bi-bezier2",
+        "href": "#features"
+      },
+      {
+        "label": "ChatGPT Codex",
+        "icon": "bi bi-stars",
+        "href": "#services"
+      },
+      {
+        "label": "GitHub Copilot",
+        "icon": "bi bi-github",
+        "href": "#services"
+      },
+      {
+        "label": "Kimi",
+        "icon": "bi bi-stars",
+        "href": "#services"
+      },
+      {
+        "label": "Grok",
+        "icon": "bi bi-stars",
+        "href": "#services"
+      },
+      {
+        "label": "Visual Studio Code",
+        "icon": "bi bi-code-square",
+        "href": "#features"
+      }
+    ]
+  },
+  "process": {
+    "enabled": true,
+    "preheader": "How it works",
+    "title": "A website process with fewer surprises.",
+    "subtitle": "Good delivery starts with discovery and finishes with a controlled launch, clear ownership and support that continues when you need it.",
+    "items": [
+      {
+        "title": "Discovery & goals",
+        "text": "We clarify your audience, commercial goals, required features, integrations and what success should look like before committing to the build.",
+        "icon": "bi bi-compass",
+        "image": ""
+      },
+      {
+        "title": "Structure & content",
+        "text": "We turn requirements into a sitemap, page priorities and content plan so visitors can find answers and move toward the right action.",
+        "icon": "bi bi-diagram-2",
+        "image": ""
+      },
+      {
+        "title": "UX & visual design",
+        "text": "Wireframes and high-fidelity screens establish hierarchy, responsive behaviour, brand direction and reusable components before development.",
+        "icon": "bi bi-vector-pen",
+        "image": ""
+      },
+      {
+        "title": "Development & integrations",
+        "text": "The approved design is built in LPCMS, WordPress, WooCommerce or a custom PHP/React stack, with integrations added in controlled stages.",
+        "icon": "bi bi-code-slash",
+        "image": ""
+      },
+      {
+        "title": "QA, performance & launch",
+        "text": "We test responsive layouts, forms, content, redirects, integrations and key performance points, then launch with a defined cutover checklist.",
+        "icon": "bi bi-check2-circle",
+        "image": ""
+      },
+      {
+        "title": "Handover & ongoing support",
+        "text": "Your team gets clear ownership, practical editing guidance and optional hosting, maintenance and improvement support after launch.",
+        "icon": "bi bi-life-preserver",
+        "image": ""
+      }
+    ]
+  },
+  "adminShowcase": {
+    "enabled": false,
+    "preheader": "Admin & editing",
+    "title": "Manage your website without touching code",
+    "subtitle": "Edit content on the page or in Admin. Daily changes are simple and technical settings stay protected.",
+    "superAdminTitle": "Super Admin control centre",
+    "superAdminText": "Super Admin keeps advanced website controls in one protected panel: themes, products, booking, chat, media, SEO, plans, demos, mail, APIs, cache, redirects and server tools.",
+    "superAdminImage": "/assets/img/admin/super-admin-controls.avif",
+    "superAdminItems": [
+      {
+        "title": "Design & themes",
+        "text": "Switch themes, adjust design tokens and control imported theme assets.",
+        "icon": "bi bi-palette2"
+      },
+      {
+        "title": "Commerce",
+        "text": "Manage products, checkout, shipping, discounts and recovery tools.",
+        "icon": "bi bi-bag-check"
+      },
+      {
+        "title": "Booking & chat",
+        "text": "Configure booking services, AI chatbot or WhatsApp visitor support.",
+        "icon": "bi bi-calendar2-check"
+      },
+      {
+        "title": "Media & icons",
+        "text": "Upload AVIF media, import free images and choose open-source icons.",
+        "icon": "bi bi-images"
+      },
+      {
+        "title": "SEO & languages",
+        "text": "Control metadata, multilingual content and shareable language URLs.",
+        "icon": "bi bi-translate"
+      },
+      {
+        "title": "Plans & client workflow",
+        "text": "Load demos, approve client requests and send billing emails.",
+        "icon": "bi bi-receipt-cutoff"
+      },
+      {
+        "title": "Mail & integrations",
+        "text": "Protect SMTP, API keys, webhooks and provider-specific settings.",
+        "icon": "bi bi-plug"
+      },
+      {
+        "title": "Technical tools",
+        "text": "Manage cache, redirects, headless APIs, app settings and server checks.",
+        "icon": "bi bi-sliders2-vertical"
+      }
+    ],
+    "domainTitle": "Free subdomain or your own domain",
+    "domainText": "Start free with {custom_name}.dev4.click, or connect a domain from Name.com, NIC.LV or any other domain provider.",
+    "domainOptions": [
+      {
+        "title": "Free subdomain",
+        "text": "Choose your name and publish without buying a domain.",
+        "example": "{custom_name}.dev4.click",
+        "icon": "bi bi-globe2"
+      },
+      {
+        "title": "Own domain",
+        "text": "Connect any domain you already own.",
+        "example": "yourcompany.com · yourcompany.lv · any TLD",
+        "icon": "bi bi-link-45deg"
+      }
+    ],
+    "items": [
+      {
+        "title": "Site & content",
+        "text": "Manage site identity, languages, sections and app settings.",
+        "icon": "bi bi-window-stack"
+      },
+      {
+        "title": "Content & media",
+        "text": "Edit text, sections and images with inline editing or Admin fields.",
+        "icon": "bi bi-images"
+      },
+      {
+        "title": "Shop & integrations",
+        "text": "Manage products, booking, chat, checkout and integrations.",
+        "icon": "bi bi-bag-check"
+      }
+    ],
+    "tableTitle": "What can you manage?",
+    "tableSubtitle": "Editors get simple controls. Super Admin keeps technical settings protected.",
+    "rows": [
+      {
+        "title": "Text, images and sections",
+        "editor": true,
+        "super": true,
+        "ease": "Click or use simple fields"
+      },
+      {
+        "title": "Blog, SEO and languages",
+        "editor": true,
+        "super": true,
+        "ease": "Edit each language with its own URL"
+      },
+      {
+        "title": "Products and e-commerce",
+        "editor": true,
+        "super": true,
+        "ease": "Manage cards, prices, stock and variations"
+      },
+      {
+        "title": "Booking and AI chat / WhatsApp",
+        "editor": true,
+        "super": true,
+        "ease": "Switch on and edit content"
+      },
+      {
+        "title": "Domains and deployment",
+        "editor": false,
+        "super": true,
+        "ease": "Free subdomain or connect your domain"
+      },
+      {
+        "title": "SMTP, API keys and integrations",
+        "editor": false,
+        "super": true,
+        "ease": "Protected technical settings"
+      },
+      {
+        "title": "Plans, demos and client billing",
+        "editor": false,
+        "super": true,
+        "ease": "Super Admin approval workflow"
+      }
+    ]
+  },
+  "pricing": {
+    "enabled": true,
+    "preheader": "Pricing",
+    "title": "Clear starting points, scoped around your project.",
+    "subtitle": "Use these figures as a practical starting point. Custom requirements, integrations, content volume and design complexity are confirmed before development begins.",
+    "items": [
+      {
+        "title": "LPCMS Premium",
+        "badge": "Fast landing / business website",
+        "price": "£3.50",
+        "secondaryPrice": "€4",
+        "period": "/ month",
+        "text": "A lightweight LPCMS website for services, campaigns and professional business pages.",
+        "features": [
+          "Editable website sections",
+          "Blog and SEO controls",
+          "Contact forms",
+          "Theme and media tools",
+          "Installable PWA option",
+          "Free {custom_name}.dev4.click subdomain or your own domain"
+        ],
+        "buttonText": "Choose Premium",
+        "buttonHref": "#demo-request"
+      },
+      {
+        "title": "LPCMS Premium Pro",
+        "badge": "LPCMS e-commerce website",
+        "price": "£6.50",
+        "secondaryPrice": "€7",
+        "period": "/ month",
+        "text": "LPCMS with catalogue, commerce and customer-flow tools for smaller online shops.",
+        "features": [
+          "Everything in Premium",
+          "Product catalogue and variations",
+          "Shopping cart and quote basket",
+          "Checkout, shipping and discount options",
+          "Abandoned-cart reminders",
+          "Booking and AI chatbot modules"
+        ],
+        "buttonText": "Choose Premium Pro",
+        "buttonHref": "#demo-request"
+      },
+      {
+        "title": "Custom WordPress",
+        "badge": "Business / industry website",
+        "price": "from £1,500",
+        "secondaryPrice": "from €1,750",
+        "period": "/ project",
+        "text": "Custom-designed WordPress for established businesses, service companies and industry websites.",
+        "features": [
+          "Discovery and sitemap planning",
+          "Custom responsive design",
+          "Reusable WordPress editing blocks",
+          "Contact / lead forms",
+          "Technical SEO foundations",
+          "Launch, training and handover"
+        ],
+        "buttonText": "Plan WordPress website",
+        "buttonHref": "#contact"
+      },
+      {
+        "title": "Custom WooCommerce",
+        "badge": "E-commerce website",
+        "price": "from £1,800",
+        "secondaryPrice": "from €2,100",
+        "period": "/ project",
+        "text": "Custom WooCommerce design and development for stores that need flexible products and integrations.",
+        "features": [
+          "Custom storefront UX",
+          "Products and variations",
+          "Payments and delivery setup",
+          "Analytics and marketing integrations",
+          "Performance and checkout QA",
+          "Launch, training and handover"
+        ],
+        "buttonText": "Plan WooCommerce store",
+        "buttonHref": "#contact"
+      }
+    ]
+  },
+  "faq": {
+    "enabled": true,
+    "preheader": "FAQ",
+    "title": "Questions before you start.",
+    "subtitle": "Straight answers about scope, pricing, ownership, multilingual websites and post-launch support.",
+    "items": [
+      {
+        "question": "What types of websites does DigitalPulse build?",
+        "answer": "We build LPCMS landing pages and compact business sites, custom WordPress business and industry websites, WooCommerce stores, and custom PHP/React web applications."
+      },
+      {
+        "question": "Do you use templates or create custom designs?",
+        "answer": "Both are possible, but our custom WordPress and WooCommerce pricing is intended for projects with an original layout and design direction. We can also adapt a quality existing theme when budget or timing makes that the better choice."
+      },
+      {
+        "question": "How much does a website cost?",
+        "answer": "LPCMS Premium starts at £3.50 / €4 per month and Premium Pro at £6.50 / €7 per month. Custom WordPress projects start from £1,500 / €1,750 and custom WooCommerce projects from £1,800 / €2,100. Final scope is confirmed before development."
+      },
+      {
+        "question": "How long does a website project take?",
+        "answer": "A focused LPCMS landing page can move quickly once content is ready. Custom WordPress and WooCommerce projects usually take several weeks depending on content, feedback, integrations and complexity. We agree milestones before work begins."
+      },
+      {
+        "question": "Can you help with content and SEO?",
+        "answer": "Yes. We can help organise page structure, improve web copy, set metadata, plan redirects, prepare analytics and build a technically sound SEO foundation. Ongoing content and marketing can be scoped separately."
+      },
+      {
+        "question": "Can you host and maintain the website?",
+        "answer": "Yes. Hosting and maintenance can include updates, backups, security checks, uptime monitoring, performance reviews and support for small changes or future development."
+      },
+      {
+        "question": "Will I own the website and code?",
+        "answer": "Yes. For custom project work, the agreed website files and custom code are handed over for your use. Third-party plugins, fonts, stock media or services remain subject to their own licences."
+      },
+      {
+        "question": "Can the website be multilingual?",
+        "answer": "Yes. LPCMS currently supports 14 language options, and WordPress/WooCommerce multilingual setups can be implemented with an appropriate translation workflow."
+      },
+      {
+        "question": "Can you integrate payments, CRM or other systems?",
+        "answer": "Yes. We regularly work with REST APIs, JSON and PHP integrations. Feasibility depends on the third-party system, its API and authentication requirements."
+      },
+      {
+        "question": "What happens after launch?",
+        "answer": "We complete a handover, provide practical editing guidance and can continue with hosting, maintenance, support, conversion improvements or new functionality as the site grows."
+      }
+    ]
+  },
+  "services": {
+    "enabled": true,
+    "preheader": "Services",
+    "title": "Web solutions shaped around the job to be done.",
+    "subtitle": "From a fast landing page to a custom commerce platform, we choose the simplest stack that meets the business goal and can be supported long-term.",
+    "homeLimit": 6,
+    "batch": 6,
+    "showButton": false,
+    "buttonText": "Load more services",
+    "items": [
+      {
+        "title": "LPCMS web development",
+        "text": "A performance-first flat CMS for landing pages and compact business sites. LPCMS uses PHP, JSON and React with no database required, supports multilingual content, clean SEO URLs, forms, galleries, headless REST/GraphQL APIs and optional commerce tools.",
+        "icon": "bi bi-braces-asterisk",
+        "image": "",
+        "buttonText": "Explore LPCMS",
+        "buttonHref": "https://lpcms.dev4.click/"
+      },
+      {
+        "title": "WordPress business & industry websites",
+        "text": "Custom WordPress websites planned around your audience, content and lead journey. We create responsive layouts, reusable editing blocks, purposeful integrations and an SEO-ready structure that stays easy to manage after launch.",
+        "icon": "bi bi-wordpress",
+        "image": "",
+        "buttonText": "Discuss WordPress",
+        "buttonHref": "#contact"
+      },
+      {
+        "title": "WooCommerce e-commerce websites",
+        "text": "WooCommerce stores built for real operations — product structures, variations, payments, delivery rules, analytics, marketing integrations and conversion-focused UX. We prioritise speed, maintainability and a checkout journey with as little friction as possible.",
+        "icon": "bi bi-bag-check",
+        "image": "",
+        "buttonText": "Discuss WooCommerce",
+        "buttonHref": "#contact"
+      },
+      {
+        "title": "Web & mobile app development",
+        "text": "Custom PHP and ReactJS applications for dashboards, portals, booking flows, internal tools and mobile-friendly web apps. We use REST APIs, JSON and AI-assisted features to connect systems cleanly and keep front-end experiences responsive.",
+        "icon": "bi bi-phone",
+        "image": "",
+        "buttonText": "Plan an application",
+        "buttonHref": "#contact"
+      },
+      {
+        "title": "Hosting + maintenance",
+        "text": "Managed hosting, updates, backups, security checks, uptime monitoring, performance tuning and practical support. Maintenance is structured to reduce launch-day risk and keep the website healthy as browsers, plugins and business needs change.",
+        "icon": "bi bi-shield-check",
+        "image": "",
+        "buttonText": "Ask about support",
+        "buttonHref": "#contact"
+      },
+      {
+        "title": "AI solutions for WordPress & web apps",
+        "text": "Practical AI features for real business workflows — from AI-enabled WordPress themes and plugins to PHP/React web and mobile applications, assistants, content workflows and API-connected automations. We also use AI-assisted development tools to speed up delivery while keeping code review and maintainability under human control.",
+        "icon": "bi bi-stars",
+        "image": "",
+        "buttonText": "Discuss an AI solution",
+        "buttonHref": "#contact"
+      }
+    ]
+  },
+  "gallery": {
+    "enabled": true,
+    "preheader": "Portfolio",
+    "title": "Selected demo concepts across business, industry, commerce and apps.",
+    "subtitle": "Twelve original concept projects demonstrate layout, hierarchy and interaction patterns. They are examples of capability, not claims of client work.",
+    "homeLimit": 9,
+    "batch": 3,
+    "showButton": true,
+    "buttonText": "Load 3 more projects",
+    "categories": [
+      {
+        "slug": "all",
+        "title": "All work"
+      },
+      {
+        "slug": "business",
+        "title": "Business"
+      },
+      {
+        "slug": "industry",
+        "title": "Industry"
+      },
+      {
+        "slug": "ecommerce",
+        "title": "E-commerce"
+      },
+      {
+        "slug": "apps",
+        "title": "Web apps"
+      }
+    ],
+    "items": [
+      {
+        "title": "Northstar Legal",
+        "slug": "northstar-legal",
+        "category": "business",
+        "kind": "Business website",
+        "client": "Demo concept",
+        "text": "Service-led website concept focused on clear positioning, trust, proof and simple enquiry paths.",
+        "body": "<p>Service-led website concept focused on clear positioning, trust, proof and simple enquiry paths.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/northstar-legal.svg",
+        "gallery": [
+          "/assets/img/portfolio/northstar-legal.svg",
+          "/assets/img/portfolio/northstar-legal-detail.svg"
+        ],
+        "tech": [
+          "WordPress",
+          "Figma",
+          "SEO"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "Northstar Legal website demo concept"
+      },
+      {
+        "title": "Atlas Engineering",
+        "slug": "atlas-engineering",
+        "category": "industry",
+        "kind": "Industry website",
+        "client": "Demo concept",
+        "text": "Industry website concept that turns technical capability, sectors and credentials into a clear B2B journey.",
+        "body": "<p>Industry website concept that turns technical capability, sectors and credentials into a clear B2B journey.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/atlas-engineering.svg",
+        "gallery": [
+          "/assets/img/portfolio/atlas-engineering.svg",
+          "/assets/img/portfolio/atlas-engineering-detail.svg"
+        ],
+        "tech": [
+          "WordPress",
+          "SCSS",
+          "REST API"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "Atlas Engineering website demo concept"
+      },
+      {
+        "title": "Morrow Interiors",
+        "slug": "morrow-interiors",
+        "category": "business",
+        "kind": "Business website",
+        "client": "Demo concept",
+        "text": "Service-led website concept focused on clear positioning, trust, proof and simple enquiry paths.",
+        "body": "<p>Service-led website concept focused on clear positioning, trust, proof and simple enquiry paths.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/morrow-interiors.svg",
+        "gallery": [
+          "/assets/img/portfolio/morrow-interiors.svg",
+          "/assets/img/portfolio/morrow-interiors-detail.svg"
+        ],
+        "tech": [
+          "LPCMS",
+          "ReactJS",
+          "JSON"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "Morrow Interiors website demo concept"
+      },
+      {
+        "title": "Solis Energy",
+        "slug": "solis-energy",
+        "category": "industry",
+        "kind": "Industry website",
+        "client": "Demo concept",
+        "text": "Industry website concept that turns technical capability, sectors and credentials into a clear B2B journey.",
+        "body": "<p>Industry website concept that turns technical capability, sectors and credentials into a clear B2B journey.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/solis-energy.svg",
+        "gallery": [
+          "/assets/img/portfolio/solis-energy.svg",
+          "/assets/img/portfolio/solis-energy-detail.svg"
+        ],
+        "tech": [
+          "WordPress",
+          "PHP",
+          "SEO"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "Solis Energy website demo concept"
+      },
+      {
+        "title": "Noble Dental",
+        "slug": "noble-dental",
+        "category": "business",
+        "kind": "Business website",
+        "client": "Demo concept",
+        "text": "Service-led website concept focused on clear positioning, trust, proof and simple enquiry paths.",
+        "body": "<p>Service-led website concept focused on clear positioning, trust, proof and simple enquiry paths.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/noble-dental.svg",
+        "gallery": [
+          "/assets/img/portfolio/noble-dental.svg",
+          "/assets/img/portfolio/noble-dental-detail.svg"
+        ],
+        "tech": [
+          "WordPress",
+          "Figma",
+          "Analytics"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "Noble Dental website demo concept"
+      },
+      {
+        "title": "Baltic Logistics",
+        "slug": "baltic-logistics",
+        "category": "industry",
+        "kind": "Industry website",
+        "client": "Demo concept",
+        "text": "Industry website concept that turns technical capability, sectors and credentials into a clear B2B journey.",
+        "body": "<p>Industry website concept that turns technical capability, sectors and credentials into a clear B2B journey.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/baltic-logistics.svg",
+        "gallery": [
+          "/assets/img/portfolio/baltic-logistics.svg",
+          "/assets/img/portfolio/baltic-logistics-detail.svg"
+        ],
+        "tech": [
+          "LPCMS",
+          "REST API",
+          "JSON"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "Baltic Logistics website demo concept"
+      },
+      {
+        "title": "Harbour & Pine",
+        "slug": "harbour-pine",
+        "category": "ecommerce",
+        "kind": "E-commerce",
+        "client": "Demo concept",
+        "text": "E-commerce concept focused on product discovery, persuasive product pages and a low-friction mobile checkout.",
+        "body": "<p>E-commerce concept focused on product discovery, persuasive product pages and a low-friction mobile checkout.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/harbour-pine.svg",
+        "gallery": [
+          "/assets/img/portfolio/harbour-pine.svg",
+          "/assets/img/portfolio/harbour-pine-detail.svg"
+        ],
+        "tech": [
+          "WooCommerce",
+          "PHP",
+          "SCSS"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "Harbour & Pine website demo concept"
+      },
+      {
+        "title": "Nordic Skin Lab",
+        "slug": "nordic-skin-lab",
+        "category": "ecommerce",
+        "kind": "E-commerce",
+        "client": "Demo concept",
+        "text": "E-commerce concept focused on product discovery, persuasive product pages and a low-friction mobile checkout.",
+        "body": "<p>E-commerce concept focused on product discovery, persuasive product pages and a low-friction mobile checkout.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/nordic-skin-lab.svg",
+        "gallery": [
+          "/assets/img/portfolio/nordic-skin-lab.svg",
+          "/assets/img/portfolio/nordic-skin-lab-detail.svg"
+        ],
+        "tech": [
+          "WooCommerce",
+          "Figma",
+          "Analytics"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "Nordic Skin Lab website demo concept"
+      },
+      {
+        "title": "Veloform",
+        "slug": "veloform",
+        "category": "ecommerce",
+        "kind": "E-commerce",
+        "client": "Demo concept",
+        "text": "E-commerce concept focused on product discovery, persuasive product pages and a low-friction mobile checkout.",
+        "body": "<p>E-commerce concept focused on product discovery, persuasive product pages and a low-friction mobile checkout.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/veloform.svg",
+        "gallery": [
+          "/assets/img/portfolio/veloform.svg",
+          "/assets/img/portfolio/veloform-detail.svg"
+        ],
+        "tech": [
+          "WooCommerce",
+          "REST API",
+          "SEO"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "Veloform website demo concept"
+      },
+      {
+        "title": "Fieldnote Foods",
+        "slug": "fieldnote-foods",
+        "category": "ecommerce",
+        "kind": "E-commerce",
+        "client": "Demo concept",
+        "text": "E-commerce concept focused on product discovery, persuasive product pages and a low-friction mobile checkout.",
+        "body": "<p>E-commerce concept focused on product discovery, persuasive product pages and a low-friction mobile checkout.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/fieldnote-foods.svg",
+        "gallery": [
+          "/assets/img/portfolio/fieldnote-foods.svg",
+          "/assets/img/portfolio/fieldnote-foods-detail.svg"
+        ],
+        "tech": [
+          "WooCommerce",
+          "PHP",
+          "Marketing"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "Fieldnote Foods website demo concept"
+      },
+      {
+        "title": "CrewFlow",
+        "slug": "crewflow",
+        "category": "apps",
+        "kind": "Web application",
+        "client": "Demo concept",
+        "text": "Web application concept for structured workflows, real-time data and responsive user interactions.",
+        "body": "<p>Web application concept for structured workflows, real-time data and responsive user interactions.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/crewflow.svg",
+        "gallery": [
+          "/assets/img/portfolio/crewflow.svg",
+          "/assets/img/portfolio/crewflow-detail.svg"
+        ],
+        "tech": [
+          "ReactJS",
+          "REST API",
+          "JSON"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "CrewFlow website demo concept"
+      },
+      {
+        "title": "QuotePilot",
+        "slug": "quotepilot",
+        "category": "apps",
+        "kind": "Web application",
+        "client": "Demo concept",
+        "text": "Web application concept for structured workflows, real-time data and responsive user interactions.",
+        "body": "<p>Web application concept for structured workflows, real-time data and responsive user interactions.</p><p>This is a DigitalPulse demo concept created to show the type of structure, visual direction and interaction we can deliver. It is not presented as a live client project.</p>",
+        "image": "/assets/img/portfolio/quotepilot.svg",
+        "gallery": [
+          "/assets/img/portfolio/quotepilot.svg",
+          "/assets/img/portfolio/quotepilot-detail.svg"
+        ],
+        "tech": [
+          "ReactJS",
+          "PHP",
+          "MySQL"
+        ],
+        "url": "#contact",
+        "linkText": "Build something similar",
+        "alt": "QuotePilot website demo concept"
+      }
+    ]
+  },
+  "testimonials": {
+    "enabled": false,
+    "preheader": "Testimonials",
+    "title": "Testimonials",
+    "subtitle": "Customer quote cards with load more.",
+    "homeLimit": 6,
+    "batch": 3,
+    "showButton": true,
+    "buttonText": "Load more testimonials",
+    "items": [
+      {
+        "name": "Olivia Carter",
+        "role": "Founder, North & Co.",
+        "text": "The website was simple to review and update, and the whole launch process felt organised from the first draft.",
+        "photo": ""
+      },
+      {
+        "name": "Daniel Wright",
+        "role": "Operations Manager",
+        "text": "We can manage everyday content ourselves while the technical settings stay safely out of the way.",
+        "photo": ""
+      },
+      {
+        "name": "Sophie Bennett",
+        "role": "Studio Director",
+        "text": "The mobile layout is clean, fast and much easier for our customers to use than our previous site.",
+        "photo": ""
+      },
+      {
+        "name": "James Patel",
+        "role": "Retail Owner",
+        "text": "Products, enquiries and quote requests are all in one place now, which has made daily administration much simpler.",
+        "photo": ""
+      },
+      {
+        "name": "Amelia Green",
+        "role": "Marketing Lead",
+        "text": "Inline editing means our team can keep promotions and landing page content current without waiting for a developer.",
+        "photo": ""
+      },
+      {
+        "name": "Noah Evans",
+        "role": "Managing Director",
+        "text": "The demo gave us a clear picture of the finished website before approval, which made the decision process straightforward.",
+        "photo": ""
+      },
+      {
+        "name": "Emily Roberts",
+        "role": "Consultant",
+        "text": "Booking confirmations and the website chat options give clients a much smoother way to get in touch.",
+        "photo": ""
+      },
+      {
+        "name": "Lucas Martin",
+        "role": "E-commerce Manager",
+        "text": "The catalogue controls are practical and the checkout experience works well across desktop and mobile.",
+        "photo": ""
+      },
+      {
+        "name": "Grace Thompson",
+        "role": "Business Owner",
+        "text": "It feels like a professional website builder without making the client-facing admin unnecessarily complicated.",
+        "photo": ""
+      }
+    ]
+  },
+  "products": {
+    "enabled": false,
+    "preheader": "Products",
+    "title": "Your Products",
+    "subtitle": "Ajax catalogue with compact dropdown filters, product search, price range, categories, variation filters, modal details, cart, quote basket, and bank transfer order flow.",
+    "mode": "catalog",
+    "shopEnabled": true,
+    "defaultPurchaseMode": "quote",
+    "catalogEnabled": true,
+    "searchEnabled": true,
+    "filterEnabled": true,
+    "homeLimit": 8,
+    "batch": 8,
+    "desktopColumns": 4,
+    "tabletColumns": 2,
+    "mobileColumns": 1,
+    "showButton": true,
+    "buttonText": "Load more products",
+    "showBuyButton": true,
+    "showQuoteButton": true,
+    "buyButtonText": "Buy",
+    "quoteButtonText": "Add to quote",
+    "basketEnabled": true,
+    "basketTitle": "Quote basket",
+    "basketButtonText": "Send quote request",
+    "cartEnabled": true,
+    "cartTitle": "Shopping cart",
+    "cartButtonText": "Checkout",
+    "checkoutButtonText": "Send order",
+    "currency": "EUR",
+    "shippingMethods": [
+      {
+        "id": "pickup",
+        "label": "Local pickup",
+        "price": 0,
+        "enabled": true
+      },
+      {
+        "id": "standard",
+        "label": "Standard delivery",
+        "price": 4.99,
+        "enabled": true
+      }
+    ],
+    "discountCodes": [
+      {
+        "code": "WELCOME10",
+        "type": "percent",
+        "value": 10,
+        "enabled": false
+      }
+    ],
+    "categories": [
+      {
+        "slug": "website-packages",
+        "title": "Website Packages"
+      },
+      {
+        "slug": "custom-services",
+        "title": "Custom Services"
+      },
+      {
+        "slug": "seo-tools",
+        "title": "SEO & Performance"
+      },
+      {
+        "slug": "subscriptions",
+        "title": "Subscriptions"
+      },
+      {
+        "slug": "merch",
+        "title": "Merchandise"
+      },
+      {
+        "slug": "digital-products",
+        "title": "Digital Products"
+      }
+    ],
+    "attributeFilters": [
+      {
+        "key": "colour",
+        "label": "Colour",
+        "options": [
+          "Blue",
+          "Black",
+          "White",
+          "Navy",
+          "Purple",
+          "Green",
+          "Red",
+          "Gold",
+          "Orange",
+          "Grey",
+          "Brown",
+          "Silver",
+          "Pink",
+          "Sky",
+          "Beige",
+          "Rose",
+          "Yellow",
+          "Lime",
+          "Clear",
+          "Cream"
+        ]
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "options": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "Custom"
+        ]
+      },
+      {
+        "key": "material",
+        "label": "Material",
+        "options": [
+          "Digital",
+          "Service",
+          "Cotton",
+          "Leather",
+          "Aluminum",
+          "Glass"
+        ]
+      },
+      {
+        "key": "license",
+        "label": "License",
+        "options": [
+          "Standard",
+          "Business",
+          "Enterprise",
+          "Custom"
+        ]
+      },
+      {
+        "key": "duration",
+        "label": "Duration",
+        "options": [
+          "One-off",
+          "Monthly",
+          "Project"
+        ]
+      }
+    ],
+    "payment": {
+      "directDebit": {
+        "enabled": true,
+        "title": "Direct bank transfer / direct debit",
+        "instructions": "Submit the order form and we will confirm payment details. Add your order reference to the payment message.",
+        "accountName": "Your Company Ltd",
+        "iban": "",
+        "swift": "",
+        "bankName": "",
+        "referencePrefix": "LPCMS"
+      }
+    },
+    "items": [
+      {
+        "title": "Starter Website Package",
+        "slug": "starter-website-package",
+        "id": "1001",
+        "sku": "STARTER-WEBSITE-PA",
+        "type": "variable",
+        "category": "website-packages",
+        "brand": "LPCMS",
+        "tags": [
+          "website-packages",
+          "digital",
+          "blue",
+          "xs"
+        ],
+        "price": 550,
+        "oldPrice": 690,
+        "discountLabel": "-20%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Blue",
+          "size": "XS",
+          "material": "Digital",
+          "license": "Standard"
+        },
+        "variations": [
+          {
+            "id": "starter-website-package-a",
+            "sku": "STARTER-WEBSITE-PA-A",
+            "attributes": {
+              "size": "XS",
+              "colour": "Blue"
+            },
+            "price": 550,
+            "oldPrice": 690,
+            "stock": 5,
+            "image": ""
+          },
+          {
+            "id": "starter-website-package-b",
+            "sku": "STARTER-WEBSITE-PA-B",
+            "attributes": {
+              "size": "S",
+              "colour": "Navy"
+            },
+            "price": 600,
+            "oldPrice": 760,
+            "stock": 3,
+            "image": ""
+          }
+        ],
+        "stock": 10,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Starter Website Package is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Starter Website Package",
+          "description": "Starter Website Package demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Business Website Package",
+        "slug": "business-website-package",
+        "id": "1002",
+        "sku": "BUSINESS-WEBSITE-P",
+        "type": "variable",
+        "category": "website-packages",
+        "brand": "LPCMS",
+        "tags": [
+          "website-packages",
+          "service",
+          "black",
+          "s"
+        ],
+        "price": 990,
+        "oldPrice": 1290,
+        "discountLabel": "-23%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Black",
+          "size": "S",
+          "material": "Service",
+          "license": "Business"
+        },
+        "variations": [
+          {
+            "id": "business-website-package-a",
+            "sku": "BUSINESS-WEBSITE-P-A",
+            "attributes": {
+              "size": "S",
+              "colour": "Black"
+            },
+            "price": 990,
+            "oldPrice": 1290,
+            "stock": 6,
+            "image": ""
+          },
+          {
+            "id": "business-website-package-b",
+            "sku": "BUSINESS-WEBSITE-P-B",
+            "attributes": {
+              "size": "M",
+              "colour": "Purple"
+            },
+            "price": 1040,
+            "oldPrice": 1360,
+            "stock": 4,
+            "image": ""
+          }
+        ],
+        "stock": 12,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Business Website Package is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Business Website Package",
+          "description": "Business Website Package demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Custom Quote Project",
+        "slug": "custom-quote-project",
+        "id": "1003",
+        "sku": "CUSTOM-QUOTE-PROJE",
+        "type": "simple",
+        "category": "custom-services",
+        "brand": "LPCMS",
+        "tags": [
+          "custom-services",
+          "cotton",
+          "white",
+          "m"
+        ],
+        "price": 0,
+        "oldPrice": 0,
+        "discountLabel": "Quote only",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "White",
+          "size": "M",
+          "material": "Cotton",
+          "duration": "Project"
+        },
+        "variations": [],
+        "stock": 0,
+        "inStock": true,
+        "text": "Quote-only custom product.",
+        "body": "<p>Custom Quote Project is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": false,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Custom Quote Project",
+          "description": "Custom Quote Project demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "SEO Audit Service",
+        "slug": "seo-audit-service",
+        "id": "1004",
+        "sku": "SEO-AUDIT-SERVICE",
+        "type": "simple",
+        "category": "seo-tools",
+        "brand": "LPCMS",
+        "tags": [
+          "seo-tools",
+          "leather",
+          "navy",
+          "l"
+        ],
+        "price": 180,
+        "oldPrice": 240,
+        "discountLabel": "-25%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1432888622747-4eb9a8f2c287?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Navy",
+          "size": "L",
+          "material": "Leather",
+          "duration": "One-off"
+        },
+        "variations": [],
+        "stock": 16,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>SEO Audit Service is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "SEO Audit Service",
+          "description": "SEO Audit Service demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Speed Optimization",
+        "slug": "speed-optimization",
+        "id": "1005",
+        "sku": "SPEED-OPTIMIZATION",
+        "type": "simple",
+        "category": "seo-tools",
+        "brand": "LPCMS",
+        "tags": [
+          "seo-tools",
+          "aluminum",
+          "purple",
+          "xl"
+        ],
+        "price": 320,
+        "oldPrice": 420,
+        "discountLabel": "-24%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Purple",
+          "size": "XL",
+          "material": "Aluminum",
+          "duration": "Monthly"
+        },
+        "variations": [],
+        "stock": 18,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Speed Optimization is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Speed Optimization",
+          "description": "Speed Optimization demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Monthly Care Plan",
+        "slug": "monthly-care-plan",
+        "id": "1006",
+        "sku": "MONTHLY-CARE-PLAN",
+        "type": "variable",
+        "category": "subscriptions",
+        "brand": "LPCMS",
+        "tags": [
+          "subscriptions",
+          "glass",
+          "green",
+          "custom"
+        ],
+        "price": 79,
+        "oldPrice": 99,
+        "discountLabel": "-20%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Green",
+          "size": "Custom",
+          "material": "Glass",
+          "duration": "Project"
+        },
+        "variations": [
+          {
+            "id": "monthly-care-plan-a",
+            "sku": "MONTHLY-CARE-PLAN-A",
+            "attributes": {
+              "size": "Custom",
+              "colour": "Green"
+            },
+            "price": 79,
+            "oldPrice": 99,
+            "stock": 10,
+            "image": ""
+          },
+          {
+            "id": "monthly-care-plan-b",
+            "sku": "MONTHLY-CARE-PLAN-B",
+            "attributes": {
+              "size": "XS",
+              "colour": "Orange"
+            },
+            "price": 84,
+            "oldPrice": 107,
+            "stock": 6,
+            "image": ""
+          }
+        ],
+        "stock": 20,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Monthly Care Plan is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Monthly Care Plan",
+          "description": "Monthly Care Plan demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Logo Design Add-on",
+        "slug": "logo-design-add-on",
+        "id": "1007",
+        "sku": "LOGO-DESIGN-ADD-ON",
+        "type": "simple",
+        "category": "custom-services",
+        "brand": "Studio",
+        "tags": [
+          "custom-services",
+          "digital",
+          "red",
+          "xs"
+        ],
+        "price": 250,
+        "oldPrice": 0,
+        "discountLabel": "",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Red",
+          "size": "XS",
+          "material": "Digital",
+          "duration": "One-off"
+        },
+        "variations": [],
+        "stock": 22,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Logo Design Add-on is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Logo Design Add-on",
+          "description": "Logo Design Add-on demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Brochure PDF Design",
+        "slug": "brochure-pdf-design",
+        "id": "1008",
+        "sku": "BROCHURE-PDF-DESIG",
+        "type": "simple",
+        "category": "custom-services",
+        "brand": "Studio",
+        "tags": [
+          "custom-services",
+          "service",
+          "gold",
+          "s"
+        ],
+        "price": 390,
+        "oldPrice": 490,
+        "discountLabel": "-20%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Gold",
+          "size": "S",
+          "material": "Service",
+          "duration": "Monthly"
+        },
+        "variations": [],
+        "stock": 24,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Brochure PDF Design is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Brochure PDF Design",
+          "description": "Brochure PDF Design demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Cotton Promo T-Shirt",
+        "slug": "cotton-promo-t-shirt",
+        "id": "1009",
+        "sku": "COTTON-PROMO-T-SHI",
+        "type": "variable",
+        "category": "merch",
+        "brand": "Garilla",
+        "tags": [
+          "merch",
+          "cotton",
+          "orange",
+          "m"
+        ],
+        "price": 24,
+        "oldPrice": 34,
+        "discountLabel": "-29%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Orange",
+          "size": "M",
+          "material": "Cotton"
+        },
+        "variations": [
+          {
+            "id": "cotton-promo-t-shirt-a",
+            "sku": "COTTON-PROMO-T-SHI-A",
+            "attributes": {
+              "size": "M",
+              "colour": "Orange"
+            },
+            "price": 24,
+            "oldPrice": 34,
+            "stock": 13,
+            "image": ""
+          },
+          {
+            "id": "cotton-promo-t-shirt-b",
+            "sku": "COTTON-PROMO-T-SHI-B",
+            "attributes": {
+              "size": "L",
+              "colour": "Silver"
+            },
+            "price": 29,
+            "oldPrice": 42,
+            "stock": 8,
+            "image": ""
+          }
+        ],
+        "stock": 26,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Cotton Promo T-Shirt is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Cotton Promo T-Shirt",
+          "description": "Cotton Promo T-Shirt demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Premium Hoodie",
+        "slug": "premium-hoodie",
+        "id": "1010",
+        "sku": "PREMIUM-HOODIE",
+        "type": "variable",
+        "category": "merch",
+        "brand": "Garilla",
+        "tags": [
+          "merch",
+          "leather",
+          "grey",
+          "l"
+        ],
+        "price": 54,
+        "oldPrice": 69,
+        "discountLabel": "-22%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Grey",
+          "size": "L",
+          "material": "Leather"
+        },
+        "variations": [
+          {
+            "id": "premium-hoodie-a",
+            "sku": "PREMIUM-HOODIE-A",
+            "attributes": {
+              "size": "L",
+              "colour": "Grey"
+            },
+            "price": 54,
+            "oldPrice": 69,
+            "stock": 14,
+            "image": ""
+          },
+          {
+            "id": "premium-hoodie-b",
+            "sku": "PREMIUM-HOODIE-B",
+            "attributes": {
+              "size": "XL",
+              "colour": "Pink"
+            },
+            "price": 59,
+            "oldPrice": 77,
+            "stock": 9,
+            "image": ""
+          }
+        ],
+        "stock": 28,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Premium Hoodie is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Premium Hoodie",
+          "description": "Premium Hoodie demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Leather Notebook",
+        "slug": "leather-notebook",
+        "id": "1011",
+        "sku": "LEATHER-NOTEBOOK",
+        "type": "simple",
+        "category": "merch",
+        "brand": "Garilla",
+        "tags": [
+          "merch",
+          "aluminum",
+          "brown",
+          "xl"
+        ],
+        "price": 18,
+        "oldPrice": 25,
+        "discountLabel": "-28%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Brown",
+          "size": "XL",
+          "material": "Aluminum"
+        },
+        "variations": [],
+        "stock": 30,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Leather Notebook is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Leather Notebook",
+          "description": "Leather Notebook demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Aluminium Water Bottle",
+        "slug": "aluminium-water-bottle",
+        "id": "1012",
+        "sku": "ALUMINIUM-WATER-BO",
+        "type": "variable",
+        "category": "merch",
+        "brand": "Garilla",
+        "tags": [
+          "merch",
+          "glass",
+          "silver",
+          "custom"
+        ],
+        "price": 15,
+        "oldPrice": 22,
+        "discountLabel": "-32%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Silver",
+          "size": "Custom",
+          "material": "Glass"
+        },
+        "variations": [
+          {
+            "id": "aluminium-water-bottle-a",
+            "sku": "ALUMINIUM-WATER-BO-A",
+            "attributes": {
+              "size": "Custom",
+              "colour": "Silver"
+            },
+            "price": 15,
+            "oldPrice": 22,
+            "stock": 16,
+            "image": ""
+          },
+          {
+            "id": "aluminium-water-bottle-b",
+            "sku": "ALUMINIUM-WATER-BO-B",
+            "attributes": {
+              "size": "XS",
+              "colour": "Beige"
+            },
+            "price": 20,
+            "oldPrice": 30,
+            "stock": 10,
+            "image": ""
+          }
+        ],
+        "stock": 32,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Aluminium Water Bottle is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Aluminium Water Bottle",
+          "description": "Aluminium Water Bottle demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Glass Desk Sign",
+        "slug": "glass-desk-sign",
+        "id": "1013",
+        "sku": "GLASS-DESK-SIGN",
+        "type": "simple",
+        "category": "merch",
+        "brand": "Studio",
+        "tags": [
+          "merch",
+          "digital",
+          "pink",
+          "xs"
+        ],
+        "price": 48,
+        "oldPrice": 0,
+        "discountLabel": "",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Pink",
+          "size": "XS",
+          "material": "Digital"
+        },
+        "variations": [],
+        "stock": 34,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Glass Desk Sign is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Glass Desk Sign",
+          "description": "Glass Desk Sign demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Digital Download Pack",
+        "slug": "digital-download-pack",
+        "id": "1014",
+        "sku": "DIGITAL-DOWNLOAD-P",
+        "type": "simple",
+        "category": "digital-products",
+        "brand": "LPCMS",
+        "tags": [
+          "digital-products",
+          "service",
+          "sky",
+          "s"
+        ],
+        "price": 39,
+        "oldPrice": 59,
+        "discountLabel": "-34%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Sky",
+          "size": "S",
+          "material": "Service",
+          "license": "Business"
+        },
+        "variations": [],
+        "stock": 36,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Digital Download Pack is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Digital Download Pack",
+          "description": "Digital Download Pack demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Premium Template Bundle",
+        "slug": "premium-template-bundle",
+        "id": "1015",
+        "sku": "PREMIUM-TEMPLATE-B",
+        "type": "variable",
+        "category": "digital-products",
+        "brand": "LPCMS",
+        "tags": [
+          "digital-products",
+          "cotton",
+          "beige",
+          "m"
+        ],
+        "price": 89,
+        "oldPrice": 129,
+        "discountLabel": "-31%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Beige",
+          "size": "M",
+          "material": "Cotton",
+          "license": "Enterprise"
+        },
+        "variations": [
+          {
+            "id": "premium-template-bundle-a",
+            "sku": "PREMIUM-TEMPLATE-B-A",
+            "attributes": {
+              "size": "M",
+              "colour": "Beige"
+            },
+            "price": 89,
+            "oldPrice": 129,
+            "stock": 19,
+            "image": ""
+          },
+          {
+            "id": "premium-template-bundle-b",
+            "sku": "PREMIUM-TEMPLATE-B-B",
+            "attributes": {
+              "size": "L",
+              "colour": "Lime"
+            },
+            "price": 94,
+            "oldPrice": 199,
+            "stock": 12,
+            "image": ""
+          }
+        ],
+        "stock": 38,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Premium Template Bundle is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Premium Template Bundle",
+          "description": "Premium Template Bundle demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Photo Gallery Setup",
+        "slug": "photo-gallery-setup",
+        "id": "1016",
+        "sku": "PHOTO-GALLERY-SETU",
+        "type": "simple",
+        "category": "custom-services",
+        "brand": "Studio",
+        "tags": [
+          "custom-services",
+          "leather",
+          "rose",
+          "l"
+        ],
+        "price": 160,
+        "oldPrice": 0,
+        "discountLabel": "",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Rose",
+          "size": "L",
+          "material": "Leather",
+          "duration": "One-off"
+        },
+        "variations": [],
+        "stock": 40,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Photo Gallery Setup is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Photo Gallery Setup",
+          "description": "Photo Gallery Setup demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Contact Form Setup",
+        "slug": "contact-form-setup",
+        "id": "1017",
+        "sku": "CONTACT-FORM-SETUP",
+        "type": "simple",
+        "category": "custom-services",
+        "brand": "LPCMS",
+        "tags": [
+          "custom-services",
+          "aluminum",
+          "yellow",
+          "xl"
+        ],
+        "price": 120,
+        "oldPrice": 150,
+        "discountLabel": "-20%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Yellow",
+          "size": "XL",
+          "material": "Aluminum",
+          "duration": "Monthly"
+        },
+        "variations": [],
+        "stock": 42,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Contact Form Setup is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Contact Form Setup",
+          "description": "Contact Form Setup demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Multilingual Setup",
+        "slug": "multilingual-setup",
+        "id": "1018",
+        "sku": "MULTILINGUAL-SETUP",
+        "type": "simple",
+        "category": "custom-services",
+        "brand": "LPCMS",
+        "tags": [
+          "custom-services",
+          "glass",
+          "lime",
+          "custom"
+        ],
+        "price": 280,
+        "oldPrice": 350,
+        "discountLabel": "-20%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Lime",
+          "size": "Custom",
+          "material": "Glass",
+          "duration": "Project"
+        },
+        "variations": [],
+        "stock": 44,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Multilingual Setup is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Multilingual Setup",
+          "description": "Multilingual Setup demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "PWA Install Setup",
+        "slug": "pwa-install-setup",
+        "id": "1019",
+        "sku": "PWA-INSTALL-SETUP",
+        "type": "simple",
+        "category": "custom-services",
+        "brand": "LPCMS",
+        "tags": [
+          "custom-services",
+          "digital",
+          "clear",
+          "xs"
+        ],
+        "price": 210,
+        "oldPrice": 260,
+        "discountLabel": "-19%",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Clear",
+          "size": "XS",
+          "material": "Digital",
+          "duration": "One-off"
+        },
+        "variations": [],
+        "stock": 46,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>PWA Install Setup is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "PWA Install Setup",
+          "description": "PWA Install Setup demo product.",
+          "image": ""
+        }
+      },
+      {
+        "title": "Enterprise Custom Build",
+        "slug": "enterprise-custom-build",
+        "id": "1020",
+        "sku": "ENTERPRISE-CUSTOM-",
+        "type": "variable",
+        "category": "website-packages",
+        "brand": "LPCMS",
+        "tags": [
+          "website-packages",
+          "service",
+          "cream",
+          "s"
+        ],
+        "price": 2500,
+        "oldPrice": 0,
+        "discountLabel": "Popular",
+        "currency": "EUR",
+        "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80",
+        "gallery": [],
+        "attributes": {
+          "colour": "Cream",
+          "size": "S",
+          "material": "Service",
+          "license": "Custom"
+        },
+        "variations": [
+          {
+            "id": "enterprise-custom-build-a",
+            "sku": "ENTERPRISE-CUSTOM--A",
+            "attributes": {
+              "size": "S",
+              "colour": "Cream"
+            },
+            "price": 2500,
+            "oldPrice": 0,
+            "stock": 24,
+            "image": ""
+          },
+          {
+            "id": "enterprise-custom-build-b",
+            "sku": "ENTERPRISE-CUSTOM--B",
+            "attributes": {
+              "size": "M",
+              "colour": "White"
+            },
+            "price": 2550,
+            "oldPrice": 0,
+            "stock": 16,
+            "image": ""
+          }
+        ],
+        "stock": 48,
+        "inStock": true,
+        "text": "Demo product showing catalogue filters, modal details and order/quote flow.",
+        "body": "<p>Enterprise Custom Build is a demo product for testing LPCMS product search, category filters, attribute dropdowns, price range, modal view, cart and quote basket.</p>",
+        "features": [
+          "Ajax filter demo",
+          "Modal product details",
+          "Cart / quote support"
+        ],
+        "buyUrl": "#contact",
+        "buyButton": true,
+        "quoteButton": true,
+        "related": [],
+        "seo": {
+          "title": "Enterprise Custom Build",
+          "description": "Enterprise Custom Build demo product.",
+          "image": ""
+        }
+      }
+    ]
+  },
+  "booking": {
+    "enabled": false,
+    "preheader": "Booking",
+    "title": "Book an appointment",
+    "subtitle": "Choose a service, date and available time. Confirmation appears immediately and is sent by email.",
+    "services": [
+      {
+        "id": "consultation",
+        "title": "Consultation",
+        "durationMinutes": 60,
+        "price": 0,
+        "enabled": true
+      },
+      {
+        "id": "demo",
+        "title": "Product demo",
+        "durationMinutes": 30,
+        "price": 0,
+        "enabled": true
+      }
+    ],
+    "weeklySlots": {
+      "monday": [
+        "09:00",
+        "10:30",
+        "12:00",
+        "14:00",
+        "15:30",
+        "17:00"
+      ],
+      "tuesday": [
+        "09:00",
+        "10:30",
+        "12:00",
+        "14:00",
+        "15:30",
+        "17:00"
+      ],
+      "wednesday": [
+        "09:00",
+        "10:30",
+        "12:00",
+        "14:00",
+        "15:30",
+        "17:00"
+      ],
+      "thursday": [
+        "09:00",
+        "10:30",
+        "12:00",
+        "14:00",
+        "15:30",
+        "17:00"
+      ],
+      "friday": [
+        "09:00",
+        "10:30",
+        "12:00",
+        "14:00",
+        "15:30"
+      ],
+      "saturday": [],
+      "sunday": []
+    },
+    "confirmationText": "Booking confirmed. Check your email for the details.",
+    "technical": {
+      "notifyEmail": "",
+      "webhookUrl": ""
+    },
+    "bookings": [],
+    "currency": "EUR"
+  },
+  "chatbot": {
+    "enabled": false,
+    "mode": "chatbot",
+    "position": "left",
+    "buttonText": "Ask AI",
+    "title": "How can we help?",
+    "welcome": "Hi! Ask me about our services, products, prices, booking, or contact details.",
+    "placeholder": "Type your question…",
+    "fallback": "I could not find a confident answer in the website content. Please use the contact form and the team will help you.",
+    "suggestedQuestions": [
+      "What services do you offer?",
+      "How much does it cost?",
+      "Can I book an appointment?",
+      "How do I contact you?"
+    ],
+    "whatsapp": {
+      "number": "",
+      "buttonText": "WhatsApp",
+      "message": "Hi! I would like to ask about your services."
+    },
+    "technical": {
+      "aiEnabled": true,
+      "maxContextChars": 9000,
+      "systemPrompt": "You are the website assistant. Answer only from the supplied website knowledge, keep answers concise, do not invent facts, reply in the visitor language, and suggest booking or contact when useful."
+    }
+  },
+  "blog": {
+    "enabled": true,
+    "preheader": "Insights",
+    "title": "Web development, SEO & growth notes.",
+    "subtitle": "Practical articles about choosing technology, launching well and improving the website after it goes live.",
+    "homeLimit": 3,
+    "batch": 3,
+    "showButton": true,
+    "buttonText": "Load more articles",
+    "items": [
+      {
+        "title": "LPCMS vs WordPress: choosing the right CMS",
+        "slug": "lpcms-vs-wordpress",
+        "date": "2026-08-20",
+        "image": "/assets/img/blog/lpcms-vs-wordpress.svg",
+        "excerpt": "Choose a CMS around editing needs, integrations, scale and maintenance — not popularity alone.",
+        "body": "<p>LPCMS is a strong fit for fast landing pages, compact business sites and projects that benefit from JSON content without a database. WordPress is usually the better choice when a business needs a broader publishing ecosystem, familiar editorial workflows or plugin integrations. The right answer depends on the content model, team, budget and how the website will evolve.</p>",
+        "seo": {
+          "title": "LPCMS vs WordPress: choosing the right CMS",
+          "description": "Choose a CMS around editing needs, integrations, scale and maintenance — not popularity alone.",
+          "image": "/assets/img/blog/lpcms-vs-wordpress.svg"
+        }
+      },
+      {
+        "title": "What a custom WordPress business website should include",
+        "slug": "custom-wordpress-business-website",
+        "date": "2026-08-15",
+        "image": "/assets/img/blog/custom-wordpress-business-website.svg",
+        "excerpt": "A strong WordPress build combines discovery, content structure, custom design, reusable editing blocks, QA and a clean handover.",
+        "body": "<p>Custom WordPress should mean more than changing colours on a theme. A solid project starts with goals and information architecture, moves through UX and visual design, then turns the approved system into reusable components your team can edit. Technical SEO, responsive QA, redirects, analytics and launch planning belong in the scope from the start.</p>",
+        "seo": {
+          "title": "What a custom WordPress business website should include",
+          "description": "A strong WordPress build combines discovery, content structure, custom design, reusable editing blocks, QA and a clean handover.",
+          "image": "/assets/img/blog/custom-wordpress-business-website.svg"
+        }
+      },
+      {
+        "title": "WooCommerce launch checklist: beyond adding products",
+        "slug": "woocommerce-launch-checklist",
+        "date": "2026-08-10",
+        "image": "/assets/img/blog/woocommerce-launch-checklist.svg",
+        "excerpt": "Payments, shipping, tax, transactional email, mobile checkout and analytics all need end-to-end testing before launch.",
+        "body": "<p>A WooCommerce store is only ready when the full buying journey works. Test real product combinations, stock states, coupons, delivery rules, payment outcomes, order emails, refunds and mobile checkout. Then confirm analytics events, search visibility and recovery plans so the store can be supported after go-live.</p>",
+        "seo": {
+          "title": "WooCommerce launch checklist: beyond adding products",
+          "description": "Payments, shipping, tax, transactional email, mobile checkout and analytics all need end-to-end testing before launch.",
+          "image": "/assets/img/blog/woocommerce-launch-checklist.svg"
+        }
+      },
+      {
+        "title": "Core Web Vitals: performance is part of the customer experience",
+        "slug": "core-web-vitals-performance",
+        "date": "2026-08-05",
+        "image": "/assets/img/blog/core-web-vitals-performance.svg",
+        "excerpt": "Fast pages reduce friction for visitors and give SEO work a stronger technical foundation.",
+        "body": "<p>Performance should be designed into the build rather than added at the end. Keep page structure lean, optimise images, avoid unnecessary scripts, cache intelligently and test on realistic mobile connections. The goal is not a vanity score — it is a page that feels responsive when a real customer is trying to read, compare or buy.</p>",
+        "seo": {
+          "title": "Core Web Vitals: performance is part of the customer experience",
+          "description": "Fast pages reduce friction for visitors and give SEO work a stronger technical foundation.",
+          "image": "/assets/img/blog/core-web-vitals-performance.svg"
+        }
+      },
+      {
+        "title": "When a React web app makes sense",
+        "slug": "when-react-web-app-makes-sense",
+        "date": "2026-07-30",
+        "image": "/assets/img/blog/when-react-web-app-makes-sense.svg",
+        "excerpt": "Use React when the interface is genuinely interactive: dashboards, portals, workflows, live filters or application-like experiences.",
+        "body": "<p>Not every website needs an application framework. React is valuable when users are interacting with stateful data, complex workflows or reusable interface components. For a simple brochure site, a lighter solution may be better. Matching the technology to the job keeps delivery faster and long-term maintenance easier.</p>",
+        "seo": {
+          "title": "When a React web app makes sense",
+          "description": "Use React when the interface is genuinely interactive: dashboards, portals, workflows, live filters or application-like experiences.",
+          "image": "/assets/img/blog/when-react-web-app-makes-sense.svg"
+        }
+      },
+      {
+        "title": "Website maintenance after launch: what to monitor",
+        "slug": "website-maintenance-after-launch",
+        "date": "2026-07-24",
+        "image": "/assets/img/blog/website-maintenance-after-launch.svg",
+        "excerpt": "Updates, backups, security, uptime, forms and performance need regular attention after launch.",
+        "body": "<p>Launch is the start of the operating phase. A practical maintenance routine checks backups, software updates, security signals, uptime, form delivery, broken links and performance. It should also create space for small improvements based on real user behaviour instead of waiting for the next full redesign.</p>",
+        "seo": {
+          "title": "Website maintenance after launch: what to monitor",
+          "description": "Updates, backups, security, uptime, forms and performance need regular attention after launch.",
+          "image": "/assets/img/blog/website-maintenance-after-launch.svg"
+        }
+      }
+    ]
+  },
+  "demoIntake": {
+    "enabled": true,
+    "preheader": "Get a ready website",
+    "title": "Tell us what you need. We’ll turn it into a clear build plan.",
+    "subtitle": "Share the essentials in four short steps. We’ll use your brief to recommend the right platform, shape the content direction and prepare the next practical step for your website.",
+    "buttonText": "Send website brief",
+    "thankYou": "Thank you. Your website brief has been prepared for review.",
+    "privacyText": "I confirm that I am allowed to provide this business information and logo for preparing my website proposal or demo.",
+    "plans": [
+      {
+        "id": "premium",
+        "title": "LPCMS Premium",
+        "description": "Fast landing / business website",
+        "price": "£3.50 / €4 per month"
+      },
+      {
+        "id": "premium-pro",
+        "title": "LPCMS Premium Pro",
+        "description": "LPCMS e-commerce website",
+        "price": "£6.50 / €7 per month"
+      },
+      {
+        "id": "wordpress",
+        "title": "Custom WordPress",
+        "description": "Business / industry website",
+        "price": "from £1,500 / €1,750"
+      },
+      {
+        "id": "woocommerce",
+        "title": "Custom WooCommerce",
+        "description": "Custom e-commerce website",
+        "price": "from £1,800 / €2,100"
+      }
+    ],
+    "steps": [
+      "Your business",
+      "Website content",
+      "Branding & tools",
+      "Review"
+    ]
+  },
+  "pages": {
+    "enabled": true,
+    "items": [
+      {
+        "title": "Privacy Policy",
+        "slug": "privacy-policy",
+        "excerpt": "How DigitalPulse handles information submitted through this website.",
+        "body": "<h2>Information you provide</h2><p>When you contact DigitalPulse or submit a website brief, we may receive your name, email address, phone number, company details and project information. We use this information to respond to your enquiry, prepare a proposal or deliver requested services.</p><h2>Website data</h2><p>The website may use essential cookies for functionality and optional analytics where consent is required. Server logs may record technical information such as IP address, browser and request time for security and operational purposes.</p><h2>Sharing and retention</h2><p>We do not sell enquiry data. Information may be processed by hosting, email, analytics or other service providers used to operate the website, subject to their terms and applicable data-protection requirements. We keep information only as long as reasonably needed for the purpose it was collected.</p><h2>Your questions</h2><p>For privacy questions or requests concerning information submitted through this website, contact hello@digitalpulse.click.</p>",
+        "seo": {
+          "title": "Privacy Policy — DigitalPulse",
+          "description": "Privacy information for visitors and project enquiries submitted to DigitalPulse.",
+          "image": "/assets/img/digitalpulse-og.png"
+        }
+      }
+    ]
+  },
+  "contact": {
+    "enabled": true,
+    "preheader": "Contact",
+    "title": "Start with the project, not the platform.",
+    "subtitle": "Tell us what the website needs to achieve. We’ll help choose the right route and define the next practical step.",
+    "mapEmbed": "",
+    "details": {
+      "address": "Northampton, England · Riga, Latvia",
+      "phone": "+44 7952 641616",
+      "email": "hello@digitalpulse.click",
+      "hours": "Mon–Fri · 09:00–18:00 UK time"
+    },
+    "formButtonText": "Send project enquiry",
+    "locations": [
+      {
+        "region": "UK",
+        "city": "Northampton, England",
+        "text": "",
+        "icon": "bi bi-geo-alt-fill"
+      },
+      {
+        "region": "EU",
+        "city": "Riga, Latvia",
+        "text": "",
+        "icon": "bi bi-geo-alt-fill"
+      }
+    ],
+    "mapImage": "",
+    "social": [
+      {
+        "label": "Facebook",
+        "url": "https://www.facebook.com/",
+        "icon": "bi bi-facebook"
+      },
+      {
+        "label": "X",
+        "url": "https://x.com/",
+        "icon": "bi bi-twitter-x"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/",
+        "icon": "bi bi-linkedin"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/raivis-kalnins/lpcms",
+        "icon": "bi bi-github"
+      }
+    ]
+  },
+  "cta": {
+    "enabled": true,
+    "title": "Ready to give your website more pulse?",
+    "text": "<p>Whether you need a fast LPCMS launch, a custom WordPress business website, a WooCommerce store or a bespoke web application, start with a clear conversation about the goal.</p>",
+    "buttonText": "Let’s talk"
+  },
+  "footer": {
+    "copy": "© {year} DigitalPulse. Creative Web Solutions.",
+    "menu": [
+      {
+        "label": "Services",
+        "href": "#services"
+      },
+      {
+        "label": "Pricing",
+        "href": "#pricing"
+      },
+      {
+        "label": "Portfolio",
+        "href": "#gallery"
+      },
+      {
+        "label": "Blog",
+        "href": "#blog"
+      },
+      {
+        "label": "Privacy",
+        "href": "/page/privacy-policy"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "social": [
+      {
+        "label": "Facebook",
+        "url": "https://www.facebook.com/",
+        "icon": "bi bi-facebook"
+      },
+      {
+        "label": "X",
+        "url": "https://x.com/",
+        "icon": "bi bi-twitter-x"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/",
+        "icon": "bi bi-linkedin"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/raivis-kalnins/lpcms",
+        "icon": "bi bi-github"
+      }
+    ]
+  },
+  "redirects": [
+    {
+      "from": "/old-page",
+      "to": "/",
+      "status": 301,
+      "enabled": false
+    }
+  ],
+  "embeds": []
+}

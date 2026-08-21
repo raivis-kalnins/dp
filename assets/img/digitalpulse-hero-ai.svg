@@ -1,0 +1,41 @@
+<svg width="980" height="720" viewBox="0 0 980 720" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">DigitalPulse AI-enabled web application development</title>
+  <desc id="desc">Abstract application dashboard illustrating React, APIs, data and AI-assisted workflows.</desc>
+  <defs>
+    <linearGradient id="bg" x1="90" y1="78" x2="892" y2="640" gradientUnits="userSpaceOnUse"><stop stop-color="#F1F3FF"/><stop offset="1" stop-color="#ECFAF8"/></linearGradient>
+    <linearGradient id="pulse" x1="290" y1="178" x2="740" y2="532" gradientUnits="userSpaceOnUse"><stop stop-color="#5B5CFF"/><stop offset="0.52" stop-color="#8A6BFF"/><stop offset="1" stop-color="#16C7BD"/></linearGradient>
+    <filter id="shadow" x="64" y="70" width="858" height="604" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#101A42" flood-opacity="0.14"/></filter>
+  </defs>
+  <rect x="42" y="40" width="896" height="640" rx="54" fill="url(#bg)"/>
+  <path d="M116 602C244 521 321 644 438 563C554 482 641 608 868 497" stroke="#5B5CFF" stroke-opacity="0.12" stroke-width="34" stroke-linecap="round"/>
+  <g filter="url(#shadow)">
+    <rect x="116" y="112" width="748" height="504" rx="30" fill="white"/>
+    <rect x="116" y="112" width="748" height="62" rx="30" fill="#101A42"/>
+    <circle cx="154" cy="143" r="6" fill="#FF7A7A"/><circle cx="174" cy="143" r="6" fill="#FFD56A"/><circle cx="194" cy="143" r="6" fill="#76D7C4"/>
+    <rect x="235" y="134" width="252" height="18" rx="9" fill="#2D3969"/>
+    <rect x="144" y="202" width="190" height="384" rx="21" fill="#F5F6FB"/>
+    <rect x="168" y="232" width="70" height="70" rx="20" fill="url(#pulse)"/>
+    <path d="M186 268H197L205 251L215 282L224 262H239" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="168" y="328" width="132" height="12" rx="6" fill="#AEB7CC"/>
+    <rect x="168" y="360" width="104" height="12" rx="6" fill="#AEB7CC"/>
+    <rect x="168" y="392" width="122" height="12" rx="6" fill="#AEB7CC"/>
+    <rect x="168" y="448" width="142" height="90" rx="16" fill="#EDEFFF"/>
+    <circle cx="197" cy="478" r="12" fill="#5B5CFF"/><circle cx="240" cy="478" r="12" fill="#16C7BD"/><circle cx="283" cy="478" r="12" fill="#FF4FA3"/>
+    <path d="M197 490V511H283V490M240 490V511" stroke="#A9B1CB" stroke-width="4" stroke-linecap="round"/>
+    <rect x="362" y="202" width="472" height="194" rx="24" fill="#101A42"/>
+    <rect x="391" y="230" width="150" height="16" rx="8" fill="white" fill-opacity="0.94"/>
+    <rect x="391" y="264" width="224" height="11" rx="5.5" fill="#ABB5D5"/>
+    <rect x="391" y="288" width="188" height="11" rx="5.5" fill="#ABB5D5"/>
+    <path d="M398 348C436 322 458 347 490 319C528 286 551 332 586 307C628 277 658 325 694 293C728 263 761 307 798 274" stroke="url(#pulse)" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="492" cy="319" r="8" fill="#16C7BD"/><circle cx="694" cy="293" r="8" fill="#FF4FA3"/>
+    <rect x="362" y="422" width="226" height="140" rx="22" fill="#F5F6FB"/>
+    <rect x="386" y="448" width="96" height="13" rx="6.5" fill="#101A42" fill-opacity="0.84"/>
+    <rect x="386" y="482" width="176" height="52" rx="14" fill="white"/>
+    <path d="M405 511L424 494L443 506L465 482L485 497L511 477L543 500" stroke="#5B5CFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="612" y="422" width="222" height="140" rx="22" fill="url(#pulse)"/>
+    <path d="M672 483C672 457 693 436 719 436C745 436 766 457 766 483C766 509 745 530 719 530C693 530 672 509 672 483Z" fill="white" fill-opacity="0.18"/>
+    <path d="M701 489C707 495 715 498 723 498C738 498 750 486 750 471C750 456 738 444 723 444C708 444 696 456 696 471" stroke="white" stroke-width="7" stroke-linecap="round"/>
+    <path d="M695 466L696 485L713 478" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(736 74)"><circle cx="62" cy="62" r="58" fill="white"/><path d="M62 20L72 47L100 39L84 63L108 78L79 79L83 108L62 89L41 108L45 79L16 78L40 63L24 39L52 47L62 20Z" fill="#5B5CFF"/><circle cx="62" cy="64" r="15" fill="#16C7BD"/></g>
+</svg>

@@ -1,0 +1,28 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">DigitalPulse UK and Europe delivery map</title>
+  <desc id="desc">Stylised map of Europe with red location pins over the United Kingdom and Latvia.</desc>
+  <defs>
+    <linearGradient id="bg" x1="80" y1="54" x2="1120" y2="770" gradientUnits="userSpaceOnUse"><stop stop-color="#F7F8FC"/><stop offset="1" stop-color="#E8EDF5"/></linearGradient>
+    <filter id="shadow" x="120" y="100" width="970" height="620" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="20" stdDeviation="26" flood-color="#101A42" flood-opacity="0.11"/></filter>
+    <filter id="pinShadow" x="-80%" y="-80%" width="260%" height="260%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#B91C1C" flood-opacity="0.28"/></filter>
+  </defs>
+  <rect x="28" y="28" width="1144" height="764" rx="44" fill="url(#bg)"/>
+  <g opacity="0.34"><circle cx="1050" cy="132" r="84" fill="#5B5CFF" fill-opacity="0.11"/><circle cx="126" cy="682" r="98" fill="#16C7BD" fill-opacity="0.10"/></g>
+  <g filter="url(#shadow)">
+    <path d="M203 257C224 239 254 228 286 230L338 207L393 211L445 189L503 197L541 226L601 219L655 239L693 272L745 282L779 305L834 304L865 324L914 330L952 361L985 403L959 436L919 452L889 482L855 519L804 526L766 552L716 553L685 580L630 579L604 552L563 558L522 531L497 492L447 493L403 470L357 482L325 446L285 441L254 401L221 380L199 343L165 316L175 281L203 257Z" fill="#D6DCE7"/>
+    <path d="M178 258L205 265L228 288L218 313L190 302L169 280L178 258Z" fill="#C7CFDD"/>
+    <path d="M202 201L225 209L219 232L193 231L184 213L202 201Z" fill="#C7CFDD"/>
+    <path d="M724 176L754 191L743 220L714 216L697 198L724 176Z" fill="#C7CFDD"/>
+    <path d="M321 446L349 484L376 522L365 557L337 574L314 548L302 508L321 446Z" fill="#C9D1DE"/>
+    <path d="M585 548L608 586L593 621L566 613L552 577L585 548Z" fill="#C9D1DE"/>
+    <path d="M838 514L867 544L855 577L823 568L808 537L838 514Z" fill="#C9D1DE"/>
+  </g>
+  <g opacity="0.45"><path d="M285 330C388 283 530 278 667 310C750 330 815 350 875 393" stroke="#AFB9CA" stroke-width="4" stroke-dasharray="11 14" stroke-linecap="round"/></g>
+  <g filter="url(#pinShadow)">
+    <path d="M285 246C253 246 227 271 227 303C227 346 285 408 285 408C285 408 343 346 343 303C343 271 317 246 285 246Z" fill="#EF4444"/>
+    <circle cx="285" cy="303" r="17" fill="white"/><circle cx="285" cy="303" r="7" fill="#EF4444"/>
+    <path d="M739 223C707 223 681 248 681 280C681 323 739 385 739 385C739 385 797 323 797 280C797 248 771 223 739 223Z" fill="#EF4444"/>
+    <circle cx="739" cy="280" r="17" fill="white"/><circle cx="739" cy="280" r="7" fill="#EF4444"/>
+  </g>
+  <g opacity="0.75"><circle cx="285" cy="303" r="42" stroke="#EF4444" stroke-width="2" stroke-dasharray="6 10"/><circle cx="739" cy="280" r="42" stroke="#EF4444" stroke-width="2" stroke-dasharray="6 10"/></g>
+</svg>

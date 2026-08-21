@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">DigitalPulse — Creative Web Solutions</title>
+  <desc id="desc">DigitalPulse social sharing graphic for LPCMS, WordPress, WooCommerce and web application development.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0b1233"/><stop offset="0.62" stop-color="#101a42"/><stop offset="1" stop-color="#151b55"/>
+    </linearGradient>
+    <linearGradient id="pulse" x1="0" x2="1"><stop stop-color="#5b5cff"/><stop offset="0.55" stop-color="#16c7bd"/><stop offset="1" stop-color="#ff4fa3"/></linearGradient>
+    <radialGradient id="glow1"><stop stop-color="#5b5cff" stop-opacity=".34"/><stop offset="1" stop-color="#5b5cff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow2"><stop stop-color="#16c7bd" stop-opacity=".26"/><stop offset="1" stop-color="#16c7bd" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="110" cy="70" r="360" fill="url(#glow1)"/><circle cx="1090" cy="600" r="390" fill="url(#glow2)"/>
+  <g transform="translate(88 78)">
+    <rect width="92" height="92" rx="28" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".12"/>
+    <path d="M16 51h14l7-18 11 41 11-30 9 17 8-10h7" fill="none" stroke="url(#pulse)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="83" cy="51" r="5" fill="#16c7bd"/>
+  </g>
+  <g font-family="Inter,Arial,sans-serif">
+    <text x="210" y="137" fill="#ffffff" font-size="54" font-weight="800" letter-spacing="-2">Digital<tspan fill="#8b8cff">Pulse</tspan></text>
+    <text x="212" y="174" fill="#aeb7d6" font-size="17" font-weight="700" letter-spacing="4">CREATIVE WEB SOLUTIONS</text>
+    <text x="88" y="300" fill="#ffffff" font-size="62" font-weight="800" letter-spacing="-2.4">Websites built to move</text>
+    <text x="88" y="370" fill="#ffffff" font-size="62" font-weight="800" letter-spacing="-2.4">your business forward.</text>
+    <text x="91" y="439" fill="#c8d0e9" font-size="25">LPCMS · WordPress · WooCommerce · Web Apps</text>
+    <text x="91" y="492" fill="#c8d0e9" font-size="21">Northampton, England  ·  Riga, Latvia</text>
+    <rect x="88" y="535" width="356" height="4" rx="2" fill="url(#pulse)"/>
+    <text x="474" y="547" fill="#ffffff" font-size="20" font-weight="700">digitalpulse.click</text>
+  </g>
+</svg>
