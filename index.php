@@ -370,7 +370,7 @@ function cms_default_data(): array {
         'dueDays' => 7,
         'requests' => [],
       ],
-      'sectionOrder' => ['hero','about','adminShowcase','pricing','stats','features','services','process','gallery','testimonials','products','demoIntake','blog','faq','contact','cta','cards','contentList','logos','booking'],
+      'sectionOrder' => ['hero','about','adminShowcase','pricing','stats','features','services','process','gallery','testimonials','products','demoIntake','blog','faq','contact','cta','cards','contentList','team','growth','industries','logos','booking'],
       'sectionPatterns' => [
         'hero' => '1', 'about' => '1', 'stats' => '1', 'features' => '1', 'services' => '1', 'cards' => '1', 'contentList' => '1', 'logos' => '1', 'process' => '1', 'gallery' => '1',
         'testimonials' => '1', 'products' => '1', 'booking' => '1', 'adminShowcase' => '1', 'pricing' => '1', 'demoIntake' => '1', 'blog' => '1', 'faq' => '1', 'contact' => '1', 'cta' => '1'
@@ -3318,7 +3318,14 @@ function cms_apply_redirects(array $data): void {
 
 function cms_verify_hcaptcha(array $data, string $token): bool {
   $enabled = !empty($data['settings']['hcaptcha']['enabled']);
-  $secret = (string)($data['settings']['hcaptcha']['secret'] ?? '');
+  $secret = trim((string)(getenv('HCAPTCHA_SECRET') ?: ($data['settings']['hcaptcha']['secret'] ?? '')));
+  if ($secret === '') {
+    $secretFile = __DIR__ . '/.secrets.php';
+    if (is_file($secretFile)) {
+      $private = include $secretFile;
+      if (is_array($private)) $secret = trim((string)($private['hcaptchaSecret'] ?? ''));
+    }
+  }
   if (!$enabled) return true;
   if ($secret === '' || $token === '') return false;
   $post = http_build_query(['secret' => $secret, 'response' => $token, 'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '']);
@@ -3624,6 +3631,7 @@ if (isset($_GET['api'])) {
       cms_json(['ok' => false, 'error' => 'Too many login emails requested. Try again later.'], 429);
     }
     $payload = json_decode(file_get_contents('php://input') ?: '', true) ?: [];
+    if (!cms_verify_hcaptcha($data, (string)($payload['hcaptcha'] ?? ''))) cms_json(['ok' => false, 'error' => 'Captcha verification failed.'], 422);
     $email = strtolower(trim((string)($payload['email'] ?? '')));
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) cms_json(['ok' => false, 'error' => 'Please enter a valid email.'], 422);
     $user = cms_user_from_email($data, $email);
@@ -3870,6 +3878,7 @@ if (isset($_GET['api'])) {
   if ($api === 'booking-create' && $method === 'POST') {
     if(!cms_rate_limit_consume('booking-create',12,900)) cms_json(['ok'=>false,'error'=>'Too many booking attempts. Try again later.'],429);
     $payload=json_decode(file_get_contents('php://input')?:'',true)?:[]; $fresh=cms_load_data();
+    if (!cms_verify_hcaptcha($fresh, (string)($payload['hcaptcha'] ?? ''))) cms_json(['ok'=>false,'error'=>'Captcha verification failed.'],422);
     try { cms_json(cms_booking_create($fresh,$payload)); }
     catch(Throwable $e){ cms_json(['ok'=>false,'error'=>$e->getMessage()],422); }
   }
@@ -4288,8 +4297,8 @@ $i18nPack = cms_i18n_pack();
     function cls(...xs){ return xs.filter(Boolean).join(' '); }
     function get(obj, path){ return String(path).split('.').reduce((o,k)=> o && o[k] !== undefined ? o[k] : undefined, obj); }
     function set(obj, path, val){ const keys=String(path).split('.'); const copy=Array.isArray(obj)?[...obj]:{...obj}; let cur=copy; keys.forEach((k,i)=>{ if(i===keys.length-1){cur[k]=val;return;} cur[k]=Array.isArray(cur[k])?[...cur[k]]:{...cur[k]}; cur=cur[k]; }); return copy; }
-    const LOCALIZED_CONTENT_ROOTS=new Set(['header','hero','about','stats','features','services','process','gallery','testimonials','cards','contentList','logos','products','booking','adminShowcase','pricing','demoIntake','blog','faq','contact','cta','footer','chatbot','pages']);
-    const LOCALIZED_CONTENT_LEAVES=new Set(['title','subtitle','text','body','label','role','badge','buttonText','excerpt','question','answer','description','caption','heading','subheading','placeholder','confirmationText','welcome','welcomeMessage','fallback','message','instructions','address','hours','cartTitle','buyButtonText','quoteButtonText','cartButtonText','checkoutButtonText','discountLabel','suggestedQuestions','copy','period','formButtonText','thankYou','acceptText','declineText','eyebrow','alt','name','logoText','price','secondaryPrice','features','shortName','offlineMessage','domainTitle','domainText','tableTitle','tableSubtitle','ease','preheader','superAdminTitle','superAdminText']);
+    const LOCALIZED_CONTENT_ROOTS=new Set(['header','hero','about','stats','features','services','process','gallery','testimonials','cards','contentList','team','growth','industries','logos','products','booking','adminShowcase','pricing','demoIntake','blog','faq','contact','cta','footer','chatbot','pages']);
+    const LOCALIZED_CONTENT_LEAVES=new Set(['title','subtitle','text','body','label','role','badge','buttonText','excerpt','question','answer','description','caption','heading','subheading','placeholder','confirmationText','welcome','welcomeMessage','fallback','message','instructions','address','hours','cartTitle','buyButtonText','quoteButtonText','cartButtonText','checkoutButtonText','discountLabel','suggestedQuestions','copy','period','formButtonText','thankYou','acceptText','declineText','eyebrow','alt','name','logoText','price','secondaryPrice','features','shortName','offlineMessage','domainTitle','domainText','tableTitle','tableSubtitle','ease','preheader','superAdminTitle','superAdminText','noteTitle','noteText','footerText']);
     function isLocalizableContentPath(path){
       const parts=String(path||'').split('.').filter(Boolean); if(!parts.length||parts.includes('i18n'))return false;
       const leaf=parts[parts.length-1];
@@ -4674,7 +4683,7 @@ $i18nPack = cms_i18n_pack();
       async function save(options={}){ const silent=!!options?.silent; try{ const r=await fetch('?api=save',{method:'POST',headers:{'Content-Type':'application/json','X-CMS-CSRF':csrf},body:JSON.stringify(data)}); const j=await r.json(); if(j.ok){setData(j.data);setDirty(false);if(!silent)setNotice('Saved to data.json');return {ok:true,data:j.data};} const error=j.error||'Save failed'; if(!silent)setNotice(error); return {ok:false,error}; }catch(err){ const error=err?.message||'Save failed'; if(!silent)setNotice(error); return {ok:false,error}; } }
       async function logout(){ await fetch('?api=logout',{method:'POST',headers:{'X-CMS-CSRF':csrf}}); location.reload(); }
       const api = {data,setData,update,updateLocalized,localizedPath:(path)=>localizedDataPath(path,lang),localizedValue,replace,Editable,admin,t,href,email:boot.email,role:boot.role||'',isSuper:!!boot.isSuper,setModal,lang,setLang,save,logout,dirty,notice,setNotice,adminOpen,setAdminOpen,adminRequestedTab,setAdminRequestedTab,csrf,boot,setBoot,quoteItems,shopCartItems,addToQuote,addToCart,removeQuote,clearQuote,removeCart,clearCart,cartTotal,quoteMessage,orderMessage,formatProductPrice,productPriceValue,productOldPriceValue,variationLabel,productVariationList};
-      const sectionRegistry={hero:Hero,about:About,stats:Stats,features:FeatureBlocks,services:Services,process:Process,gallery:Gallery,testimonials:Testimonials,cards:ImageCards,contentList:ContentList,logos:LogoStrip,products:Products,booking:Booking,adminShowcase:AdminShowcase,pricing:Pricing,demoIntake:DemoIntake,blog:Blog,faq:FAQ,contact:Contact,cta:CTA};
+      const sectionRegistry={hero:Hero,about:About,stats:Stats,features:FeatureBlocks,services:Services,process:Process,gallery:Gallery,testimonials:Testimonials,cards:ImageCards,contentList:ContentList,team:TeamLead,growth:GrowthMarketing,industries:Industries,logos:LogoStrip,products:Products,booking:Booking,adminShowcase:AdminShowcase,pricing:Pricing,demoIntake:DemoIntake,blog:Blog,faq:FAQ,contact:Contact,cta:CTA};
       const defaultSectionOrder=Object.keys(sectionRegistry); const savedOrder=Array.isArray(data.settings?.sectionOrder)?data.settings.sectionOrder:defaultSectionOrder; const sectionOrder=[...new Set([...savedOrder.filter(x=>sectionRegistry[x]),...defaultSectionOrder.filter(x=>!savedOrder.includes(x))])];
       return h(InlineEditContext.Provider,{value:{data,admin,update,requestSavePrompt,csrf,setNotice,lang}},
         h(Header,{api}),
@@ -4683,7 +4692,7 @@ $i18nPack = cms_i18n_pack();
         h(Footer,{api}),
         h('button',{className:'btn-cms scroll-up',onClick:()=>scrollTo({top:0,behavior:'smooth'})},'↑'),
         admin && h('button',{className:'btn-cms admin-login',onClick:()=>setAdminOpen(true)}, icon('bi bi-sliders'), ' Admin'),
-        !admin && h(LoginButton),
+        !admin && h(LoginButton,{api}),
         data.products?.basketEnabled && quoteItems.length>0 && h('button',{className:'btn-cms basket-btn quote-floating',onClick:()=>setModal({type:'basket'})}, icon('bi bi-bag'), ' Quote ', h('span',{className:'basket-count'},quoteItems.length)),
         data.products?.shopEnabled && data.products?.cartEnabled && shopCartItems.length>0 && h('button',{className:'btn-cms basket-btn cart-floating',onClick:()=>setModal({type:'cart'})}, icon('bi bi-cart3'), ' Cart ', h('span',{className:'basket-count'},shopCartItems.length)),
         h(AdminPanel,{api,open:adminOpen,onClose:()=>setAdminOpen(false)}),
@@ -4708,7 +4717,7 @@ $i18nPack = cms_i18n_pack();
     function translate(api,obj,key){ const raw=obj?.i18n?.[api.lang]?.[key] ?? obj?.[key] ?? ''; return api.t(raw); }
     function RoutePage({api,route}){ const item=route.item||{}; const group=route.group||'pages'; const path=`${group}.items.${route.index}`; const E=api.Editable; const isProduct=group==='products'; const price=api.productPriceValue(item); const mode=price<=0?'quote':String(item.purchaseMode||api.data.products?.defaultPurchaseMode||'quote'); const showBuy=isProduct&&mode==='checkout'&&api.data.products?.showBuyButton&&item.buyButton!==false&&price>0; const showQuote=isProduct&&mode==='quote'&&api.data.products?.showQuoteButton&&item.quoteButton!==false; return h('section',{className:'section cms-soft'}, h(Container,{api}, h('article',{className:'cms-card mx-auto',style:{maxWidth:980}}, h('div',{className:'eyebrow text-primary fw-bold mb-2'}, isProduct?'Product':group==='blog'?'Blog':'Page'), h(EditableImage,{api,path:path+'.image',alt:item.title||'',className:'admin-image-field mb-4',hideWhenEmpty:true,eager:true}), h(E,{path:path+'.title',tag:'h1',className:'display-5 fw-bold'}), item.date&&h('p',{className:'muted'},item.date), isProduct&&h(ProductPrice,{api,item,path}), h(E,{path:path+'.body',tag:'div',html:true,className:'fs-5'}), isProduct&&Array.isArray(item.features)&&item.features.length>0&&h('ul',{className:'mt-3'},item.features.map((f,i)=>h('li',{key:i}, h(E,{path:path+'.features.'+i})))), isProduct&&h('div',{className:'product-actions'}, showBuy&&(item.checkoutUrl?h('a',{className:'btn-cms',href:item.checkoutUrl,target:'_blank',rel:'noopener noreferrer'},item.checkoutButtonText||api.data.products?.buyButtonText||'Checkout now'):h('button',{className:'btn-cms',onClick:()=>api.addToCart(item)},item.checkoutButtonText||api.data.products?.buyButtonText||'Checkout now')), showQuote&&h('button',{className:'btn-cms',onClick:()=>api.addToQuote(item)},api.data.products?.quoteButtonText||'Add to quote')), h('div',{className:'share-row'}, shareLinks(location.href,item.title).map(s=>h('a',{key:s.label,href:s.url,target:'_blank',rel:'noopener'},s.label)))))); }
     function Container({api,children,className=''}){ const grid=api.data.settings.theme.grid || 'container'; return h('div',{className:cls(grid,className)},children); }
-    function SectionTitle({api,base}){ const E=api.Editable; const defaults={stats:'Highlights',features:'Features',services:'Services',process:'How it works',gallery:'Gallery',testimonials:'Testimonials',cards:'Highlights',contentList:'Details',logos:'Trusted by',products:'Products',booking:'Booking',adminShowcase:'Admin & editing',pricing:'Pricing',demoIntake:'Free demo',blog:'Blog',faq:'FAQ',contact:'Contact'}; const fallback=api.t(defaults[base]||String(base||'').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/^./,m=>m.toUpperCase())); return h('div',{className:'section-title'}, h(E,{path:base+'.preheader',tag:'div',className:'eyebrow',placeholder:fallback}), h(E,{path:base+'.title',tag:'h2'}), h(E,{path:base+'.subtitle',tag:'p'})); }
+    function SectionTitle({api,base}){ const E=api.Editable; const defaults={stats:'Highlights',features:'Features',services:'Services',process:'How it works',gallery:'Gallery',testimonials:'Testimonials',cards:'Highlights',contentList:'Details',team:'Team lead',growth:'Marketing, SEO & AI content',industries:'Industries',logos:'Trusted by',products:'Products',booking:'Booking',adminShowcase:'Admin & editing',pricing:'Pricing',demoIntake:'Free demo',blog:'Blog',faq:'FAQ',contact:'Contact'}; const fallback=api.t(defaults[base]||String(base||'').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/^./,m=>m.toUpperCase())); return h('div',{className:'section-title'}, h(E,{path:base+'.preheader',tag:'div',className:'eyebrow',placeholder:fallback}), h(E,{path:base+'.title',tag:'h2'}), h(E,{path:base+'.subtitle',tag:'p'})); }
 
     function Header({api}){ const {data,setModal,lang,setLang,admin,update}=api; const [open,setOpen]=useState(false); const [langOpen,setLangOpen]=useState(false); const langRef=useRef(null); const E=api.Editable; const menu=data.header.menu||[]; const flagMap={en:'/assets/img/flags/gb.svg',lv:'/assets/img/flags/lv.svg',ru:'/assets/img/flags/ru.svg',fr:'/assets/img/flags/fr.svg',es:'/assets/img/flags/es.svg',de:'/assets/img/flags/de.svg',pl:'/assets/img/flags/pl.svg',lt:'/assets/img/flags/lt.svg',et:'/assets/img/flags/ee.svg',da:'/assets/img/flags/dk.svg',no:'/assets/img/flags/no.svg',sv:'/assets/img/flags/se.svg',fi:'/assets/img/flags/fi.svg',is:'/assets/img/flags/is.svg'}; const languageNames={en:'English',lv:'Latviešu',ru:'Русский',fr:'Français',es:'Español',de:'Deutsch',pl:'Polski',lt:'Lietuvių',et:'Eesti',da:'Dansk',no:'Norsk',sv:'Svenska',fi:'Suomi',is:'Íslenska'}; const languages=data.settings.languages||I18N.languages||[]; const activeLang=languages.find(l=>String(l.code).toLowerCase()===String(lang).toLowerCase())||{code:lang,label:String(lang||'EN').toUpperCase()}; useEffect(()=>{ if(!langOpen)return; const close=e=>{if(langRef.current&&!langRef.current.contains(e.target))setLangOpen(false)}; const esc=e=>{if(e.key==='Escape')setLangOpen(false)}; document.addEventListener('pointerdown',close);document.addEventListener('keydown',esc);return()=>{document.removeEventListener('pointerdown',close);document.removeEventListener('keydown',esc)}; },[langOpen]); function chooseLanguage(code){setLangOpen(false);setLang(code)} function linkProps(it,mobile=false){const blank=it?.target==='_blank';return {className:mobile?'':'nav-linkx',href:api.href(it?.href||'#'),target:blank?'_blank':undefined,rel:blank?'noopener noreferrer':undefined,onClick:()=>setOpen(false)}} function renderMenu(items,mobile=false){ return h('ul',null,items.map((it,i)=>h('li',{key:i,className:!mobile&&it.children?.length?'has-sub':''}, h('a',linkProps(it,mobile), translate(api,it,'label'), it.children?.length? h('span',{className:'ms-1'},'▾'):null), it.children?.length?h('ul',{className:mobile?'mobile-submenu':'submenu'},it.children.map((c,j)=>h('li',{key:j},h('a',linkProps(c,mobile),translate(api,c,'label'))))):null))); }
       const languagePicker=h('div',{className:'lang-picker',ref:langRef}, h('button',{className:'icon-btn lang-flag-btn',type:'button','aria-label':'Language: '+(languageNames[lang]||activeLang.name||activeLang.label||lang),'aria-haspopup':'menu','aria-expanded':langOpen?'true':'false',title:languageNames[lang]||activeLang.name||activeLang.label||lang,onClick:()=>setLangOpen(v=>!v)},h('img',{className:'flag-img',src:mediaUrl(flagMap[lang]||flagMap.en),alt:'',width:22,height:16,'aria-hidden':'true'})), langOpen&&h('div',{className:'lang-menu',role:'menu'},languages.map(l=>{const code=String(l.code||'').toLowerCase();return h('button',{key:code,type:'button',role:'menuitem',className:cls('lang-option',code===lang&&'active'),onClick:()=>chooseLanguage(code)},h('img',{className:'flag-img',src:mediaUrl(flagMap[code]||flagMap.en),alt:'',width:24,height:18,'aria-hidden':'true'}),h('span',null,l.name||languageNames[code]||l.label||code),h('span',{className:'lang-code'},code.toLowerCase()))}))); 
@@ -4805,7 +4814,13 @@ $i18nPack = cms_i18n_pack();
     }
 
     function Hero({api}){
-      const {data}=api; const slides=data.hero?.slides||[]; const offers=data.hero?.offers||[]; const E=api.Editable; const swiperEl=useRef(null);
+      const {data}=api; const slides=data.hero?.slides||[]; const offers=data.hero?.offers||[]; const promo=data.hero?.lpcmsPromo||{}; const E=api.Editable; const swiperEl=useRef(null);
+      useEffect(()=>{
+        const el=document.getElementById('home'); if(!el)return; let raf=0;
+        const update=()=>{raf=0;const rect=el.getBoundingClientRect();const vh=window.innerHeight||800;const progress=Math.max(-1,Math.min(1,(vh/2-(rect.top+rect.height/2))/Math.max(vh,rect.height)));el.style.setProperty('--hero-parallax-y',(progress*34).toFixed(1)+'px');};
+        const onScroll=()=>{if(!raf)raf=requestAnimationFrame(update)}; update(); window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll,{passive:true});
+        return()=>{if(raf)cancelAnimationFrame(raf);window.removeEventListener('scroll',onScroll);window.removeEventListener('resize',onScroll)};
+      },[]);
       useEffect(()=>{
         if(!swiperEl.current||!window.Swiper||!slides.length)return;
         const inst=new window.Swiper(swiperEl.current,{
@@ -4827,27 +4842,37 @@ $i18nPack = cms_i18n_pack();
         }
         return h('div',{className:'hero-card p-2'},h(EditableImage,{api,path:`hero.slides.${i}.image`,alt:slide.title||'',className:'hero-img',eager:i===0}));
       }
-      const offerGrid=offers.length?h('div',{className:'hero-offer-grid'},offers.map((o,i)=>h('a',{key:i,className:'hero-offer-card',href:o.href||'#services'},h('span',{className:'hero-offer-icon'},icon(o.icon||'bi bi-arrow-up-right')),h('span',null,h('strong',null,api.t(o.title||'')),h('span',null,api.t(o.text||'')))))):null;
-      return h('section',{id:'home',className:'hero section'},h(HeroParticles),h(Container,{api},
+      const offerGrid=offers.length?h('div',{className:'hero-offer-grid'},offers.map((o,i)=>{const external=/^https?:\/\//i.test(String(o.href||''));return h('a',{key:i,className:'hero-offer-card',href:o.href||'#services',target:external?'_blank':undefined,rel:external?'noopener noreferrer':undefined},h('span',{className:'hero-offer-icon'},icon(o.icon||'bi bi-arrow-up-right')),h('span',null,h('strong',null,api.t(o.title||'')),h('span',null,api.t(o.text||''))))})):null;
+      const lpcmsPromo=promo.enabled!==false&&promo.title?h('aside',{className:'lpcms-hero-promo'},
+        h('div',{className:'lpcms-promo-icon'},icon(promo.icon||'bi bi-lightning-charge-fill')),
+        h('div',{className:'lpcms-promo-copy'},h(E,{path:'hero.lpcmsPromo.eyebrow',tag:'span',className:'lpcms-promo-eyebrow'}),h(E,{path:'hero.lpcmsPromo.title',tag:'strong'}),h(E,{path:'hero.lpcmsPromo.text',tag:'p'})),
+        h('a',{className:'btn-cms lpcms-promo-btn',href:promo.href||'https://lpcms.dev4.click/',target:'_blank',rel:'noopener noreferrer'},h(E,{path:'hero.lpcmsPromo.buttonText'}),icon('bi bi-arrow-up-right'))
+      ):null;
+      return h('section',{id:'home',className:'hero section'},h('div',{className:'hero-parallax-bg','aria-hidden':'true'}),h(HeroParticles),h(Container,{api},
         h('div',{className:'swiper hero-swiper',ref:swiperEl},
           h('div',{className:'swiper-wrapper'},slides.map((slide,i)=>h('div',{className:'swiper-slide',key:i},
-            h('div',{className:'row align-items-center g-4 hero-slide-grid'},
-              h('div',{className:'col-lg-7'},h('div',{className:'hero-slide-copy'},
+            h('div',{className:'hero-slide-grid'},
+              h('div',{className:'hero-copy-col'},h('div',{className:'hero-slide-copy'},
                 h('div',{className:'eyebrow text-primary fw-bold mb-3'},h(E,{path:`hero.slides.${i}.eyebrow`})),
                 h(E,{path:`hero.slides.${i}.title`,tag:i===0?'h1':'h2',className:'hero-slide-title'}),
                 h(E,{path:`hero.slides.${i}.text`,tag:'p',className:'my-4'}),
-                h('a',{className:'btn-cms',href:slide.buttonHref||'#contact'},h(E,{path:`hero.slides.${i}.buttonText`})),
-                slides.length>1&&h('div',{className:'hero-swiper-controls'},h('button',{className:'hero-swiper-prev swiper-button-prev',type:'button','aria-label':api.t('Previous')||'Previous'}),h('div',{className:'hero-swiper-pagination swiper-pagination'}),h('button',{className:'hero-swiper-next swiper-button-next',type:'button','aria-label':api.t('Next')||'Next'}))
+                h('a',{className:'btn-cms',href:slide.buttonHref||'#contact'},h(E,{path:`hero.slides.${i}.buttonText`}))
               )),
-              h('div',{className:'col-lg-5'},slideMedia(slide,i))
+              h('div',{className:'hero-media-col'},slideMedia(slide,i))
             )
-          )))
+          ))),
+          slides.length>1&&h('div',{className:'hero-swiper-controls'},
+            h('button',{className:'hero-swiper-prev',type:'button','aria-label':api.t('Previous')||'Previous'},icon('bi bi-arrow-left')),
+            h('div',{className:'hero-swiper-pagination'}),
+            h('button',{className:'hero-swiper-next',type:'button','aria-label':api.t('Next')||'Next'},icon('bi bi-arrow-right'))
+          )
         ),
-        offerGrid
+        offerGrid,
+        lpcmsPromo
       ));
     }
 
-    function About({api}){ const d=api.data.about, E=api.Editable; return h('section',{id:'about',className:'section'}, h(Container,{api}, h('div',{className:'row align-items-center g-5'}, h('div',{className:'col-lg-6'}, h(EditableImage,{api,path:'about.image',alt:d.title||'',className:'feature-panel'})), h('div',{className:'col-lg-6'}, h(E,{path:'about.preheader',tag:'div',className:'eyebrow mb-2',placeholder:api.t('About')}), h(E,{path:'about.title',tag:'h2',className:'display-5'}), h(E,{path:'about.subtitle',tag:'p',className:'lead muted'}), h(E,{path:'about.body',tag:'div',html:true,className:'fs-5'}))))); }
+    function About({api}){ const d=api.data.about, E=api.Editable; return h('section',{id:'about',className:'section'}, h(Container,{api}, h('div',{className:'row align-items-center g-5'}, h('div',{className:'col-lg-6'}, h('div',{className:'about-team-visual-wrap'}, h(EditableImage,{api,path:'about.image',alt:d.title||'',className:'feature-panel about-team-visual'}), h('span',{className:'about-float-badge badge-wp'},icon('bi bi-wordpress'),' WordPress'), h('span',{className:'about-float-badge badge-react'},icon('bi bi-filetype-jsx'),' React'), h('span',{className:'about-float-badge badge-ai'},icon('bi bi-stars'),' AI workflows'))), h('div',{className:'col-lg-6'}, h(E,{path:'about.preheader',tag:'div',className:'eyebrow mb-2',placeholder:api.t('About')}), h(E,{path:'about.title',tag:'h2',className:'display-5'}), h(E,{path:'about.subtitle',tag:'p',className:'lead muted'}), h(E,{path:'about.body',tag:'div',html:true,className:'fs-5'}))))); }
 
     function Stats({api}){ const E=api.Editable; const items=api.data.stats?.items||[]; return h('section',{id:'stats',className:'section pt-0'}, h(Container,{api}, h(SectionTitle,{api,base:'stats'}), h('div',{className:'row g-4'}, items.map((it,i)=>h('div',{className:'col-6 col-lg-3',key:i}, h('div',{className:'cms-card stat-card'}, h(E,{path:`stats.items.${i}.number`,tag:'div',className:'stat-number'}), h(E,{path:`stats.items.${i}.label`,tag:'p',className:'muted mb-0'}))))))); }
 
@@ -4855,7 +4880,7 @@ $i18nPack = cms_i18n_pack();
 
     function LoadMoreGrid({api,base,render,columns}){ const section=api.data[base]||{}; const startCount=Math.max(1,Number(section.homeLimit||section.batch||3)); const addCount=Math.max(1,Number(section.batch||startCount)); const items=section.items||[]; const [count,setCount]=useState(startCount); useEffect(()=>setCount(startCount),[base,startCount]); return h(React.Fragment,null, h('div',{className:'row g-4'}, items.slice(0,count).map((item,i)=>render(item,i,columns))), section.showButton && count<items.length && h('div',{className:'load-more-wrap'}, h('button',{className:'btn-cms',onClick:()=>setCount(c=>Math.min(items.length,c+addCount))}, api.localizedValue(base+'.buttonText')||'Load more'))); }
 
-    function Services({api}){ const E=api.Editable; return h('section',{id:'services',className:'section cms-soft'}, h(Container,{api}, h(SectionTitle,{api,base:'services'}), h(LoadMoreGrid,{api,base:'services',render:(it,i)=>{const external=/^https?:\/\//i.test(String(it.buttonHref||''));return h('div',{className:'col-md-6 col-lg-4',key:i,'data-aos':'fade-up'}, h('article',{className:'cms-card'}, h(EditableImage,{api,path:`services.items.${i}.image`,iconPath:`services.items.${i}.icon`,alt:it.title||'',className:'cms-icon cms-image-icon',fallback:icon(it.icon,'bi bi-stars')}), h(E,{path:`services.items.${i}.title`,tag:'h3',className:'h4 fw-bold'}), h(E,{path:`services.items.${i}.text`,tag:'p',className:'muted'}), it.buttonText && h('a',{className:'btn-ghost mt-2',href:it.buttonHref||'#contact',target:external?'_blank':undefined,rel:external?'noopener noreferrer':undefined}, h(E,{path:`services.items.${i}.buttonText`})) ))}}))); }
+    function Services({api}){ const E=api.Editable; const serviceItems=api.data.services?.items||[]; return h('section',{id:'services',className:'section cms-soft'}, h(Container,{api}, h(SectionTitle,{api,base:'services'}), h(LoadMoreGrid,{api,base:'services',render:(it,i)=>{const external=/^https?:\/\//i.test(String(it.buttonHref||''));const wide=i===serviceItems.length-1;return h('div',{className:wide?'col-12 service-wide-card':'col-md-6 col-lg-4',key:i,'data-aos':'fade-up'}, h('article',{className:'cms-card'}, h(EditableImage,{api,path:`services.items.${i}.image`,iconPath:`services.items.${i}.icon`,alt:it.title||'',className:'cms-icon cms-image-icon',fallback:icon(it.icon,'bi bi-stars')}), h(E,{path:`services.items.${i}.title`,tag:'h3',className:'h4 fw-bold'}), h(E,{path:`services.items.${i}.text`,tag:'p',className:'muted'}), it.buttonText && h('a',{className:'btn-ghost mt-2',href:it.buttonHref||'#contact',target:external?'_blank':undefined,rel:external?'noopener noreferrer':undefined}, h(E,{path:`services.items.${i}.buttonText`})) ))}}))); }
 
     function Gallery({api}){
       const cfg=api.data.gallery||{}, E=api.Editable, items=cfg.items||[], categories=cfg.categories||[];
@@ -4867,7 +4892,7 @@ $i18nPack = cms_i18n_pack();
         h(SectionTitle,{api,base:'gallery'}),
         h('div',{className:'portfolio-toolbar','aria-label':api.t('Portfolio filters')},categories.map((c,i)=>h('button',{key:c.slug||i,type:'button',className:cls('portfolio-filter',(c.slug||'all')===cat&&'active'),onClick:()=>setCat(c.slug||'all')},api.t(c.title||c.slug||'All work')))),
         h('div',{className:'portfolio-count'},filtered.length,' ',api.t(filtered.length===1?'project':'projects')),
-        h('div',{className:'row g-4'},filtered.slice(0,count).map(it=>{const i=items.indexOf(it);return h('div',{className:'col-md-6 col-lg-4',key:it.slug||i},h('article',{className:'cms-card portfolio-card'},h('div',{className:'portfolio-image-wrap'},h(EditableImage,{api,path:`gallery.items.${i}.image`,alt:api.localizedValue(`gallery.items.${i}.alt`)||it.alt||it.title||'',className:'portfolio-image',target:'gallery'})),h('div',{className:'portfolio-card-body'},h('div',{className:'portfolio-meta'},h('span',{className:'portfolio-kind'},categoryTitle(it.category)||api.t(it.kind||'')),h('span',{className:'demo-pill'},api.t(it.client||'Demo concept'))),h(E,{path:`gallery.items.${i}.title`,tag:'h3',className:'h4 fw-bold'}),h(E,{path:`gallery.items.${i}.text`,tag:'p',className:'muted mb-0'}),Array.isArray(it.tech)&&h('div',{className:'tech-chips'},it.tech.map((t,j)=>h('span',{key:j,className:'tech-chip'},t))),h('div',{className:'portfolio-actions'},h('button',{type:'button',className:'btn-ghost',onClick:()=>api.setModal({type:'item',group:'gallery',index:i})},api.t('View project'))))))})),
+        h('div',{className:'row g-4'},filtered.slice(0,count).map(it=>{const i=items.indexOf(it);return h('div',{className:'col-md-6 col-lg-4',key:it.slug||i},h('article',{className:'cms-card portfolio-card'},h('div',{className:'portfolio-image-wrap'},h(EditableImage,{api,path:`gallery.items.${i}.image`,alt:api.localizedValue(`gallery.items.${i}.alt`)||it.alt||it.title||'',className:'portfolio-image',target:'gallery'})),h('div',{className:'portfolio-card-body'},h('div',{className:'portfolio-meta'},h('span',{className:'portfolio-kind'},categoryTitle(it.category)||api.t(it.kind||'')),h('span',{className:cls('portfolio-status',String(it.status||'').toLowerCase().includes('development')&&'is-development')},api.t(it.status||'Live project'))),h(E,{path:`gallery.items.${i}.title`,tag:'h3',className:'h4 fw-bold'}),h(E,{path:`gallery.items.${i}.text`,tag:'p',className:'muted mb-0'}),Array.isArray(it.tech)&&h('div',{className:'tech-chips'},it.tech.map((t,j)=>h('span',{key:j,className:'tech-chip'},t))),h('div',{className:'portfolio-actions'},h('button',{type:'button',className:'btn-ghost',onClick:()=>api.setModal({type:'item',group:'gallery',index:i})},api.t('View project'))))))})),
         cfg.showButton&&count<filtered.length&&h('div',{className:'load-more-wrap'},h('button',{className:'btn-cms',onClick:()=>setCount(c=>Math.min(filtered.length,c+batch))},api.localizedValue('gallery.buttonText')||api.t('Load more projects')))
       ));
     }
@@ -4878,26 +4903,124 @@ $i18nPack = cms_i18n_pack();
 
     function Process({api}){ const E=api.Editable; return h('section',{id:'process',className:'section'}, h(Container,{api}, h(SectionTitle,{api,base:'process'}), h('div',{className:'row justify-content-center'}, h('div',{className:'col-lg-8'}, (api.data.process?.items||[]).map((it,i)=>h('article',{className:'timeline-step d-flex gap-3 mb-4',key:i}, h(EditableImage,{api,path:`process.items.${i}.image`,iconPath:`process.items.${i}.icon`,alt:it.title||'',className:'cms-icon flex-shrink-0 cms-image-icon',fallback:icon(it.icon,'bi bi-check')}), h('div',{className:'cms-card flex-fill'}, h('div',{className:'small muted mb-1'},'0'+(i+1)), h(E,{path:`process.items.${i}.title`,tag:'h3',className:'h4'}), h(E,{path:`process.items.${i}.text`,tag:'p',className:'muted mb-0'})))))))); }
 
-    function ImageCards({api}){ const d=api.data.cards||{}, E=api.Editable; const cols=Math.max(2,Math.min(4,Number(d.columns||3))); return h('section',{id:'cards',className:'section'},h(Container,{api},h(SectionTitle,{api,base:'cards'}),h('div',{className:'row g-4'},(d.items||[]).map((it,i)=>h('div',{className:`col-md-6 col-lg-${12/cols}`,key:i},h('article',{className:'cms-card'},h(EditableImage,{api,path:`cards.items.${i}.image`,iconPath:`cards.items.${i}.icon`,alt:it.title||'',className:it.image?'image-card-media mb-3':'cms-icon cms-image-icon mb-3',fallback:icon(it.icon||'lucide:layout-template')}),h(E,{path:`cards.items.${i}.title`,tag:'h3',className:'h5'}),h(E,{path:`cards.items.${i}.text`,tag:'p',className:'muted'}),it.buttonText&&h('a',{className:'btn-ghost',href:it.buttonHref||'#contact'},h(E,{path:`cards.items.${i}.buttonText`})))))))); }
-    function ContentList({api}){ const d=api.data.contentList||{}, E=api.Editable; return h('section',{id:'content-list',className:'section cms-soft'},h(Container,{api},h(SectionTitle,{api,base:'contentList'}),h('div',null,(d.items||[]).map((it,i)=>h('article',{className:'content-list-row',key:i},h(EditableImage,{api,path:`contentList.items.${i}.image`,iconPath:`contentList.items.${i}.icon`,alt:it.title||'',className:it.image?'content-list-media':'cms-icon cms-image-icon content-list-icon',fallback:icon(it.icon||'lucide:list-checks')}),h('div',null,h(E,{path:`contentList.items.${i}.title`,tag:'h3',className:'h3'}),h(E,{path:`contentList.items.${i}.text`,tag:'p',className:'muted fs-5'}),it.buttonText&&h('a',{className:'btn-ghost',href:it.buttonHref||'#contact'},h(E,{path:`contentList.items.${i}.buttonText`})))))))); }
+    function ImageCards({api}){
+      const d=api.data.cards||{}, E=api.Editable;
+      const cols=Math.max(2,Math.min(4,Number(d.columns||3)));
+      return h('section',{id:'cards',className:'section'},
+        h(Container,{api},
+          h(SectionTitle,{api,base:'cards'}),
+          h('div',{className:'row g-4'},(d.items||[]).map((it,i)=>{
+            const external=/^https?:\/\//i.test(String(it.buttonHref||''));
+            return h('div',{className:`col-md-6 col-lg-${12/cols}`,key:i},
+              h('article',{className:'cms-card'},
+                h(EditableImage,{api,path:`cards.items.${i}.image`,iconPath:`cards.items.${i}.icon`,alt:it.title||'',className:it.image?'image-card-media mb-3':'cms-icon cms-image-icon mb-3',fallback:icon(it.icon||'lucide:layout-template')}),
+                h(E,{path:`cards.items.${i}.title`,tag:'h3',className:'h5'}),
+                h(E,{path:`cards.items.${i}.text`,tag:'p',className:'muted'}),
+                it.buttonText&&h('a',{className:'btn-ghost',href:it.buttonHref||'#contact',target:external?'_blank':undefined,rel:external?'noopener noreferrer':undefined},h(E,{path:`cards.items.${i}.buttonText`}))
+              )
+            );
+          }))
+        )
+      );
+    }
+
+    function ContentList({api}){
+      const d=api.data.contentList||{}, E=api.Editable; const items=d.items||[]; const [open,setOpen]=useState(false);
+      function openEncoded(encoded){ if(!encoded)return; try{const url=atob(String(encoded));if(!/^https?:\/\//i.test(url))return;const win=window.open(url,'_blank','noopener,noreferrer');if(win)win.opener=null;}catch(e){} }
+      return h('section',{id:'content-list',className:'section cms-soft','data-nosnippet':''},h(Container,{api},
+        h(SectionTitle,{api,base:'contentList'}),
+        h('div',{className:'agency-exp-accordion','data-nosnippet':''},
+          h('button',{type:'button',className:'agency-exp-toggle','aria-expanded':open,onClick:()=>setOpen(v=>!v)},
+            h('span',null,api.t(d.accordionLabel||'View selected UK agency projects'),h('span',{className:'agency-exp-count'},items.length-1,'+')),
+            icon(open?'bi bi-chevron-up':'bi bi-chevron-down')
+          ),
+          open&&h('div',{className:'agency-exp-panel','data-nosnippet':''},
+            h('p',{className:'agency-exp-note'},api.t(d.privacyNote||'')),
+            h('div',{className:'agency-exp-grid'},items.map((it,i)=>h('button',{type:'button',key:i,className:cls('agency-exp-item',it.urlEncoded&&'can-open'),onClick:it.urlEncoded?()=>openEncoded(it.urlEncoded):undefined,'aria-label':it.urlEncoded?(api.t('Open')+' '+(it.title||'')):undefined},
+              h('span',null,h(E,{path:`contentList.items.${i}.title`,tag:'strong'}),h(E,{path:`contentList.items.${i}.text`,tag:'small'})),
+              icon(it.urlEncoded?'bi bi-box-arrow-up-right':'bi bi-plus-circle')
+            )))
+          )
+        )
+      ));
+    }
+
+    function GrowthMarketing({api}){
+      const d=api.data.growth||{}, E=api.Editable; const items=d.items||[];
+      return h('section',{id:'growth',className:'section growth-section'},h(Container,{api},
+        h(SectionTitle,{api,base:'growth'}),
+        h('div',{className:'row g-4 growth-grid'},items.map((it,i)=>h('div',{className:'col-md-6 col-xl-4',key:i},
+          h('article',{className:'cms-card growth-card h-100'},
+            h('span',{className:'growth-icon'},icon(it.icon||'bi bi-graph-up-arrow')),
+            h(E,{path:`growth.items.${i}.title`,tag:'h3',className:'h5 fw-bold'}),
+            h(E,{path:`growth.items.${i}.text`,tag:'p',className:'muted mb-0'}),
+            Array.isArray(it.points)&&it.points.length?h('ul',{className:'growth-points'},it.points.map((point,j)=>h('li',{key:j},icon('bi bi-check2'),h(E,{path:`growth.items.${i}.points.${j}`})))):null
+          )
+        ))),
+        h('div',{className:'growth-note cms-card'},h('div',null,h(E,{path:'growth.noteTitle',tag:'strong'}),h(E,{path:'growth.noteText',tag:'p',className:'muted mb-0'})),h('a',{className:'btn-cms',href:'#contact'},h(E,{path:'growth.buttonText'})))
+      ));
+    }
+
+    function Industries({api}){
+      const d=api.data.industries||{}, E=api.Editable; const items=d.items||[];
+      return h('section',{id:'industries',className:'section cms-soft industries-section'},h(Container,{api},
+        h(SectionTitle,{api,base:'industries'}),
+        h('div',{className:'industry-grid'},items.map((it,i)=>h('article',{className:'cms-card industry-card',key:i},
+          h('div',{className:'industry-card-top'},h('span',{className:'industry-icon'},icon(it.icon||'bi bi-buildings')),h(E,{path:`industries.items.${i}.title`,tag:'h3',className:'h5 fw-bold mb-0'})),
+          h(E,{path:`industries.items.${i}.text`,tag:'p',className:'muted'}),
+          Array.isArray(it.solutions)&&it.solutions.length?h('div',{className:'industry-solutions'},it.solutions.map((x,j)=>h('span',{key:j},x))):null
+        ))),
+        h('div',{className:'industries-footer'},h(E,{path:'industries.footerText',tag:'p',className:'mb-0'}),h('a',{className:'btn-ghost',href:'#contact'},h(E,{path:'industries.buttonText'})))
+      ));
+    }
+
+    function TeamLead({api}){
+      const d=api.data.team||{}, E=api.Editable; const [open,setOpen]=useState(0); const gallery=api.data.gallery?.items||[];
+      const projectsFor=it=>(it.portfolioIndexes||[]).map(idx=>({it:gallery[idx],idx})).filter(x=>x.it);
+      return h('section',{id:'team',className:'section'},h(Container,{api},
+        h(SectionTitle,{api,base:'team'}),
+        h('div',{className:'team-lead-shell'},
+          h('aside',{className:'team-lead-profile cms-card'},
+            h('div',{className:'team-photo-wrap'},h(EditableImage,{api,path:'team.photo',alt:d.name||'Team lead',className:'team-photo'})),
+            h(E,{path:'team.name',tag:'h3',className:'h3 mb-1'}),
+            h(E,{path:'team.role',tag:'div',className:'team-role'}),
+            h(E,{path:'team.summary',tag:'p',className:'muted team-summary'}),
+            h('div',{className:'team-tech-chips'},(d.technologies||[]).map((tech,i)=>h('span',{key:i},tech))),
+            d.linkedin&&h('a',{className:'btn-cms team-linkedin',href:d.linkedin,target:'_blank',rel:'noopener noreferrer'},icon('bi bi-linkedin'),h(E,{path:'team.buttonText'}))
+          ),
+          h('div',{className:'team-accordion'},(d.items||[]).map((it,i)=>{
+            const isOpen=open===i; const projects=it.type==='portfolio'?projectsFor(it):[]; const agencies=it.type==='agency-portfolio'?(it.agencyItems||[]):[];
+            return h('article',{className:cls('team-accordion-item',isOpen&&'open'),key:i},
+              h('button',{type:'button',className:'team-accordion-toggle','aria-expanded':isOpen,onClick:()=>setOpen(isOpen?null:i)},
+                h('span',{className:'team-accordion-icon'},icon(it.icon||'bi bi-plus-circle')),
+                h(E,{path:`team.items.${i}.title`,tag:'strong'}),
+                icon(isOpen?'bi bi-dash-lg':'bi bi-plus-lg')
+              ),
+              isOpen&&h('div',{className:'team-accordion-body',...(agencies.length?{'data-nosnippet':''}:{})},
+                h(E,{path:`team.items.${i}.text`,tag:'div',html:true,className:agencies.length?'team-agency-note':'muted'}),
+                agencies.length>0&&h('div',{className:'team-agency-grid'},agencies.map((agency,j)=>{const canOpen=!!agency.urlEncoded;return h('button',{type:'button',key:j,className:cls('team-agency-btn',canOpen&&'can-open'),disabled:!canOpen,onClick:()=>{if(!canOpen)return;try{const url=window.atob(agency.urlEncoded);window.open(url,'_blank','noopener,noreferrer')}catch(e){}}},h('span',null,agency.title),icon(canOpen?'bi bi-box-arrow-up-right':'bi bi-plus-circle'));})),
+                projects.length>0&&h('div',{className:'team-mini-portfolio'},projects.map(({it:p,idx})=>h('button',{type:'button',className:'team-mini-project',key:idx,onClick:()=>api.setModal({type:'item',group:'gallery',index:idx})},
+                  h('img',{src:mediaUrl(p.image),alt:api.localizedValue(`gallery.items.${idx}.alt`)||p.title||'',loading:'lazy',decoding:'async'}),
+                  h('span',null,h('strong',null,api.localizedValue(`gallery.items.${idx}.title`)||p.title),h('small',null,api.localizedValue(`gallery.items.${idx}.kind`)||p.kind||p.category||''))
+                )))
+              )
+            );
+          }))
+        )
+      ));
+    }
+
     function LogoStrip({api}){
-      const d=api.data.logos||{}, E=api.Editable, items=d.items||[]; const swiperEl=useRef(null);
-      useEffect(()=>{
-        if(!swiperEl.current||!window.Swiper||items.length<2)return;
-        const inst=new window.Swiper(swiperEl.current,{
-          slidesPerView:'auto',spaceBetween:12,loop:items.length>7,speed:6200,allowTouchMove:true,
-          freeMode:{enabled:true,momentum:false},
-          autoplay:{delay:0,disableOnInteraction:false,pauseOnMouseEnter:true},
-          a11y:{enabled:true}
-        });
-        return()=>{try{inst.destroy(true,true)}catch(e){}};
-      },[items.length,api.lang]);
+      const d=api.data.logos||{}, E=api.Editable, items=d.items||[];
+      const group=(copyKey)=>h('div',{className:'tech-marquee-group','aria-hidden':copyKey==='copy'?true:undefined,key:copyKey},items.map((it,i)=>h('a',{className:'tech-pill',href:it.href||'#features',key:copyKey+'-'+i,tabIndex:copyKey==='copy'?-1:undefined},it.icon?icon(it.icon):icon('bi bi-code-slash'),h(E,{path:`logos.items.${i}.label`,tag:'span'}))));
       return h('section',{id:'logos',className:'section tech-stack-strip'},h(Container,{api},
         h('div',{className:'tech-stack-head'},
           h('div',null,h(E,{path:'logos.preheader',tag:'div',className:'eyebrow'}),h(E,{path:'logos.title',tag:'h2'})),
           h(E,{path:'logos.subtitle',tag:'p'})
         ),
-        h('div',{className:'swiper tech-swiper',ref:swiperEl},h('div',{className:'swiper-wrapper'},items.map((it,i)=>h('div',{className:'swiper-slide',key:i},h('a',{className:'tech-pill',href:it.href||'#features'},it.icon?icon(it.icon):icon('bi bi-code-slash'),h(E,{path:`logos.items.${i}.label`,tag:'span'}))))))
+        h('div',{className:'tech-swiper tech-marquee','aria-label':api.localizedValue('logos.title')||'Technology stack'},
+          h('div',{className:'tech-marquee-track'},group('main'),group('copy'))
+        )
       ));
     }
     function ProductPrice({api,item,path,variation=null}){ const price=api.productPriceValue(item,variation); const old=api.productOldPriceValue(item,variation); return h('div',{className:'d-flex align-items-center gap-2 flex-wrap mb-3'}, h('span',{className:'product-price'}, api.formatProductPrice(item,variation)), old>price&&price>0&&h('span',{className:'old-price'}, new Intl.NumberFormat(undefined,{style:'currency',currency:variation?.currency||item.currency||api.data.products?.currency||'EUR'}).format(old)), item.discountLabel&&h('span',{className:'discount-badge'},item.discountLabel)); }
@@ -4929,6 +5052,24 @@ $i18nPack = cms_i18n_pack();
         h(ActiveFilterChips,{q,cat,categories,attrs,price,setQ,setCat,setAttrs,setPrice})
       ), h('div',{className:'small muted mb-3'}, filtered.length,' product',filtered.length===1?'':'s',' found'), h('div',{className:'row g-4'}, filtered.slice(0,count).map((item)=>h(ProductCard,{api,it:item,i:items.indexOf(item),key:item.slug||item.sku||item.title}))), cfg.showButton && count<filtered.length && h('div',{className:'load-more-wrap'}, h('button',{className:'btn-cms',onClick:()=>setCount(c=>c+batch)}, cfg.buttonText||'Load more')))); }
 
+    function HCaptchaWidget({api,onToken,className='',resetKey=0}){
+      const hc=api.data.settings?.hcaptcha||{}; const host=useRef(null); const widgetId=useRef(null);
+      useEffect(()=>{
+        onToken?.('');
+        if(!hc.enabled||!hc.siteKey||!host.current)return;
+        let dead=false;
+        const render=()=>{
+          if(dead||widgetId.current!==null||!host.current||!window.hcaptcha)return;
+          try{widgetId.current=window.hcaptcha.render(host.current,{sitekey:hc.siteKey,callback:(token)=>onToken?.(token||''),'expired-callback':()=>onToken?.(''),'error-callback':()=>onToken?.('')});}catch(e){}
+        };
+        render(); const timer=setInterval(render,300); const stop=setTimeout(()=>clearInterval(timer),6500);
+        return()=>{dead=true;clearInterval(timer);clearTimeout(stop);if(window.hcaptcha&&widgetId.current!==null){try{window.hcaptcha.remove(widgetId.current)}catch(e){}}widgetId.current=null;};
+      },[hc.enabled,hc.siteKey,api.lang]);
+      useEffect(()=>{if(resetKey&&window.hcaptcha&&widgetId.current!==null){try{window.hcaptcha.reset(widgetId.current)}catch(e){}onToken?.('');}},[resetKey]);
+      if(!hc.enabled||!hc.siteKey)return null;
+      return h('div',{className:className||'hcaptcha-wrap',ref:host});
+    }
+
     function Booking({api}){
       const d=api.data.booking||{};
       const services=(d.services||[]).filter(x=>x.enabled!==false);
@@ -4939,13 +5080,15 @@ $i18nPack = cms_i18n_pack();
       const [form,setForm]=useState({name:'',email:'',phone:''});
       const [busy,setBusy]=useState(false);
       const [msg,setMsg]=useState('');
+      const [captcha,setCaptcha]=useState(''); const [captchaReset,setCaptchaReset]=useState(0);
+      const hc=api.data.settings?.hcaptcha||{};
       async function loadSlots(v,sv=service){
         setDate(v); setTime(''); setSlots([]); if(!v)return;
         try{const r=await fetch('?api=booking-slots&date='+encodeURIComponent(v)+'&serviceId='+encodeURIComponent(sv));const j=await r.json();if(!r.ok||!j.ok)throw new Error(j.error||'Could not load times.');setSlots(j.slots||[])}catch(e){setMsg(e.message)}
       }
       async function book(e){
         e.preventDefault(); setBusy(true); setMsg('');
-        try{const r=await fetch('?api=booking-create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...form,serviceId:service,date,time})});const j=await r.json();if(!r.ok||!j.ok)throw new Error(j.error||'Booking failed.');setMsg(j.message||'Booking confirmed.');setTime('');await loadSlots(date,service)}catch(e){setMsg(e.message||'Booking failed.')}finally{setBusy(false)}
+        try{const r=await fetch('?api=booking-create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...form,serviceId:service,date,time,hcaptcha:captcha})});const j=await r.json();if(!r.ok||!j.ok)throw new Error(j.error||'Booking failed.');setMsg(j.message||'Booking confirmed.');setTime('');setCaptcha('');setCaptchaReset(v=>v+1);await loadSlots(date,service)}catch(e){setMsg(e.message||'Booking failed.')}finally{setBusy(false)}
       }
       const serviceCards=h('div',{className:'booking-service-grid mb-4'},services.map(sv=>{
         const meta=`${sv.durationMinutes||sv.duration||60} min${Number(sv.price||0)>0?' · '+new Intl.NumberFormat(undefined,{style:'currency',currency:d.currency||api.data.products?.currency||'EUR'}).format(Number(sv.price)):''}`;
@@ -4960,7 +5103,8 @@ $i18nPack = cms_i18n_pack();
           h('div',{className:'col-md-4'},h('input',{className:'form-control',type:'email',placeholder:'Email',value:form.email,onChange:e=>setForm({...form,email:e.target.value}),required:true})),
           h('div',{className:'col-md-4'},h('input',{className:'form-control',placeholder:'Phone',value:form.phone,onChange:e=>setForm({...form,phone:e.target.value})}))
         ),
-        h('button',{className:'btn-cms mt-3',disabled:busy||!time},busy?'Confirming...':'Book → confirmation in real time'),
+        h(HCaptchaWidget,{api,onToken:setCaptcha,resetKey:captchaReset,className:'hcaptcha-wrap booking-hcaptcha'}),
+        h('button',{className:'btn-cms mt-3',disabled:busy||!time||(hc.enabled&&!captcha)},busy?'Confirming...':'Book → confirmation in real time'),
         msg&&h('div',{className:'booking-confirm mt-3'},msg)
       );
       return h('section',{id:'booking',className:'section cms-soft'},h(Container,{api},h('div',{className:'booking-shell'},h(SectionTitle,{api,base:'booking'}),serviceCards,bookingForm)));
@@ -5033,27 +5177,42 @@ $i18nPack = cms_i18n_pack();
     }
 
     function Pricing({api}){
-      const E=api.Editable; const items=api.data.pricing?.items||[];
+      const E=api.Editable; const items=api.data.pricing?.items||[]; const swiperEl=useRef(null); const instRef=useRef(null);
+      useEffect(()=>{
+        const setup=()=>{
+          if(!swiperEl.current||!window.Swiper)return;
+          if(window.innerWidth<768){
+            if(instRef.current)return;
+            instRef.current=new window.Swiper(swiperEl.current,{slidesPerView:1,spaceBetween:18,speed:650,loop:items.length>1,autoplay:{delay:4200,disableOnInteraction:false,pauseOnMouseEnter:true},pagination:{el:swiperEl.current.querySelector('.pricing-swiper-pagination'),clickable:true},a11y:{enabled:true}});
+          }else if(instRef.current){ try{instRef.current.destroy(true,true)}catch(e){} instRef.current=null; }
+        };
+        setup(); window.addEventListener('resize',setup); return()=>{window.removeEventListener('resize',setup);if(instRef.current){try{instRef.current.destroy(true,true)}catch(e){}instRef.current=null;}};
+      },[items.length,api.lang]);
       return h('section',{id:'pricing',className:'section cms-soft'},h(Container,{api},
         h(SectionTitle,{api,base:'pricing'}),
-        h('div',{className:'pricing-grid pricing-grid-clean'},items.map((it,i)=>
-          h('article',{className:cls('cms-card pricing-card pricing-card-clean',i===1&&'featured'),key:i},
-            h('div',{className:'pricing-card-head'},
-              it.badge&&h('span',{className:'plan-badge'},h(E,{path:`pricing.items.${i}.badge`})),
-              h(E,{path:`pricing.items.${i}.title`,tag:'h3',className:'pricing-title'}),
-              h('div',{className:'pricing-dual-price'},
-                h(E,{path:`pricing.items.${i}.price`,tag:'div',className:'pricing-price'}),
-                (it.secondaryPrice||it.priceEur)&&h(E,{path:`pricing.items.${i}.secondaryPrice`,tag:'div',className:'secondary'}),
-                h(E,{path:`pricing.items.${i}.period`,tag:'div',className:'pricing-period muted'})
-              ),
-              h(E,{path:`pricing.items.${i}.text`,tag:'p',className:'pricing-intro muted'})
-            ),
-            Array.isArray(it.features)&&h('div',{className:'pricing-features'},it.features.map((f,j)=>
-              h('div',{key:j,className:'plan-feature'},h('span',{className:'plan-feature-icon'},icon('bi bi-check2')),h(E,{path:`pricing.items.${i}.features.${j}`}))
-            )),
-            h('a',{className:'btn-cms pricing-action',href:it.buttonHref||'#contact'},h(E,{path:`pricing.items.${i}.buttonText`}))
-          )
-        ))
+        h('div',{className:'swiper pricing-swiper',ref:swiperEl},
+          h('div',{className:'swiper-wrapper row g-4 pricing-grid-clean'},items.map((it,i)=>
+            h('div',{className:'swiper-slide col-12 col-md-6 col-xl-3 pricing-slide',key:i},
+              h('article',{className:cls('cms-card pricing-card pricing-card-clean',i===1&&'featured')},
+                h('div',{className:'pricing-card-head'},
+                  it.badge&&h('span',{className:'plan-badge'},h(E,{path:`pricing.items.${i}.badge`})),
+                  h(E,{path:`pricing.items.${i}.title`,tag:'h3',className:'pricing-title'}),
+                  h('div',{className:'pricing-dual-price'},
+                    h(E,{path:`pricing.items.${i}.price`,tag:'div',className:'pricing-price'}),
+                    (it.secondaryPrice||it.priceEur)&&h(E,{path:`pricing.items.${i}.secondaryPrice`,tag:'div',className:'secondary'}),
+                    h(E,{path:`pricing.items.${i}.period`,tag:'div',className:'pricing-period muted'})
+                  ),
+                  h(E,{path:`pricing.items.${i}.text`,tag:'p',className:'pricing-intro muted'})
+                ),
+                Array.isArray(it.features)&&h('div',{className:'pricing-features'},it.features.map((f,j)=>
+                  h('div',{key:j,className:'plan-feature'},h('span',{className:'plan-feature-icon'},icon('bi bi-check2')),h(E,{path:`pricing.items.${i}.features.${j}`}))
+                )),
+                h('a',{className:'btn-cms pricing-action',href:it.buttonHref||'#contact'},h(E,{path:`pricing.items.${i}.buttonText`}))
+              )
+            )
+          )),
+          h('div',{className:'pricing-swiper-pagination'})
+        )
       ));
     }
 
@@ -5202,7 +5361,11 @@ $i18nPack = cms_i18n_pack();
       ))):null;
       const details=h('div',{className:'contact-detail-list'},...info.map(([k,label,ico])=>h('div',{key:k,className:'contact-detail-row'},h('span',{className:'contact-detail-icon','aria-hidden':'true'},icon(ico)),h('p',null,h('strong',null,api.t(label)+': '),h(E,{path:`contact.details.${k}`})))));
       const socialRow=socials.length?h('div',{className:'contact-socials','aria-label':api.t('Social media')},...socials.map((social,i)=>{const label=api.t(social.label||'Social media'),external=social.url&&social.url!=='#';return h('a',{key:i,href:social.url,className:'contact-social-link',target:external?'_blank':undefined,rel:external?'noopener noreferrer':undefined,'aria-label':label,title:label},icon(social.icon||'bi bi-link-45deg'));})):null;
-      const box=h('div',{className:'contact-box'},locationCards,details,h('button',{className:'btn-cms contact-form-btn',onClick:()=>api.setModal({type:'form'})},api.localizedValue('contact.formButtonText')||api.t('Open contact form')),socialRow);
+      const actions=h('div',{className:'contact-actions'},
+        h('button',{className:'btn-cms contact-form-btn',onClick:()=>api.setModal({type:'form'})},api.localizedValue('contact.formButtonText')||api.t('Open contact form')),
+        h('button',{className:'btn-ghost business-card-btn',onClick:()=>api.setModal({type:'business-card'})},icon('bi bi-person-vcard'),api.t('Business Card'))
+      );
+      const box=h('div',{className:'contact-box'},locationCards,details,actions,socialRow);
       const map=h(DeliveryMap,{locations});
       return h('section',{id:'contact',className:'section'},h(Container,{api},h(SectionTitle,{api,base:'contact'}),h('div',{className:'row g-4 contact-layout'},h('div',{className:'col-lg-8'},h('div',{className:'delivery-map-shell'},map)),h('div',{className:'col-lg-4'},box))));
     }
@@ -5247,8 +5410,24 @@ $i18nPack = cms_i18n_pack();
       );
     }
 
-    function LoginButton(){ const [open,setOpen]=useState(false); const [email,setEmail]=useState(''); const [msg,setMsg]=useState(''); async function submit(e){ e.preventDefault(); setMsg('Sending...'); const r=await fetch('?api=login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})}); const j=await r.json(); setMsg(j.error||j.message||'Check your email.'); }
-      return h(React.Fragment,null, h('button',{className:'btn-cms admin-login',onClick:()=>setOpen(true),'aria-label':'Admin login'}, icon('bi bi-person-lock')), open&&h('div',{className:'cms-modal-backdrop',onClick:()=>setOpen(false)}, h('form',{className:'cms-modal small',onClick:e=>e.stopPropagation(),onSubmit:submit}, h('div',{className:'d-flex justify-content-between align-items-center mb-3'}, h('h3',null,'Admin login'), h('button',{type:'button',className:'icon-btn',onClick:()=>setOpen(false)},icon('bi bi-x-lg'))), h('p',{className:'muted'},'Enter an administrator email. A secure login URL will be sent to that address.'), h('input',{className:'form-control mb-3',type:'email',value:email,onChange:e=>setEmail(e.target.value),placeholder:'admin@example.com',required:true}), h('button',{className:'btn-cms w-100'},'Send login link'), msg&&h('p',{className:'mt-3 mb-0'},msg)))); }
+    function LoginButton({api}){
+      const [open,setOpen]=useState(false); const [email,setEmail]=useState(''); const [msg,setMsg]=useState(''); const [captcha,setCaptcha]=useState(''); const [captchaReset,setCaptchaReset]=useState(0);
+      const hc=api.data.settings?.hcaptcha||{};
+      async function submit(e){ e.preventDefault(); setMsg('Sending...'); const r=await fetch('?api=login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,hcaptcha:captcha})}); const j=await r.json(); setMsg(j.error||j.message||'Check your email.'); if(j.ok){setCaptcha('');setCaptchaReset(v=>v+1);} }
+      return h(React.Fragment,null,
+        h('button',{className:'btn-cms admin-login',onClick:()=>setOpen(true),'aria-label':'Admin login'}, icon('bi bi-person-lock')),
+        open&&h('div',{className:'cms-modal-backdrop',onClick:()=>setOpen(false)},
+          h('form',{className:'cms-modal small',onClick:e=>e.stopPropagation(),onSubmit:submit},
+            h('div',{className:'d-flex justify-content-between align-items-center mb-3'}, h('h3',null,'Admin login'), h('button',{type:'button',className:'icon-btn',onClick:()=>setOpen(false)},icon('bi bi-x-lg'))),
+            h('p',{className:'muted'},'Enter an administrator email. A secure login URL will be sent to that address.'),
+            h('input',{className:'form-control mb-3',type:'email',value:email,onChange:e=>setEmail(e.target.value),placeholder:'admin@example.com',required:true}),
+            h(HCaptchaWidget,{api,onToken:setCaptcha,resetKey:captchaReset,className:'hcaptcha-wrap mb-3'}),
+            h('button',{className:'btn-cms w-100',disabled:!!hc.enabled&&!captcha},'Send login link'),
+            msg&&h('p',{className:'mt-3 mb-0'},msg)
+          )
+        )
+      );
+    }
 
     function SaveChangesDialog({api,prompt,onClose}){ const [busy,setBusy]=useState(false); const [error,setError]=useState(''); async function confirm(){ if(busy)return; setBusy(true); setError(''); const result=await api.save({silent:true}); if(result?.ok){ onClose(); } else { setError(result?.error||'Could not save changes.'); setBusy(false); } } return h('div',{className:'cms-modal-backdrop cms-save-backdrop',onClick:busy?undefined:onClose}, h('div',{className:'cms-modal small',onClick:e=>e.stopPropagation()}, h('div',{className:'d-flex justify-content-between align-items-start gap-3 mb-3'}, h('div',null,h('h3',{className:'h5 mb-1'},'Save changes?'),h('div',{className:'small muted'},'Your changes are currently only previewed in the editor.')), h('button',{type:'button',className:'icon-btn',disabled:busy,onClick:onClose,'aria-label':'Keep editing'},icon('bi bi-x-lg'))), h('p',{className:'mb-3'},prompt?.message||'Save your inline changes to data.json now?'), error&&h('div',{className:'alert alert-danger py-2'},error), h('div',{className:'d-flex justify-content-end gap-2'}, h('button',{type:'button',className:'btn-ghost',disabled:busy,onClick:onClose},'Keep editing'), h('button',{type:'button',className:'btn-cms',disabled:busy,onClick:confirm},icon('bi bi-save'),busy?' Saving...':' Save changes')))); }
 
@@ -5315,7 +5494,24 @@ $i18nPack = cms_i18n_pack();
       );
     }
 
-    function Modal({modal,setModal,api}){ if(modal.type==='search') return h(SearchModal,{api,onClose:()=>setModal(null)}); if(modal.type==='form') return h(FormModal,{api,modal,onClose:()=>setModal(null)}); if(modal.type==='basket') return h(BasketModal,{api,onClose:()=>setModal(null)}); if(modal.type==='cart') return h(CartModal,{api,onClose:()=>setModal(null)}); if(modal.type==='install') return h(InstallModal,{api,platform:modal.platform||'',onClose:()=>setModal(null)}); if(modal.type==='item') return h(ItemModal,{api,modal,onClose:()=>setModal(null)}); return null; }
+    function BusinessCardModal({api,onClose}){
+      const cfg=api.data.contact?.businessCard||{}; const preview=mediaUrl(cfg.preview||'/assets/img/digitalpulse-business-card-preview.png'); const download=mediaUrl(cfg.download||'/assets/docs/digitalpulse-business-card-print.pdf');
+      return h('div',{className:'cms-modal-backdrop',onClick:onClose},
+        h('div',{className:'cms-modal business-card-modal',onClick:e=>e.stopPropagation()},
+          h('div',{className:'d-flex justify-content-between align-items-center mb-3'},
+            h('div',null,h('div',{className:'eyebrow mb-1'},api.t('DigitalPulse contact')),h('h3',{className:'mb-0'},api.t('Business Card'))),
+            h('button',{type:'button',className:'icon-btn',onClick:onClose,'aria-label':api.t('Close')},icon('bi bi-x-lg'))
+          ),
+          h('img',{src:preview,alt:api.t('DigitalPulse business card preview'),className:'business-card-preview',loading:'eager',decoding:'async'}),
+          h('div',{className:'business-card-actions'},
+            h('a',{className:'btn-ghost',href:preview,target:'_blank',rel:'noopener noreferrer'},icon('bi bi-arrows-fullscreen'),api.t('View full size')),
+            h('a',{className:'btn-cms',href:download,download:'digitalpulse-business-card-print.pdf'},icon('bi bi-download'),api.t('Download business card'))
+          )
+        )
+      );
+    }
+
+    function Modal({modal,setModal,api}){ if(modal.type==='search') return h(SearchModal,{api,onClose:()=>setModal(null)}); if(modal.type==='form') return h(FormModal,{api,modal,onClose:()=>setModal(null)}); if(modal.type==='basket') return h(BasketModal,{api,onClose:()=>setModal(null)}); if(modal.type==='cart') return h(CartModal,{api,onClose:()=>setModal(null)}); if(modal.type==='install') return h(InstallModal,{api,platform:modal.platform||'',onClose:()=>setModal(null)}); if(modal.type==='business-card') return h(BusinessCardModal,{api,onClose:()=>setModal(null)}); if(modal.type==='item') return h(ItemModal,{api,modal,onClose:()=>setModal(null)}); return null; }
     function SearchModal({api,onClose}){ const [q,setQ]=useState(''); const results=useMemo(()=>{ if(!q.trim()) return []; const low=q.toLowerCase(); const out=[]; ['services','features','process','pricing','faq','products','blog','gallery','pages'].forEach(group=>(api.data[group]?.items||[]).forEach((it,i)=>{ if(JSON.stringify(it).toLowerCase().includes(low)) out.push({group,i,title:it.title||it.alt||group,text:it.excerpt||it.text||it.alt||'',href:['blog','products','pages'].includes(group)?pretty(group,it):'#'+group}); })); return out.slice(0,20); },[q,api.data]); return h('div',{className:'cms-modal-backdrop',onClick:onClose}, h('div',{className:'cms-modal',onClick:e=>e.stopPropagation()}, h('div',{className:'d-flex justify-content-between align-items-center mb-3'}, h('h3',null,'Ajax search'), h('button',{className:'icon-btn',onClick:onClose},icon('bi bi-x-lg'))), h('input',{autoFocus:true,className:'form-control form-control-lg',placeholder:'Search this page...',value:q,onChange:e=>setQ(e.target.value)}), h('div',{className:'mt-3'}, results.map((r,i)=>h('a',{key:i,className:'search-result',href:r.href,onClick:onClose}, h('strong',null,r.title), h('span',{className:'badge text-bg-light ms-2'},r.group), h('p',{className:'muted mb-0'},r.text)))))); }
 
     function ItemModal({api,modal,onClose}){
@@ -5357,6 +5553,7 @@ $i18nPack = cms_i18n_pack();
           item.date&&h('p',{className:'muted'},item.date),
           isPortfolio&&h('div',{className:'portfolio-modal-meta'},
             item.kind&&h('span',{className:'demo-pill'},api.t(item.kind)),
+            item.status&&h('span',{className:cls('portfolio-status',String(item.status||'').toLowerCase().includes('development')&&'is-development')},api.t(item.status)),
             item.client&&h('span',{className:'demo-pill'},api.t(item.client)),
             ...(item.tech||[]).map((t,i)=>h('span',{key:i,className:'tech-chip'},t))
           ),
@@ -5399,8 +5596,31 @@ $i18nPack = cms_i18n_pack();
 
     function CartModal({api,onClose}){ const cfg=api.data.products||{}; const pay=cfg.payment?.directDebit||{}; const methods=(cfg.shippingMethods||[]).filter(x=>x.enabled!==false); const codes=(cfg.discountCodes||[]).filter(x=>x.enabled!==false); const [busy,setBusy]=useState(false); const [error,setError]=useState(''); const [email,setEmail]=useState(''); const [shippingId,setShippingId]=useState(methods[0]?.id||''); const [discountCode,setDiscountCode]=useState(''); const subtotal=api.cartTotal(); const ship=methods.find(x=>x.id===shippingId); const dc=codes.find(x=>String(x.code||'').toLowerCase()===discountCode.trim().toLowerCase()); const discount=dc?(dc.type==='fixed'?Math.min(subtotal,Number(dc.value||0)):subtotal*Math.max(0,Math.min(100,Number(dc.value||0)))/100):0; const shipping=Number(ship?.price||0); const total=Math.max(0,subtotal-discount+shipping); async function checkout(){setBusy(true);setError('');try{if(api.data.settings?.abandonedCart?.enabled&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw new Error('Enter your email so the cart can be saved and checkout can continue.');if(api.data.settings?.abandonedCart?.enabled){await fetch('?api=abandoned-cart',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'capture',email,items:api.shopCartItems,shippingId,discountCode})})}const r=await fetch('?api=checkout-start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:api.shopCartItems,shippingId,discountCode,customer:{email}})});const j=await r.json();if(!r.ok||!j.ok)throw new Error(j.error||'Checkout could not start.');if(j.mode==='order-form'){api.setModal({type:'form',formType:'order',message:api.orderMessage(j.cart),email});return;}if(j.url){location.href=j.url;return;}throw new Error('Checkout did not return a payment URL.')}catch(e){setError(e.message||'Checkout failed.')}finally{setBusy(false)}} return h('div',{className:'cms-modal-backdrop',onClick:onClose}, h('div',{className:'cms-modal small',onClick:e=>e.stopPropagation()}, h('div',{className:'d-flex justify-content-between align-items-center mb-3'}, h('h3',null,cfg.cartTitle||'Shopping cart'), h('button',{className:'icon-btn',onClick:onClose},icon('bi bi-x-lg'))), api.shopCartItems.length===0?h('p',{className:'muted'},'Cart is empty.') : h(React.Fragment,null, api.shopCartItems.map((it,i)=>h('div',{className:'basket-line',key:i}, h('div',null,h('strong',null,it.title), h('div',{className:'small muted'}, (it.qty||1),' × ',api.formatProductPrice(it), it.sku?` · ${it.sku}`:'', it.variationLabel?` · ${it.variationLabel}`:'')), h('button',{className:'icon-btn',onClick:()=>api.removeCart(i)},icon('bi bi-trash')))), h('div',{className:'cart-options mt-3'},api.data.settings?.abandonedCart?.enabled&&h(Field,{label:'Email for checkout & saved-cart reminder'},h('input',{className:'form-control',type:'email',value:email,onChange:e=>setEmail(e.target.value),placeholder:'you@example.com'})),methods.length>0&&h(Field,{label:'Delivery / fulfilment'},h('select',{className:'form-select',value:shippingId,onChange:e=>setShippingId(e.target.value)},methods.map(m=>h('option',{key:m.id,value:m.id},`${m.label} · ${api.formatMoney?api.formatMoney(m.price,cfg.currency):new Intl.NumberFormat(undefined,{style:'currency',currency:cfg.currency||'EUR'}).format(Number(m.price||0))}`)))),codes.length>0&&h(Field,{label:'Discount code'},h('input',{className:'form-control',value:discountCode,onChange:e=>setDiscountCode(e.target.value),placeholder:'Code'})),h('div',{className:'cart-summary-row'},h('span',null,'Subtotal'),h('strong',null,new Intl.NumberFormat(undefined,{style:'currency',currency:cfg.currency||'EUR'}).format(subtotal))),discount>0&&h('div',{className:'cart-summary-row'},h('span',null,'Discount'),h('strong',null,'−'+new Intl.NumberFormat(undefined,{style:'currency',currency:cfg.currency||'EUR'}).format(discount))),h('div',{className:'cart-summary-row'},h('span',null,'Shipping'),h('strong',null,new Intl.NumberFormat(undefined,{style:'currency',currency:cfg.currency||'EUR'}).format(shipping))),h('div',{className:'cart-summary-row total'},h('span',null,'Total'),h('span',null,new Intl.NumberFormat(undefined,{style:'currency',currency:cfg.currency||'EUR'}).format(total)))), pay.enabled&&h('div',{className:'payment-note'}, h('strong',null,pay.title||'Direct bank transfer'), h('p',null,pay.instructions||'Submit order and we will confirm payment details.')), error&&h('div',{className:'alert alert-danger py-2 mt-3'},error), h('div',{className:'d-flex gap-2 mt-3'}, h('button',{className:'btn-cms flex-fill',disabled:busy,onClick:checkout},busy?'Starting checkout...':(cfg.cartButtonText||'Checkout now')), h('button',{className:'btn-ghost',disabled:busy,onClick:api.clearCart},'Clear'))))); }
 
-    function FormModal({api,modal,onClose}){ const initialMessage=modal?.message || (modal?.formType==='quote'?api.quoteMessage():''); const [form,setForm]=useState({name:'',email:modal?.email||'',phone:'',message:initialMessage}); const [msg,setMsg]=useState(''); const hc=api.data.settings.hcaptcha||{}; async function submit(e){ e.preventDefault(); setMsg('Sending...'); const token=document.querySelector('[name="h-captcha-response"]')?.value||''; const r=await fetch('?api=form',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...form,hcaptcha:token,type:modal?.formType||'contact'})}); const j=await r.json(); setMsg(j.error||j.message||'Sent'); if(j.ok){ setForm({name:'',email:'',phone:'',message:''}); if(modal?.formType==='quote') api.clearQuote(); if(modal?.formType==='order') api.clearCart(); } }
-      return h('div',{className:'cms-modal-backdrop',onClick:onClose}, h('form',{className:'cms-modal small',onClick:e=>e.stopPropagation(),onSubmit:submit}, h('div',{className:'d-flex justify-content-between align-items-center mb-3'}, h('h3',null,modal?.formType==='order'?'Checkout order':(modal?.formType==='quote'?'Send quote request':'Send request')), h('button',{type:'button',className:'icon-btn',onClick:onClose},icon('bi bi-x-lg'))), ['name','email','phone'].map(k=>h('input',{key:k,className:'form-control mb-3',placeholder:k.charAt(0).toUpperCase()+k.slice(1),type:k==='email'?'email':'text',value:form[k],onChange:e=>setForm({...form,[k]:e.target.value}),required:k!=='phone'})), h('textarea',{className:'form-control mb-3',rows:7,placeholder:'Message',value:form.message,onChange:e=>setForm({...form,message:e.target.value}),required:true}), hc.enabled && hc.siteKey && h('div',{className:'h-captcha mb-3','data-sitekey':hc.siteKey}), h('button',{className:'btn-cms w-100'},modal?.formType==='order'?(api.data.products?.checkoutButtonText||'Send order'):(modal?.formType==='quote'?'Send quote request':'Send')), msg&&h('p',{className:'mt-3 mb-0'},msg)) ); }
+    function FormModal({api,modal,onClose}){
+      const initialMessage=modal?.message || (modal?.formType==='quote'?api.quoteMessage():'');
+      const [form,setForm]=useState({name:'',email:modal?.email||'',phone:'',message:initialMessage});
+      const [msg,setMsg]=useState(''); const [captcha,setCaptcha]=useState(''); const [captchaReset,setCaptchaReset]=useState(0); const hc=api.data.settings.hcaptcha||{};
+      async function submit(e){
+        e.preventDefault(); setMsg('Sending...');
+        const r=await fetch('?api=form',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...form,hcaptcha:captcha,type:modal?.formType||'contact'})});
+        const j=await r.json(); setMsg(j.error||j.message||'Sent');
+        if(j.ok){ setForm({name:'',email:'',phone:'',message:''}); setCaptcha(''); setCaptchaReset(v=>v+1); if(modal?.formType==='quote') api.clearQuote(); if(modal?.formType==='order') api.clearCart(); }
+      }
+      const sendLabel=modal?.formType==='order'?(api.data.products?.checkoutButtonText||'Send order'):(modal?.formType==='quote'?'Send quote request':'Send');
+      return h('div',{className:'cms-modal-backdrop',onClick:onClose},
+        h('form',{className:'cms-modal small',onClick:e=>e.stopPropagation(),onSubmit:submit},
+          h('div',{className:'d-flex justify-content-between align-items-center mb-3'},
+            h('h3',null,modal?.formType==='order'?'Checkout order':(modal?.formType==='quote'?'Send quote request':'Send request')),
+            h('button',{type:'button',className:'icon-btn',onClick:onClose},icon('bi bi-x-lg'))
+          ),
+          ['name','email','phone'].map(k=>h('input',{key:k,className:'form-control mb-3',placeholder:k.charAt(0).toUpperCase()+k.slice(1),type:k==='email'?'email':'text',value:form[k],onChange:e=>setForm({...form,[k]:e.target.value}),required:k!=='phone'})),
+          h('textarea',{className:'form-control mb-3',rows:7,placeholder:'Message',value:form.message,onChange:e=>setForm({...form,message:e.target.value}),required:true}),
+          h(HCaptchaWidget,{api,onToken:setCaptcha,resetKey:captchaReset,className:'hcaptcha-wrap mb-3'}),
+          h('button',{className:'btn-cms w-100',disabled:hc.enabled&&!captcha},sendLabel),
+          msg&&h('p',{className:'mt-3 mb-0'},msg)
+        )
+      );
+    }
 
     function InstallModal({api,platform='',onClose}){ const app=api.data.settings.app||{}; const [promptEvent,setPromptEvent]=useState(window.__lpcmsInstallPrompt||null); useEffect(()=>{ const fn=()=>setPromptEvent(window.__lpcmsInstallPrompt||null); window.addEventListener('lpcms:install-ready',fn); return()=>window.removeEventListener('lpcms:install-ready',fn); },[]); const androidUrl=api.href(app.androidInstallUrl||'/?install=android'); const appleUrl=api.href(app.appleInstallUrl||'/?install=apple'); async function install(){ const target=platform||(/iphone|ipad|ipod/i.test(navigator.userAgent)?'apple':'android'); if(target!=='apple'&&promptEvent){ promptEvent.prompt(); await promptEvent.userChoice; window.__lpcmsInstallPrompt=null; setPromptEvent(null); } else { location.href=target==='apple'?appleUrl:androidUrl; } } const primaryLabel=platform==='apple'?api.t('View iPhone / iPad install steps'):promptEvent?api.t('Install on Android now'):api.t('Open install guide'); return h('div',{className:'cms-modal-backdrop',onClick:onClose}, h('div',{className:'cms-modal small',onClick:e=>e.stopPropagation()}, h('div',{className:'d-flex justify-content-between align-items-center mb-3'}, h('h3',null,api.t('Install mobile app')), h('button',{className:'icon-btn',onClick:onClose,'aria-label':'Close'},icon('bi bi-x-lg'))), h('p',{className:'muted'},api.localizedValue('settings.app.description')||api.t(app.description||'Install this website as a mobile app.')), h('div',{className:'d-grid gap-2'}, h('button',{className:'btn-cms',onClick:install}, icon(platform==='apple'?'bi bi-apple':'bi bi-download'), ' ', primaryLabel), h('a',{className:'btn-ghost text-center',href:androidUrl},icon('bi bi-google-play'),' ',api.t('Android guide')), h('a',{className:'btn-ghost text-center',href:appleUrl},icon('bi bi-apple'),' ',api.t('Apple guide'))))); }
 
@@ -5565,7 +5785,7 @@ $i18nPack = cms_i18n_pack();
     }
 
     function ContentTab({api}){
-      const allSecs=['hero','about','stats','features','services','process','gallery','testimonials','cards','contentList','logos','products','booking','adminShowcase','pricing','blog','faq','contact','cta'];
+      const allSecs=['hero','about','stats','features','services','process','gallery','testimonials','cards','contentList','team','growth','industries','logos','products','booking','adminShowcase','pricing','blog','faq','contact','cta'];
       const configured=get(api.data,'settings.sectionOrder')||allSecs;
       const order=[...configured.filter(x=>allSecs.includes(x)),...allSecs.filter(x=>!configured.includes(x))];
       const [drag,setDrag]=useState('');
@@ -5633,7 +5853,7 @@ $i18nPack = cms_i18n_pack();
       const libraryCards=order.map(key=>h('div',{className:'section-preview-card',key},
         h('div',{className:'section-preview-mini'},h('span'),h('span'),h('span')),
         h('div',{className:'meta'},
-          h('strong',null,key==='contentList'?'content list':key),
+          h('strong',null,key==='contentList'?'content list':key==='team'?'team lead':key),
           h('div',{className:'form-check form-switch mb-0'},
             h('input',{className:'form-check-input',type:'checkbox',checked:!!get(api.data,key+'.enabled'),onChange:e=>api.update(key+'.enabled',e.target.checked),'aria-label':'Show '+key})
           )
@@ -5654,7 +5874,7 @@ $i18nPack = cms_i18n_pack();
         onDrop:e=>{e.preventDefault();move(drag,key);setDrag('');}
       },
         h('span',{className:'drag-handle'},icon('bi bi-grip-vertical')),
-        h('strong',null,key==='contentList'?'Content list':key==='gallery'?'Portfolio':key.charAt(0).toUpperCase()+key.slice(1)),
+        h('strong',null,key==='contentList'?'Content list':key==='team'?'Team lead':key==='gallery'?'Portfolio':key.charAt(0).toUpperCase()+key.slice(1)),
         h('span',{className:'small muted'},'Pattern '+String(get(api.data,'settings.sectionPatterns.'+key)||'1')),
         h('span',{className:'small'},get(api.data,key+'.enabled')?'On':'Off')
       ));

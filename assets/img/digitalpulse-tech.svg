@@ -1,1 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760" viewBox="0 0 1000 760"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#5b5cff"/><stop offset="1" stop-color="#16c7bd"/></linearGradient></defs><rect width="1000" height="760" rx="56" fill="#101a42"/><g opacity=".12" stroke="#fff"><path d="M0 152h1000M0 304h1000M0 456h1000M0 608h1000M200 0v760M400 0v760M600 0v760M800 0v760"/></g><g transform="translate(105 100)"><rect width="790" height="560" rx="34" fill="#fff"/><rect width="790" height="72" rx="34" fill="#eef0ff"/><circle cx="40" cy="36" r="9" fill="#5b5cff"/><circle cx="70" cy="36" r="9" fill="#16c7bd"/><circle cx="100" cy="36" r="9" fill="#ff4fa3"/><g font-family="monospace" font-size="24" font-weight="700"><text x="64" y="158" fill="#5b5cff">&lt;DigitalPulse /&gt;</text><text x="64" y="214" fill="#101a42">const stack = {</text><text x="94" y="264" fill="#16a39a">backend:</text><text x="250" y="264" fill="#6b7280">[PHP, MySQL],</text><text x="94" y="314" fill="#16a39a">api:</text><text x="250" y="314" fill="#6b7280">[REST, JSON],</text><text x="94" y="364" fill="#16a39a">frontend:</text><text x="250" y="364" fill="#6b7280">[ReactJS, JS],</text><text x="94" y="414" fill="#16a39a">design:</text><text x="250" y="414" fill="#6b7280">[SCSS, Figma],</text><text x="64" y="464" fill="#101a42">};</text></g><rect x="64" y="500" width="260" height="18" rx="9" fill="url(#g)" opacity=".35"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">DigitalPulse web development technology stack</title>
+  <desc id="desc">Stylised code editor showing PHP, MySQL, REST, JSON, React, JavaScript, SCSS and Figma technologies.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#111a40"/><stop offset="1" stop-color="#222d69"/></linearGradient>
+    <linearGradient id="accent" x1="0" x2="1"><stop stop-color="#5b5cff"/><stop offset=".52" stop-color="#16c7bd"/><stop offset="1" stop-color="#ff4fa3"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#0b1028" flood-opacity=".2"/></filter>
+  </defs>
+  <rect x="20" y="20" width="1160" height="660" rx="54" fill="url(#bg)"/>
+  <g opacity=".08" stroke="#fff"><path d="M20 155h1160M20 290h1160M20 425h1160M20 560h1160M250 20v660M480 20v660M710 20v660M940 20v660"/></g>
+  <circle cx="1090" cy="105" r="98" fill="#16c7bd" opacity=".09"/><circle cx="108" cy="585" r="128" fill="#5b5cff" opacity=".12"/>
+  <g filter="url(#shadow)">
+    <rect x="135" y="92" width="930" height="516" rx="34" fill="#fff"/>
+    <path d="M169 92h862a34 34 0 0 1 34 34v46H135v-46a34 34 0 0 1 34-34z" fill="#f1f3fb"/>
+    <circle cx="180" cy="132" r="9" fill="#ff6b6b"/><circle cx="211" cy="132" r="9" fill="#ffd166"/><circle cx="242" cy="132" r="9" fill="#16c7bd"/>
+    <rect x="846" y="118" width="164" height="28" rx="14" fill="#e5e8f5"/>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="25" font-weight="700">
+      <text x="205" y="230" fill="#5b5cff">&lt;DigitalPulse /&gt;</text>
+      <text x="205" y="278" fill="#151c36">const stack = {</text>
+      <text x="250" y="326" fill="#169f98">backend:</text><text x="430" y="326" fill="#667085">[PHP, MySQL],</text>
+      <text x="250" y="374" fill="#169f98">api:</text><text x="430" y="374" fill="#667085">[REST, JSON],</text>
+      <text x="250" y="422" fill="#169f98">frontend:</text><text x="430" y="422" fill="#667085">[ReactJS, JavaScript],</text>
+      <text x="250" y="470" fill="#169f98">design:</text><text x="430" y="470" fill="#667085">[SCSS, Figma],</text>
+      <text x="205" y="518" fill="#151c36">};</text>
+    </g>
+    <rect x="205" y="550" width="490" height="14" rx="7" fill="#edf0f7"/><rect x="205" y="550" width="315" height="14" rx="7" fill="url(#accent)"/>
+    <g transform="translate(760 222)">
+      <rect width="240" height="250" rx="28" fill="#f7f8fd" stroke="#e6e9f4"/>
+      <circle cx="120" cy="76" r="46" fill="#eef0ff"/><path d="M101 78l15 15 28-35" fill="none" stroke="#5b5cff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="120" y="154" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="800" fill="#151c36">BUILD</text>
+      <text x="120" y="183" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#667085">Design · Code · API</text>
+      <text x="120" y="207" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#667085">AI · Deploy · Support</text>
+    </g>
+  </g>
+</svg>
