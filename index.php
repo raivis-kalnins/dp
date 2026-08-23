@@ -4749,13 +4749,20 @@ $i18nPack = cms_i18n_pack();
     function Container({api,children,className=''}){ const grid=api.data.settings.theme.grid || 'container'; return h('div',{className:cls(grid,className)},children); }
     function SectionTitle({api,base}){ const E=api.Editable; const defaults={stats:'Highlights',features:'Features',services:'Services',process:'How it works',gallery:'Gallery',testimonials:'Testimonials',cards:'Highlights',contentList:'Details',team:'Team lead',growth:'Marketing, SEO & AI content',industries:'Industries',logos:'Trusted by',products:'Products',booking:'Booking',adminShowcase:'Admin & editing',pricing:'Pricing',demoIntake:'Free demo',blog:'Blog',faq:'FAQ',contact:'Contact'}; const fallback=api.t(defaults[base]||String(base||'').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/^./,m=>m.toUpperCase())); return h('div',{className:'section-title'}, h(E,{path:base+'.preheader',tag:'div',className:'eyebrow',placeholder:fallback}), h(E,{path:base+'.title',tag:'h2'}), h(E,{path:base+'.subtitle',tag:'p'})); }
 
-    function Header({api}){ const {data,setModal,lang,setLang,admin,update}=api; const [open,setOpen]=useState(false); const [langOpen,setLangOpen]=useState(false); const langRef=useRef(null); const E=api.Editable; const menu=data.header.menu||[]; const flagMap={en:'/assets/img/flags/gb.svg',lv:'/assets/img/flags/lv.svg',ru:'/assets/img/flags/ru.svg',fr:'/assets/img/flags/fr.svg',es:'/assets/img/flags/es.svg',de:'/assets/img/flags/de.svg',pl:'/assets/img/flags/pl.svg',lt:'/assets/img/flags/lt.svg',et:'/assets/img/flags/ee.svg',da:'/assets/img/flags/dk.svg',no:'/assets/img/flags/no.svg',sv:'/assets/img/flags/se.svg',fi:'/assets/img/flags/fi.svg',is:'/assets/img/flags/is.svg'}; const languageNames={en:'English',lv:'Latviešu',ru:'Русский',fr:'Français',es:'Español',de:'Deutsch',pl:'Polski',lt:'Lietuvių',et:'Eesti',da:'Dansk',no:'Norsk',sv:'Svenska',fi:'Suomi',is:'Íslenska'}; const languages=data.settings.languages||I18N.languages||[]; const activeLang=languages.find(l=>String(l.code).toLowerCase()===String(lang).toLowerCase())||{code:lang,label:String(lang||'EN').toUpperCase()}; useEffect(()=>{ if(!langOpen)return; const close=e=>{if(langRef.current&&!langRef.current.contains(e.target))setLangOpen(false)}; const esc=e=>{if(e.key==='Escape')setLangOpen(false)}; document.addEventListener('pointerdown',close);document.addEventListener('keydown',esc);return()=>{document.removeEventListener('pointerdown',close);document.removeEventListener('keydown',esc)}; },[langOpen]); function chooseLanguage(code){setLangOpen(false);setLang(code)} function linkProps(it,mobile=false){const blank=it?.target==='_blank';return {className:mobile?'':'nav-linkx',href:api.href(it?.href||'#'),target:blank?'_blank':undefined,rel:blank?'noopener noreferrer':undefined,onClick:()=>setOpen(false)}} function renderMenu(items,mobile=false){ return h('ul',null,items.map((it,i)=>h('li',{key:i,className:!mobile&&it.children?.length?'has-sub':''}, h('a',linkProps(it,mobile), translate(api,it,'label'), it.children?.length? h('span',{className:'ms-1'},'▾'):null), it.children?.length?h('ul',{className:mobile?'mobile-submenu':'submenu'},it.children.map((c,j)=>h('li',{key:j},h('a',linkProps(c,mobile),translate(api,c,'label'))))):null))); }
+    function Header({api}){ const {data,setModal,lang,setLang,admin,update}=api; const [open,setOpen]=useState(false); const [langOpen,setLangOpen]=useState(false); const langRef=useRef(null); const E=api.Editable; const menu=data.header.menu||[]; const flagMap={en:'/assets/img/flags/gb.svg',lv:'/assets/img/flags/lv.svg',ru:'/assets/img/flags/ru.svg',fr:'/assets/img/flags/fr.svg',es:'/assets/img/flags/es.svg',de:'/assets/img/flags/de.svg',pl:'/assets/img/flags/pl.svg',lt:'/assets/img/flags/lt.svg',et:'/assets/img/flags/ee.svg',da:'/assets/img/flags/dk.svg',no:'/assets/img/flags/no.svg',sv:'/assets/img/flags/se.svg',fi:'/assets/img/flags/fi.svg',is:'/assets/img/flags/is.svg'}; const languageNames={en:'English',lv:'Latviešu',ru:'Русский',fr:'Français',es:'Español',de:'Deutsch',pl:'Polski',lt:'Lietuvių',et:'Eesti',da:'Dansk',no:'Norsk',sv:'Svenska',fi:'Suomi',is:'Íslenska'}; const languages=data.settings.languages||I18N.languages||[]; const activeLang=languages.find(l=>String(l.code).toLowerCase()===String(lang).toLowerCase())||{code:lang,label:String(lang||'EN').toUpperCase()}; useEffect(()=>{ if(!langOpen)return; const close=e=>{if(langRef.current&&!langRef.current.contains(e.target))setLangOpen(false)}; const esc=e=>{if(e.key==='Escape')setLangOpen(false)}; document.addEventListener('pointerdown',close);document.addEventListener('keydown',esc);return()=>{document.removeEventListener('pointerdown',close);document.removeEventListener('keydown',esc)}; },[langOpen]); useEffect(()=>{ if(!open)return; const prevBodyOverflow=document.body.style.overflow; const prevHtmlOverflow=document.documentElement.style.overflow; document.body.style.overflow='hidden'; document.documentElement.style.overflow='hidden'; const esc=e=>{if(e.key==='Escape')setOpen(false)}; const resize=()=>{if(window.innerWidth>=1200)setOpen(false)}; document.addEventListener('keydown',esc); window.addEventListener('resize',resize,{passive:true}); return()=>{document.removeEventListener('keydown',esc);window.removeEventListener('resize',resize);document.body.style.overflow=prevBodyOverflow;document.documentElement.style.overflow=prevHtmlOverflow}; },[open]); function chooseLanguage(code){setLangOpen(false);setLang(code)} function linkProps(it,mobile=false){const blank=it?.target==='_blank';return {className:mobile?'':'nav-linkx',href:api.href(it?.href||'#'),target:blank?'_blank':undefined,rel:blank?'noopener noreferrer':undefined,onClick:()=>setOpen(false)}} function renderMenu(items,mobile=false){ return h('ul',null,items.map((it,i)=>h('li',{key:i,className:!mobile&&it.children?.length?'has-sub':''}, h('a',linkProps(it,mobile), translate(api,it,'label'), it.children?.length? h('span',{className:'ms-1'},'▾'):null), it.children?.length?h('ul',{className:mobile?'mobile-submenu':'submenu'},it.children.map((c,j)=>h('li',{key:j},h('a',linkProps(c,mobile),translate(api,c,'label'))))):null))); }
       const languagePicker=h('div',{className:'lang-picker',ref:langRef}, h('button',{className:'icon-btn lang-flag-btn',type:'button','aria-label':'Language: '+(languageNames[lang]||activeLang.name||activeLang.label||lang),'aria-haspopup':'menu','aria-expanded':langOpen?'true':'false',title:languageNames[lang]||activeLang.name||activeLang.label||lang,onClick:()=>setLangOpen(v=>!v)},h('img',{className:'flag-img',src:mediaUrl(flagMap[lang]||flagMap.en),alt:'',width:22,height:16,'aria-hidden':'true'})), langOpen&&h('div',{className:'lang-menu',role:'menu'},languages.map(l=>{const code=String(l.code||'').toLowerCase();return h('button',{key:code,type:'button',role:'menuitem',className:cls('lang-option',code===lang&&'active'),onClick:()=>chooseLanguage(code)},h('img',{className:'flag-img',src:mediaUrl(flagMap[code]||flagMap.en),alt:'',width:24,height:18,'aria-hidden':'true'}),h('span',null,l.name||languageNames[code]||l.label||code),h('span',{className:'lang-code'},code.toLowerCase()))}))); 
-      return h('header',{className:'site-header'}, h(Container,{api,className:'py-3 d-flex align-items-center justify-content-between'},
-        h('a',{href:api.href('#home'),className:'brand-mark'}, data.header.logoImage ? h('img',{src:mediaUrl(data.header.logoImage),alt:data.settings.siteName,loading:'eager',decoding:'async',fetchPriority:'high'}) : h('span',{className:'brand-dot'}, data.settings?.branding?.placeholderMark||'LP'), h(E,{path:'header.logoText'})),
-        h('nav',{className:'main-nav'}, renderMenu(menu)),
-        h('div',{className:'nav-actions'}, h('button',{className:'icon-btn',onClick:()=>setModal({type:'search'}),'aria-label':'Search'},icon('bi bi-search')), languagePicker, h('button',{className:'icon-btn hamburger',onClick:()=>setOpen(true), 'aria-label':'Open menu'},icon('bi bi-list')))
-      ), h('aside',{className:cls('mobile-panel',open&&'open')}, h('div',{className:'d-flex justify-content-between align-items-center'}, h('strong',null,data.settings.siteName), h('button',{className:'icon-btn',onClick:()=>setOpen(false)},icon('bi bi-x-lg'))), renderMenu(menu,true), admin && h('button',{className:'btn-ghost w-100 mt-3',onClick:()=>{api.setAdminOpen(true);setOpen(false)}},'Admin settings')));
+      const mobileMenu=open&&ReactDOM.createPortal(h(React.Fragment,null,
+        h('button',{type:'button',className:'mobile-menu-backdrop','aria-label':api.t('Close menu')||'Close menu',onClick:()=>setOpen(false)}),
+        h('aside',{className:'mobile-panel open',role:'dialog','aria-modal':'true','aria-label':api.t('Mobile navigation')||'Mobile navigation'}, h('div',{className:'mobile-panel-head d-flex justify-content-between align-items-center'}, h('a',{href:api.href('#home'),className:'mobile-panel-brand',onClick:()=>setOpen(false)}, data.header.logoImage ? h('img',{src:mediaUrl(data.header.logoImage),alt:data.settings.siteName,loading:'eager',decoding:'async'}) : h('strong',null,data.settings.siteName)), h('button',{className:'icon-btn',type:'button','aria-label':api.t('Close menu')||'Close menu',onClick:()=>setOpen(false)},icon('bi bi-x-lg'))), h('nav',{className:'mobile-nav','aria-label':api.t('Mobile navigation')||'Mobile navigation'},renderMenu(menu,true)), admin && h('button',{className:'btn-ghost w-100 mt-3',onClick:()=>{api.setAdminOpen(true);setOpen(false)}},'Admin settings'))
+      ),document.body);
+      return h(React.Fragment,null,
+        h('header',{className:'site-header'}, h(Container,{api,className:'header-inner py-3 d-flex align-items-center justify-content-between'},
+          h('a',{href:api.href('#home'),className:'brand-mark'}, data.header.logoImage ? h('img',{src:mediaUrl(data.header.logoImage),alt:data.settings.siteName,loading:'eager',decoding:'async',fetchPriority:'high'}) : h('span',{className:'brand-dot'}, data.settings?.branding?.placeholderMark||'LP'), h(E,{path:'header.logoText'})),
+          h('nav',{className:'main-nav'}, renderMenu(menu)),
+          h('div',{className:'nav-actions'}, h('button',{className:'icon-btn',onClick:()=>setModal({type:'search'}),'aria-label':'Search'},icon('bi bi-search')), languagePicker, h('button',{className:'icon-btn hamburger',onClick:()=>setOpen(true), 'aria-label':'Open menu'},icon('bi bi-list')))
+        )),
+        mobileMenu
+      );
     }
 
     function HeroParticles(){
@@ -5212,11 +5219,42 @@ $i18nPack = cms_i18n_pack();
         const setup=()=>{
           if(!swiperEl.current||!window.Swiper)return;
           if(window.innerWidth<768){
-            if(instRef.current)return;
-            instRef.current=new window.Swiper(swiperEl.current,{slidesPerView:1,spaceBetween:18,speed:650,loop:items.length>1,autoplay:{delay:4200,disableOnInteraction:false,pauseOnMouseEnter:true},pagination:{el:swiperEl.current.querySelector('.pricing-swiper-pagination'),clickable:true},a11y:{enabled:true}});
+            if(instRef.current){ try{instRef.current.update()}catch(e){} return; }
+            const paginationEl=swiperEl.current.querySelector('.pricing-swiper-pagination');
+            instRef.current=new window.Swiper(swiperEl.current,{
+              slidesPerView:1,
+              spaceBetween:18,
+              speed:550,
+              loop:false,
+              rewind:items.length>1,
+              watchOverflow:true,
+              observer:true,
+              observeParents:true,
+              autoplay:{delay:4200,disableOnInteraction:true,pauseOnMouseEnter:true},
+              pagination:{el:paginationEl,clickable:true,hideOnClick:false,dynamicBullets:false},
+              a11y:{enabled:true}
+            });
           }else if(instRef.current){ try{instRef.current.destroy(true,true)}catch(e){} instRef.current=null; }
         };
-        setup(); window.addEventListener('resize',setup); return()=>{window.removeEventListener('resize',setup);if(instRef.current){try{instRef.current.destroy(true,true)}catch(e){}instRef.current=null;}};
+        const onPaginationClick=(event)=>{
+          const paginationEl=swiperEl.current?.querySelector('.pricing-swiper-pagination');
+          const bullet=event.target?.closest?.('.swiper-pagination-bullet');
+          if(!paginationEl||!bullet||!paginationEl.contains(bullet)||!instRef.current)return;
+          const bullets=Array.from(paginationEl.querySelectorAll('.swiper-pagination-bullet'));
+          const index=bullets.indexOf(bullet);
+          if(index<0)return;
+          try{instRef.current.autoplay?.stop()}catch(e){}
+          try{instRef.current.slideTo(index,550)}catch(e){}
+        };
+        setup();
+        const paginationEl=swiperEl.current?.querySelector('.pricing-swiper-pagination');
+        paginationEl?.addEventListener('click',onPaginationClick);
+        window.addEventListener('resize',setup);
+        return()=>{
+          paginationEl?.removeEventListener('click',onPaginationClick);
+          window.removeEventListener('resize',setup);
+          if(instRef.current){try{instRef.current.destroy(true,true)}catch(e){}instRef.current=null;}
+        };
       },[items.length,api.lang]);
       return h('section',{id:'pricing',className:'section cms-soft'},h(Container,{api},
         h(SectionTitle,{api,base:'pricing'}),
