@@ -1,3 +1,36 @@
+**v0.11.37 - contact CTA alignment & portfolio ordering**
+
+- Bottom-aligned the Business Card button with the Enquire button in the Contact card on tablet/desktop widths.
+- Moved Web application projects to the front of the Portfolio / All projects view.
+- Moved O&J Cars to the final portfolio position.
+- Reordered Portfolio filters so Web applications appears before WordPress websites.
+- Version bumped to `0.11.37` to invalidate cached site assets.
+
+**v0.11.36 - mobile contact map frame height fix**
+
+- Replaced the OpenStreetMap iframe + hand-positioned HTML overlays with a native Leaflet map using standard OpenStreetMap tiles (no API key).
+- Northampton is now rendered by the map engine at `52.2405, -0.9027`; Riga at `56.9496, 24.1052`.
+- The map automatically fits both locations with controlled padding and a sensible maximum zoom, so marker coordinates remain correct at every viewport size.
+- Branded markers and permanent city labels are attached to the real geographic markers rather than approximated pixel positions.
+
+**v0.11.34 - accurate Northampton & Riga map pins**
+
+### v0.11.34 changes
+- Corrected the map-pin anchor geometry: coordinates now align to the centre/tip of the marker icon instead of the centre of the icon-plus-label group.
+- Northampton is pinned at 52.2405, -0.9027 and Riga at 56.9496, 24.1052 within the existing no-API-key OpenStreetMap Europe view.
+- Map labels now show the city names `Northampton` and `Riga` for clearer location identification.
+- Mobile marker anchoring is adjusted separately so the smaller pins remain accurate.
+- Version bumped to `0.11.34` to invalidate cached map assets.
+
+**v0.11.33 - FAQ control alignment & visual polish**
+
+### v0.11.33 changes
+- Rebuilt the FAQ plus/minus control using CSS-drawn strokes instead of font glyphs, so the symbol is optically and mathematically centred.
+- FAQ rows now use a fixed control column and centred question content for consistent vertical alignment.
+- Added cleaner hover/open states, subtle control shadow, and a divider above expanded answers.
+- Mobile FAQ controls use the same centred geometry at a slightly smaller size.
+- Version bumped to `0.11.33` to invalidate cached CSS.
+
 # LPCMS
 
 **Landing Page CMS** - a flat-file, one-entry PHP CMS with a React-powered frontend, JSON content storage, inline editing, optional blog, optional shop/catalogue, product modals, cart, quote basket, PWA install pages, cache tools, media tools, and SEO-friendly URLs.
@@ -10,7 +43,50 @@ The main application is still **one PHP file: `index.php`**. Content and setting
 
 ## Current version
 
-**v0.11.28 - smoother interactive hero science graph and contact spacing**
+**v0.11.37 - contact CTA alignment & portfolio ordering**
+
+### v0.11.37 changes
+- Bottom-aligns the Contact card CTA buttons at wider mobile/tablet/desktop widths.
+- Shows web applications first in the portfolio and moves O&J Cars to the final project position.
+- Reorders portfolio filter tabs to put Web applications before WordPress websites.
+- Version `0.11.37` invalidates cached CSS/JavaScript.
+
+**v0.11.34 - accurate Northampton & Riga map pins**
+
+### v0.11.34 changes
+- Corrects the visual marker anchor so the map point is not shifted left by the city label.
+- Uses exact Northampton and Riga coordinates with Web Mercator positioning inside the no-key OpenStreetMap embed.
+- Keeps distinct desktop/mobile marker offsets so the marker tip remains aligned at both sizes.
+- Version `0.11.34` invalidates cached CSS and JavaScript.
+
+
+**v0.11.31 - public bundle AdminPanel guard**
+
+### v0.11.31 changes
+- Fixed `ReferenceError: AdminPanel is not defined` on anonymous/public pages.
+- The public JavaScript bundle no longer evaluates the admin-only component when the visitor is not authenticated.
+- The authenticated admin bundle still includes the complete AdminPanel and editor tooling.
+- Version bumped to `0.11.31` to force browsers/CDNs to request the corrected app bundle.
+- Public and authenticated admin bundles now use separate cache URLs (`scope=public` / `scope=admin`), so a cached public bundle cannot be reused after login.
+- The service worker skips admin-scoped assets and respects `private` / `no-store` responses.
+
+**v0.11.30 - lean SEO source, public/admin bundle split, no-key map and portfolio update**
+
+### v0.11.30 changes
+- Reduced anonymous rendered HTML from multi-megabyte inline output to a lean SEO-focused document: metadata, hreflang/canonical links, JSON-LD and a compact noscript crawlable summary remain in HTML while application CSS/JavaScript are external assets.
+- Removed public bootstrap/seed JSON from page source. The frontend now starts from minimal language/base-path data attributes and loads sanitized site data through `?api=site`.
+- Split the browser application into a public bundle and an administrator bundle; anonymous visitors do not receive admin panels, demo fixtures or the admin translation dictionary.
+- Added O&J Cars (`https://ojcars.uk/`) to the real-project portfolio and preserved multilingual portfolio copy.
+- Changed the WordPress sector-theme technology badges to a dedicated row below the section heading on desktop, with responsive wrapping on smaller screens.
+- Replaced the legacy tiled contact-map implementation with a no-key OpenStreetMap embed so the map does not depend on a third-party API key.
+- Added/kept Twitter card metadata and current-language API/i18n pruning to reduce anonymous payloads.
+
+### v0.11.29 changes
+- Added the multilingual WordPress sector-theme showcase covering Bootstrap/Gutenberg editing, ready-made patterns, professional business/WooCommerce themes, newsletter/subscription forms and multisite/database options.
+- Added translated WordPress sector-theme marketing copy for all configured languages.
+- Kept imported theme JavaScript disabled by default and strengthened page-cache invalidation after application/data/translation changes.
+
+**Previous: v0.11.28 - smoother interactive hero science graph and contact spacing**
 
 ### v0.11.28 changes
 - Increased the Contact section **Open contact form** button top spacing by another 20px (36px → 56px).
@@ -1651,3 +1727,9 @@ Super admin can also use **Products → Import 20 demo products** to restore the
 - All image uploads/imports are AVIF-only and scale proportionally inside a configurable width × height box.
 - The public Admin showcase includes a real Super Admin control-centre screenshot and a clearer explanation of protected functionality.
 - Theme/admin copy received an additional multilingual exact-translation pass.
+
+### v0.11.36
+- Fixed the mobile Contact map card leaving a large empty area below the Leaflet map.
+- The outer map shell, Leaflet wrapper and map canvas now share one responsive mobile height (`clamp(300px, 72vw, 360px)`).
+- Desktop/tablet map sizing and the exact Northampton/Riga coordinates are unchanged.
+

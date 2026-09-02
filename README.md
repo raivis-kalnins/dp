@@ -1,3 +1,45 @@
+**v0.11.37 - contact CTA alignment & portfolio ordering**
+
+- Bottom-aligned the Business Card button with the Enquire button in the Contact card on tablet/desktop widths.
+- Moved Web application projects to the front of the Portfolio / All projects view.
+- Moved O&J Cars to the final portfolio position.
+- Reordered Portfolio filters so Web applications appears before WordPress websites.
+- Version bumped to `0.11.37` to invalidate cached site assets.
+
+**v0.11.36 - mobile contact map frame height fix**
+
+- Replaced the OpenStreetMap iframe + hand-positioned HTML overlays with a native Leaflet map using standard OpenStreetMap tiles (no API key).
+- Northampton is now rendered by the map engine at `52.2405, -0.9027`; Riga at `56.9496, 24.1052`.
+- The map automatically fits both locations with controlled padding and a sensible maximum zoom, so marker coordinates remain correct at every viewport size.
+- Branded markers and permanent city labels are attached to the real geographic markers rather than approximated pixel positions.
+
+**v0.11.34 - accurate Northampton & Riga map pins**
+
+### v0.11.34 changes
+- Corrected the map-pin anchor geometry: coordinates now align to the centre/tip of the marker icon instead of the centre of the icon-plus-label group.
+- Northampton is pinned at 52.2405, -0.9027 and Riga at 56.9496, 24.1052 within the existing no-API-key OpenStreetMap Europe view.
+- Map labels now show the city names `Northampton` and `Riga` for clearer location identification.
+- Mobile marker anchoring is adjusted separately so the smaller pins remain accurate.
+- Version bumped to `0.11.34` to invalidate cached map assets.
+
+**v0.11.33 - FAQ control alignment & visual polish**
+
+### v0.11.33 changes
+- Rebuilt the FAQ plus/minus control using CSS-drawn strokes instead of font glyphs, so the symbol is optically and mathematically centred.
+- FAQ rows now use a fixed control column and centred question content for consistent vertical alignment.
+- Added cleaner hover/open states, subtle control shadow, and a divider above expanded answers.
+- Mobile FAQ controls use the same centred geometry at a slightly smaller size.
+- Version bumped to `0.11.33` to invalidate cached CSS.
+
+**v0.11.32 - clean boot, FAQ readability & no-key map pins**
+
+### v0.11.32 changes
+- Prevents the temporary fallback LP/blue branding from rendering while the public/admin site data is loading.
+- Makes FAQ question text and +/- controls stronger, cleaner and more readable, with accessible expanded-state markup.
+- Keeps the no-API-key OpenStreetMap embed and overlays clear location pins for Northampton (UK) and Riga (Latvia).
+- Admin email login flow is unchanged because it is confirmed working.
+- Version bumped to `0.11.32` to invalidate old browser/CDN/service-worker assets.
+
 # DigitalPulse - Creative Web Solutions
 
 Multilingual DigitalPulse agency website built on the supplied LPCMS system.
@@ -11,11 +53,12 @@ Multilingual DigitalPulse agency website built on the supplied LPCMS system.
 - Services for LPCMS, WordPress, WooCommerce, web/mobile applications, AI solutions, hosting and maintenance.
 - Marketing, SEO and AI-content options covering technical/on-page SEO, local visibility, campaign landing pages, analytics/conversion tracking, AI-assisted text generation and marketing integrations.
 - Industries/use-cases grid covering construction, property, automotive, travel, hotels, hospitality, e-commerce, manufacturing, professional services, wellness, education, non-profits, events/booking, trades, creative businesses and SaaS/portals.
-- Pricing, highlights, six-step process, 12-item filterable real-project portfolio, project brief, photo-led blog, WP BBuilder showcase, team lead profile, FAQ, contact, CTA and footer.
-- Contact coverage for the whole UK and Europe, with Northampton shown first and Riga second on a large Europe map with red location pins.
+- Pricing, highlights, six-step process, 13-item filterable real-project portfolio (including O&J Cars at ojcars.uk), project brief, photo-led blog, WordPress sector-theme showcase, team lead profile, FAQ, contact, CTA and footer.
+- Contact coverage for the whole UK and Europe, with Northampton shown first and Riga second alongside a no-key OpenStreetMap Europe embed.
 - 14-language LPCMS language switcher retained: EN, LV, RU, FR, ES, DE, PL, LT, ET, DA, NO, SV, FI and IS.
 - New DigitalPulse copy is translated through the existing LPCMS translation pack; technical product/tool names stay unchanged where appropriate.
 - Existing LPCMS users/authentication/password behaviour preserved from the supplied project.
+- Anonymous page source is SEO-focused and lightweight: CSS/JavaScript are external, public data is loaded through the sanitized site API, and administrator UI code is not included in the anonymous bundle.
 
 ## Contact configured on the website
 
@@ -40,7 +83,7 @@ Open `http://127.0.0.1:8080/`.
 - `data.json` - DigitalPulse content and site configuration.
 - `assets/i18n.json` - multilingual translations.
 - `assets/img/digitalpulse-logo.svg` - main brand logo.
-- Contact map uses an integrated OpenStreetMap/CARTO map with UK and Latvia delivery locations.
+- Contact map uses an OpenStreetMap embed that requires no API key; UK and Latvia delivery locations remain listed beside it.
 - `assets/img/portfolio/` - cached screenshots used by the real-project portfolio.
 - `README-LPCMS.md` - original LPCMS documentation.
 
@@ -55,3 +98,9 @@ Print-ready vector logo variants are in `assets/brand/`, including primary colou
 ## hCaptcha
 
 Public enquiry, project-intake, booking and administrator login forms use hCaptcha. The public site key is stored in `data.json`. The verification secret is loaded server-side from `.secrets.php` (or the `HCAPTCHA_SECRET` environment variable) and `.secrets.php` is excluded by `.gitignore`; do not commit that file to a public repository.
+
+### v0.11.36
+- Fixed the mobile Contact map card leaving a large empty area below the Leaflet map.
+- The outer map shell, Leaflet wrapper and map canvas now share one responsive mobile height (`clamp(300px, 72vw, 360px)`).
+- Desktop/tablet map sizing and the exact Northampton/Riga coordinates are unchanged.
+
