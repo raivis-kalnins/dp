@@ -17,6 +17,9 @@ FileETag None
   RewriteRule ^manifest\.webmanifest$ index.php?pwa=manifest [L,QSA]
   RewriteRule ^service-worker\.js$ index.php?pwa=sw [L,QSA]
 
+  # Clean dynamic theme stylesheet URL.
+  RewriteRule ^assets/theme\.css$ index.php?asset=theme-css [L,QSA]
+
   # Repair legacy relative asset URLs saved before v0.11.12. New uploads are
   # root-relative, but these rules keep older data working on /lv/, /de/blog/..., etc.
   RewriteRule ^([A-Za-z]{2})/assets/(.*)$ assets/$2 [L,NC]

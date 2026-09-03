@@ -1,4 +1,11 @@
-**v0.11.37 - contact CTA alignment & portfolio ordering**
+**v0.11.38 - app-only selected work & cleaner public source**
+
+- The Team Lead **Selected real work** panel now contains only the three mobile-first web applications; small WordPress websites are no longer included there.
+- Theme variables and custom theme CSS are combined behind the clean `/assets/theme.css` URL, removing the inline theme `<style>` block.
+- Anonymous pages load the public application from its direct static asset URL, and executable scripts are deferred.
+- SEO JSON-LD remains inline because search engines expect structured data in the document.
+
+**Previous: v0.11.37 - contact CTA alignment & portfolio ordering**
 
 - Bottom-aligned the Business Card button with the Enquire button in the Contact card on tablet/desktop widths.
 - Moved Web application projects to the front of the Portfolio / All projects view.
@@ -103,4 +110,3 @@ Public enquiry, project-intake, booking and administrator login forms use hCaptc
 - Fixed the mobile Contact map card leaving a large empty area below the Leaflet map.
 - The outer map shell, Leaflet wrapper and map canvas now share one responsive mobile height (`clamp(300px, 72vw, 360px)`).
 - Desktop/tablet map sizing and the exact Northampton/Riga coordinates are unchanged.
-

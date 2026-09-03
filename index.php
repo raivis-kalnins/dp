@@ -44,7 +44,7 @@ session_set_cookie_params([
 ]);
 session_start();
 
-define('CMS_VERSION', '0.11.37');
+define('CMS_VERSION', '0.11.38');
 define('DATA_FILE', __DIR__ . '/data.json');
 define('MAIL_LOG_FILE', __DIR__ . '/.lpcms-mail.log');
 define('HTACCESS_FILE', __DIR__ . '/.htaccess');
@@ -947,6 +947,9 @@ HTA
   # PWA app endpoints served by index.php.
   RewriteRule ^manifest\.webmanifest$ index.php?pwa=manifest [L,QSA]
   RewriteRule ^service-worker\.js$ index.php?pwa=sw [L,QSA]
+
+  # Clean dynamic theme stylesheet URL.
+  RewriteRule ^assets/theme\.css$ index.php?asset=theme-css [L,QSA]
 
   # Repair legacy relative asset URLs saved before v0.11.12. New uploads are
   # root-relative, but these rules keep older data working on /lv/, /de/blog/..., etc.
@@ -3617,7 +3620,18 @@ function cms_media_stats(array $data): array {
 $data = cms_load_data();
 if (isset($_GET['asset']) && $_GET['asset'] === 'theme-css') {
   header('Content-Type: text/css; charset=utf-8');
-  header('Cache-Control: public, max-age=3600');
+  header('Cache-Control: public, max-age=31536000, immutable');
+  echo ':root{';
+  echo '--cms-brand:' . (string)($data['settings']['theme']['brand'] ?? '#0d6efd') . ';';
+  echo '--cms-brand2:' . (string)($data['settings']['theme']['brand2'] ?? '#6610f2') . ';';
+  echo '--cms-accent:' . (string)($data['settings']['theme']['accent'] ?? '#20c997') . ';';
+  echo '--cms-text:' . (string)($data['settings']['theme']['text'] ?? '#1f2937') . ';';
+  echo '--cms-muted:' . (string)($data['settings']['theme']['muted'] ?? '#6b7280') . ';';
+  echo '--cms-bg:' . (string)($data['settings']['theme']['bg'] ?? '#fff') . ';';
+  echo '--cms-soft:' . (string)($data['settings']['theme']['softBg'] ?? '#f6f8fb') . ';';
+  echo '--cms-radius:' . (string)($data['settings']['theme']['radius'] ?? '22px') . ';';
+  echo '--cms-font:' . (string)($data['settings']['theme']['font'] ?? 'system-ui') . ';';
+  echo "}\n";
   echo (string)($data['settings']['theme']['customCss'] ?? '');
   exit;
 }
@@ -4192,7 +4206,6 @@ $base = cms_base_url($data);
 $metaImage = (string)($meta['image'] ?? '');
 if ($metaImage && !preg_match('/^https?:\/\//', $metaImage)) $metaImage = rtrim($base, '/') . '/' . ltrim($metaImage, '/');
 $canonical = (string)($meta['canonical'] ?? '') ?: (!empty($meta['path']) ? $base . $meta['path'] : $base . strtok($_SERVER['REQUEST_URI'] ?? '/', '?'));
-$theme = $data['settings']['theme'] ?? [];
 $libs = $data['settings']['libraries'] ?? [];
 $activeThemeAssets = cms_active_theme_assets($data);
 $activeThemeId = (string)($activeThemeAssets['id'] ?? 'lpcms-default');
@@ -4249,20 +4262,7 @@ $i18nPack = cms_i18n_pack();
   <?php if (!empty($libs['glightbox'])): ?><link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet"><?php endif; ?>
   <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/css/lpcms-app.css?v=<?= rawurlencode(CMS_VERSION) ?>">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
-  <style id="lpcms-theme-vars">
-    :root{
-      --cms-brand: <?= cms_e($theme['brand'] ?? '#0d6efd') ?>;
-      --cms-brand2: <?= cms_e($theme['brand2'] ?? '#6610f2') ?>;
-      --cms-accent: <?= cms_e($theme['accent'] ?? '#20c997') ?>;
-      --cms-text: <?= cms_e($theme['text'] ?? '#1f2937') ?>;
-      --cms-muted: <?= cms_e($theme['muted'] ?? '#6b7280') ?>;
-      --cms-bg: <?= cms_e($theme['bg'] ?? '#fff') ?>;
-      --cms-soft: <?= cms_e($theme['softBg'] ?? '#f6f8fb') ?>;
-      --cms-radius: <?= cms_e($theme['radius'] ?? '22px') ?>;
-      --cms-font: <?= cms_e($theme['font'] ?? 'system-ui') ?>;
-    }
-  </style>
-  <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/?asset=theme-css&amp;v=<?= rawurlencode((string)(file_exists(DATA_FILE) ? filemtime(DATA_FILE) : time())) ?>">
+  <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/theme.css?v=<?= rawurlencode((string)(file_exists(DATA_FILE) ? filemtime(DATA_FILE) : time())) ?>">
   <?php foreach (($activeThemeAssets['css'] ?? []) as $themeCss): ?>
   <link rel="stylesheet" href="<?= cms_e($themeCss) ?>" data-lpcms-theme-asset="css">
   <?php endforeach; ?>
@@ -4320,17 +4320,21 @@ $i18nPack = cms_i18n_pack();
       <?php endif; ?>
     </main>
   </noscript>
-  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
-  <?php if (!empty($libs['bootstrap'])): ?><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script><?php endif; ?>
-  <?php if (!empty($libs['swiper'])): ?><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><?php endif; ?>
-  <?php if (!empty($libs['aos'])): ?><script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script><?php endif; ?>
+  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js" defer></script>
+  <?php if (!empty($libs['bootstrap'])): ?><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script><?php endif; ?>
+  <?php if (!empty($libs['swiper'])): ?><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script><?php endif; ?>
+  <?php if (!empty($libs['aos'])): ?><script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script><?php endif; ?>
 
-  <?php if (!empty($libs['glightbox'])): ?><script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script><?php endif; ?>
+  <?php if (!empty($libs['glightbox'])): ?><script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script><?php endif; ?>
   <?php if (!empty($data['settings']['hcaptcha']['enabled'])): ?><script src="https://js.hcaptcha.com/1/api.js" async defer></script><?php endif; ?>
-  <?php if (!empty($libs['sassBuilder'])): ?><script src="https://cdn.jsdelivr.net/npm/sass.js@0.11.1/dist/sass.sync.js"></script><?php endif; ?>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
-  <?php foreach (($activeThemeAssets['js'] ?? []) as $themeJs): ?><script src="<?= cms_e($themeJs) ?>" data-lpcms-theme-asset="js"></script><?php endforeach; ?>
-  <script src="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/?asset=app-js&amp;scope=<?= cms_is_admin() ? 'admin' : 'public' ?>&amp;v=<?= rawurlencode(CMS_VERSION) ?>"></script>
+  <?php if (!empty($libs['sassBuilder'])): ?><script src="https://cdn.jsdelivr.net/npm/sass.js@0.11.1/dist/sass.sync.js" defer></script><?php endif; ?>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous" defer></script>
+  <?php foreach (($activeThemeAssets['js'] ?? []) as $themeJs): ?><script src="<?= cms_e($themeJs) ?>" data-lpcms-theme-asset="js" defer></script><?php endforeach; ?>
+  <?php if (cms_is_admin()): ?>
+  <script src="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/?asset=app-js&amp;scope=admin&amp;v=<?= rawurlencode(CMS_VERSION) ?>" defer></script>
+  <?php else: ?>
+  <script src="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/js/lpcms-public.js?v=<?= rawurlencode(CMS_VERSION) ?>" defer></script>
+  <?php endif; ?>
 </body>
 </html>

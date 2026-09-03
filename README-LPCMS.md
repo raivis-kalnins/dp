@@ -1,4 +1,10 @@
-**v0.11.37 - contact CTA alignment & portfolio ordering**
+**v0.11.38 - app-only selected work & cleaner public source**
+
+- The DigitalPulse Team Lead **Selected real work** panel now references the three mobile-first web applications only.
+- Dynamic theme variables and custom CSS now share the cache-busted `/assets/theme.css` endpoint instead of producing an inline style block.
+- Public application JavaScript uses the direct static bundle path and executable scripts are deferred; crawlable inline JSON-LD is preserved.
+
+**Previous: v0.11.37 - contact CTA alignment & portfolio ordering**
 
 - Bottom-aligned the Business Card button with the Enquire button in the Contact card on tablet/desktop widths.
 - Moved Web application projects to the front of the Portfolio / All projects view.
@@ -43,13 +49,15 @@ The main application is still **one PHP file: `index.php`**. Content and setting
 
 ## Current version
 
-**v0.11.37 - contact CTA alignment & portfolio ordering**
+**v0.11.38 - app-only selected work & cleaner public source**
 
-### v0.11.37 changes
-- Bottom-aligns the Contact card CTA buttons at wider mobile/tablet/desktop widths.
-- Shows web applications first in the portfolio and moves O&J Cars to the final project position.
-- Reorders portfolio filter tabs to put Web applications before WordPress websites.
-- Version `0.11.37` invalidates cached CSS/JavaScript.
+### v0.11.38 changes
+- Restricts the Team Lead selected-work cards to the three mobile-first web applications.
+- Serves theme variables and custom CSS together from `/assets/theme.css`.
+- Uses the static public JavaScript path and defers executable browser scripts while retaining inline SEO JSON-LD.
+- Version `0.11.38` invalidates cached CSS/JavaScript.
+
+**v0.11.37 - contact CTA alignment & portfolio ordering**
 
 **v0.11.34 - accurate Northampton & Riga map pins**
 
@@ -1732,4 +1740,3 @@ Super admin can also use **Products → Import 20 demo products** to restore the
 - Fixed the mobile Contact map card leaving a large empty area below the Leaflet map.
 - The outer map shell, Leaflet wrapper and map canvas now share one responsive mobile height (`clamp(300px, 72vw, 360px)`).
 - Desktop/tablet map sizing and the exact Northampton/Riga coordinates are unchanged.
-
