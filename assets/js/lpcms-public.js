@@ -88,7 +88,7 @@
     function get(obj, path){ return String(path).split('.').reduce((o,k)=> o && o[k] !== undefined ? o[k] : undefined, obj); }
     function set(obj, path, val){ const keys=String(path).split('.'); const copy=Array.isArray(obj)?[...obj]:{...obj}; let cur=copy; keys.forEach((k,i)=>{ if(i===keys.length-1){cur[k]=val;return;} cur[k]=Array.isArray(cur[k])?[...cur[k]]:{...cur[k]}; cur=cur[k]; }); return copy; }
     const LOCALIZED_CONTENT_ROOTS=new Set(['header','hero','about','stats','features','services','wpThemes','process','gallery','testimonials','cards','contentList','team','growth','industries','logos','products','booking','adminShowcase','pricing','demoIntake','blog','faq','contact','cta','footer','chatbot','pages']);
-    const LOCALIZED_CONTENT_LEAVES=new Set(['title','subtitle','text','body','label','role','badge','buttonText','excerpt','question','answer','description','caption','heading','subheading','placeholder','confirmationText','welcome','welcomeMessage','fallback','message','instructions','address','hours','cartTitle','buyButtonText','quoteButtonText','cartButtonText','checkoutButtonText','discountLabel','suggestedQuestions','copy','period','formButtonText','thankYou','acceptText','declineText','eyebrow','alt','name','logoText','price','secondaryPrice','features','shortName','offlineMessage','domainTitle','domainText','tableTitle','tableSubtitle','ease','preheader','superAdminTitle','superAdminText','noteTitle','noteText','footerText']);
+    const LOCALIZED_CONTENT_LEAVES=new Set(['title','subtitle','text','body','label','role','badge','buttonText','excerpt','question','answer','description','caption','heading','subheading','placeholder','confirmationText','welcome','welcomeMessage','fallback','message','instructions','address','hours','cartTitle','buyButtonText','quoteButtonText','cartButtonText','checkoutButtonText','discountLabel','suggestedQuestions','copy','period','formButtonText','thankYou','acceptText','declineText','eyebrow','alt','name','logoText','price','secondaryPrice','features','shortName','offlineMessage','domainTitle','domainText','tableTitle','tableSubtitle','ease','preheader','superAdminTitle','superAdminText','noteTitle','noteText','ukNote','footerText']);
     function isLocalizableContentPath(path){
       const parts=String(path||'').split('.').filter(Boolean); if(!parts.length||parts.includes('i18n'))return false;
       const leaf=parts[parts.length-1];
@@ -685,8 +685,31 @@
     function Services({api}){ const E=api.Editable; const serviceItems=api.data.services?.items||[]; return h('section',{id:'services',className:'section cms-soft'}, h(Container,{api}, h(SectionTitle,{api,base:'services'}), h(LoadMoreGrid,{api,base:'services',render:(it,i)=>{const external=/^https?:\/\//i.test(String(it.buttonHref||''));const wide=i===serviceItems.length-1;return h('div',{className:wide?'col-12 service-wide-card':'col-md-6 col-lg-4',key:i,'data-aos':'fade-up'}, h('article',{className:'cms-card'}, h(EditableImage,{api,path:`services.items.${i}.image`,iconPath:`services.items.${i}.icon`,alt:it.title||'',className:'cms-icon cms-image-icon',fallback:icon(it.icon,'bi bi-stars')}), h(E,{path:`services.items.${i}.title`,tag:'h3',className:'h4 fw-bold'}), h(E,{path:`services.items.${i}.text`,tag:'p',className:'muted'}), it.buttonText && h('a',{className:'btn-ghost mt-2',href:it.buttonHref||'#contact',target:external?'_blank':undefined,rel:external?'noopener noreferrer':undefined}, h(E,{path:`services.items.${i}.buttonText`})) ))}}))); }
 
     function WpThemes({api}){
-      const d=api.data.wpThemes||{}, E=api.Editable, items=Array.isArray(d.items)?d.items:[];
+      const d=api.data.wpThemes||{}, E=api.Editable, items=Array.isArray(d.items)?d.items:[], prices=d.webPrices||{}, priceItems=Array.isArray(prices.items)?prices.items:[], extras=Array.isArray(prices.extras)?prices.extras:[];
       const tech=[['bi bi-wordpress','WordPress'],['bi bi-bootstrap','Bootstrap'],['bi bi-grid-3x3-gap','Gutenberg'],['bi bi-cart3','WooCommerce']];
+      const uk=String(api.lang||'').toLowerCase()==='en';
+      const localeMap={en:'en-GB',lv:'lv-LV',ru:'ru-RU',fr:'fr-FR',es:'es-ES',de:'de-DE',pl:'pl-PL',lt:'lt-LT',et:'et-EE',da:'da-DK',no:'nb-NO',sv:'sv-SE',fi:'fi-FI',is:'is-IS'};
+      const currency=uk?'GBP':'EUR';
+      const formatPrice=item=>{const value=Number(uk?item?.gbp:item?.eur);if(!Number.isFinite(value))return '';try{return new Intl.NumberFormat(localeMap[api.lang]||undefined,{style:'currency',currency,maximumFractionDigits:0,minimumFractionDigits:0}).format(value)}catch(e){return (uk?'£':'€')+Math.round(value).toLocaleString()}};
+      const unitLabel=unit=>unit==='hour'?api.t('per hour'):unit==='month'?api.t('per month'):'';
+      const priceBlock=priceItems.length||extras.length?h('div',{className:'wp-web-prices'},
+        h('div',{className:'wp-web-prices-head'},
+          h(E,{path:'wpThemes.webPrices.preheader',tag:'div',className:'eyebrow mb-2',placeholder:api.t('Web development prices')}),
+          h(E,{path:'wpThemes.webPrices.title',tag:'h3',className:'wp-web-prices-title'}),
+          h(E,{path:'wpThemes.webPrices.subtitle',tag:'p',className:'muted wp-web-prices-subtitle'}),
+          uk&&prices.ukNote&&h('div',{className:'wp-web-prices-note'},icon('bi bi-currency-pound'),h(E,{path:'wpThemes.webPrices.ukNote',tag:'span'}))
+        ),
+        priceItems.length&&h('div',{className:'wp-web-price-grid'},priceItems.map((it,i)=>h('article',{className:'wp-web-price-card',key:i},
+          h('div',{className:'wp-web-price-icon'},icon(it.icon||'bi bi-check2-circle')),
+          h(E,{path:`wpThemes.webPrices.items.${i}.title`,tag:'h4'}),
+          h(E,{path:`wpThemes.webPrices.items.${i}.text`,tag:'p',className:'muted'}),
+          h('div',{className:'wp-web-price-value'},h('span',null,api.t('From')),h('strong',null,formatPrice(it)))
+        ))),
+        extras.length&&h('div',{className:'wp-web-price-extras'},extras.map((it,i)=>h('div',{className:'wp-web-price-row',key:i},
+          h(E,{path:`wpThemes.webPrices.extras.${i}.title`,tag:'span',className:'wp-web-price-row-title'}),
+          it.unit==='quote'?h('strong',null,api.t(it.price||'Quoted to scope')):h('span',{className:'wp-web-price-row-value'},h('small',null,api.t('From')),h('strong',null,formatPrice(it)),unitLabel(it.unit)&&h('small',null,unitLabel(it.unit)))
+        )))
+      ):null;
       return h('section',{id:'wp-themes',className:'section wp-themes-section'},h(Container,{api},
         h('div',{className:'wp-themes-head'},
           h(SectionTitle,{api,base:'wpThemes'}),
@@ -709,7 +732,8 @@
             ),
             d.buttonText&&h('div',{className:'wp-themes-cta'},h('a',{className:'btn-cms',href:d.buttonHref||'#contact'},h(E,{path:'wpThemes.buttonText'})),h('span',{className:'small muted'},api.t('Professional WordPress delivery for business and commerce.')))
           )
-        )
+        ),
+        priceBlock
       ));
     }
 

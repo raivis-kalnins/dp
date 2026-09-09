@@ -1,5 +1,5 @@
 {
-  "version": "0.11.37",
+  "version": "0.11.39",
   "settings": {
     "siteName": "DigitalPulse",
     "baseUrl": "",
@@ -3766,66 +3766,66 @@
       },
       {
         "title": "Selected real work",
-        "text": "<p>A focused selection of mobile-first applications: 63.lv Go, a builder estimating app and a maintenance/reporting app.</p>",
+        "text": "<p>A small cross-section of current independent work: a business website, a builder estimating app and a mobile-first maintenance/reporting application.</p>",
         "icon": "bi bi-window-stack",
         "type": "portfolio",
         "portfolioIndexes": [
           0,
-          1,
-          2
+          11,
+          12
         ],
         "i18n": {
           "lv": {
             "title": "Atlasīti reāli darbi",
-            "text": "<p>Mērķtiecīga mobile-first lietotņu izlase: 63.lv Go, būvniecības tāmes lietotne un apkopes un atskaišu lietotne.</p>"
+            "text": "<p>Neliels aktuālo neatkarīgo darbu šķērsgriezums: biznesa vietne, būvniecības tāmes lietotne un mobile-first apkopes un atskaišu lietotne.</p>"
           },
           "ru": {
             "title": "Избранные реальные работы",
-            "text": "<p>Подборка mobile-first приложений: 63.lv Go, приложение для расчёта строительных смет и приложение для обслуживания и отчётности.</p>"
+            "text": "<p>Небольшая выборка текущих независимых проектов: бизнес-сайт, приложение для расчёта строительных смет и mobile-first приложение для обслуживания и отчётности.</p>"
           },
           "fr": {
             "title": "Sélection de projets réels",
-            "text": "<p>Une sélection ciblée d’applications mobile-first : 63.lv Go, une application d’estimation pour le bâtiment et une application de maintenance et de reporting.</p>"
+            "text": "<p>Un petit aperçu de travaux indépendants actuels : un site professionnel, une application d’estimation pour le bâtiment et une application mobile-first de maintenance et de reporting.</p>"
           },
           "es": {
             "title": "Trabajo real seleccionado",
-            "text": "<p>Una selección de aplicaciones mobile-first: 63.lv Go, una app de presupuestos para construcción y una aplicación de mantenimiento e informes.</p>"
+            "text": "<p>Una pequeña muestra de proyectos independientes actuales: un sitio empresarial, una app de presupuestos para construcción y una aplicación mobile-first de mantenimiento e informes.</p>"
           },
           "de": {
             "title": "Ausgewählte reale Projekte",
-            "text": "<p>Eine gezielte Auswahl an Mobile-First-Anwendungen: 63.lv Go, eine Baukalkulations-App und eine Wartungs- und Reporting-App.</p>"
+            "text": "<p>Ein kleiner Querschnitt aktueller unabhängiger Arbeit: eine Unternehmenswebsite, eine Baukalkulations-App und eine mobile-first Wartungs- und Reporting-Anwendung.</p>"
           },
           "pl": {
             "title": "Wybrane prawdziwe realizacje",
-            "text": "<p>Wybrana kolekcja aplikacji mobile-first: 63.lv Go, aplikacja do wycen budowlanych oraz aplikacja do obsługi serwisu i raportowania.</p>"
+            "text": "<p>Niewielki przekrój aktualnych niezależnych projektów: strona firmowa, aplikacja do wycen budowlanych oraz mobile-first aplikacja do obsługi serwisu i raportowania.</p>"
           },
           "lt": {
             "title": "Atrinkti realūs darbai",
-            "text": "<p>Tikslingai atrinktos mobile-first programos: 63.lv Go, statybos sąmatų programa ir priežiūros bei ataskaitų programa.</p>"
+            "text": "<p>Nedidelė dabartinių savarankiškų projektų atranka: verslo svetainė, statybos sąmatų programa ir mobile-first priežiūros bei ataskaitų programa.</p>"
           },
           "et": {
             "title": "Valitud päris tööd",
-            "text": "<p>Sihitud valik mobile-first rakendusi: 63.lv Go, ehituse hinnastamise rakendus ning hooldus- ja aruandlusrakendus.</p>"
+            "text": "<p>Väike valik praegusest iseseisvast tööst: äriveeb, ehituse hinnastamise rakendus ning mobile-first hooldus- ja aruandlusrakendus.</p>"
           },
           "da": {
             "title": "Udvalgte rigtige projekter",
-            "text": "<p>Et fokuseret udvalg af mobile-first-apps: 63.lv Go, en byggeestimeringsapp og en vedligeholdelses- og rapporteringsapp.</p>"
+            "text": "<p>Et lille udsnit af aktuelle selvstændige projekter: et virksomhedswebsite, en byggeestimeringsapp og en mobile-first vedligeholdelses- og rapporteringsapp.</p>"
           },
           "no": {
             "title": "Utvalgte reelle prosjekter",
-            "text": "<p>Et fokusert utvalg av mobile-first-apper: 63.lv Go, en byggestimeringsapp og en vedlikeholds- og rapporteringsapp.</p>"
+            "text": "<p>Et lite utvalg av aktuelle selvstendige prosjekter: et bedriftsnettsted, en byggestimeringsapp og en mobile-first vedlikeholds- og rapporteringsapp.</p>"
           },
           "sv": {
             "title": "Utvalda verkliga projekt",
-            "text": "<p>Ett fokuserat urval av mobile-first-appar: 63.lv Go, en byggestimeringsapp och en app för underhåll och rapportering.</p>"
+            "text": "<p>Ett litet urval av aktuella självständiga projekt: en företagswebbplats, en byggestimeringsapp och en mobile-first-app för underhåll och rapportering.</p>"
           },
           "fi": {
             "title": "Valittuja oikeita töitä",
-            "text": "<p>Tarkkaan valittu joukko mobile-first-sovelluksia: 63.lv Go, rakennusalan kustannusarviosovellus sekä huolto- ja raportointisovellus.</p>"
+            "text": "<p>Pieni otos nykyisestä itsenäisestä työstä: yrityssivusto, rakennusalan kustannusarviosovellus ja mobile-first huolto- ja raportointisovellus.</p>"
           },
           "is": {
             "title": "Valin raunverkefni",
-            "text": "<p>Markvisst úrval mobile-first forrita: 63.lv Go, byggingaráætlunarforrit og viðhalds- og skýrsluforrit.</p>"
+            "text": "<p>Lítið úrval núverandi sjálfstæðra verkefna: fyrirtækjavefur, byggingaráætlunarforrit og mobile-first viðhalds- og skýrsluforrit.</p>"
           }
         }
       }
@@ -5540,7 +5540,7 @@
     "preheader": "WordPress sector themes",
     "title": "Professional WordPress websites, ready for almost any sector.",
     "subtitle": "Start from a proven sector-ready foundation and tailor the design, content and integrations to your business — from lead-generation sites to full WooCommerce stores.",
-    "image": "/assets/img/wp-themes.jpg",
+    "image": "/assets/img/wp-themes.png",
     "alt": "Preview grid of sector-ready WordPress themes for business, automotive, education, hospitality, insurance, logistics, healthcare, property, restaurants, travel and WooCommerce.",
     "badge": "WordPress + Bootstrap + Gutenberg",
     "noteTitle": "One stable core. Multiple sectors. Faster delivery.",
@@ -5578,6 +5578,67 @@
         "text": "Automotive, building services, education, hotels, insurance, logistics, healthcare, property, restaurants, travel, retail and more.",
         "icon": "bi bi-buildings"
       }
-    ]
+    ],
+    "webPrices": {
+      "preheader": "Web development prices",
+      "title": "Digital solutions with clear starting prices",
+      "subtitle": "Prices are based on the current 63.lv web-development service list — from a business website to e-commerce, maintenance and hosting.",
+      "ukNote": "UK prices are converted from EUR and rounded up.",
+      "items": [
+        {
+          "title": "Startup",
+          "text": "A good start for a company presence online.",
+          "eur": 550,
+          "gbp": 473,
+          "icon": "bi bi-rocket-takeoff"
+        },
+        {
+          "title": "Pro",
+          "text": "More sections, broader structure and tailored content.",
+          "eur": 850,
+          "gbp": 731,
+          "icon": "bi bi-window-stack"
+        },
+        {
+          "title": "Sector website",
+          "text": "More individual company or sector website development.",
+          "eur": 1050,
+          "gbp": 903,
+          "icon": "bi bi-buildings"
+        },
+        {
+          "title": "Online store",
+          "text": "WooCommerce solution for online sales.",
+          "eur": 1500,
+          "gbp": 1290,
+          "icon": "bi bi-cart-check"
+        }
+      ],
+      "extras": [
+        {
+          "title": "Old to new website",
+          "eur": 1050,
+          "gbp": 903,
+          "unit": "project"
+        },
+        {
+          "title": "Maintenance / coding",
+          "eur": 25,
+          "gbp": 22,
+          "unit": "hour"
+        },
+        {
+          "title": "Hosting for clients",
+          "eur": 3,
+          "gbp": 3,
+          "unit": "month"
+        },
+        {
+          "title": "SEO, optimisation & social media connection",
+          "price": "Quoted to scope",
+          "unit": "quote"
+        }
+      ]
+    }
   }
 }

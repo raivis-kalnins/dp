@@ -1177,6 +1177,32 @@ function cms_load_data(): array {
   return array_replace_recursive(cms_default_data(), $data);
 }
 
+function cms_user_from_email(array $data, string $email): ?array {
+  $email = strtolower(trim($email));
+  if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) return null;
+
+  $users = $data['settings']['users']['items'] ?? [];
+  if (!is_array($users)) return null;
+
+  foreach ($users as $user) {
+    if (!is_array($user)) continue;
+
+    $userEmail = strtolower(trim((string)($user['email'] ?? '')));
+    if ($userEmail === '' || !hash_equals($userEmail, $email)) continue;
+    if (array_key_exists('active', $user) && !$user['active']) return null;
+
+    $role = strtolower(trim((string)($user['role'] ?? 'editor')));
+    if (!in_array($role, ['super', 'editor'], true)) return null;
+
+    $user['email'] = $userEmail;
+    $user['role'] = $role;
+    $user['active'] = true;
+    return $user;
+  }
+
+  return null;
+}
+
 function cms_save_data(array $data): bool {
   $data['version'] = CMS_VERSION;
   $tmp = DATA_FILE . '.tmp';
