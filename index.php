@@ -44,7 +44,7 @@ session_set_cookie_params([
 ]);
 session_start();
 
-define('CMS_VERSION', '0.11.38');
+define('CMS_VERSION', '0.11.40');
 define('DATA_FILE', __DIR__ . '/data.json');
 define('MAIL_LOG_FILE', __DIR__ . '/.lpcms-mail.log');
 define('HTACCESS_FILE', __DIR__ . '/.htaccess');
@@ -617,7 +617,7 @@ function cms_default_data(): array {
       'preheader' => 'WordPress sector themes',
       'title' => 'Professional WordPress websites, ready for almost any sector.',
       'subtitle' => 'Start from a proven sector-ready foundation and tailor the design, content and integrations to your business — from lead-generation sites to full WooCommerce stores.',
-      'image' => '/assets/img/wp-themes.jpg',
+      'image' => '/assets/img/wp-themes.png',
       'alt' => 'Preview grid of sector-ready WordPress themes for business, automotive, education, hospitality, insurance, logistics, healthcare, property, restaurants, travel and WooCommerce.',
       'badge' => 'WordPress + Bootstrap + Gutenberg',
       'noteTitle' => 'One stable core. Multiple sectors. Faster delivery.',
@@ -631,6 +631,24 @@ function cms_default_data(): array {
         ['title' => 'Business or WooCommerce', 'text' => 'Choose a professional business website or a WooCommerce store with polished product, cart and checkout styling.', 'icon' => 'bi bi-cart-check'],
         ['title' => 'Multisite & database options', 'text' => 'Use WordPress Multisite for a shared network, or separate sites and databases when stronger isolation or scaling is the better fit.', 'icon' => 'bi bi-diagram-3'],
         ['title' => 'Sector-ready foundations', 'text' => 'Automotive, building services, education, hotels, insurance, logistics, healthcare, property, restaurants, travel, retail and more.', 'icon' => 'bi bi-buildings'],
+      ],
+      'webPrices' => [
+        'preheader' => 'Web development prices',
+        'title' => 'Digital solutions with clear starting prices',
+        'subtitle' => 'Prices are based on the current 63.lv web-development service list — from a business website to e-commerce, maintenance and hosting.',
+        'ukNote' => 'UK prices are converted from EUR and rounded up.',
+        'items' => [
+          ['title' => 'Startup', 'text' => 'A good start for a company presence online.', 'eur' => 550, 'gbp' => 473, 'icon' => 'bi bi-rocket-takeoff'],
+          ['title' => 'Pro', 'text' => 'More sections, broader structure and tailored content.', 'eur' => 850, 'gbp' => 731, 'icon' => 'bi bi-window-stack'],
+          ['title' => 'Sector website', 'text' => 'More individual company or sector website development.', 'eur' => 1050, 'gbp' => 903, 'icon' => 'bi bi-buildings'],
+          ['title' => 'Online store', 'text' => 'WooCommerce solution for online sales.', 'eur' => 1500, 'gbp' => 1290, 'icon' => 'bi bi-cart-check'],
+        ],
+        'extras' => [
+          ['title' => 'Old to new website', 'eur' => 1050, 'gbp' => 903, 'unit' => 'project'],
+          ['title' => 'Maintenance / coding', 'eur' => 25, 'gbp' => 22, 'unit' => 'hour'],
+          ['title' => 'Hosting for clients', 'eur' => 3, 'gbp' => 3, 'unit' => 'month'],
+          ['title' => 'SEO, optimisation & social media connection', 'price' => 'Quoted to scope', 'unit' => 'quote'],
+        ],
       ]
     ],
     'gallery' => [

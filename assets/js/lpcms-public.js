@@ -691,7 +691,7 @@
       const localeMap={en:'en-GB',lv:'lv-LV',ru:'ru-RU',fr:'fr-FR',es:'es-ES',de:'de-DE',pl:'pl-PL',lt:'lt-LT',et:'et-EE',da:'da-DK',no:'nb-NO',sv:'sv-SE',fi:'fi-FI',is:'is-IS'};
       const currency=uk?'GBP':'EUR';
       const formatPrice=item=>{const value=Number(uk?item?.gbp:item?.eur);if(!Number.isFinite(value))return '';try{return new Intl.NumberFormat(localeMap[api.lang]||undefined,{style:'currency',currency,maximumFractionDigits:0,minimumFractionDigits:0}).format(value)}catch(e){return (uk?'£':'€')+Math.round(value).toLocaleString()}};
-      const unitLabel=unit=>unit==='hour'?api.t('per hour'):unit==='month'?api.t('per month'):'';
+      const unitLabel=unit=>unit==='hour'?'per hour':unit==='month'?'per month':'';
       const priceBlock=priceItems.length||extras.length?h('div',{className:'wp-web-prices'},
         h('div',{className:'wp-web-prices-head'},
           h(E,{path:'wpThemes.webPrices.preheader',tag:'div',className:'eyebrow mb-2',placeholder:api.t('Web development prices')}),
@@ -703,11 +703,11 @@
           h('div',{className:'wp-web-price-icon'},icon(it.icon||'bi bi-check2-circle')),
           h(E,{path:`wpThemes.webPrices.items.${i}.title`,tag:'h4'}),
           h(E,{path:`wpThemes.webPrices.items.${i}.text`,tag:'p',className:'muted'}),
-          h('div',{className:'wp-web-price-value'},h('span',null,api.t('From')),h('strong',null,formatPrice(it)))
+          h('div',{className:'wp-web-price-value'},h('span',null,'From'),h('strong',null,formatPrice(it)))
         ))),
         extras.length&&h('div',{className:'wp-web-price-extras'},extras.map((it,i)=>h('div',{className:'wp-web-price-row',key:i},
           h(E,{path:`wpThemes.webPrices.extras.${i}.title`,tag:'span',className:'wp-web-price-row-title'}),
-          it.unit==='quote'?h('strong',null,api.t(it.price||'Quoted to scope')):h('span',{className:'wp-web-price-row-value'},h('small',null,api.t('From')),h('strong',null,formatPrice(it)),unitLabel(it.unit)&&h('small',null,unitLabel(it.unit)))
+          it.unit==='quote'?h('strong',null,it.price||'Quoted to scope'):h('span',{className:'wp-web-price-row-value'},h('small',null,'From'),h('strong',null,formatPrice(it)),unitLabel(it.unit)&&h('small',null,unitLabel(it.unit)))
         )))
       ):null;
       return h('section',{id:'wp-themes',className:'section wp-themes-section'},h(Container,{api},
