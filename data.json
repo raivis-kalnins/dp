@@ -1,5 +1,5 @@
 {
-  "version": "0.11.40",
+  "version": "0.11.41",
   "settings": {
     "siteName": "DigitalPulse",
     "baseUrl": "",
@@ -1367,9 +1367,9 @@
     "title": "Real websites & web applications.",
     "subtitle": "Selected live client work and current development projects across WordPress business sites, catalogues, music/community platforms and custom web applications.",
     "homeLimit": 9,
-    "batch": 3,
+    "batch": 6,
     "showButton": true,
-    "buttonText": "Load 3 more projects",
+    "buttonText": "Load more projects",
     "categories": [
       {
         "slug": "all",
@@ -1380,11 +1380,765 @@
         "title": "Web applications"
       },
       {
+        "slug": "websites",
+        "title": "Business websites"
+      },
+      {
         "slug": "wordpress",
         "title": "WordPress websites"
       }
     ],
     "items": [
+      {
+        "title": "SEO & Performance test",
+        "slug": "seo-63",
+        "category": "web-apps",
+        "kind": "Web application",
+        "client": "63.lv",
+        "status": "Live",
+        "text": "Browser-based SEO and performance toolkit for quick website checks, technical signals and practical optimisation workflows.",
+        "url": "https://seo.63.lv",
+        "linkText": "Open web app",
+        "tech": [
+          "SEO",
+          "Performance",
+          "JavaScript",
+          "Web App"
+        ],
+        "image": "https://image.thum.io/get/width/1200/crop/760/maxAge/168/noanimate/https://seo.63.lv",
+        "body": "<p>Browser-based SEO and performance toolkit for quick website checks, technical signals and practical optimisation workflows.</p>",
+        "gallery": [],
+        "alt": "SEO & Performance test",
+        "i18n": {
+          "lv": {
+            "text": "Tīmekļa SEO un veiktspējas rīks ātrām vietņu pārbaudēm, tehnisko signālu analīzei un praktiskai optimizācijai.",
+            "body": "<p>Tīmekļa SEO un veiktspējas rīks ātrām vietņu pārbaudēm, tehnisko signālu analīzei un praktiskai optimizācijai.</p>"
+          },
+          "ru": {
+            "text": "Браузерный набор инструментов для SEO и производительности: быстрые проверки сайтов, технические сигналы и практическая оптимизация.",
+            "body": "<p>Браузерный набор инструментов для SEO и производительности: быстрые проверки сайтов, технические сигналы и практическая оптимизация.</p>"
+          },
+          "fr": {
+            "text": "Outil web de SEO et de performance pour des contrôles rapides de sites, l’analyse des signaux techniques et des workflows d’optimisation concrets.",
+            "body": "<p>Outil web de SEO et de performance pour des contrôles rapides de sites, l’analyse des signaux techniques et des workflows d’optimisation concrets.</p>"
+          },
+          "es": {
+            "text": "Herramienta web de SEO y rendimiento para revisiones rápidas de sitios, señales técnicas y flujos prácticos de optimización.",
+            "body": "<p>Herramienta web de SEO y rendimiento para revisiones rápidas de sitios, señales técnicas y flujos prácticos de optimización.</p>"
+          },
+          "de": {
+            "text": "Browserbasiertes SEO- und Performance-Toolkit für schnelle Website-Prüfungen, technische Signale und praktische Optimierungsabläufe.",
+            "body": "<p>Browserbasiertes SEO- und Performance-Toolkit für schnelle Website-Prüfungen, technische Signale und praktische Optimierungsabläufe.</p>"
+          },
+          "pl": {
+            "text": "Przeglądarkowy zestaw narzędzi SEO i wydajności do szybkich kontroli stron, analizy sygnałów technicznych i praktycznej optymalizacji.",
+            "body": "<p>Przeglądarkowy zestaw narzędzi SEO i wydajności do szybkich kontroli stron, analizy sygnałów technicznych i praktycznej optymalizacji.</p>"
+          },
+          "lt": {
+            "text": "Naršyklėje veikiantis SEO ir našumo įrankis greitam svetainių tikrinimui, techninių signalų analizei ir praktiniam optimizavimui.",
+            "body": "<p>Naršyklėje veikiantis SEO ir našumo įrankis greitam svetainių tikrinimui, techninių signalų analizei ir praktiniam optimizavimui.</p>"
+          },
+          "et": {
+            "text": "Brauseripõhine SEO ja jõudluse tööriist kiirete veebikontrollide, tehniliste signaalide ja praktiliste optimeerimisvoogude jaoks.",
+            "body": "<p>Brauseripõhine SEO ja jõudluse tööriist kiirete veebikontrollide, tehniliste signaalide ja praktiliste optimeerimisvoogude jaoks.</p>"
+          },
+          "da": {
+            "text": "Browserbaseret SEO- og performanceværktøj til hurtige webstedstjek, tekniske signaler og praktiske optimeringsflows.",
+            "body": "<p>Browserbaseret SEO- og performanceværktøj til hurtige webstedstjek, tekniske signaler og praktiske optimeringsflows.</p>"
+          },
+          "no": {
+            "text": "Nettleserbasert SEO- og ytelsesverktøy for raske nettstedskontroller, tekniske signaler og praktiske optimaliseringsarbeidsflyter.",
+            "body": "<p>Nettleserbasert SEO- og ytelsesverktøy for raske nettstedskontroller, tekniske signaler og praktiske optimaliseringsarbeidsflyter.</p>"
+          },
+          "sv": {
+            "text": "Webbläsarbaserat SEO- och prestandaverktyg för snabba webbplatskontroller, tekniska signaler och praktiska optimeringsflöden.",
+            "body": "<p>Webbläsarbaserat SEO- och prestandaverktyg för snabba webbplatskontroller, tekniska signaler och praktiska optimeringsflöden.</p>"
+          },
+          "fi": {
+            "text": "Selainpohjainen SEO- ja suorituskykytyökalu nopeisiin sivustotarkistuksiin, teknisten signaalien analysointiin ja käytännön optimointiin.",
+            "body": "<p>Selainpohjainen SEO- ja suorituskykytyökalu nopeisiin sivustotarkistuksiin, teknisten signaalien analysointiin ja käytännön optimointiin.</p>"
+          },
+          "is": {
+            "text": "Vafratól fyrir SEO og afköst sem sinnir hröðum vefprófunum, tæknilegum merkjum og hagnýtum hagræðingarferlum.",
+            "body": "<p>Vafratól fyrir SEO og afköst sem sinnir hröðum vefprófunum, tæknilegum merkjum og hagnýtum hagræðingarferlum.</p>"
+          }
+        }
+      },
+      {
+        "title": "Radio 63",
+        "slug": "radio-63",
+        "category": "web-apps",
+        "kind": "Web application",
+        "client": "63.lv",
+        "status": "Live",
+        "text": "Mobile-first internet radio player with station controls and an offline audio fallback for connection interruptions.",
+        "url": "https://radio.63.lv",
+        "linkText": "Open web app",
+        "tech": [
+          "React",
+          "Audio",
+          "PWA / Web App",
+          "Offline UX"
+        ],
+        "image": "https://image.thum.io/get/width/1200/crop/760/maxAge/168/noanimate/https://radio.63.lv",
+        "body": "<p>Mobile-first internet radio player with station controls and an offline audio fallback for connection interruptions.</p>",
+        "gallery": [],
+        "alt": "Radio 63",
+        "i18n": {
+          "lv": {
+            "text": "Mobilajām ierīcēm pielāgots interneta radio atskaņotājs ar staciju vadību un bezsaistes audio rezerves režīmu savienojuma pārtraukumiem.",
+            "body": "<p>Mobilajām ierīcēm pielāgots interneta radio atskaņotājs ar staciju vadību un bezsaistes audio rezerves režīmu savienojuma pārtraukumiem.</p>"
+          },
+          "ru": {
+            "text": "Мобильный интернет-радиоплеер с управлением станциями и резервным офлайн-аудио при перебоях соединения.",
+            "body": "<p>Мобильный интернет-радиоплеер с управлением станциями и резервным офлайн-аудио при перебоях соединения.</p>"
+          },
+          "fr": {
+            "text": "Lecteur de radio Internet pensé pour mobile, avec contrôle des stations et lecture audio hors ligne de secours lors des coupures de connexion.",
+            "body": "<p>Lecteur de radio Internet pensé pour mobile, avec contrôle des stations et lecture audio hors ligne de secours lors des coupures de connexion.</p>"
+          },
+          "es": {
+            "text": "Reproductor de radio por Internet orientado a móvil, con controles de emisoras y audio sin conexión como respaldo cuando se interrumpe la conexión.",
+            "body": "<p>Reproductor de radio por Internet orientado a móvil, con controles de emisoras y audio sin conexión como respaldo cuando se interrumpe la conexión.</p>"
+          },
+          "de": {
+            "text": "Mobil optimierter Internetradio-Player mit Sendersteuerung und Offline-Audio als Rückfallebene bei Verbindungsunterbrechungen.",
+            "body": "<p>Mobil optimierter Internetradio-Player mit Sendersteuerung und Offline-Audio als Rückfallebene bei Verbindungsunterbrechungen.</p>"
+          },
+          "pl": {
+            "text": "Mobilny odtwarzacz radia internetowego z obsługą stacji i awaryjnym dźwiękiem offline na czas przerw w połączeniu.",
+            "body": "<p>Mobilny odtwarzacz radia internetowego z obsługą stacji i awaryjnym dźwiękiem offline na czas przerw w połączeniu.</p>"
+          },
+          "lt": {
+            "text": "Mobiliesiems pritaikytas interneto radijo grotuvas su stočių valdymu ir atsarginiu garsu neprisijungus ryšio sutrikimų metu.",
+            "body": "<p>Mobiliesiems pritaikytas interneto radijo grotuvas su stočių valdymu ir atsarginiu garsu neprisijungus ryšio sutrikimų metu.</p>"
+          },
+          "et": {
+            "text": "Mobiilikeskne internetiraadio mängija jaamade juhtimise ning võrguühenduse katkestuste jaoks mõeldud võrguühenduseta helivaruga.",
+            "body": "<p>Mobiilikeskne internetiraadio mängija jaamade juhtimise ning võrguühenduse katkestuste jaoks mõeldud võrguühenduseta helivaruga.</p>"
+          },
+          "da": {
+            "text": "Mobilfokuseret internetradioafspiller med stationsstyring og offline-lyd som reserve ved afbrudt forbindelse.",
+            "body": "<p>Mobilfokuseret internetradioafspiller med stationsstyring og offline-lyd som reserve ved afbrudt forbindelse.</p>"
+          },
+          "no": {
+            "text": "Mobiltilpasset internettradio med stasjonskontroller og offline lyd som reserve ved avbrudd i forbindelsen.",
+            "body": "<p>Mobiltilpasset internettradio med stasjonskontroller og offline lyd som reserve ved avbrudd i forbindelsen.</p>"
+          },
+          "sv": {
+            "text": "Mobilanpassad internetradiospelare med stationskontroller och offline-ljud som reserv vid anslutningsavbrott.",
+            "body": "<p>Mobilanpassad internetradiospelare med stationskontroller och offline-ljud som reserv vid anslutningsavbrott.</p>"
+          },
+          "fi": {
+            "text": "Mobiiliystävällinen internet-radiosoitin asemien hallinnalla ja yhteyskatkojen varalle tarkoitetulla offline-äänellä.",
+            "body": "<p>Mobiiliystävällinen internet-radiosoitin asemien hallinnalla ja yhteyskatkojen varalle tarkoitetulla offline-äänellä.</p>"
+          },
+          "is": {
+            "text": "Farsímavænn netútvarpsspilari með stöðvastýringu og hljóði án nettengingar sem varaleið þegar samband rofnar.",
+            "body": "<p>Farsímavænn netútvarpsspilari með stöðvastýringu og hljóði án nettengingar sem varaleið þegar samband rofnar.</p>"
+          }
+        }
+      },
+      {
+        "title": "Language Bridge",
+        "slug": "language-bridge",
+        "category": "web-apps",
+        "kind": "Web application",
+        "client": "63.lv",
+        "status": "Live",
+        "text": "Interactive language-learning web app for practising vocabulary, phrases and multilingual study workflows.",
+        "url": "https://language.63.lv",
+        "linkText": "Open web app",
+        "tech": [
+          "React",
+          "Multilingual",
+          "Learning UX",
+          "Web App"
+        ],
+        "image": "https://image.thum.io/get/width/1200/crop/760/maxAge/168/noanimate/https://language.63.lv",
+        "body": "<p>Interactive language-learning web app for practising vocabulary, phrases and multilingual study workflows.</p>",
+        "gallery": [],
+        "alt": "Language Bridge",
+        "i18n": {
+          "lv": {
+            "text": "Interaktīva valodu apguves tīmekļa lietotne vārdu krājuma, frāžu un daudzvalodu mācību uzdevumu praktizēšanai.",
+            "body": "<p>Interaktīva valodu apguves tīmekļa lietotne vārdu krājuma, frāžu un daudzvalodu mācību uzdevumu praktizēšanai.</p>"
+          },
+          "ru": {
+            "text": "Интерактивное веб-приложение для изучения языков, тренировки словаря, фраз и многоязычных учебных сценариев.",
+            "body": "<p>Интерактивное веб-приложение для изучения языков, тренировки словаря, фраз и многоязычных учебных сценариев.</p>"
+          },
+          "fr": {
+            "text": "Application web interactive d’apprentissage des langues pour pratiquer le vocabulaire, les expressions et des parcours d’étude multilingues.",
+            "body": "<p>Application web interactive d’apprentissage des langues pour pratiquer le vocabulaire, les expressions et des parcours d’étude multilingues.</p>"
+          },
+          "es": {
+            "text": "Aplicación web interactiva para aprender idiomas, practicar vocabulario, frases y flujos de estudio multilingües.",
+            "body": "<p>Aplicación web interactiva para aprender idiomas, practicar vocabulario, frases y flujos de estudio multilingües.</p>"
+          },
+          "de": {
+            "text": "Interaktive Web-App zum Sprachenlernen für Wortschatz, Redewendungen und mehrsprachige Lernabläufe.",
+            "body": "<p>Interaktive Web-App zum Sprachenlernen für Wortschatz, Redewendungen und mehrsprachige Lernabläufe.</p>"
+          },
+          "pl": {
+            "text": "Interaktywna aplikacja webowa do nauki języków, ćwiczenia słownictwa, zwrotów i wielojęzycznych scenariuszy nauki.",
+            "body": "<p>Interaktywna aplikacja webowa do nauki języków, ćwiczenia słownictwa, zwrotów i wielojęzycznych scenariuszy nauki.</p>"
+          },
+          "lt": {
+            "text": "Interaktyvi kalbų mokymosi web programa žodynui, frazėms ir daugiakalbiams mokymosi scenarijams praktikuoti.",
+            "body": "<p>Interaktyvi kalbų mokymosi web programa žodynui, frazėms ir daugiakalbiams mokymosi scenarijams praktikuoti.</p>"
+          },
+          "et": {
+            "text": "Interaktiivne keeleõppe veebirakendus sõnavara, väljendite ja mitmekeelsete õppevoogude harjutamiseks.",
+            "body": "<p>Interaktiivne keeleõppe veebirakendus sõnavara, väljendite ja mitmekeelsete õppevoogude harjutamiseks.</p>"
+          },
+          "da": {
+            "text": "Interaktiv webapp til sprogindlæring med træning af ordforråd, fraser og flersprogede læringsforløb.",
+            "body": "<p>Interaktiv webapp til sprogindlæring med træning af ordforråd, fraser og flersprogede læringsforløb.</p>"
+          },
+          "no": {
+            "text": "Interaktiv nettapp for språklæring med trening på ordforråd, uttrykk og flerspråklige læringsforløp.",
+            "body": "<p>Interaktiv nettapp for språklæring med trening på ordforråd, uttrykk og flerspråklige læringsforløp.</p>"
+          },
+          "sv": {
+            "text": "Interaktiv webbapp för språkinlärning med träning av ordförråd, fraser och flerspråkiga studieflöden.",
+            "body": "<p>Interaktiv webbapp för språkinlärning med träning av ordförråd, fraser och flerspråkiga studieflöden.</p>"
+          },
+          "fi": {
+            "text": "Interaktiivinen kieltenopiskelun web-sovellus sanaston, fraasien ja monikielisten opiskelupolkujen harjoitteluun.",
+            "body": "<p>Interaktiivinen kieltenopiskelun web-sovellus sanaston, fraasien ja monikielisten opiskelupolkujen harjoitteluun.</p>"
+          },
+          "is": {
+            "text": "Gagnvirkt vefforrit til tungumálanáms fyrir orðaforða, orðasambönd og fjöltyngd námsferli.",
+            "body": "<p>Gagnvirkt vefforrit til tungumálanáms fyrir orðaforða, orðasambönd og fjöltyngd námsferli.</p>"
+          }
+        }
+      },
+      {
+        "title": "Book Reader",
+        "slug": "book-reader-63",
+        "category": "web-apps",
+        "kind": "Web application",
+        "client": "63.lv",
+        "status": "Live",
+        "text": "Browser-based reading app designed for focused digital reading with a clean, mobile-friendly interface.",
+        "url": "https://book.63.lv",
+        "linkText": "Open web app",
+        "tech": [
+          "React",
+          "Reader UX",
+          "Responsive UI",
+          "Web App"
+        ],
+        "image": "https://image.thum.io/get/width/1200/crop/760/maxAge/168/noanimate/https://book.63.lv",
+        "body": "<p>Browser-based reading app designed for focused digital reading with a clean, mobile-friendly interface.</p>",
+        "gallery": [],
+        "alt": "Book Reader",
+        "i18n": {
+          "lv": {
+            "text": "Pārlūkā darbināma lasīšanas lietotne koncentrētai digitālai lasīšanai ar tīru un mobilajām ierīcēm ērtu saskarni.",
+            "body": "<p>Pārlūkā darbināma lasīšanas lietotne koncentrētai digitālai lasīšanai ar tīru un mobilajām ierīcēm ērtu saskarni.</p>"
+          },
+          "ru": {
+            "text": "Браузерное приложение для сосредоточенного цифрового чтения с чистым и удобным на мобильных устройствах интерфейсом.",
+            "body": "<p>Браузерное приложение для сосредоточенного цифрового чтения с чистым и удобным на мобильных устройствах интерфейсом.</p>"
+          },
+          "fr": {
+            "text": "Application de lecture dans le navigateur, conçue pour une lecture numérique concentrée avec une interface claire et adaptée au mobile.",
+            "body": "<p>Application de lecture dans le navigateur, conçue pour une lecture numérique concentrée avec une interface claire et adaptée au mobile.</p>"
+          },
+          "es": {
+            "text": "Aplicación de lectura en el navegador pensada para una lectura digital concentrada con una interfaz limpia y adaptada a móviles.",
+            "body": "<p>Aplicación de lectura en el navegador pensada para una lectura digital concentrada con una interfaz limpia y adaptada a móviles.</p>"
+          },
+          "de": {
+            "text": "Browserbasierte Lese-App für fokussiertes digitales Lesen mit einer klaren, mobilfreundlichen Oberfläche.",
+            "body": "<p>Browserbasierte Lese-App für fokussiertes digitales Lesen mit einer klaren, mobilfreundlichen Oberfläche.</p>"
+          },
+          "pl": {
+            "text": "Przeglądarkowa aplikacja do skupionego czytania cyfrowego z czystym, przyjaznym dla urządzeń mobilnych interfejsem.",
+            "body": "<p>Przeglądarkowa aplikacja do skupionego czytania cyfrowego z czystym, przyjaznym dla urządzeń mobilnych interfejsem.</p>"
+          },
+          "lt": {
+            "text": "Naršyklėje veikianti skaitymo programa susikaupusiam skaitmeniniam skaitymui su švaria, mobiliesiems pritaikyta sąsaja.",
+            "body": "<p>Naršyklėje veikianti skaitymo programa susikaupusiam skaitmeniniam skaitymui su švaria, mobiliesiems pritaikyta sąsaja.</p>"
+          },
+          "et": {
+            "text": "Brauseripõhine lugemisrakendus keskendunud digilugemiseks puhta ja mobiilisõbraliku kasutajaliidesega.",
+            "body": "<p>Brauseripõhine lugemisrakendus keskendunud digilugemiseks puhta ja mobiilisõbraliku kasutajaliidesega.</p>"
+          },
+          "da": {
+            "text": "Browserbaseret læseapp til fokuseret digital læsning med en ren og mobilvenlig brugerflade.",
+            "body": "<p>Browserbaseret læseapp til fokuseret digital læsning med en ren og mobilvenlig brugerflade.</p>"
+          },
+          "no": {
+            "text": "Nettleserbasert leseapp for fokusert digital lesing med et rent og mobilvennlig grensesnitt.",
+            "body": "<p>Nettleserbasert leseapp for fokusert digital lesing med et rent og mobilvennlig grensesnitt.</p>"
+          },
+          "sv": {
+            "text": "Webbläsarbaserad läsapp för fokuserad digital läsning med ett rent och mobilvänligt gränssnitt.",
+            "body": "<p>Webbläsarbaserad läsapp för fokuserad digital läsning med ett rent och mobilvänligt gränssnitt.</p>"
+          },
+          "fi": {
+            "text": "Selainpohjainen lukusovellus keskittyneeseen digitaaliseen lukemiseen selkeällä ja mobiiliystävällisellä käyttöliittymällä.",
+            "body": "<p>Selainpohjainen lukusovellus keskittyneeseen digitaaliseen lukemiseen selkeällä ja mobiiliystävällisellä käyttöliittymällä.</p>"
+          },
+          "is": {
+            "text": "Lestrarforrit í vafra fyrir einbeittan stafrænan lestur með hreinu og farsímavænu viðmóti.",
+            "body": "<p>Lestrarforrit í vafra fyrir einbeittan stafrænan lestur með hreinu og farsímavænu viðmóti.</p>"
+          }
+        }
+      },
+      {
+        "title": "Music Writer",
+        "slug": "music-writer-63",
+        "category": "web-apps",
+        "kind": "Web application",
+        "client": "63.lv",
+        "status": "Live",
+        "text": "Interactive music-notation and composition web app for creating, editing and playing back musical ideas in the browser.",
+        "url": "https://music-writer.63.lv",
+        "linkText": "Open web app",
+        "tech": [
+          "React",
+          "Music notation",
+          "Audio playback",
+          "Web App"
+        ],
+        "image": "https://image.thum.io/get/width/1200/crop/760/maxAge/168/noanimate/https://music-writer.63.lv",
+        "body": "<p>Interactive music-notation and composition web app for creating, editing and playing back musical ideas in the browser.</p>",
+        "gallery": [],
+        "alt": "Music Writer",
+        "i18n": {
+          "lv": {
+            "text": "Interaktīva nošu rakstīšanas un komponēšanas tīmekļa lietotne muzikālu ideju veidošanai, rediģēšanai un atskaņošanai pārlūkā.",
+            "body": "<p>Interaktīva nošu rakstīšanas un komponēšanas tīmekļa lietotne muzikālu ideju veidošanai, rediģēšanai un atskaņošanai pārlūkā.</p>"
+          },
+          "ru": {
+            "text": "Интерактивное веб-приложение для нотной записи и композиции: создание, редактирование и воспроизведение музыкальных идей в браузере.",
+            "body": "<p>Интерактивное веб-приложение для нотной записи и композиции: создание, редактирование и воспроизведение музыкальных идей в браузере.</p>"
+          },
+          "fr": {
+            "text": "Application web interactive de notation et de composition musicale pour créer, modifier et lire des idées musicales directement dans le navigateur.",
+            "body": "<p>Application web interactive de notation et de composition musicale pour créer, modifier et lire des idées musicales directement dans le navigateur.</p>"
+          },
+          "es": {
+            "text": "Aplicación web interactiva de notación y composición musical para crear, editar y reproducir ideas musicales en el navegador.",
+            "body": "<p>Aplicación web interactiva de notación y composición musical para crear, editar y reproducir ideas musicales en el navegador.</p>"
+          },
+          "de": {
+            "text": "Interaktive Web-App für Musiknotation und Komposition zum Erstellen, Bearbeiten und Abspielen musikalischer Ideen im Browser.",
+            "body": "<p>Interaktive Web-App für Musiknotation und Komposition zum Erstellen, Bearbeiten und Abspielen musikalischer Ideen im Browser.</p>"
+          },
+          "pl": {
+            "text": "Interaktywna aplikacja webowa do zapisu nutowego i komponowania, umożliwiająca tworzenie, edycję i odtwarzanie pomysłów muzycznych w przeglądarce.",
+            "body": "<p>Interaktywna aplikacja webowa do zapisu nutowego i komponowania, umożliwiająca tworzenie, edycję i odtwarzanie pomysłów muzycznych w przeglądarce.</p>"
+          },
+          "lt": {
+            "text": "Interaktyvi natų rašymo ir komponavimo web programa muzikos idėjoms kurti, redaguoti ir atkurti naršyklėje.",
+            "body": "<p>Interaktyvi natų rašymo ir komponavimo web programa muzikos idėjoms kurti, redaguoti ir atkurti naršyklėje.</p>"
+          },
+          "et": {
+            "text": "Interaktiivne noodikirja ja komponeerimise veebirakendus muusikaliste ideede loomiseks, muutmiseks ja esitamiseks brauseris.",
+            "body": "<p>Interaktiivne noodikirja ja komponeerimise veebirakendus muusikaliste ideede loomiseks, muutmiseks ja esitamiseks brauseris.</p>"
+          },
+          "da": {
+            "text": "Interaktiv webapp til musiknotation og komposition, hvor musikalske idéer kan oprettes, redigeres og afspilles i browseren.",
+            "body": "<p>Interaktiv webapp til musiknotation og komposition, hvor musikalske idéer kan oprettes, redigeres og afspilles i browseren.</p>"
+          },
+          "no": {
+            "text": "Interaktiv nettapp for notasjons- og komposisjonsarbeid, der musikalske ideer kan opprettes, redigeres og spilles av i nettleseren.",
+            "body": "<p>Interaktiv nettapp for notasjons- og komposisjonsarbeid, der musikalske ideer kan opprettes, redigeres og spilles av i nettleseren.</p>"
+          },
+          "sv": {
+            "text": "Interaktiv webbapp för notskrift och komposition där musikaliska idéer kan skapas, redigeras och spelas upp i webbläsaren.",
+            "body": "<p>Interaktiv webbapp för notskrift och komposition där musikaliska idéer kan skapas, redigeras och spelas upp i webbläsaren.</p>"
+          },
+          "fi": {
+            "text": "Interaktiivinen nuotinnus- ja sävellyssovellus musiikillisten ideoiden luomiseen, muokkaamiseen ja toistamiseen selaimessa.",
+            "body": "<p>Interaktiivinen nuotinnus- ja sävellyssovellus musiikillisten ideoiden luomiseen, muokkaamiseen ja toistamiseen selaimessa.</p>"
+          },
+          "is": {
+            "text": "Gagnvirkt vefforrit fyrir nótnaskrift og tónsmíðar til að búa til, breyta og spila tónlistarhugmyndir í vafranum.",
+            "body": "<p>Gagnvirkt vefforrit fyrir nótnaskrift og tónsmíðar til að búa til, breyta og spila tónlistarhugmyndir í vafranum.</p>"
+          }
+        }
+      },
+      {
+        "title": "Music 63",
+        "slug": "music-63",
+        "category": "web-apps",
+        "kind": "Web application",
+        "client": "63.lv",
+        "status": "Live",
+        "text": "Music-focused web application within the 63.lv ecosystem, built for fast browser access and responsive use.",
+        "url": "https://music.63.lv",
+        "linkText": "Open web app",
+        "tech": [
+          "Music",
+          "Responsive UI",
+          "JavaScript",
+          "Web App"
+        ],
+        "image": "https://image.thum.io/get/width/1200/crop/760/maxAge/168/noanimate/https://music.63.lv",
+        "body": "<p>Music-focused web application within the 63.lv ecosystem, built for fast browser access and responsive use.</p>",
+        "gallery": [],
+        "alt": "Music 63",
+        "i18n": {
+          "lv": {
+            "text": "Mūzikai paredzēta tīmekļa lietotne 63.lv ekosistēmā ar ātru piekļuvi pārlūkā un responsīvu lietošanu.",
+            "body": "<p>Mūzikai paredzēta tīmekļa lietotne 63.lv ekosistēmā ar ātru piekļuvi pārlūkā un responsīvu lietošanu.</p>"
+          },
+          "ru": {
+            "text": "Музыкальное веб-приложение в экосистеме 63.lv, созданное для быстрого доступа из браузера и адаптивной работы.",
+            "body": "<p>Музыкальное веб-приложение в экосистеме 63.lv, созданное для быстрого доступа из браузера и адаптивной работы.</p>"
+          },
+          "fr": {
+            "text": "Application web dédiée à la musique dans l’écosystème 63.lv, conçue pour un accès rapide dans le navigateur et une utilisation responsive.",
+            "body": "<p>Application web dédiée à la musique dans l’écosystème 63.lv, conçue pour un accès rapide dans le navigateur et une utilisation responsive.</p>"
+          },
+          "es": {
+            "text": "Aplicación web centrada en música dentro del ecosistema 63.lv, creada para acceso rápido desde el navegador y uso responsive.",
+            "body": "<p>Aplicación web centrada en música dentro del ecosistema 63.lv, creada para acceso rápido desde el navegador y uso responsive.</p>"
+          },
+          "de": {
+            "text": "Musikorientierte Web-Anwendung im 63.lv-Ökosystem für schnellen Browserzugriff und responsive Nutzung.",
+            "body": "<p>Musikorientierte Web-Anwendung im 63.lv-Ökosystem für schnellen Browserzugriff und responsive Nutzung.</p>"
+          },
+          "pl": {
+            "text": "Aplikacja webowa poświęcona muzyce w ekosystemie 63.lv, przygotowana do szybkiego dostępu w przeglądarce i responsywnego użytkowania.",
+            "body": "<p>Aplikacja webowa poświęcona muzyce w ekosystemie 63.lv, przygotowana do szybkiego dostępu w przeglądarce i responsywnego użytkowania.</p>"
+          },
+          "lt": {
+            "text": "Muzikai skirta web programa 63.lv ekosistemoje, sukurta greitai prieigai naršyklėje ir adaptyviam naudojimui.",
+            "body": "<p>Muzikai skirta web programa 63.lv ekosistemoje, sukurta greitai prieigai naršyklėje ir adaptyviam naudojimui.</p>"
+          },
+          "et": {
+            "text": "Muusikale keskenduv veebirakendus 63.lv ökosüsteemis, loodud kiireks brauserijuurdepääsuks ja responsiivseks kasutuseks.",
+            "body": "<p>Muusikale keskenduv veebirakendus 63.lv ökosüsteemis, loodud kiireks brauserijuurdepääsuks ja responsiivseks kasutuseks.</p>"
+          },
+          "da": {
+            "text": "Musikfokuseret webapplikation i 63.lv-økosystemet, bygget til hurtig browseradgang og responsiv brug.",
+            "body": "<p>Musikfokuseret webapplikation i 63.lv-økosystemet, bygget til hurtig browseradgang og responsiv brug.</p>"
+          },
+          "no": {
+            "text": "Musikkfokusert webapplikasjon i 63.lv-økosystemet, bygget for rask tilgang i nettleseren og responsiv bruk.",
+            "body": "<p>Musikkfokusert webapplikasjon i 63.lv-økosystemet, bygget for rask tilgang i nettleseren og responsiv bruk.</p>"
+          },
+          "sv": {
+            "text": "Musikinriktad webbapplikation i 63.lv-ekosystemet, byggd för snabb åtkomst i webbläsaren och responsiv användning.",
+            "body": "<p>Musikinriktad webbapplikation i 63.lv-ekosystemet, byggd för snabb åtkomst i webbläsaren och responsiv användning.</p>"
+          },
+          "fi": {
+            "text": "Musiikkiin keskittyvä web-sovellus 63.lv-ekosysteemissä, suunniteltu nopeaan selainkäyttöön ja responsiiviseen kokemukseen.",
+            "body": "<p>Musiikkiin keskittyvä web-sovellus 63.lv-ekosysteemissä, suunniteltu nopeaan selainkäyttöön ja responsiiviseen kokemukseen.</p>"
+          },
+          "is": {
+            "text": "Tónlistarmiðað vefforrit í 63.lv-vistkerfinu, byggt fyrir skjótan aðgang í vafra og skalanlega notkun.",
+            "body": "<p>Tónlistarmiðað vefforrit í 63.lv-vistkerfinu, byggt fyrir skjótan aðgang í vafra og skalanlega notkun.</p>"
+          }
+        }
+      },
+      {
+        "title": "Labas Lietas",
+        "slug": "labas-lietas",
+        "category": "websites",
+        "kind": "E-commerce website",
+        "client": "Labas Lietas",
+        "status": "Live",
+        "text": "Latvian e-commerce website for tools, garden equipment, workshop products and spare parts, with search, catalogue and shopping flows.",
+        "url": "https://labaslietas.63.lv",
+        "linkText": "Visit live website",
+        "tech": [
+          "E-commerce",
+          "Catalogue UX",
+          "Search",
+          "Responsive UI"
+        ],
+        "image": "https://image.thum.io/get/width/1200/crop/760/maxAge/168/noanimate/https://labaslietas.63.lv",
+        "body": "<p>Latvian e-commerce website for tools, garden equipment, workshop products and spare parts, with search, catalogue and shopping flows.</p>",
+        "gallery": [],
+        "alt": "Labas Lietas",
+        "i18n": {
+          "lv": {
+            "text": "Latvijas e-komercijas vietne instrumentiem, dārza tehnikai, darbnīcu precēm un rezerves daļām ar meklēšanu, katalogu un iepirkšanās plūsmu.",
+            "body": "<p>Latvijas e-komercijas vietne instrumentiem, dārza tehnikai, darbnīcu precēm un rezerves daļām ar meklēšanu, katalogu un iepirkšanās plūsmu.</p>"
+          },
+          "ru": {
+            "text": "Латвийский интернет-магазин инструментов, садовой техники, товаров для мастерской и запчастей с поиском, каталогом и покупками.",
+            "body": "<p>Латвийский интернет-магазин инструментов, садовой техники, товаров для мастерской и запчастей с поиском, каталогом и покупками.</p>"
+          },
+          "fr": {
+            "text": "Site e-commerce letton pour outils, matériel de jardin, produits d’atelier et pièces détachées, avec recherche, catalogue et parcours d’achat.",
+            "body": "<p>Site e-commerce letton pour outils, matériel de jardin, produits d’atelier et pièces détachées, avec recherche, catalogue et parcours d’achat.</p>"
+          },
+          "es": {
+            "text": "Sitio de comercio electrónico de Letonia para herramientas, equipos de jardín, productos de taller y repuestos, con búsqueda, catálogo y compra.",
+            "body": "<p>Sitio de comercio electrónico de Letonia para herramientas, equipos de jardín, productos de taller y repuestos, con búsqueda, catálogo y compra.</p>"
+          },
+          "de": {
+            "text": "Lettische E-Commerce-Website für Werkzeuge, Gartengeräte, Werkstattprodukte und Ersatzteile mit Suche, Katalog und Einkaufsabläufen.",
+            "body": "<p>Lettische E-Commerce-Website für Werkzeuge, Gartengeräte, Werkstattprodukte und Ersatzteile mit Suche, Katalog und Einkaufsabläufen.</p>"
+          },
+          "pl": {
+            "text": "Łotewski sklep internetowy z narzędziami, sprzętem ogrodowym, produktami warsztatowymi i częściami zamiennymi, z wyszukiwaniem, katalogiem i zakupami.",
+            "body": "<p>Łotewski sklep internetowy z narzędziami, sprzętem ogrodowym, produktami warsztatowymi i częściami zamiennymi, z wyszukiwaniem, katalogiem i zakupami.</p>"
+          },
+          "lt": {
+            "text": "Latvijos el. prekybos svetainė įrankiams, sodo technikai, dirbtuvių prekėms ir atsarginėms dalims su paieška, katalogu ir pirkimo eiga.",
+            "body": "<p>Latvijos el. prekybos svetainė įrankiams, sodo technikai, dirbtuvių prekėms ir atsarginėms dalims su paieška, katalogu ir pirkimo eiga.</p>"
+          },
+          "et": {
+            "text": "Läti e-kaubanduse veebisait tööriistadele, aiatehnikale, töökoja toodetele ja varuosadele koos otsingu, kataloogi ja ostuvooga.",
+            "body": "<p>Läti e-kaubanduse veebisait tööriistadele, aiatehnikale, töökoja toodetele ja varuosadele koos otsingu, kataloogi ja ostuvooga.</p>"
+          },
+          "da": {
+            "text": "Lettisk e-handelswebsite til værktøj, havemaskiner, værkstedsprodukter og reservedele med søgning, katalog og købsflow.",
+            "body": "<p>Lettisk e-handelswebsite til værktøj, havemaskiner, værkstedsprodukter og reservedele med søgning, katalog og købsflow.</p>"
+          },
+          "no": {
+            "text": "Latvisk nettbutikk for verktøy, hageutstyr, verkstedprodukter og reservedeler med søk, katalog og kjøpsflyt.",
+            "body": "<p>Latvisk nettbutikk for verktøy, hageutstyr, verkstedprodukter og reservedeler med søk, katalog og kjøpsflyt.</p>"
+          },
+          "sv": {
+            "text": "Lettisk e-handelswebbplats för verktyg, trädgårdsutrustning, verkstadsprodukter och reservdelar med sökning, katalog och köpflöden.",
+            "body": "<p>Lettisk e-handelswebbplats för verktyg, trädgårdsutrustning, verkstadsprodukter och reservdelar med sökning, katalog och köpflöden.</p>"
+          },
+          "fi": {
+            "text": "Latvialainen verkkokauppa työkaluille, puutarhakoneille, korjaamotuotteille ja varaosille, mukana haku, tuoteluettelo ja ostaminen.",
+            "body": "<p>Latvialainen verkkokauppa työkaluille, puutarhakoneille, korjaamotuotteille ja varaosille, mukana haku, tuoteluettelo ja ostaminen.</p>"
+          },
+          "is": {
+            "text": "Lettnesk netverslun fyrir verkfæri, garðbúnað, verkstæðisvörur og varahluti með leit, vörulista og kaupferli.",
+            "body": "<p>Lettnesk netverslun fyrir verkfæri, garðbúnað, verkstæðisvörur og varahluti með leit, vörulista og kaupferli.</p>"
+          }
+        }
+      },
+      {
+        "title": "Maride.lv",
+        "slug": "maride-lv",
+        "category": "websites",
+        "kind": "E-commerce website",
+        "client": "Maride.lv",
+        "status": "Live",
+        "text": "E-commerce website for professional tools, garden machinery and workshop equipment, with product discovery and online ordering.",
+        "url": "https://maride.lv",
+        "linkText": "Visit live website",
+        "tech": [
+          "WordPress",
+          "E-commerce",
+          "Catalogue UX",
+          "Responsive UI"
+        ],
+        "image": "/assets/img/portfolio/maride-lv.jpg",
+        "body": "<p>E-commerce website for professional tools, garden machinery and workshop equipment, with product discovery and online ordering.</p>",
+        "gallery": [],
+        "alt": "Maride.lv",
+        "i18n": {
+          "lv": {
+            "text": "E-komercijas vietne profesionāliem instrumentiem, dārza tehnikai un darbnīcu aprīkojumam ar ērtu preču atrašanu un pasūtīšanu tiešsaistē.",
+            "body": "<p>E-komercijas vietne profesionāliem instrumentiem, dārza tehnikai un darbnīcu aprīkojumam ar ērtu preču atrašanu un pasūtīšanu tiešsaistē.</p>"
+          },
+          "ru": {
+            "text": "Интернет-магазин профессиональных инструментов, садовой техники и оборудования для мастерской с удобным поиском товаров и онлайн-заказом.",
+            "body": "<p>Интернет-магазин профессиональных инструментов, садовой техники и оборудования для мастерской с удобным поиском товаров и онлайн-заказом.</p>"
+          },
+          "fr": {
+            "text": "Site e-commerce pour outils professionnels, machines de jardin et équipement d’atelier, avec découverte des produits et commande en ligne.",
+            "body": "<p>Site e-commerce pour outils professionnels, machines de jardin et équipement d’atelier, avec découverte des produits et commande en ligne.</p>"
+          },
+          "es": {
+            "text": "Sitio de comercio electrónico para herramientas profesionales, maquinaria de jardín y equipamiento de taller, con descubrimiento de productos y pedidos online.",
+            "body": "<p>Sitio de comercio electrónico para herramientas profesionales, maquinaria de jardín y equipamiento de taller, con descubrimiento de productos y pedidos online.</p>"
+          },
+          "de": {
+            "text": "E-Commerce-Website für Profiwerkzeuge, Gartenmaschinen und Werkstattausrüstung mit Produktsuche und Online-Bestellung.",
+            "body": "<p>E-Commerce-Website für Profiwerkzeuge, Gartenmaschinen und Werkstattausrüstung mit Produktsuche und Online-Bestellung.</p>"
+          },
+          "pl": {
+            "text": "Sklep internetowy z profesjonalnymi narzędziami, maszynami ogrodowymi i wyposażeniem warsztatu, z wygodnym wyszukiwaniem produktów i zamawianiem online.",
+            "body": "<p>Sklep internetowy z profesjonalnymi narzędziami, maszynami ogrodowymi i wyposażeniem warsztatu, z wygodnym wyszukiwaniem produktów i zamawianiem online.</p>"
+          },
+          "lt": {
+            "text": "El. prekybos svetainė profesionaliems įrankiams, sodo technikai ir dirbtuvių įrangai su patogia produktų paieška ir užsakymu internetu.",
+            "body": "<p>El. prekybos svetainė profesionaliems įrankiams, sodo technikai ir dirbtuvių įrangai su patogia produktų paieška ir užsakymu internetu.</p>"
+          },
+          "et": {
+            "text": "E-kaubanduse veebisait professionaalsetele tööriistadele, aiatehnikale ja töökojavarustusele koos tootete leidmise ja veebitellimisega.",
+            "body": "<p>E-kaubanduse veebisait professionaalsetele tööriistadele, aiatehnikale ja töökojavarustusele koos tootete leidmise ja veebitellimisega.</p>"
+          },
+          "da": {
+            "text": "E-handelswebsite til professionelt værktøj, havemaskiner og værkstedsudstyr med produktfinding og onlinebestilling.",
+            "body": "<p>E-handelswebsite til professionelt værktøj, havemaskiner og værkstedsudstyr med produktfinding og onlinebestilling.</p>"
+          },
+          "no": {
+            "text": "Nettbutikk for profesjonelt verktøy, hagemaskiner og verkstedutstyr med enkel produktfinning og bestilling på nett.",
+            "body": "<p>Nettbutikk for profesjonelt verktøy, hagemaskiner og verkstedutstyr med enkel produktfinning og bestilling på nett.</p>"
+          },
+          "sv": {
+            "text": "E-handelswebbplats för professionella verktyg, trädgårdsmaskiner och verkstadsutrustning med produktupptäckt och beställning online.",
+            "body": "<p>E-handelswebbplats för professionella verktyg, trädgårdsmaskiner och verkstadsutrustning med produktupptäckt och beställning online.</p>"
+          },
+          "fi": {
+            "text": "Verkkokauppa ammattityökaluille, puutarhakoneille ja korjaamovarusteille, jossa tuotteet löytyvät helposti ja tilaus onnistuu verkossa.",
+            "body": "<p>Verkkokauppa ammattityökaluille, puutarhakoneille ja korjaamovarusteille, jossa tuotteet löytyvät helposti ja tilaus onnistuu verkossa.</p>"
+          },
+          "is": {
+            "text": "Netverslun fyrir fagverkfæri, garðvélar og verkstæðisbúnað með auðveldri vöruleit og pöntun á netinu.",
+            "body": "<p>Netverslun fyrir fagverkfæri, garðvélar og verkstæðisbúnað með auðveldri vöruleit og pöntun á netinu.</p>"
+          }
+        }
+      },
+      {
+        "title": "GG Garage",
+        "slug": "gg-garage",
+        "category": "websites",
+        "kind": "Business website",
+        "client": "GG Garage",
+        "status": "Live",
+        "text": "Business website for garden and construction machinery repair, diagnostics and DAEWOO warranty service in Ogre.",
+        "url": "https://gggarage.lv",
+        "linkText": "Visit live website",
+        "tech": [
+          "Business website",
+          "Responsive UI",
+          "Service UX",
+          "SEO"
+        ],
+        "image": "https://image.thum.io/get/width/1200/crop/760/maxAge/168/noanimate/https://gggarage.lv",
+        "body": "<p>Business website for garden and construction machinery repair, diagnostics and DAEWOO warranty service in Ogre.</p>",
+        "gallery": [],
+        "alt": "GG Garage",
+        "i18n": {
+          "lv": {
+            "text": "Uzņēmuma vietne dārza un celtniecības tehnikas remontam, diagnostikai un DAEWOO garantijas servisam Ogrē.",
+            "body": "<p>Uzņēmuma vietne dārza un celtniecības tehnikas remontam, diagnostikai un DAEWOO garantijas servisam Ogrē.</p>"
+          },
+          "ru": {
+            "text": "Сайт компании по ремонту и диагностике садовой и строительной техники, а также гарантийному сервису DAEWOO в Огре.",
+            "body": "<p>Сайт компании по ремонту и диагностике садовой и строительной техники, а также гарантийному сервису DAEWOO в Огре.</p>"
+          },
+          "fr": {
+            "text": "Site professionnel pour la réparation et le diagnostic de matériel de jardin et de chantier ainsi que le service de garantie DAEWOO à Ogre.",
+            "body": "<p>Site professionnel pour la réparation et le diagnostic de matériel de jardin et de chantier ainsi que le service de garantie DAEWOO à Ogre.</p>"
+          },
+          "es": {
+            "text": "Sitio web empresarial para reparación y diagnóstico de maquinaria de jardín y construcción y servicio de garantía DAEWOO en Ogre.",
+            "body": "<p>Sitio web empresarial para reparación y diagnóstico de maquinaria de jardín y construcción y servicio de garantía DAEWOO en Ogre.</p>"
+          },
+          "de": {
+            "text": "Unternehmenswebsite für Reparatur und Diagnose von Garten- und Baumaschinen sowie DAEWOO-Garantieservice in Ogre.",
+            "body": "<p>Unternehmenswebsite für Reparatur und Diagnose von Garten- und Baumaschinen sowie DAEWOO-Garantieservice in Ogre.</p>"
+          },
+          "pl": {
+            "text": "Strona firmowa serwisu napraw i diagnostyki maszyn ogrodowych i budowlanych oraz gwarancyjnego serwisu DAEWOO w Ogre.",
+            "body": "<p>Strona firmowa serwisu napraw i diagnostyki maszyn ogrodowych i budowlanych oraz gwarancyjnego serwisu DAEWOO w Ogre.</p>"
+          },
+          "lt": {
+            "text": "Įmonės svetainė sodo ir statybinės technikos remontui, diagnostikai ir DAEWOO garantiniam servisui Ogre.",
+            "body": "<p>Įmonės svetainė sodo ir statybinės technikos remontui, diagnostikai ir DAEWOO garantiniam servisui Ogre.</p>"
+          },
+          "et": {
+            "text": "Ettevõtte veebisait aia- ja ehitustehnika remondi, diagnostika ning DAEWOO garantiiteenuse jaoks Ogres.",
+            "body": "<p>Ettevõtte veebisait aia- ja ehitustehnika remondi, diagnostika ning DAEWOO garantiiteenuse jaoks Ogres.</p>"
+          },
+          "da": {
+            "text": "Virksomhedswebsite til reparation og diagnosticering af have- og entreprenørmaskiner samt DAEWOO-garantiservice i Ogre.",
+            "body": "<p>Virksomhedswebsite til reparation og diagnosticering af have- og entreprenørmaskiner samt DAEWOO-garantiservice i Ogre.</p>"
+          },
+          "no": {
+            "text": "Bedriftsnettsted for reparasjon og diagnostikk av hage- og anleggsmaskiner samt DAEWOO-garantiservice i Ogre.",
+            "body": "<p>Bedriftsnettsted for reparasjon og diagnostikk av hage- og anleggsmaskiner samt DAEWOO-garantiservice i Ogre.</p>"
+          },
+          "sv": {
+            "text": "Företagswebbplats för reparation och diagnostik av trädgårds- och byggmaskiner samt DAEWOO-garantiservice i Ogre.",
+            "body": "<p>Företagswebbplats för reparation och diagnostik av trädgårds- och byggmaskiner samt DAEWOO-garantiservice i Ogre.</p>"
+          },
+          "fi": {
+            "text": "Yrityssivusto puutarha- ja rakennuskoneiden korjaukseen, diagnostiikkaan ja DAEWOO-takuuhuoltoon Ogressa.",
+            "body": "<p>Yrityssivusto puutarha- ja rakennuskoneiden korjaukseen, diagnostiikkaan ja DAEWOO-takuuhuoltoon Ogressa.</p>"
+          },
+          "is": {
+            "text": "Fyrirtækjavefsíða fyrir viðgerðir og bilanagreiningu á garð- og byggingarvélum ásamt DAEWOO-ábyrgðarþjónustu í Ogre.",
+            "body": "<p>Fyrirtækjavefsíða fyrir viðgerðir og bilanagreiningu á garð- og byggingarvélum ásamt DAEWOO-ábyrgðarþjónustu í Ogre.</p>"
+          }
+        }
+      },
+      {
+        "title": "Strong Tower Electrical",
+        "slug": "strong-tower-electrical",
+        "category": "websites",
+        "kind": "Business website",
+        "client": "Strong Tower Electrical",
+        "status": "Live",
+        "text": "Business website for domestic and commercial electrical services across Nuneaton, Bedworth, Coventry and Warwickshire.",
+        "url": "https://strong-tower-electrical.com",
+        "linkText": "Visit live website",
+        "tech": [
+          "Business website",
+          "Electrical services",
+          "Responsive UI",
+          "SEO"
+        ],
+        "image": "https://image.thum.io/get/width/1200/crop/760/maxAge/168/noanimate/https://strong-tower-electrical.com",
+        "body": "<p>Business website for domestic and commercial electrical services across Nuneaton, Bedworth, Coventry and Warwickshire.</p>",
+        "gallery": [],
+        "alt": "Strong Tower Electrical",
+        "i18n": {
+          "lv": {
+            "text": "Uzņēmuma vietne sadzīves un komerciālajiem elektroinstalācijas pakalpojumiem Nuneatonā, Bedvortā, Koventrijā un Vorikšīrā.",
+            "body": "<p>Uzņēmuma vietne sadzīves un komerciālajiem elektroinstalācijas pakalpojumiem Nuneatonā, Bedvortā, Koventrijā un Vorikšīrā.</p>"
+          },
+          "ru": {
+            "text": "Сайт компании по бытовым и коммерческим электромонтажным услугам в Нанитоне, Бедворте, Ковентри и Уорикшире.",
+            "body": "<p>Сайт компании по бытовым и коммерческим электромонтажным услугам в Нанитоне, Бедворте, Ковентри и Уорикшире.</p>"
+          },
+          "fr": {
+            "text": "Site professionnel pour des services électriques résidentiels et commerciaux à Nuneaton, Bedworth, Coventry et dans le Warwickshire.",
+            "body": "<p>Site professionnel pour des services électriques résidentiels et commerciaux à Nuneaton, Bedworth, Coventry et dans le Warwickshire.</p>"
+          },
+          "es": {
+            "text": "Sitio web empresarial para servicios eléctricos domésticos y comerciales en Nuneaton, Bedworth, Coventry y Warwickshire.",
+            "body": "<p>Sitio web empresarial para servicios eléctricos domésticos y comerciales en Nuneaton, Bedworth, Coventry y Warwickshire.</p>"
+          },
+          "de": {
+            "text": "Unternehmenswebsite für private und gewerbliche Elektroarbeiten in Nuneaton, Bedworth, Coventry und Warwickshire.",
+            "body": "<p>Unternehmenswebsite für private und gewerbliche Elektroarbeiten in Nuneaton, Bedworth, Coventry und Warwickshire.</p>"
+          },
+          "pl": {
+            "text": "Strona firmowa usług elektrycznych dla klientów domowych i komercyjnych w Nuneaton, Bedworth, Coventry i Warwickshire.",
+            "body": "<p>Strona firmowa usług elektrycznych dla klientów domowych i komercyjnych w Nuneaton, Bedworth, Coventry i Warwickshire.</p>"
+          },
+          "lt": {
+            "text": "Įmonės svetainė buitiniams ir komerciniams elektros darbams Nuneaton, Bedworth, Coventry ir Warwickshire.",
+            "body": "<p>Įmonės svetainė buitiniams ir komerciniams elektros darbams Nuneaton, Bedworth, Coventry ir Warwickshire.</p>"
+          },
+          "et": {
+            "text": "Ettevõtte veebisait kodu- ja äriklientide elektritöödeks Nuneatonis, Bedworthis, Coventrys ja Warwickshire’is.",
+            "body": "<p>Ettevõtte veebisait kodu- ja äriklientide elektritöödeks Nuneatonis, Bedworthis, Coventrys ja Warwickshire’is.</p>"
+          },
+          "da": {
+            "text": "Virksomhedswebsite til elarbejde for private og erhverv i Nuneaton, Bedworth, Coventry og Warwickshire.",
+            "body": "<p>Virksomhedswebsite til elarbejde for private og erhverv i Nuneaton, Bedworth, Coventry og Warwickshire.</p>"
+          },
+          "no": {
+            "text": "Bedriftsnettsted for elektriske tjenester til private og næringskunder i Nuneaton, Bedworth, Coventry og Warwickshire.",
+            "body": "<p>Bedriftsnettsted for elektriske tjenester til private og næringskunder i Nuneaton, Bedworth, Coventry og Warwickshire.</p>"
+          },
+          "sv": {
+            "text": "Företagswebbplats för elarbeten i hem och kommersiella miljöer i Nuneaton, Bedworth, Coventry och Warwickshire.",
+            "body": "<p>Företagswebbplats för elarbeten i hem och kommersiella miljöer i Nuneaton, Bedworth, Coventry och Warwickshire.</p>"
+          },
+          "fi": {
+            "text": "Yrityssivusto kotitalouksien ja yritysten sähköpalveluille Nuneatonissa, Bedworthissa, Coventryssa ja Warwickshiressa.",
+            "body": "<p>Yrityssivusto kotitalouksien ja yritysten sähköpalveluille Nuneatonissa, Bedworthissa, Coventryssa ja Warwickshiressa.</p>"
+          },
+          "is": {
+            "text": "Fyrirtækjavefsíða fyrir rafmagnsþjónustu á heimilum og í atvinnuhúsnæði í Nuneaton, Bedworth, Coventry og Warwickshire.",
+            "body": "<p>Fyrirtækjavefsíða fyrir rafmagnsþjónustu á heimilum og í atvinnuhúsnæði í Nuneaton, Bedworth, Coventry og Warwickshire.</p>"
+          }
+        }
+      },
       {
         "title": "63.lv Go",
         "slug": "63-go-app",
