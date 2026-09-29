@@ -511,7 +511,7 @@
       "Complete four short steps with your business details, content and logo. A private draft is generated for Super Admin review before anything is published.": "Aizpildiet četrus īsus soļus ar uzņēmuma informāciju, saturu un logotipu. Pirms publicēšanas tiks izveidots privāts melnraksts Super Admin pārskatīšanai.",
       "Thank you. Your website draft was created and sent for administrator review.": "Paldies. Jūsu vietnes melnraksts ir izveidots un nosūtīts administratoram pārskatīšanai.",
       "I confirm that I am allowed to provide this business information and logo for preparing my website demo.": "Apstiprinu, ka drīkstu sniegt šo uzņēmuma informāciju un logotipu vietnes demo sagatavošanai.",
-      "Business website": "Biznesa vietne",
+      "Business website": "Uzņēmuma mājaslapa",
       "E-commerce website": "E-komercijas vietne",
       "One file CMS": "Viena faila CMS",
       "/ month": "/ mēnesī",
@@ -963,7 +963,9 @@
       "SEO, optimisation & social media connection": "SEO, optimizācija un sociālo tīklu integrācija",
       "Quoted to scope": "Cena pēc apjoma",
       "per hour": "stundā",
-      "per month": "mēnesī"
+      "per month": "mēnesī",
+      "Business websites": "Uzņēmumu mājaslapas",
+      "Open web app": "Atvērt tīmekļa lietotni"
     },
     "ru": {
       "Home": "Главная",
@@ -1402,7 +1404,7 @@
       "Complete four short steps with your business details, content and logo. A private draft is generated for Super Admin review before anything is published.": "Заполните четыре коротких шага с данными о бизнесе, контентом и логотипом. До публикации будет создан приватный черновик для проверки Super Admin.",
       "Thank you. Your website draft was created and sent for administrator review.": "Спасибо. Черновик вашего сайта создан и отправлен администратору на проверку.",
       "I confirm that I am allowed to provide this business information and logo for preparing my website demo.": "Я подтверждаю, что имею право предоставить эти данные о бизнесе и логотип для подготовки демо-сайта.",
-      "Business website": "Бизнес-сайт",
+      "Business website": "Сайт компании",
       "E-commerce website": "Интернет-магазин",
       "One file CMS": "CMS в одном файле",
       "/ month": "/ месяц",
@@ -1854,7 +1856,9 @@
       "SEO, optimisation & social media connection": "SEO, оптимизация и подключение социальных сетей",
       "Quoted to scope": "Цена по объёму работ",
       "per hour": "в час",
-      "per month": "в месяц"
+      "per month": "в месяц",
+      "Business websites": "Сайты для бизнеса",
+      "Open web app": "Открыть веб-приложение"
     },
     "fr": {
       "Home": "Accueil",
@@ -2293,7 +2297,7 @@
       "Complete four short steps with your business details, content and logo. A private draft is generated for Super Admin review before anything is published.": "Complétez quatre étapes courtes avec les informations de votre entreprise, votre contenu et votre logo. Un brouillon privé est généré pour validation par le Super Admin avant toute publication.",
       "Thank you. Your website draft was created and sent for administrator review.": "Merci. Le brouillon de votre site a été créé et envoyé à l’administrateur pour validation.",
       "I confirm that I am allowed to provide this business information and logo for preparing my website demo.": "Je confirme être autorisé à fournir ces informations d’entreprise et ce logo pour préparer la démo de mon site.",
-      "Business website": "Site d’entreprise",
+      "Business website": "Site professionnel",
       "E-commerce website": "Site e-commerce",
       "One file CMS": "CMS en un seul fichier",
       "/ month": "/ mois",
@@ -2745,7 +2749,9 @@
       "SEO, optimisation & social media connection": "SEO, optimisation et connexion aux réseaux sociaux",
       "Quoted to scope": "Sur devis selon le périmètre",
       "per hour": "par heure",
-      "per month": "par mois"
+      "per month": "par mois",
+      "Business websites": "Sites professionnels",
+      "Open web app": "Ouvrir l’application web"
     },
     "es": {
       "Home": "Inicio",
@@ -3184,8 +3190,8 @@
       "Complete four short steps with your business details, content and logo. A private draft is generated for Super Admin review before anything is published.": "Completa cuatro pasos breves con los datos de tu empresa, contenido y logotipo. Se genera un borrador privado para que lo revise el Super Admin antes de publicar nada.",
       "Thank you. Your website draft was created and sent for administrator review.": "Gracias. El borrador de tu sitio se ha creado y se ha enviado al administrador para su revisión.",
       "I confirm that I am allowed to provide this business information and logo for preparing my website demo.": "Confirmo que estoy autorizado a proporcionar esta información empresarial y el logotipo para preparar la demo de mi sitio.",
-      "Business website": "Sitio empresarial",
-      "E-commerce website": "Sitio web de comercio electrónico",
+      "Business website": "Sitio web empresarial",
+      "E-commerce website": "Sitio de comercio electrónico",
       "One file CMS": "CMS en un solo archivo",
       "/ month": "/ mes",
       "Checkout": "Finalizar compra",
@@ -3636,7 +3642,9 @@
       "SEO, optimisation & social media connection": "SEO, optimización y conexión con redes sociales",
       "Quoted to scope": "Presupuesto según alcance",
       "per hour": "por hora",
-      "per month": "por mes"
+      "per month": "por mes",
+      "Business websites": "Sitios web empresariales",
+      "Open web app": "Abrir la aplicación web"
     },
     "de": {
       "Home": "Startseite",
@@ -4527,7 +4535,9 @@
       "SEO, optimisation & social media connection": "SEO, Optimierung & Social-Media-Anbindung",
       "Quoted to scope": "Nach Umfang kalkuliert",
       "per hour": "pro Stunde",
-      "per month": "pro Monat"
+      "per month": "pro Monat",
+      "Business websites": "Unternehmenswebsites",
+      "Open web app": "Web-App öffnen"
     },
     "pl": {
       "Home": "Strona główna",
@@ -4966,7 +4976,7 @@
       "Complete four short steps with your business details, content and logo. A private draft is generated for Super Admin review before anything is published.": "Wypełnij cztery krótkie kroki z danymi firmy, treścią i logo. Przed publikacją powstanie prywatny szkic do sprawdzenia przez Super Admina.",
       "Thank you. Your website draft was created and sent for administrator review.": "Dziękujemy. Szkic Twojej strony został utworzony i wysłany administratorowi do weryfikacji.",
       "I confirm that I am allowed to provide this business information and logo for preparing my website demo.": "Potwierdzam, że mam prawo przekazać te informacje o firmie i logo w celu przygotowania dema strony.",
-      "Business website": "Strona biznesowa",
+      "Business website": "Strona firmowa",
       "E-commerce website": "Sklep internetowy",
       "One file CMS": "CMS w jednym pliku",
       "/ month": "/ miesiąc",
@@ -5418,7 +5428,9 @@
       "SEO, optimisation & social media connection": "SEO, optymalizacja i integracja z mediami społecznościowymi",
       "Quoted to scope": "Wycena według zakresu",
       "per hour": "za godzinę",
-      "per month": "miesięcznie"
+      "per month": "miesięcznie",
+      "Business websites": "Strony firmowe",
+      "Open web app": "Otwórz aplikację webową"
     },
     "lt": {
       "Home": "Pradžia",
@@ -6309,7 +6321,9 @@
       "SEO, optimisation & social media connection": "SEO, optimizavimas ir socialinių tinklų integracija",
       "Quoted to scope": "Kaina pagal apimtį",
       "per hour": "per valandą",
-      "per month": "per mėnesį"
+      "per month": "per mėnesį",
+      "Business websites": "Verslo svetainės",
+      "Open web app": "Atidaryti web programą"
     },
     "et": {
       "Home": "Avaleht",
@@ -6748,7 +6762,7 @@
       "Complete four short steps with your business details, content and logo. A private draft is generated for Super Admin review before anything is published.": "Täida neli lühikest sammu ettevõtteandmete, sisu ja logoga. Enne avaldamist luuakse privaatne mustand Super Admini ülevaatuseks.",
       "Thank you. Your website draft was created and sent for administrator review.": "Aitäh. Sinu veebisaidi mustand on loodud ja saadetud administraatorile ülevaatamiseks.",
       "I confirm that I am allowed to provide this business information and logo for preparing my website demo.": "Kinnitan, et mul on õigus anda need ettevõtteandmed ja logo veebisaidi demo ettevalmistamiseks.",
-      "Business website": "Äriveeb",
+      "Business website": "Ettevõtte veebisait",
       "E-commerce website": "E-kaubanduse veebisait",
       "One file CMS": "Ühe faili CMS",
       "/ month": "/ kuus",
@@ -7200,7 +7214,9 @@
       "SEO, optimisation & social media connection": "SEO, optimeerimine ja sotsiaalmeedia ühendamine",
       "Quoted to scope": "Hind vastavalt töömahule",
       "per hour": "tunnis",
-      "per month": "kuus"
+      "per month": "kuus",
+      "Business websites": "Ettevõtete veebisaidid",
+      "Open web app": "Ava veebirakendus"
     },
     "da": {
       "Home": "Forside",
@@ -7639,8 +7655,8 @@
       "Complete four short steps with your business details, content and logo. A private draft is generated for Super Admin review before anything is published.": "Udfyld fire korte trin med virksomhedsoplysninger, indhold og logo. Der oprettes et privat udkast til gennemgang af Super Admin, før noget offentliggøres.",
       "Thank you. Your website draft was created and sent for administrator review.": "Tak. Dit website-udkast er oprettet og sendt til administratoren til gennemgang.",
       "I confirm that I am allowed to provide this business information and logo for preparing my website demo.": "Jeg bekræfter, at jeg må angive disse virksomhedsoplysninger og dette logo til udarbejdelse af min website-demo.",
-      "Business website": "Erhvervswebsite",
-      "E-commerce website": "E-commerce-websted",
+      "Business website": "Virksomhedswebsite",
+      "E-commerce website": "E-handelswebsite",
       "One file CMS": "CMS i én fil",
       "/ month": "/ måned",
       "Checkout": "Gå til checkout",
@@ -8091,7 +8107,9 @@
       "SEO, optimisation & social media connection": "SEO, optimering og integration med sociale medier",
       "Quoted to scope": "Pris efter omfang",
       "per hour": "pr. time",
-      "per month": "pr. måned"
+      "per month": "pr. måned",
+      "Business websites": "Virksomhedswebsites",
+      "Open web app": "Åbn webappen"
     },
     "no": {
       "Home": "Forside",
@@ -8531,7 +8549,7 @@
       "Thank you. Your website draft was created and sent for administrator review.": "Takk. Nettstedutkastet ditt er opprettet og sendt til administratoren for gjennomgang.",
       "I confirm that I am allowed to provide this business information and logo for preparing my website demo.": "Jeg bekrefter at jeg har rett til å gi denne bedriftsinformasjonen og logoen for å lage nettsted-demoen.",
       "Business website": "Bedriftsnettsted",
-      "E-commerce website": "E-handelsnettsted",
+      "E-commerce website": "Nettbutikk",
       "One file CMS": "CMS i én fil",
       "/ month": "/ måned",
       "Checkout": "Gå til kassen",
@@ -8982,7 +9000,9 @@
       "SEO, optimisation & social media connection": "SEO, optimalisering og integrasjon med sosiale medier",
       "Quoted to scope": "Pris etter omfang",
       "per hour": "per time",
-      "per month": "per måned"
+      "per month": "per måned",
+      "Business websites": "Bedriftsnettsteder",
+      "Open web app": "Åpne nettappen"
     },
     "sv": {
       "Home": "Startsida",
@@ -9873,7 +9893,9 @@
       "SEO, optimisation & social media connection": "SEO, optimering och integration med sociala medier",
       "Quoted to scope": "Pris enligt omfattning",
       "per hour": "per timme",
-      "per month": "per månad"
+      "per month": "per månad",
+      "Business websites": "Företagswebbplatser",
+      "Open web app": "Öppna webbappen"
     },
     "fi": {
       "Home": "Etusivu",
@@ -10313,7 +10335,7 @@
       "Thank you. Your website draft was created and sent for administrator review.": "Kiitos. Sivustoluonnoksesi on luotu ja lähetetty ylläpitäjälle tarkistettavaksi.",
       "I confirm that I am allowed to provide this business information and logo for preparing my website demo.": "Vahvistan, että minulla on oikeus toimittaa nämä yritystiedot ja logo verkkosivustodemon valmistelua varten.",
       "Business website": "Yrityssivusto",
-      "E-commerce website": "Verkkokauppasivusto",
+      "E-commerce website": "Verkkokauppa",
       "One file CMS": "Yhden tiedoston CMS",
       "/ month": "/ kuukausi",
       "Checkout": "Siirry kassalle",
@@ -10764,7 +10786,9 @@
       "SEO, optimisation & social media connection": "SEO, optimointi ja sosiaalisen median integraatio",
       "Quoted to scope": "Hinta laajuuden mukaan",
       "per hour": "tunnissa",
-      "per month": "kuukaudessa"
+      "per month": "kuukaudessa",
+      "Business websites": "Yrityssivustot",
+      "Open web app": "Avaa web-sovellus"
     },
     "is": {
       "Home": "Heim",
@@ -11204,7 +11228,7 @@
       "Thank you. Your website draft was created and sent for administrator review.": "Takk. Uppkast vefsins þíns hefur verið búið til og sent stjórnanda til yfirferðar.",
       "I confirm that I am allowed to provide this business information and logo for preparing my website demo.": "Ég staðfesti að mér sé heimilt að veita þessar fyrirtækjaupplýsingar og þetta lógó til að útbúa vefsíðudemóið mitt.",
       "Business website": "Fyrirtækjavefsíða",
-      "E-commerce website": "Netverslunarvefur",
+      "E-commerce website": "Netverslun",
       "One file CMS": "CMS í einni skrá",
       "/ month": "/ mánuði",
       "Checkout": "Fara í greiðslu",
@@ -11655,7 +11679,9 @@
       "SEO, optimisation & social media connection": "SEO, bestun og tenging við samfélagsmiðla",
       "Quoted to scope": "Verð samkvæmt umfangi",
       "per hour": "á klukkustund",
-      "per month": "á mánuði"
+      "per month": "á mánuði",
+      "Business websites": "Fyrirtækjavefsíður",
+      "Open web app": "Opna vefforrit"
     }
   },
   "templates": {},
