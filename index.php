@@ -44,7 +44,7 @@ session_set_cookie_params([
 ]);
 session_start();
 
-define('CMS_VERSION', '0.11.41');
+define('CMS_VERSION', '0.11.50');
 define('DATA_FILE', __DIR__ . '/data.json');
 define('MAIL_LOG_FILE', __DIR__ . '/.lpcms-mail.log');
 define('HTACCESS_FILE', __DIR__ . '/.htaccess');
@@ -937,7 +937,7 @@ function cms_root_htaccess(array $data): string {
   $forceHttps = !empty($s['forceHttps']) ? "RewriteCond %{HTTPS} !=on\nRewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]\n" : "# To force HTTPS from the CMS admin, enable settings.htaccess.forceHttps.\n";
   $removeWww = !empty($s['removeWww']) ? "RewriteCond %{HTTP_HOST} ^www\\.(.+)$ [NC]\nRewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]\n" : "# To redirect www to non-www, enable settings.htaccess.removeWww.\n";
   $protectJson = !empty($s['protectJson']) ? <<<'TXT'
-<FilesMatch "(^\.|data\.json$|.*\.tmp$|.*\.bak$|.*\.old$|composer\.(json|lock)$|package(-lock)?\.json$|yarn\.lock$|vite\.config\.|webpack\.config\.|phpunit\.)">
+<FilesMatch "(^\.|(?:data|locations-data)\.json$|.*\.tmp$|.*\.bak$|.*\.old$|composer\.(json|lock)$|package(-lock)?\.json$|yarn\.lock$|vite\.config\.|webpack\.config\.|phpunit\.)">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>
@@ -3712,6 +3712,10 @@ if (isset($_GET['install']) && in_array(strtolower((string)$_GET['install']), ['
 if (cms_is_breakglass_request()) cms_handle_breakglass($data);
 cms_apply_redirects($data);
 
+// SSR market pages, sitemap.xml, robots.txt and optional llms.txt.
+require_once __DIR__ . '/location-pages.php';
+dp_locations_handle($data, $requestPath);
+
 if (isset($_GET['login'])) {
   $email = cms_verify_token((string)$_GET['login']);
   if (!$email) {
@@ -4311,12 +4315,35 @@ $i18nPack = cms_i18n_pack();
   <link rel="stylesheet" href="<?= cms_e($themeCss) ?>" data-lpcms-theme-asset="css">
   <?php endforeach; ?>
   <?php
+    $orgId = rtrim($base, '/') . '/#organization';
+    $orgEntity = [
+      '@type' => 'Organization', '@id' => $orgId, 'name' => 'DigitalPulse',
+      'url' => rtrim($base, '/') . '/',
+      'description' => 'Custom WordPress plugins, PHP and React web apps, smart WooCommerce and e-commerce development.',
+      'logo' => ['@type' => 'ImageObject', 'url' => rtrim($base, '/') . '/assets/img/digitalpulse-og.png'],
+      'sameAs' => [
+        'https://clutch.co/profile/digital-pulse-1',
+        'https://www.facebook.com/raivis.kalnins',
+        'https://www.linkedin.com/in/rkalnins/',
+        'https://github.com/raivis-kalnins'
+      ]
+    ];
     $ld = [
       '@context' => 'https://schema.org',
-      '@type' => 'WebSite',
-      'name' => $data['settings']['siteName'] ?? 'Flat CMS',
-      'url' => $base,
-      'potentialAction' => ['@type' => 'SearchAction', 'target' => $base . '/?search={search_term_string}', 'query-input' => 'required name=search_term_string']
+      '@graph' => [
+        $orgEntity,
+        ['@type' => 'WebSite', '@id' => rtrim($base, '/') . '/#website',
+          'name' => 'DigitalPulse', 'url' => rtrim($base, '/') . '/', 'publisher' => ['@id' => $orgId]],
+        ['@type' => 'Service', 'name' => 'Custom WordPress plugin development',
+          'description' => 'Bespoke plugins, Gutenberg blocks, ACF integrations and WordPress workflow automation.',
+          'provider' => ['@id' => $orgId], 'areaServed' => ['United Kingdom','Latvia','Lithuania','Estonia','Sweden','Norway','Denmark','Finland','Iceland']],
+        ['@type' => 'Service', 'name' => 'Custom web application development',
+          'description' => 'PHP and React portals, dashboards, calculators and reporting tools.',
+          'provider' => ['@id' => $orgId]],
+        ['@type' => 'Service', 'name' => 'Smart e-commerce and WooCommerce development',
+          'description' => 'WooCommerce catalogues, advanced filtering, B2B pricing, checkout and integrations.',
+          'provider' => ['@id' => $orgId]]
+      ]
     ];
     if (($meta['type'] ?? '') === 'article' && !empty($meta['item'])) {
       $ld = ['@context'=>'https://schema.org','@type'=>'BlogPosting','headline'=>$meta['item']['title'] ?? $meta['title'],'description'=>$meta['description'] ?? '','datePublished'=>$meta['item']['date'] ?? date('c'),'image'=>$metaImage ?: null,'mainEntityOfPage'=>$canonical];
@@ -4336,6 +4363,7 @@ $i18nPack = cms_i18n_pack();
     $seoHomeText = is_array($seoHero) ? (string)cms_localized_value($data, $seoHero, 'text', $currentLang, $meta['description'] ?? '') : (string)($meta['description'] ?? '');
     $seoWp = $data['wpThemes'] ?? [];
     $seoGallery = $data['gallery'] ?? [];
+    $seoApps = $data['apps'] ?? [];
     $seoServices = $data['services'] ?? [];
   ?>
   <noscript>
@@ -4358,6 +4386,14 @@ $i18nPack = cms_i18n_pack();
           <section><h2><?= cms_e((string)cms_localized_value($data, $seoGallery, 'title', $currentLang, 'Portfolio')) ?></h2><ul>
             <?php foreach (array_slice($seoGallery['items'] ?? [], 0, 12) as $seoProject): ?>
               <li><?php if (!empty($seoProject['url'])): ?><a href="<?= cms_e((string)$seoProject['url']) ?>"><?php endif; ?><?= cms_e((string)cms_localized_value($data, $seoProject, 'title', $currentLang, 'Project')) ?><?php if (!empty($seoProject['url'])): ?></a><?php endif; ?></li>
+            <?php endforeach; ?>
+          </ul></section>
+        <?php endif; ?>
+        <?php if (!empty($seoApps['enabled'])): ?>
+          <section><h2><?= cms_e((string)cms_localized_value($data, $seoApps, 'title', $currentLang, 'DigitalPulse apps')) ?></h2><p><?= cms_e((string)cms_localized_value($data, $seoApps, 'subtitle', $currentLang, '')) ?></p><ul>
+            <?php foreach (($seoApps['items'] ?? []) as $seoApp): ?>
+              <?php $appUrl = (string)($seoApp['url'] ?? ''); if (!preg_match('~^https://[^[:space:]]+$~i', $appUrl)) continue; ?>
+              <li><a href="<?= cms_e($appUrl) ?>" target="_blank" rel="noopener noreferrer"><?= cms_e((string)cms_localized_value($data, $seoApp, 'title', $currentLang, 'App')) ?></a> — <?= cms_e((string)cms_localized_value($data, $seoApp, 'text', $currentLang, '')) ?></li>
             <?php endforeach; ?>
           </ul></section>
         <?php endif; ?>

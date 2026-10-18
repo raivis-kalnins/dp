@@ -1,3 +1,21 @@
+**v0.11.44 — custom WordPress plugins / apps / smart e-commerce SEO expansion**
+
+- New **33 UK, Baltic and Nordic market pages** in **14 languages**, server rendered, with distinct original optimized WebP illustrations, canonical and hreflang tags, schema.org structured data, internal links, FAQ sections, and a sitemap.
+- Main homepage and SEO descriptions promote **custom WordPress plugins / Gutenberg / ACF**, **bespoke PHP/React apps**, and **smart WooCommerce development** in all 14 languages.
+- Social 63 portfolio entry uses a lightweight **concept preview** with an honest **In development** label.
+- Route directory: `/locations/` · SEO feeds: `/sitemap.xml`, `/robots.txt`, optional `/llms.txt`.
+- **IMPORTANT:** Preserve/merge newer live `data.json` edits and never replace production `.secrets.php` without checking. See **README-SEO-LOCATIONS.md** for deployment and SEO notes.
+
+**v0.11.42 - complete DigitalPulse apps portfolio, multilingual launcher and Clutch footer**
+
+- Updated **Portfolio** with all **17 requested DigitalPulse apps** and their correct HTTPS URLs, richer descriptions, relevant technology tags and direct external links (new tabs). Older client projects are preserved: **32 projects total**.
+- Added a responsive, compact **DigitalPulse Apps** icon-and-description launcher immediately after Portfolio. All 17 app links open safely in new tabs (`noopener noreferrer`). The Apps block is editable in the LPCMS Content admin panel.
+- App portfolio thumbnails use an existing live third-party screenshot service (thum.io). Each of the 17 apps has a bundled **local SVG preview fallback** at `assets/img/apps/` if the remote screenshot cannot be fetched (for example, login-only apps or blocked screenshot traffic). No images sent inline with a chat message were extractable as files in the project.
+- Included localized app descriptions and section titles for **EN, LV, RU, FR, ES, DE, PL, LT, ET, DA, NO, SV, FI, IS**; retained the original multilingual site and its existing translations.
+- Included a **Clutch profile icon** in the footer linked to `https://clutch.co/profile/digital-pulse-1`, and a GitHub source link on the WPBB Commerce Platform project.
+- Updated both public and admin JavaScript, existing PHP SEO/no-JavaScript HTML and CSS, preserving the existing project content and CMS administration.
+- **Deploy:** back up your current `data.json` (it holds CMS edits), site files, and `.secrets.php`, then replace the extracted `dp-master` folder's contents in your webroot. Do not overwrite live CMS data if it has changed since the supplied archive without reconciling it. Clear the site/CDN cache. Production deployment has not been performed.
+
 **v0.11.38 - app-only selected work & cleaner public source**
 
 - The Team Lead **Selected real work** panel now contains only the three mobile-first web applications; small WordPress websites are no longer included there.
@@ -60,7 +78,7 @@ Multilingual DigitalPulse agency website built on the supplied LPCMS system.
 - Services for LPCMS, WordPress, WooCommerce, web/mobile applications, AI solutions, hosting and maintenance.
 - Marketing, SEO and AI-content options covering technical/on-page SEO, local visibility, campaign landing pages, analytics/conversion tracking, AI-assisted text generation and marketing integrations.
 - Industries/use-cases grid covering construction, property, automotive, travel, hotels, hospitality, e-commerce, manufacturing, professional services, wellness, education, non-profits, events/booking, trades, creative businesses and SaaS/portals.
-- Pricing, highlights, six-step process, 13-item filterable real-project portfolio (including O&J Cars at ojcars.uk), project brief, photo-led blog, WordPress sector-theme showcase, team lead profile, FAQ, contact, CTA and footer.
+- Pricing, highlights, six-step process, 32-item filterable real-project portfolio (including 17 DigitalPulse apps and O&J Cars at ojcars.uk), project brief, photo-led blog, WordPress sector-theme showcase, team lead profile, FAQ, contact, CTA and footer.
 - Contact coverage for the whole UK and Europe, with Northampton shown first and Riga second alongside a no-key OpenStreetMap Europe embed.
 - 14-language LPCMS language switcher retained: EN, LV, RU, FR, ES, DE, PL, LT, ET, DA, NO, SV, FI and IS.
 - New DigitalPulse copy is translated through the existing LPCMS translation pack; technical product/tool names stay unchanged where appropriate.
@@ -96,7 +114,7 @@ Open `http://127.0.0.1:8080/`.
 
 ## Notes
 
-Portfolio entries use real project URLs/screenshots supplied for this DigitalPulse site, with in-development projects labelled accordingly. UK agency experience references are kept in a collapsed, click-only section rather than rendered as crawlable project links. Before public deployment, review production mail/API settings, CAPTCHA, analytics consent, write permissions and administrator access policy.
+Portfolio entries use project URLs and live screenshot thumbnails (with local fallbacks for inaccessible pages), with in-development projects labelled accordingly. UK agency experience references are kept in a collapsed, click-only section rather than rendered as crawlable project links. Before public deployment, review production mail/API settings, CAPTCHA, analytics consent, write permissions and administrator access policy.
 
 ## Brand assets and business card
 
