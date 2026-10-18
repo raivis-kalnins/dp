@@ -44,7 +44,7 @@ session_set_cookie_params([
 ]);
 session_start();
 
-define('CMS_VERSION', '0.11.50');
+define('CMS_VERSION', '0.11.52');
 define('DATA_FILE', __DIR__ . '/data.json');
 define('MAIL_LOG_FILE', __DIR__ . '/.lpcms-mail.log');
 define('HTACCESS_FILE', __DIR__ . '/.htaccess');
@@ -4287,13 +4287,24 @@ $i18nPack = cms_i18n_pack();
   <link rel="shortcut icon" href="<?= cms_e(cms_favicon_href($data)) ?>">
   <meta property="og:title" content="<?= cms_e($meta['title'] ?? '') ?>">
   <meta property="og:description" content="<?= cms_e($meta['description'] ?? '') ?>">
+  <meta property="og:site_name" content="DigitalPulse">
   <meta property="og:type" content="<?= cms_e($meta['type'] ?? 'website') ?>">
   <meta property="og:url" content="<?= cms_e($canonical) ?>">
-  <?php if ($metaImage): ?><meta property="og:image" content="<?= cms_e($metaImage) ?>"><?php endif; ?>
+  <?php if ($metaImage): ?>
+  <meta property="og:image" content="<?= cms_e($metaImage) ?>">
+  <meta property="og:image:secure_url" content="<?= cms_e($metaImage) ?>">
+  <?php if (str_contains($metaImage, 'digitalpulse-social-share-2026.jpg')): ?>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="DigitalPulse logo – custom WordPress plugins, web apps and smart e-commerce">
+  <?php endif; ?>
+  <?php endif; ?>
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="<?= cms_e($meta['title'] ?? '') ?>">
   <meta name="twitter:description" content="<?= cms_e($meta['description'] ?? '') ?>">
   <?php if ($metaImage): ?><meta name="twitter:image" content="<?= cms_e($metaImage) ?>"><?php endif; ?>
+  <?php if (str_contains($metaImage, 'digitalpulse-social-share-2026.jpg')): ?><meta name="twitter:image:alt" content="DigitalPulse – custom WordPress plugins, web apps and e-commerce"><?php endif; ?>
   <?php $appSettings = cms_app_settings($data); if (!empty($appSettings['enabled'])): ?>
   <meta name="theme-color" content="<?= cms_e((string)$appSettings['themeColor']) ?>">
   <meta name="mobile-web-app-capable" content="yes">
@@ -4320,7 +4331,7 @@ $i18nPack = cms_i18n_pack();
       '@type' => 'Organization', '@id' => $orgId, 'name' => 'DigitalPulse',
       'url' => rtrim($base, '/') . '/',
       'description' => 'Custom WordPress plugins, PHP and React web apps, smart WooCommerce and e-commerce development.',
-      'logo' => ['@type' => 'ImageObject', 'url' => rtrim($base, '/') . '/assets/img/digitalpulse-og.png'],
+      'logo' => ['@type' => 'ImageObject', 'url' => rtrim($base, '/') . '/assets/img/digitalpulse-icon-512.png', 'width' => 512, 'height' => 512],
       'sameAs' => [
         'https://clutch.co/profile/digital-pulse-1',
         'https://www.facebook.com/raivis.kalnins',

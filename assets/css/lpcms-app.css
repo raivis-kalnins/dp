@@ -171,3 +171,38 @@
 #blog .product-card-img{aspect-ratio:16/9!important;object-fit:cover!important}
 .portfolio-card .portfolio-image{object-position:center top!important}
 .team-mini-project-media img{object-position:center top!important}
+
+
+/* DigitalPulse v0.11.52 — stable Services dropdown and consistent chevrons. */
+@media (min-width:1200px) {
+  .main-nav .has-sub > .nav-linkx { gap:.45rem; }
+  .main-nav .has-sub > .submenu {
+    top:calc(100% - 1px)!important; /* no hover gap: pointer can reach the links */
+    margin-top:0!important;
+    transform:translateY(3px)!important;
+    transition:opacity .14s ease,visibility .14s ease,transform .14s ease!important;
+    z-index:95;
+  }
+  .main-nav .has-sub:hover > .submenu,
+  .main-nav .has-sub:focus-within > .submenu {
+    transform:translateY(0)!important;
+    visibility:visible!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+  }
+  .main-nav .has-sub > .submenu:before { content:none!important; }
+  .main-nav .submenu .nav-linkx:after { content:none!important; }
+  .main-nav .submenu .nav-linkx { display:flex; align-items:center; min-height:39px; }
+  .main-nav .has-sub:hover > .nav-linkx,
+  .main-nav .has-sub:focus-within > .nav-linkx { background:#fff3ed; color:var(--dp-violet,var(--cms-brand)); }
+}
+.main-nav .nav-chevron,.mobile-panel .nav-chevron {
+  display:inline-block;vertical-align:middle;flex:0 0 auto;
+  width:7px;height:7px;margin-left:1px;margin-top:-3px;
+  border-right:1.7px solid currentColor;border-bottom:1.7px solid currentColor;
+  transform:rotate(45deg);transition:transform .14s ease;
+}
+.main-nav .has-sub:hover > .nav-linkx .nav-chevron,
+.main-nav .has-sub:focus-within > .nav-linkx .nav-chevron { transform:rotate(225deg);margin-top:3px; }
+.mobile-panel .nav-chevron {float:right;margin:8px 4px 0 0;}
+@media(prefers-reduced-motion:reduce){.main-nav .nav-chevron,.mobile-panel .nav-chevron{transition:none!important}}
