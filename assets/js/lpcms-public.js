@@ -87,8 +87,8 @@
     function cls(...xs){ return xs.filter(Boolean).join(' '); }
     function get(obj, path){ return String(path).split('.').reduce((o,k)=> o && o[k] !== undefined ? o[k] : undefined, obj); }
     function set(obj, path, val){ const keys=String(path).split('.'); const copy=Array.isArray(obj)?[...obj]:{...obj}; let cur=copy; keys.forEach((k,i)=>{ if(i===keys.length-1){cur[k]=val;return;} cur[k]=Array.isArray(cur[k])?[...cur[k]]:{...cur[k]}; cur=cur[k]; }); return copy; }
-    const LOCALIZED_CONTENT_ROOTS=new Set(['header','hero','about','stats','features','services','wpThemes','process','gallery','testimonials','cards','contentList','team','growth','industries','logos','products','booking','adminShowcase','pricing','demoIntake','blog','faq','contact','cta','footer','chatbot','pages']);
-    const LOCALIZED_CONTENT_LEAVES=new Set(['title','subtitle','text','body','label','role','badge','buttonText','excerpt','question','answer','description','caption','heading','subheading','placeholder','confirmationText','welcome','welcomeMessage','fallback','message','instructions','address','hours','cartTitle','buyButtonText','quoteButtonText','cartButtonText','checkoutButtonText','discountLabel','suggestedQuestions','copy','period','formButtonText','thankYou','acceptText','declineText','eyebrow','alt','name','logoText','price','secondaryPrice','features','shortName','offlineMessage','domainTitle','domainText','tableTitle','tableSubtitle','ease','preheader','superAdminTitle','superAdminText','noteTitle','noteText','ukNote','footerText']);
+    const LOCALIZED_CONTENT_ROOTS=new Set(['header','hero','about','stats','features','services','wpThemes','process','gallery','apps','testimonials','cards','contentList','team','growth','industries','logos','products','booking','adminShowcase','pricing','demoIntake','blog','faq','contact','cta','footer','chatbot','pages']);
+    const LOCALIZED_CONTENT_LEAVES=new Set(['title','subtitle','text','body','label','role','badge','buttonText','excerpt','question','answer','description','caption','heading','subheading','placeholder','confirmationText','welcome','welcomeMessage','fallback','message','instructions','address','hours','cartTitle','buyButtonText','quoteButtonText','cartButtonText','checkoutButtonText','discountLabel','suggestedQuestions','copy','period','formButtonText','thankYou','acceptText','declineText','eyebrow','alt','name','logoText','price','secondaryPrice','features','shortName','offlineMessage','domainTitle','domainText','tableTitle','tableSubtitle','ease','preheader','superAdminTitle','superAdminText','noteTitle','noteText','ukNote','footerText','moreLabel','allAppsLabel']);
     function isLocalizableContentPath(path){
       const parts=String(path||'').split('.').filter(Boolean); if(!parts.length||parts.includes('i18n'))return false;
       const leaf=parts[parts.length-1];
@@ -129,7 +129,7 @@
         const [prefix,...rest]=ref.split(':'); const n=rest.join(':');
         const url='https://api.iconify.design/'+encodeURIComponent(prefix)+'/'+encodeURIComponent(n)+'.svg';
         return h('span',{className:'cms-external-icon','aria-hidden':'true'},
-          h('img',{className:'cms-live-icon-img',src:url,alt:'',loading:'lazy',decoding:'async',onError:e=>{e.currentTarget.style.display='none';const fb=e.currentTarget.nextElementSibling;if(fb)fb.style.display='inline-block'}}),
+          h('img',{className:'cms-live-icon-img',src:url,alt:'',loading:'lazy',decoding:'async',fetchPriority:'low',onError:e=>{e.currentTarget.style.display='none';const fb=e.currentTarget.nextElementSibling;if(fb)fb.style.display='inline-block'}}),
           h('i',{className:'bi bi-stars cms-external-icon-fallback'})
         );
       }
@@ -273,7 +273,7 @@
       return ReactDOM.createPortal(dialog,document.body);
     }
 
-    function EditableImage({api,path,alt='',className='',fallback=null,fallbackSrc='',target='img',hideWhenEmpty=false,onView=null,eager=false,iconPath=''}){
+    function EditableImage({api,path,alt='',className='',fallback=null,fallbackSrc='',errorSrc='',target='img',hideWhenEmpty=false,onView=null,eager=false,iconPath=''}){
       const inputRef=useRef(null);
       const [busy,setBusy]=useState(false);
       const [dragging,setDragging]=useState(false);
@@ -283,6 +283,12 @@
       const stored=String(get(api.data,path)||'');
       const selectedIcon=iconPath?String(get(api.data,iconPath)||''):'';
       const value=mediaUrl(stored||fallbackSrc||'');
+      // Versioned, local image assets ship 640px previews alongside 1200px originals.
+      // Editor-uploaded images do not use this path and remain fully editable.
+      const bundledResponsive=/^\/assets\/img\/(?:blog|portfolio)\/v48\/[^?#]+\.(?:webp|avif)$/i.test(stored);
+      const mediaSmall=bundledResponsive?mediaUrl(stored.replace(/\.(webp|avif)$/i,'-640.$1')):'';
+      const mediaSet=mediaSmall?`${mediaSmall} 640w, ${value} 1200w`:undefined;
+      const mediaSizes=bundledResponsive?(stored.includes('/blog/')?'(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw':'(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw'):undefined;
       if(!api.admin && !value && hideWhenEmpty) return null;
       async function performUpload(file){
         if(!file || busy) return;
@@ -313,7 +319,7 @@
       }
       return h(React.Fragment,null,
         h('div',wrapperProps,
-          value?h('img',{src:value,alt,loading:eager?'eager':'lazy',decoding:'async',fetchPriority:eager?'high':'low','data-lightbox':'site','data-lightbox-src':value}):h('div',{className:'cms-image-fallback'},iconPath?icon(selectedIcon||'bi bi-plus-lg'):(fallback||icon('bi bi-image'))),
+          value?h('img',{src:value,alt,srcSet:mediaSet,sizes:mediaSizes,width:1200,height:stored.includes('/blog/')?675:750,loading:eager?'eager':'lazy',decoding:'async',fetchPriority:eager?'high':'low','data-lightbox':'site','data-lightbox-src':value,onError:errorSrc?e=>{const src=mediaUrl(errorSrc);const img=e.currentTarget;if(!img.dataset.cmsImageFallback&&src){img.dataset.cmsImageFallback='1';img.removeAttribute('srcset');img.removeAttribute('sizes');img.src=src;img.dataset.lightboxSrc=src;}}:undefined}):h('div',{className:'cms-image-fallback'},iconPath?icon(selectedIcon||'bi bi-plus-lg'):(fallback||icon('bi bi-image'))),
           api.admin&&h(React.Fragment,null,
             iconPath&&!value&&h('button',{type:'button',className:'cms-icon-select-primary','aria-label':selectedIcon?'Change icon':'Choose icon',title:selectedIcon?'Change icon':'Choose icon',onClick:e=>{e.preventDefault();e.stopPropagation();try{sessionStorage.setItem('lpcms_icon_target',iconPath)}catch(x){}api.setAdminRequestedTab('icons');api.setAdminOpen(true)}},h('span',{className:'cms-icon-select-badge'},icon(selectedIcon?'bi bi-pencil':'bi bi-plus-lg')),h('span',{className:'visually-hidden'},selectedIcon?'Change icon':'Choose icon')),
             h('input',{ref:inputRef,type:'file',accept:'image/*,.avif,.heic,.heif',hidden:true,onChange:e=>accept(e.target.files?.[0])}),
@@ -478,7 +484,7 @@
       async function save(options={}){ const silent=!!options?.silent; try{ const r=await fetch('?api=save',{method:'POST',headers:{'Content-Type':'application/json','X-CMS-CSRF':csrf},body:JSON.stringify(data)}); const j=await cmsResponseJson(r); if(j.ok){setData(j.data);setDirty(false);if(!silent)setNotice('Saved to data.json');return {ok:true,data:j.data};} const error=j.error||'Save failed'; if(!silent)setNotice(error); return {ok:false,error}; }catch(err){ const error=err?.message||'Save failed'; if(!silent)setNotice(error); return {ok:false,error}; } }
       async function logout(){ await fetch('?api=logout',{method:'POST',headers:{'X-CMS-CSRF':csrf}}); location.reload(); }
       const api = {data,setData,update,updateLocalized,localizedPath:(path)=>localizedDataPath(path,lang),localizedValue,replace,Editable,admin,t,href,email:boot.email,role:boot.role||'',isSuper:!!boot.isSuper,setModal,lang,setLang,save,logout,dirty,notice,setNotice,adminOpen,setAdminOpen,adminRequestedTab,setAdminRequestedTab,csrf,boot,setBoot,quoteItems,shopCartItems,addToQuote,addToCart,removeQuote,clearQuote,removeCart,clearCart,cartTotal,quoteMessage,orderMessage,formatProductPrice,productPriceValue,productOldPriceValue,variationLabel,productVariationList};
-      const sectionRegistry={hero:Hero,about:About,stats:Stats,features:FeatureBlocks,services:Services,wpThemes:WpThemes,process:Process,gallery:Gallery,testimonials:Testimonials,cards:ImageCards,contentList:ContentList,team:TeamLead,growth:GrowthMarketing,industries:Industries,logos:LogoStrip,products:Products,booking:Booking,adminShowcase:AdminShowcase,pricing:Pricing,demoIntake:DemoIntake,blog:Blog,faq:FAQ,contact:Contact,cta:CTA};
+      const sectionRegistry={hero:Hero,about:About,stats:Stats,features:FeatureBlocks,services:Services,wpThemes:WpThemes,process:Process,gallery:Gallery,apps:DigitalPulseApps,testimonials:Testimonials,cards:ImageCards,contentList:ContentList,team:TeamLead,growth:GrowthMarketing,industries:Industries,logos:LogoStrip,products:Products,booking:Booking,adminShowcase:AdminShowcase,pricing:Pricing,demoIntake:DemoIntake,blog:Blog,faq:FAQ,contact:Contact,cta:CTA};
       const defaultSectionOrder=Object.keys(sectionRegistry); const savedOrder=Array.isArray(data.settings?.sectionOrder)?data.settings.sectionOrder:defaultSectionOrder; const sectionOrder=[...new Set([...savedOrder.filter(x=>sectionRegistry[x]),...defaultSectionOrder.filter(x=>!savedOrder.includes(x))])];
       return h(InlineEditContext.Provider,{value:{data,admin,update,requestSavePrompt,csrf,setNotice,lang}},
         h(Header,{api}),
@@ -512,7 +518,7 @@
     function translate(api,obj,key){ const raw=obj?.i18n?.[api.lang]?.[key] ?? obj?.[key] ?? ''; return api.t(raw); }
     function RoutePage({api,route}){ const item=route.item||{}; const group=route.group||'pages'; const path=`${group}.items.${route.index}`; const E=api.Editable; const isProduct=group==='products'; const price=api.productPriceValue(item); const mode=price<=0?'quote':String(item.purchaseMode||api.data.products?.defaultPurchaseMode||'quote'); const showBuy=isProduct&&mode==='checkout'&&api.data.products?.showBuyButton&&item.buyButton!==false&&price>0; const showQuote=isProduct&&mode==='quote'&&api.data.products?.showQuoteButton&&item.quoteButton!==false; return h('section',{className:'section cms-soft'}, h(Container,{api}, h('article',{className:'cms-card mx-auto',style:{maxWidth:980}}, h('div',{className:'eyebrow text-primary fw-bold mb-2'}, isProduct?'Product':group==='blog'?'Blog':'Page'), h(EditableImage,{api,path:path+'.image',alt:item.title||'',className:'admin-image-field mb-4',hideWhenEmpty:true,eager:true}), h(E,{path:path+'.title',tag:'h1',className:'display-5 fw-bold'}), item.date&&h('p',{className:'muted'},item.date), isProduct&&h(ProductPrice,{api,item,path}), h(E,{path:path+'.body',tag:'div',html:true,className:'fs-5'}), isProduct&&Array.isArray(item.features)&&item.features.length>0&&h('ul',{className:'mt-3'},item.features.map((f,i)=>h('li',{key:i}, h(E,{path:path+'.features.'+i})))), isProduct&&h('div',{className:'product-actions'}, showBuy&&(item.checkoutUrl?h('a',{className:'btn-cms',href:item.checkoutUrl,target:'_blank',rel:'noopener noreferrer'},item.checkoutButtonText||api.data.products?.buyButtonText||'Checkout now'):h('button',{className:'btn-cms',onClick:()=>api.addToCart(item)},item.checkoutButtonText||api.data.products?.buyButtonText||'Checkout now')), showQuote&&h('button',{className:'btn-cms',onClick:()=>api.addToQuote(item)},api.data.products?.quoteButtonText||'Add to quote')), h('div',{className:'share-row'}, shareLinks(location.href,item.title).map(s=>h('a',{key:s.label,href:s.url,target:'_blank',rel:'noopener'},s.label)))))); }
     function Container({api,children,className=''}){ const grid=api.data.settings.theme.grid || 'container'; return h('div',{className:cls(grid,className)},children); }
-    function SectionTitle({api,base}){ const E=api.Editable; const defaults={stats:'Highlights',features:'Features',services:'Services',wpThemes:'WordPress sector themes',process:'How it works',gallery:'Gallery',testimonials:'Testimonials',cards:'Highlights',contentList:'Details',team:'Team lead',growth:'Marketing, SEO & AI content',industries:'Industries',logos:'Trusted by',products:'Products',booking:'Booking',adminShowcase:'Admin & editing',pricing:'Pricing',demoIntake:'Free demo',blog:'Blog',faq:'FAQ',contact:'Contact'}; const fallback=api.t(defaults[base]||String(base||'').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/^./,m=>m.toUpperCase())); return h('div',{className:'section-title'}, h(E,{path:base+'.preheader',tag:'div',className:'eyebrow',placeholder:fallback}), h(E,{path:base+'.title',tag:'h2'}), h(E,{path:base+'.subtitle',tag:'p'})); }
+    function SectionTitle({api,base}){ const E=api.Editable; const defaults={stats:'Highlights',features:'Features',services:'Services',wpThemes:'WordPress sector themes',process:'How it works',gallery:'Gallery',apps:'DigitalPulse apps',testimonials:'Testimonials',cards:'Highlights',contentList:'Details',team:'Team lead',growth:'Marketing, SEO & AI content',industries:'Industries',logos:'Trusted by',products:'Products',booking:'Booking',adminShowcase:'Admin & editing',pricing:'Pricing',demoIntake:'Free demo',blog:'Blog',faq:'FAQ',contact:'Contact'}; const fallback=api.t(defaults[base]||String(base||'').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/^./,m=>m.toUpperCase())); return h('div',{className:'section-title'}, h(E,{path:base+'.preheader',tag:'div',className:'eyebrow',placeholder:fallback}), h(E,{path:base+'.title',tag:'h2'}), h(E,{path:base+'.subtitle',tag:'p'})); }
 
     function Header({api}){ const {data,setModal,lang,setLang,admin,update}=api; const [open,setOpen]=useState(false); const [langOpen,setLangOpen]=useState(false); const langRef=useRef(null); const E=api.Editable; const menu=data.header.menu||[]; const flagMap={en:'/assets/img/flags/gb.svg',lv:'/assets/img/flags/lv.svg',ru:'/assets/img/flags/ru.svg',fr:'/assets/img/flags/fr.svg',es:'/assets/img/flags/es.svg',de:'/assets/img/flags/de.svg',pl:'/assets/img/flags/pl.svg',lt:'/assets/img/flags/lt.svg',et:'/assets/img/flags/ee.svg',da:'/assets/img/flags/dk.svg',no:'/assets/img/flags/no.svg',sv:'/assets/img/flags/se.svg',fi:'/assets/img/flags/fi.svg',is:'/assets/img/flags/is.svg'}; const languageNames={en:'English',lv:'Latviešu',ru:'Русский',fr:'Français',es:'Español',de:'Deutsch',pl:'Polski',lt:'Lietuvių',et:'Eesti',da:'Dansk',no:'Norsk',sv:'Svenska',fi:'Suomi',is:'Íslenska'}; const languages=data.settings.languages||I18N.languages||[]; const activeLang=languages.find(l=>String(l.code).toLowerCase()===String(lang).toLowerCase())||{code:lang,label:String(lang||'EN').toUpperCase()}; useEffect(()=>{ if(!langOpen)return; const close=e=>{if(langRef.current&&!langRef.current.contains(e.target))setLangOpen(false)}; const esc=e=>{if(e.key==='Escape')setLangOpen(false)}; document.addEventListener('pointerdown',close);document.addEventListener('keydown',esc);return()=>{document.removeEventListener('pointerdown',close);document.removeEventListener('keydown',esc)}; },[langOpen]); useEffect(()=>{ if(!open)return; const prevBodyOverflow=document.body.style.overflow; const prevHtmlOverflow=document.documentElement.style.overflow; document.body.style.overflow='hidden'; document.documentElement.style.overflow='hidden'; const esc=e=>{if(e.key==='Escape')setOpen(false)}; const resize=()=>{if(window.innerWidth>=1200)setOpen(false)}; document.addEventListener('keydown',esc); window.addEventListener('resize',resize,{passive:true}); return()=>{document.removeEventListener('keydown',esc);window.removeEventListener('resize',resize);document.body.style.overflow=prevBodyOverflow;document.documentElement.style.overflow=prevHtmlOverflow}; },[open]); function chooseLanguage(code){setLangOpen(false);setLang(code)} function linkProps(it,mobile=false){const blank=it?.target==='_blank';return {className:mobile?'':'nav-linkx',href:api.href(it?.href||'#'),target:blank?'_blank':undefined,rel:blank?'noopener noreferrer':undefined,onClick:()=>setOpen(false)}} function renderMenu(items,mobile=false){ return h('ul',null,items.map((it,i)=>h('li',{key:i,className:!mobile&&it.children?.length?'has-sub':''}, h('a',linkProps(it,mobile), translate(api,it,'label'), it.children?.length? h('span',{className:'ms-1'},'▾'):null), it.children?.length?h('ul',{className:mobile?'mobile-submenu':'submenu'},it.children.map((c,j)=>h('li',{key:j},h('a',linkProps(c,mobile),translate(api,c,'label'))))):null))); }
       const languagePicker=h('div',{className:'lang-picker',ref:langRef}, h('button',{className:'icon-btn lang-flag-btn',type:'button','aria-label':'Language: '+(languageNames[lang]||activeLang.name||activeLang.label||lang),'aria-haspopup':'menu','aria-expanded':langOpen?'true':'false',title:languageNames[lang]||activeLang.name||activeLang.label||lang,onClick:()=>setLangOpen(v=>!v)},h('img',{className:'flag-img',src:mediaUrl(flagMap[lang]||flagMap.en),alt:'',width:22,height:16,'aria-hidden':'true'})), langOpen&&h('div',{className:'lang-menu',role:'menu'},languages.map(l=>{const code=String(l.code||'').toLowerCase();return h('button',{key:code,type:'button',role:'menuitem',className:cls('lang-option',code===lang&&'active'),onClick:()=>chooseLanguage(code)},h('img',{className:'flag-img',src:mediaUrl(flagMap[code]||flagMap.en),alt:'',width:24,height:18,'aria-hidden':'true'}),h('span',null,l.name||languageNames[code]||l.label||code),h('span',{className:'lang-code'},code.toLowerCase()))}))); 
@@ -747,8 +753,35 @@
         h(SectionTitle,{api,base:'gallery'}),
         h('div',{className:'portfolio-toolbar','aria-label':api.t('Portfolio filters')},categories.map((c,i)=>h('button',{key:c.slug||i,type:'button',className:cls('portfolio-filter',(c.slug||'all')===cat&&'active'),onClick:()=>setCat(c.slug||'all')},api.t(c.title||c.slug||'All work')))),
         h('div',{className:'portfolio-count'},filtered.length,' ',api.t(filtered.length===1?'project':'projects')),
-        h('div',{className:'row g-4'},filtered.slice(0,count).map(it=>{const i=items.indexOf(it);return h('div',{className:'col-md-6 col-lg-4',key:it.slug||i},h('article',{className:'cms-card portfolio-card'},h('div',{className:'portfolio-image-wrap'},h(EditableImage,{api,path:`gallery.items.${i}.image`,alt:api.localizedValue(`gallery.items.${i}.alt`)||it.alt||it.title||'',className:'portfolio-image',target:'gallery'})),h('div',{className:'portfolio-card-body'},h('div',{className:'portfolio-meta'},h('span',{className:'portfolio-kind'},categoryTitle(it.category)||api.t(it.kind||'')),h('span',{className:cls('portfolio-status',String(it.status||'').toLowerCase().includes('development')&&'is-development')},api.t(it.status||'Live project'))),h(E,{path:`gallery.items.${i}.title`,tag:'h3',className:'h4 fw-bold'}),h(E,{path:`gallery.items.${i}.text`,tag:'p',className:'muted mb-0'}),Array.isArray(it.tech)&&h('div',{className:'tech-chips'},it.tech.map((t,j)=>h('span',{key:j,className:'tech-chip'},t))),h('div',{className:'portfolio-actions'},h('button',{type:'button',className:'btn-ghost',onClick:()=>api.setModal({type:'item',group:'gallery',index:i})},api.t('View project'))))))})),
+        h('div',{className:'row g-4'},filtered.slice(0,count).map(it=>{const i=items.indexOf(it);return h('div',{className:'col-md-6 col-lg-4',key:it.slug||i},h('article',{className:'cms-card portfolio-card'},h('div',{className:'portfolio-image-wrap'},h(EditableImage,{api,path:`gallery.items.${i}.image`,alt:api.localizedValue(`gallery.items.${i}.alt`)||it.alt||it.title||'',className:'portfolio-image',target:'gallery',errorSrc:it.fallbackImage||''})),h('div',{className:'portfolio-card-body'},h('div',{className:'portfolio-meta'},h('span',{className:'portfolio-kind'},categoryTitle(it.category)||api.t(it.kind||'')),h('span',{className:cls('portfolio-status',String(it.status||'').toLowerCase().includes('development')&&'is-development')},api.t(it.status||'Live project'))),h(E,{path:`gallery.items.${i}.title`,tag:'h3',className:'h4 fw-bold'}),h(E,{path:`gallery.items.${i}.text`,tag:'p',className:'muted mb-0'}),Array.isArray(it.tech)&&h('div',{className:'tech-chips'},it.tech.map((t,j)=>h('span',{key:j,className:'tech-chip'},t))),h('div',{className:'portfolio-actions'},h('button',{type:'button',className:'btn-ghost',onClick:()=>api.setModal({type:'item',group:'gallery',index:i})},api.t('View project')),it.url&&/^https:\/\//i.test(String(it.url))&&h('a',{className:'btn-cms portfolio-visit-link',href:it.url,target:'_blank',rel:'noopener noreferrer',title:api.t('Open app in a new tab')+': '+(api.localizedValue(`gallery.items.${i}.title`)||it.title)},icon('bi bi-box-arrow-up-right'),api.t(it.linkText||'Open app'))))))})),
         cfg.showButton&&count<filtered.length&&h('div',{className:'load-more-wrap'},h('button',{className:'btn-cms',onClick:()=>setCount(c=>Math.min(filtered.length,c+batch))},api.localizedValue('gallery.buttonText')||api.t('Load more projects')))
+      ));
+    }
+
+    function DigitalPulseApps({api}){
+      const cfg=api.data.apps||{};
+      const E=api.Editable;
+      const items=Array.isArray(cfg.items)?cfg.items:[];
+      return h('section',{id:'apps',className:'section digitalpulse-apps-section'},h(Container,{api},
+        h('div',{className:'digitalpulse-apps-heading'},
+          h(SectionTitle,{api,base:'apps'}),
+          h('span',{className:'digitalpulse-apps-count'},icon('bi bi-grid-3x3-gap'),items.length===17?api.t('17 apps'):String(items.length))
+        ),
+        h('div',{className:'digitalpulse-apps-grid'},items.map((app,i)=>{
+          // Disallow script/data URLs in content-managed external links.
+          const url=/^https:\/\/[^\s]+$/i.test(String(app.url||''))?String(app.url):'#apps';
+          const name=api.localizedValue(`apps.items.${i}.title`)||app.title||'App';
+          return h('a',{key:app.slug||i,className:'digitalpulse-app-tile',href:url,target:url==='#apps'?undefined:'_blank',rel:url==='#apps'?undefined:'noopener noreferrer',
+            'aria-label':api.t('Open app in a new tab')+': '+name,
+            onClick:api.admin?e=>{e.preventDefault()}:undefined},
+            h('span',{className:'digitalpulse-app-icon','aria-hidden':'true'},icon(app.icon||'bi bi-app-indicator')),
+            h('span',{className:'digitalpulse-app-content'},
+              h(E,{path:`apps.items.${i}.title`,tag:'strong',className:'digitalpulse-app-name'}),
+              h(E,{path:`apps.items.${i}.text`,tag:'span',className:'digitalpulse-app-description'})
+            ),
+            h('span',{className:'digitalpulse-app-arrow','aria-hidden':'true'},icon('bi bi-arrow-up-right'))
+          );
+        }))
       ));
     }
 
@@ -852,8 +885,21 @@
     }
 
     function TeamLead({api}){
-      const d=api.data.team||{}, E=api.Editable; const [open,setOpen]=useState(0); const gallery=api.data.gallery?.items||[];
-      const projectsFor=it=>(it.portfolioIndexes||[]).map(idx=>({it:gallery[idx],idx})).filter(x=>x.it);
+      const d=api.data.team||{}, E=api.Editable;
+      const [open,setOpen]=useState(0);
+      const [visiblePortfolio,setVisiblePortfolio]=useState(6);
+      const gallery=api.data.gallery?.items||[];
+      const projectsFor=it=>{
+        const references=Array.isArray(it.portfolioSlugs)&&it.portfolioSlugs.length?it.portfolioSlugs:(it.portfolioIndexes||[]);
+        const seen=new Set();
+        return references.map(ref=>{
+          const idx=typeof ref==='number'?ref:gallery.findIndex(p=>p.slug===ref);
+          return {it:gallery[idx],idx};
+        }).filter(({it,idx})=>{
+          if(!it||idx<0||seen.has(idx))return false;
+          seen.add(idx);return true;
+        });
+      };
       return h('section',{id:'team',className:'section'},h(Container,{api},
         h(SectionTitle,{api,base:'team'}),
         h('div',{className:'team-lead-shell'},
@@ -866,20 +912,40 @@
             d.linkedin&&h('a',{className:'btn-cms team-linkedin',href:d.linkedin,target:'_blank',rel:'noopener noreferrer'},icon('bi bi-linkedin'),h(E,{path:'team.buttonText'}))
           ),
           h('div',{className:'team-accordion'},(d.items||[]).map((it,i)=>{
-            const isOpen=open===i; const projects=it.type==='portfolio'?projectsFor(it):[]; const agencies=it.type==='agency-portfolio'?(it.agencyItems||[]):[];
+            const isOpen=open===i;
+            const projects=it.type==='portfolio'?projectsFor(it):[];
+            const agencies=it.type==='agency-portfolio'?(it.agencyItems||[]):[];
+            const contentId=`dp-team-accordion-panel-${i}`;
             return h('article',{className:cls('team-accordion-item',isOpen&&'open'),key:i},
-              h('button',{type:'button',className:'team-accordion-toggle','aria-expanded':isOpen,onClick:()=>setOpen(isOpen?null:i)},
+              h('button',{type:'button',className:'team-accordion-toggle','aria-expanded':isOpen,'aria-controls':contentId,onClick:()=>{setOpen(isOpen?null:i);setVisiblePortfolio(6);}},
                 h('span',{className:'team-accordion-icon'},icon(it.icon||'bi bi-plus-circle')),
                 h(E,{path:`team.items.${i}.title`,tag:'strong'}),
                 icon(isOpen?'bi bi-dash-lg':'bi bi-plus-lg')
               ),
-              isOpen&&h('div',{className:'team-accordion-body',...(agencies.length?{'data-nosnippet':''}:{})},
+              isOpen&&h('div',{id:contentId,className:'team-accordion-body',...(agencies.length?{'data-nosnippet':''}:{})},
                 h(E,{path:`team.items.${i}.text`,tag:'div',html:true,className:agencies.length?'team-agency-note':'muted'}),
                 agencies.length>0&&h('div',{className:'team-agency-grid'},agencies.map((agency,j)=>{const canOpen=!!agency.urlEncoded;return h('button',{type:'button',key:j,className:cls('team-agency-btn',canOpen&&'can-open'),disabled:!canOpen,onClick:()=>{if(!canOpen)return;try{const url=window.atob(agency.urlEncoded);window.open(url,'_blank','noopener,noreferrer')}catch(e){}}},h('span',null,agency.title),icon(canOpen?'bi bi-box-arrow-up-right':'bi bi-plus-circle'));})),
-                projects.length>0&&h('div',{className:'team-mini-portfolio'},projects.map(({it:p,idx})=>h('button',{type:'button',className:'team-mini-project',key:idx,onClick:()=>api.setModal({type:'item',group:'gallery',index:idx})},
-                  h('img',{src:mediaUrl(p.image),alt:api.localizedValue(`gallery.items.${idx}.alt`)||p.title||'',loading:'lazy',decoding:'async'}),
-                  h('span',null,h('strong',null,api.localizedValue(`gallery.items.${idx}.title`)||p.title),h('small',null,api.localizedValue(`gallery.items.${idx}.kind`)||p.kind||p.category||''))
-                )))
+                projects.length>0&&h(React.Fragment,null,
+                  h('div',{className:'team-mini-portfolio'},projects.slice(0,visiblePortfolio).map(({it:p,idx})=>h('button',{type:'button',className:'team-mini-project',key:p.slug||idx,'aria-label':api.localizedValue(`gallery.items.${idx}.title`)||p.title,onClick:()=>api.setModal({type:'item',group:'gallery',index:idx})},
+                    h('div',{className:'team-mini-project-media'},
+                      h('img',{src:mediaUrl(p.image),alt:api.localizedValue(`gallery.items.${idx}.alt`)||p.title||'',loading:'lazy',decoding:'async',fetchPriority:'low',width:1200,height:900,onError:p.fallbackImage?e=>{const img=e.currentTarget;if(!img.dataset.cmsImageFallback){img.dataset.cmsImageFallback='1';img.src=mediaUrl(p.fallbackImage);}}:undefined}),
+                      String(p.status||'').toLowerCase().includes('development')&&h('span',{className:'team-mini-project-status'},api.t('In development'))
+                    ),
+                    h('span',{className:'team-mini-project-copy'},
+                      h('strong',null,api.localizedValue(`gallery.items.${idx}.title`)||p.title),
+                      h('small',null,api.localizedValue(`gallery.items.${idx}.kind`)||p.kind||p.category||''),
+                      h('span',{className:'team-mini-project-arrow','aria-hidden':'true'},icon('bi bi-arrow-up-right'))
+                    )
+                  ))),
+                  h('div',{className:'team-mini-project-actions'},
+                    projects.length>visiblePortfolio&&h('button',{type:'button',className:'btn-ghost team-project-more',onClick:()=>setVisiblePortfolio(v=>Math.min(v+6,projects.length))},
+                      api.localizedValue(`team.items.${i}.moreLabel`)||'Show more projects',
+                      h('span',{className:'team-mini-project-count'},`${Math.min(visiblePortfolio,projects.length)} / ${projects.length}`),
+                      icon('bi bi-chevron-down')
+                    ),
+                    h('a',{className:'team-project-all',href:'#apps'},api.localizedValue(`team.items.${i}.allAppsLabel`)||'Explore all apps',icon('bi bi-arrow-right'))
+                  )
+                )
               )
             );
           }))
@@ -1054,40 +1120,50 @@
     }
 
     function Pricing({api}){
-      const E=api.Editable; const items=api.data.pricing?.items||[]; const swiperEl=useRef(null); const instRef=useRef(null);
+      const E=api.Editable;
+      const pricing=api.data.pricing||{};
+      const items=pricing.items||[];
+      const [category,setCategory]=useState('all');
+      const swiperEl=useRef(null);
+      const instRef=useRef(null);
+      const lang=String(api.lang||'en').toLowerCase();
+      const langStrings=pricing.i18n?.[lang]||{};
+      const labels={
+        filterAll:'All plans',filterLpcms:'LPCMS',filterWebsites:'Websites',filterCommerce:'E-commerce',
+        filterCustom:'Custom development',filterCare:'Care',fromLabel:'From',ukLabel:'UK',euLabel:'Europe',lvLabel:'Latvia',
+        quoteCaveat:'Indicative pricing, not a binding quote.',
+        enterpriseTitle:pricing.enterpriseTitle||'Custom & Enterprise Development',
+        enterpriseText:pricing.enterpriseText||'',enterpriseButton:pricing.enterpriseButton||'Request a scoped quote',note:pricing.note||''
+      };
+      const word=(key)=>langStrings[key]||labels[key]||'';
+      const categories=[
+        ['all','filterAll'],['lpcms','filterLpcms'],['websites','filterWebsites'],
+        ['commerce','filterCommerce'],['custom','filterCustom'],['care','filterCare']
+      ];
+      const selectedItems=items.map((item,index)=>({item,index})).filter(({item})=>category==='all'||(item.group||'websites')===category);
       useEffect(()=>{
         const setup=()=>{
           if(!swiperEl.current||!window.Swiper)return;
           if(window.innerWidth<768){
-            if(instRef.current){ try{instRef.current.update()}catch(e){} return; }
+            if(instRef.current){try{instRef.current.update()}catch(e){}return;}
             const paginationEl=swiperEl.current.querySelector('.pricing-swiper-pagination');
             instRef.current=new window.Swiper(swiperEl.current,{
-              slidesPerView:1,
-              spaceBetween:18,
-              speed:550,
-              loop:false,
-              rewind:items.length>1,
-              watchOverflow:true,
-              observer:true,
-              observeParents:true,
-              autoplay:{delay:4200,disableOnInteraction:true,pauseOnMouseEnter:true},
+              slidesPerView:1,spaceBetween:18,speed:450,loop:false,rewind:false,
+              watchOverflow:true,observer:true,observeParents:true,
+              autoplay:false,
               pagination:{el:paginationEl,clickable:true,hideOnClick:false,dynamicBullets:false},
               a11y:{enabled:true}
             });
-          }else if(instRef.current){ try{instRef.current.destroy(true,true)}catch(e){} instRef.current=null; }
-        };
-        const onPaginationClick=(event)=>{
-          const paginationEl=swiperEl.current?.querySelector('.pricing-swiper-pagination');
-          const bullet=event.target?.closest?.('.swiper-pagination-bullet');
-          if(!paginationEl||!bullet||!paginationEl.contains(bullet)||!instRef.current)return;
-          const bullets=Array.from(paginationEl.querySelectorAll('.swiper-pagination-bullet'));
-          const index=bullets.indexOf(bullet);
-          if(index<0)return;
-          try{instRef.current.autoplay?.stop()}catch(e){}
-          try{instRef.current.slideTo(index,550)}catch(e){}
+          }else if(instRef.current){try{instRef.current.destroy(true,true)}catch(e){}instRef.current=null;}
         };
         setup();
         const paginationEl=swiperEl.current?.querySelector('.pricing-swiper-pagination');
+        const onPaginationClick=(event)=>{
+          const bullet=event.target?.closest?.('.swiper-pagination-bullet');
+          if(!paginationEl||!bullet||!paginationEl.contains(bullet)||!instRef.current)return;
+          const index=Array.from(paginationEl.querySelectorAll('.swiper-pagination-bullet')).indexOf(bullet);
+          if(index>=0)try{instRef.current.slideTo(index,450)}catch(e){}
+        };
         paginationEl?.addEventListener('click',onPaginationClick);
         window.addEventListener('resize',setup);
         return()=>{
@@ -1095,19 +1171,47 @@
           window.removeEventListener('resize',setup);
           if(instRef.current){try{instRef.current.destroy(true,true)}catch(e){}instRef.current=null;}
         };
-      },[items.length,api.lang]);
+      },[category,selectedItems.length,lang]);
+      const currencyLocale={en:'en-GB',lv:'lv-LV',ru:'ru-RU',fr:'fr-FR',es:'es-ES',de:'de-DE',pl:'pl-PL',lt:'lt-LT',et:'et-EE',da:'da-DK',no:'nb-NO',sv:'sv-SE',fi:'fi-FI',is:'is-IS'};
+      const formatPrice=(raw,currency)=>{
+        const ungrouped=String(raw||'').replace(/,/g,'').replace(/[^\d.]/g,'');
+        const amount=Number(ungrouped);
+        if(!ungrouped||!Number.isFinite(amount))return String(raw||'');
+        const decimal=!Number.isInteger(amount);
+        return new Intl.NumberFormat(currencyLocale[lang]||'en-GB',{
+          style:'currency',currency,minimumFractionDigits:decimal?2:0,maximumFractionDigits:decimal?2:0
+        }).format(amount);
+      };
+      const offer=(item,price,label,currency,fieldPath,secondary=false)=>h('div',{className:secondary?'pricing-offer-secondary':'pricing-offer-primary'},
+        h('span',{className:'pricing-price-label'},label),
+        h('div',{className:secondary?'secondary':'pricing-price'},
+          item.isFrom?word('fromLabel')+' ':null,
+          api.admin&&fieldPath?h(E,{path:fieldPath,tag:'span',className:'dp-pricing-admin-raw'}):formatPrice(price,currency)
+        )
+      );
       return h('section',{id:'pricing',className:'section cms-soft'},h(Container,{api},
         h(SectionTitle,{api,base:'pricing'}),
-        h('div',{className:'swiper pricing-swiper',ref:swiperEl},
-          h('div',{className:'swiper-wrapper row g-4 pricing-grid-clean'},items.map((it,i)=>
-            h('div',{className:'swiper-slide col-12 col-md-6 col-xl-3 pricing-slide',key:i},
-              h('article',{className:cls('cms-card pricing-card pricing-card-clean',i===1&&'featured')},
+        h('div',{className:'dp-pricing-filterbar',role:'group','aria-label':api.t('Pricing')},
+          categories.map(([id,labelKey])=>h('button',{
+            type:'button',key:id,className:'dp-pricing-filter',
+            'aria-pressed':category===id,onClick:()=>setCategory(id)
+          },word(labelKey)))
+        ),
+        h('div',{className:'swiper pricing-swiper',ref:swiperEl,key:category},
+          h('div',{className:'swiper-wrapper row g-4 pricing-grid-clean'},selectedItems.map(({item:it,index:i})=>
+            h('div',{className:'swiper-slide col-12 col-md-6 col-xl-3 pricing-slide',key:it.id||i},
+              h('article',{className:cls('cms-card pricing-card pricing-card-clean',it.id==='wp-business'&&'featured')},
                 h('div',{className:'pricing-card-head'},
                   it.badge&&h('span',{className:'plan-badge'},h(E,{path:`pricing.items.${i}.badge`})),
                   h(E,{path:`pricing.items.${i}.title`,tag:'h3',className:'pricing-title'}),
                   h('div',{className:'pricing-dual-price'},
-                    h(E,{path:`pricing.items.${i}.price`,tag:'div',className:'pricing-price'}),
-                    (it.secondaryPrice||it.priceEur)&&h(E,{path:`pricing.items.${i}.secondaryPrice`,tag:'div',className:'secondary'}),
+                    lang==='en'?
+                      h(React.Fragment,null,
+                        offer(it,it.price,word('ukLabel')+' · GBP','GBP',`pricing.items.${i}.price`),
+                        offer(it,it.secondaryPrice||it.priceEur,word('euLabel')+' · EUR','EUR',`pricing.items.${i}.secondaryPrice`,true)
+                      ):
+                      lang==='lv'?offer(it,it.latviaPrice||it.secondaryPrice||it.price,word('lvLabel')+' · EUR','EUR',`pricing.items.${i}.latviaPrice`):
+                        offer(it,it.secondaryPrice||it.priceEur||it.price,word('euLabel')+' · EUR','EUR',`pricing.items.${i}.secondaryPrice`),
                     h(E,{path:`pricing.items.${i}.period`,tag:'div',className:'pricing-period muted'})
                   ),
                   h(E,{path:`pricing.items.${i}.text`,tag:'p',className:'pricing-intro muted'})
@@ -1120,6 +1224,14 @@
             )
           )),
           h('div',{className:'pricing-swiper-pagination'})
+        ),
+        h('p',{className:'dp-pricing-note'},h('strong',null,word('quoteCaveat')+' '),word('note')),
+        h('div',{className:'dp-pricing-enterprise'},
+          h('div',{className:'dp-pricing-enterprise-text'},
+            h('h3',null,word('enterpriseTitle')),
+            h('p',null,word('enterpriseText'))
+          ),
+          h('a',{className:'btn-cms',href:'#contact'},word('enterpriseButton'),icon('bi bi-arrow-up-right'))
         )
       ));
     }
@@ -1133,7 +1245,7 @@
       const [result,setResult]=useState(null);
       const [error,setError]=useState('');
       const captchaRef=useRef(null), captchaId=useRef(null);
-      const [form,setForm]=useState({plan:'premium',currency:'GBP',name:'',email:'',phone:'',company:'',industry:'',tagline:'',about:'',services:'',products:'',address:'',existingWebsite:'',preferredDomain:'',language:'English',goals:'',primaryColor:'#0d6efd',style:'clean',chatChoice:'chatbot',whatsapp:'',bookingNeeded:false,socials:'',consent:false,_hp:''});
+      const [form,setForm]=useState({plan:'premium',currency:api.lang==='en'?'GBP':'EUR',name:'',email:'',phone:'',company:'',industry:'',tagline:'',about:'',services:'',products:'',address:'',existingWebsite:'',preferredDomain:'',language:'English',goals:'',primaryColor:'#0d6efd',style:'clean',chatChoice:'chatbot',whatsapp:'',bookingNeeded:false,socials:'',consent:false,_hp:''});
       const hc=api.data.settings?.hcaptcha||{};
       const steps=Array.isArray(cfg.steps)&&cfg.steps.length===4?cfg.steps:['Your business','Website content','Branding & tools','Review'];
       function setf(k,v){setForm(f=>({...f,[k]:v}));setError('');}
@@ -1164,7 +1276,15 @@
       const stepDots=h('div',{className:'demo-steps'},steps.map((label,i)=>h('div',{key:i,className:cls('demo-step',i===step&&'active',i<step&&'done')},h('span',null,i<step?icon('bi bi-check-lg'):String(i+1)),h('small',null,label))));
       let content=null;
       if(step===0)content=h('div',{className:'row g-3'},
-        h('div',{className:'col-12'},h('div',{className:'demo-plan-grid'},plans.map(p=>h('button',{type:'button',key:p.id,className:cls('demo-plan-choice',form.plan===p.id&&'active'),onClick:()=>setf('plan',p.id)},h('strong',null,p.title),h('span',null,p.description),h('small',null,p.price))))),
+        h('div',{className:'col-12'},h('div',{className:'demo-plan-grid'},plans.map(p=>{
+          const priceItem=(api.data.pricing?.items||[]).find(it=>it.id===({'premium':'lpcms-premium','premium-pro':'lpcms-pro','wordpress':'wp-business','woocommerce':'woo-standard'}[p.id]||''));
+          const loc=priceItem?.i18n?.[api.lang]||{};
+          const price=api.lang==='en'?p.price:api.lang==='lv'?(p.priceLatvia||p.priceEur||p.price):(p.priceEur||p.price);
+          const fromLabel=api.data.pricing?.i18n?.[api.lang]?.fromLabel||'From';
+          const localizedPrice=api.lang==='en'?price:String(price).replace(/^from /i,fromLabel+' ').replace(/\/ month$/i,api.t('/ month'));
+          return h('button',{type:'button',key:p.id,className:cls('demo-plan-choice',form.plan===p.id&&'active'),onClick:()=>setf('plan',p.id)},
+            h('strong',null,loc.title||p.title),h('span',null,loc.badge||p.description),h('small',null,localizedPrice));
+        }))),
         h('div',{className:'col-md-6'},h('label',{className:'form-label'},'Business / brand name *'),h('input',{className:'form-control',value:form.company,onChange:e=>setf('company',e.target.value)})),
         h('div',{className:'col-md-6'},h('label',{className:'form-label'},'Industry'),h('input',{className:'form-control',value:form.industry,onChange:e=>setf('industry',e.target.value),placeholder:'e.g. beauty salon, construction, consulting'})),
         h('div',{className:'col-md-6'},h('label',{className:'form-label'},'Your name *'),h('input',{className:'form-control',value:form.name,onChange:e=>setf('name',e.target.value)})),
@@ -1217,7 +1337,7 @@
           h(LoadMoreGrid,{api,base:'blog',render:(it,i)=>
             h('div',{className:'col-md-6 col-lg-4',key:i},
               h('article',{className:'cms-card'},
-                h(EditableImage,{api,path:`blog.items.${i}.image`,alt:it.title||'',className:'product-card-img mb-3',hideWhenEmpty:true}),
+                h(EditableImage,{api,path:`blog.items.${i}.image`,alt:api.localizedValue(`blog.items.${i}.title`)||it.title||'',className:'product-card-img mb-3',hideWhenEmpty:true,errorSrc:it.fallbackImage||''}),
                 h('small',{className:'muted'},it.date),
                 h(E,{path:`blog.items.${i}.title`,tag:'h3',className:'h4 fw-bold mt-2'}),
                 h(E,{path:`blog.items.${i}.excerpt`,tag:'p',className:'muted'}),
@@ -1321,8 +1441,9 @@
             ),
             h('div',{className:'footer-socials','aria-label':api.t('Social media')},
               (d.social||[]).map((s,i)=>{
-                const label=translate(api,s,'label')||'Social media';
-                return h('a',{key:i,href:s.url,target:'_blank',rel:'noopener',className:'footer-social-link','aria-label':label,title:label},icon(s.icon));
+                const label=api.t(translate(api,s,'label')||'Social media');
+                const safeUrl=/^https:\/\/[^\s]+$/i.test(String(s.url||''))?s.url:'#';
+                return h('a',{key:i,href:safeUrl,target:safeUrl==='#'?undefined:'_blank',rel:safeUrl==='#'?undefined:'noopener noreferrer',className:cls('footer-social-link',s.iconImage&&'footer-social-image-link'),'aria-label':label,title:label},s.iconImage?h('img',{src:mediaUrl(s.iconImage),alt:'',loading:'lazy',decoding:'async',fetchPriority:'low',width:23,height:23}):icon(s.icon));
               })
             )
           )
@@ -1458,15 +1579,15 @@
           active&&h('img',{
             src:mediaUrl(active),
             alt:api.localizedValue(path+'.title')||item.title,
-            className:'img-fluid rounded-4 mb-3 product-main-lightbox',
-            loading:'lazy',decoding:'async',
+            className:cls('img-fluid rounded-4 mb-3 product-main-lightbox',isPortfolio&&'portfolio-main-lightbox',modal.group==='blog'&&'blog-main-lightbox'),
+            loading:'lazy',decoding:'async',fetchPriority:'low',width:1200,height:900,
             'data-lightbox':isPortfolio?'portfolio':'product',
-            'data-lightbox-src':mediaUrl(active)
+            'data-lightbox-src':mediaUrl(active),onError:item.fallbackImage?e=>{const img=e.currentTarget;if(!img.dataset.cmsImageFallback){img.dataset.cmsImageFallback='1';img.removeAttribute('srcset');img.src=mediaUrl(item.fallbackImage);img.dataset.lightboxSrc=mediaUrl(item.fallbackImage);}}:undefined
           }),
-          imgs.length>1&&h('div',{className:'product-gallery'},
+          imgs.length>1&&h('div',{className:cls('product-gallery',isPortfolio&&'portfolio-gallery')},
             imgs.map((src,i)=>h('img',{
               key:i,src:mediaUrl(src),alt:api.localizedValue(path+'.title')||item.title,
-              loading:'lazy',decoding:'async',onClick:()=>setActive(src)
+              loading:'lazy',decoding:'async',fetchPriority:'low',width:1200,height:900,onClick:()=>setActive(src)
             }))
           ),
           h(E,{path:path+'.title',tag:'h2',className:'fw-bold'}),
@@ -1505,6 +1626,9 @@
             rel:/^https?:\/\//i.test(String(item.url))?'noopener noreferrer':undefined,
             onClick:/^#/.test(String(item.url))?onClose:undefined
           },api.t(item.linkText||'Build something similar')),
+          isPortfolio&&item.repositoryUrl&&/^https:\/\//i.test(String(item.repositoryUrl))&&h('a',{
+            className:'btn-ghost portfolio-source-link',href:item.repositoryUrl,target:'_blank',rel:'noopener noreferrer'
+          },icon('bi bi-github'),' ',api.t('View source code')),
           h('div',{className:'share-row'},
             shareLinks(url,item.title).map(s=>h('a',{key:s.label,href:s.url,target:'_blank',rel:'noopener'},s.label))
           )
