@@ -1206,12 +1206,10 @@
                   h(E,{path:`pricing.items.${i}.title`,tag:'h3',className:'pricing-title'}),
                   h('div',{className:'pricing-dual-price'},
                     lang==='en'?
-                      (['wp-hosting-care','woo-hosting-care'].includes(it.id)
-                        ? offer(it,it.secondaryPrice||it.priceEur||it.price,word('euLabel')+' · EUR','EUR',`pricing.items.${i}.secondaryPrice`)
-                        : h(React.Fragment,null,
-                            offer(it,it.price,word('ukLabel')+' · GBP','GBP',`pricing.items.${i}.price`),
-                            offer(it,it.secondaryPrice||it.priceEur,word('euLabel')+' · EUR','EUR',`pricing.items.${i}.secondaryPrice`,true)
-                          )):
+                      h(React.Fragment,null,
+                        offer(it,it.price,word('ukLabel')+' · GBP','GBP',`pricing.items.${i}.price`),
+                        offer(it,it.secondaryPrice||it.priceEur,word('euLabel')+' · EUR','EUR',`pricing.items.${i}.secondaryPrice`,true)
+                      ):
                       lang==='lv'?offer(it,it.latviaPrice||it.secondaryPrice||it.price,word('lvLabel')+' · EUR','EUR',`pricing.items.${i}.latviaPrice`):
                         offer(it,it.secondaryPrice||it.priceEur||it.price,word('euLabel')+' · EUR','EUR',`pricing.items.${i}.secondaryPrice`),
                     h(E,{path:`pricing.items.${i}.period`,tag:'div',className:'pricing-period muted'})
