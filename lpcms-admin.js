@@ -1080,6 +1080,8 @@
       const instRef=useRef(null);
       const lang=String(api.lang||'en').toLowerCase();
       const langStrings=pricing.i18n?.[lang]||{};
+      const detailsLabels={en:"What's included",lv:'Kas iekļauts',ru:'Что включено',fr:'Ce qui est inclus',es:'Qué incluye',de:'Leistungsumfang',pl:'Co zawiera pakiet',lt:'Kas įskaičiuota',et:'Mis sisaldub',da:'Dette er inkluderet',no:'Dette er inkludert',sv:'Detta ingår',fi:'Mitä sisältyy',is:'Hvað er innifalið'};
+      const detailsLabel=detailsLabels[lang]||detailsLabels.en;
       const labels={
         filterAll:'All plans',filterLpcms:'LPCMS',filterWebsites:'Websites',filterCommerce:'E-commerce',
         filterCustom:'Custom development',filterCare:'Care',fromLabel:'From',ukLabel:'UK',euLabel:'Europe',lvLabel:'Latvia',
@@ -1101,7 +1103,7 @@
             const paginationEl=swiperEl.current.querySelector('.pricing-swiper-pagination');
             instRef.current=new window.Swiper(swiperEl.current,{
               slidesPerView:1,spaceBetween:18,speed:450,loop:false,rewind:false,
-              watchOverflow:true,observer:true,observeParents:true,
+              autoHeight:true,watchOverflow:true,observer:true,observeParents:true,
               autoplay:false,
               pagination:{el:paginationEl,clickable:true,hideOnClick:false,dynamicBullets:false},
               a11y:{enabled:true}
@@ -1166,11 +1168,19 @@
                         offer(it,it.secondaryPrice||it.priceEur||it.price,word('euLabel')+' · EUR','EUR',`pricing.items.${i}.secondaryPrice`),
                     h(E,{path:`pricing.items.${i}.period`,tag:'div',className:'pricing-period muted'})
                   ),
-                  h(E,{path:`pricing.items.${i}.text`,tag:'p',className:'pricing-intro muted'})
                 ),
-                Array.isArray(it.features)&&h('div',{className:'pricing-features'},it.features.map((f,j)=>
-                  h('div',{key:j,className:'plan-feature'},h('span',{className:'plan-feature-icon'},icon('bi bi-check2')),h(E,{path:`pricing.items.${i}.features.${j}`}))
-                )),
+                h('details',{className:'pricing-details',onToggle:()=>{
+                    const swiper=instRef.current;
+                    if(swiper)window.requestAnimationFrame(()=>{try{swiper.update();swiper.updateAutoHeight(220)}catch(e){}});
+                  }},
+                  h('summary',{className:'pricing-details-toggle'},h('span',null,detailsLabel),icon('bi bi-chevron-down pricing-details-chevron')),
+                  h('div',{className:'pricing-details-body'},
+                    h(E,{path:`pricing.items.${i}.text`,tag:'p',className:'pricing-intro muted'}),
+                    Array.isArray(it.features)&&h('div',{className:'pricing-features'},it.features.map((f,j)=>
+                      h('div',{key:j,className:'plan-feature'},h('span',{className:'plan-feature-icon'},icon('bi bi-check2')),h(E,{path:`pricing.items.${i}.features.${j}`}))
+                    ))
+                  )
+                ),
                 h('a',{className:'btn-cms pricing-action',href:it.buttonHref||'#contact'},h(E,{path:`pricing.items.${i}.buttonText`}))
               )
             )
@@ -1387,8 +1397,8 @@
             h('nav',{className:'footer-menu','aria-label':api.t('Footer links')},
               (d.menu||[]).map((m,i)=>h('a',{key:i,href:api.href(m.href)},translate(api,m,'label'))),
               api.admin
-                ? h('button',{type:'button',className:'footer-login-text footer-login-icon footer-admin-entry',onClick:()=>api.setAdminOpen(true),'aria-label':api.t('Admin')||'Admin',title:api.t('Admin')||'Admin'},icon('bi bi-person-circle'))
-                : h('a',{className:'footer-login-text footer-login-icon',href:'/?admin',rel:'nofollow','aria-label':({en:'Login',lv:'Pieteikties',ru:'Войти',fr:'Connexion',es:'Acceder',de:'Anmelden',pl:'Zaloguj się',lt:'Prisijungti',et:'Logi sisse',da:'Log ind',no:'Logg inn',sv:'Logga in',fi:'Kirjaudu',is:'Skrá inn'})[api.lang]||'Login',title:'Administrator login'},icon('bi bi-person-circle'))
+                ? h('button',{type:'button',className:'footer-login-text footer-login-menu-item footer-admin-entry',onClick:()=>api.setAdminOpen(true),'aria-label':api.t('Admin')||'Admin',title:api.t('Admin')||'Admin'},icon('bi bi-person-circle'),h('span',null,api.t('Admin')||'Admin'))
+                : h('a',{className:'footer-login-text footer-login-menu-item',href:'/?admin',rel:'nofollow','aria-label':({en:'Login',lv:'Pieteikties',ru:'Войти',fr:'Connexion',es:'Acceder',de:'Anmelden',pl:'Zaloguj się',lt:'Prisijungti',et:'Logi sisse',da:'Log ind',no:'Logg inn',sv:'Logga in',fi:'Kirjaudu',is:'Skrá inn'})[api.lang]||'Login',title:'Administrator login'},icon('bi bi-person-circle'),h('span',null,({en:'Login',lv:'Pieteikties',ru:'Войти',fr:'Connexion',es:'Acceder',de:'Anmelden',pl:'Zaloguj się',lt:'Prisijungti',et:'Logi sisse',da:'Log ind',no:'Logg inn',sv:'Logga in',fi:'Kirjaudu',is:'Skrá inn'})[api.lang]||'Login'))
             ),
             showApps&&h('div',{className:'footer-apps'},
               h('div',{className:'footer-apps-label'},api.t('Install our app')),

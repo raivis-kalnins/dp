@@ -44,7 +44,7 @@ session_set_cookie_params([
 ]);
 session_start();
 
-define('CMS_VERSION', '0.11.62');
+define('CMS_VERSION', '0.11.65');
 define('DATA_FILE', __DIR__ . '/data.json');
 define('MAIL_LOG_FILE', __DIR__ . '/.lpcms-mail.log');
 define('HTACCESS_FILE', __DIR__ . '/.htaccess');
@@ -4327,6 +4327,7 @@ $i18nPack = cms_i18n_pack();
   <?php endforeach; ?>
   <!-- Shared desktop header grid, applied after editable theme CSS. -->
   <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/css/dp-header-grid-v57.css?v=64">
+  <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/css/dp-pricing-accordion-v65.css?v=65">
   <?php
     $orgId = rtrim($base, '/') . '/#organization';
     $orgEntity = [
