@@ -1432,11 +1432,13 @@
         h(Container,{api},
           h('div',{className:'footer-layout'+(showApps?'':' no-apps')},
             h('div',{className:'footer-copyline-wrap'},
-              h('div',{className:'footer-copyline'},copy),
-              api.admin && h('button',{type:'button',className:'footer-admin-link',onClick:()=>api.setAdminOpen(true),title:api.t('Admin'), 'aria-label':api.t('Admin')}, icon('bi bi-sliders'))
+              h('div',{className:'footer-copyline'},copy)
             ),
             h('nav',{className:'footer-menu','aria-label':api.t('Footer links')},
-              (d.menu||[]).map((m,i)=>h('a',{key:i,href:api.href(m.href)},translate(api,m,'label')))
+              (d.menu||[]).map((m,i)=>h('a',{key:i,href:api.href(m.href)},translate(api,m,'label'))),
+              api.admin
+                ? h('button',{type:'button',className:'footer-login-text footer-admin-entry',onClick:()=>api.setAdminOpen(true)},api.t('Admin'))
+                : h('a',{className:'footer-login-text',href:'/?admin',rel:'nofollow',title:'Administrator login'},({en:'Login',lv:'Pieteikties',ru:'Войти',fr:'Connexion',es:'Acceder',de:'Anmelden',pl:'Zaloguj się',lt:'Prisijungti',et:'Logi sisse',da:'Log ind',no:'Logg inn',sv:'Logga in',fi:'Kirjaudu',is:'Skrá inn'})[api.lang]||'Login')
             ),
             showApps&&h('div',{className:'footer-apps'},
               h('div',{className:'footer-apps-label'},api.t('Install our app')),
