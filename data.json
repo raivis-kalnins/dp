@@ -6966,6 +6966,11 @@
         "icon": "bi bi-github"
       },
       {
+        "label": "YouTube",
+        "url": "https://www.youtube.com/@digital-pulse-click",
+        "icon": "bi bi-youtube"
+      },
+      {
         "label": "Clutch company profile",
         "url": "https://clutch.co/profile/digital-pulse-1",
         "iconImage": "/assets/img/clutch-mark-v2.svg"
