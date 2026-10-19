@@ -631,6 +631,7 @@
         if(!swiperEl.current||!window.Swiper||!slides.length)return;
         const inst=new window.Swiper(swiperEl.current,{
           loop:slides.length>1,
+          autoHeight:true,
           speed:760,
           grabCursor:slides.length>1,
           keyboard:{enabled:true},
@@ -639,7 +640,21 @@
           navigation:{nextEl:swiperEl.current.querySelector('.hero-swiper-next'),prevEl:swiperEl.current.querySelector('.hero-swiper-prev')},
           a11y:{enabled:true}
         });
-        return()=>{try{inst.destroy(true,true)}catch(e){}};
+        // Refresh the active slide height when an image finishes decoding
+        // and after an orientation change (especially important on mobiles).
+        const refreshHeight=()=>{
+          if(inst.destroyed)return;
+          window.requestAnimationFrame(()=>{if(!inst.destroyed)inst.updateAutoHeight(0);});
+        };
+        const images=Array.from(swiperEl.current.querySelectorAll('.swiper-slide img'));
+        images.forEach(img=>img.addEventListener('load',refreshHeight,{passive:true}));
+        window.addEventListener('orientationchange',refreshHeight,{passive:true});
+        refreshHeight();
+        return()=>{
+          images.forEach(img=>img.removeEventListener('load',refreshHeight));
+          window.removeEventListener('orientationchange',refreshHeight);
+          try{inst.destroy(true,true)}catch(e){}
+        };
       },[slides.length,api.lang]);
       function slideMedia(slide,i){
         const mediaType=String(slide.mediaType||((slide.video||'')?'video':'image')).toLowerCase(); const videoSrc=mediaUrl(slide.video||''); const poster=mediaUrl(slide.videoPoster||slide.image||'');
@@ -1437,8 +1452,8 @@
             h('nav',{className:'footer-menu','aria-label':api.t('Footer links')},
               (d.menu||[]).map((m,i)=>h('a',{key:i,href:api.href(m.href)},translate(api,m,'label'))),
               api.admin
-                ? h('button',{type:'button',className:'footer-login-text footer-admin-entry',onClick:()=>api.setAdminOpen(true)},api.t('Admin'))
-                : h('a',{className:'footer-login-text',href:'/?admin',rel:'nofollow',title:'Administrator login'},({en:'Login',lv:'Pieteikties',ru:'Войти',fr:'Connexion',es:'Acceder',de:'Anmelden',pl:'Zaloguj się',lt:'Prisijungti',et:'Logi sisse',da:'Log ind',no:'Logg inn',sv:'Logga in',fi:'Kirjaudu',is:'Skrá inn'})[api.lang]||'Login')
+                ? h('button',{type:'button',className:'footer-login-text footer-login-icon footer-admin-entry',onClick:()=>api.setAdminOpen(true),'aria-label':api.t('Admin')||'Admin',title:api.t('Admin')||'Admin'},icon('bi bi-person-circle'))
+                : h('a',{className:'footer-login-text footer-login-icon',href:'/?admin',rel:'nofollow','aria-label':({en:'Login',lv:'Pieteikties',ru:'Войти',fr:'Connexion',es:'Acceder',de:'Anmelden',pl:'Zaloguj się',lt:'Prisijungti',et:'Logi sisse',da:'Log ind',no:'Logg inn',sv:'Logga in',fi:'Kirjaudu',is:'Skrá inn'})[api.lang]||'Login',title:'Administrator login'},icon('bi bi-person-circle'))
             ),
             showApps&&h('div',{className:'footer-apps'},
               h('div',{className:'footer-apps-label'},api.t('Install our app')),

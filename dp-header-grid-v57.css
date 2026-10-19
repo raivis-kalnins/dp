@@ -228,3 +228,108 @@
     margin-inline: 0 !important;
   }
 }
+
+
+/* DigitalPulse v0.11.62: footer-only user link + content-height hero slider */
+.site-footer .footer-menu .footer-login-icon,
+.site-footer .footer-menu .footer-admin-entry.footer-login-icon {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  vertical-align: middle !important;
+  flex: 0 0 auto;
+  border-radius: 999px !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+  cursor: pointer;
+  opacity: .85;
+}
+.site-footer .footer-menu .footer-login-icon i {
+  font-size: .95rem !important;
+  line-height: 1 !important;
+}
+.site-footer .footer-menu .footer-login-icon:hover,
+.site-footer .footer-menu .footer-login-icon:focus-visible {
+  background: rgba(255,255,255,.1) !important;
+  opacity: 1;
+  text-decoration: none !important;
+}
+.site-footer .footer-menu .footer-login-icon:focus-visible {
+  outline: 2px solid #fff !important;
+  outline-offset: 2px !important;
+}
+
+/* Subtle capsule protects the first preheader glyph from slide-edge clipping
+   while leaving the heading aligned with the shared page grid. */
+#home .hero-swiper .hero-slide-copy > .eyebrow {
+  display: inline-block !important;
+  max-width: 100% !important;
+  margin: 0 0 .6rem !important;
+  padding: .26rem .55rem !important;
+  border-radius: 10px !important;
+  background: rgba(255, 107, 54, .095) !important;
+  color: #ba481c !important;
+  line-height: 1.35 !important;
+  overflow-wrap: break-word;
+  box-sizing: border-box !important;
+  position: relative;
+}
+
+/* Swiper autoHeight needs natural slide heights; the former stretch rule
+   made short slides inherit the height of longer slides. */
+#home .hero-swiper .swiper-wrapper {
+  align-items: flex-start !important;
+}
+#home .hero-swiper .swiper-slide {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+@media (max-width: 1199.98px) {
+  #home .hero-swiper { padding-bottom: 0 !important; }
+  #home .hero-swiper .swiper-slide .hero-slide-grid {
+    min-height: 0 !important;
+    height: auto !important;
+    padding-block: .35rem !important;
+    align-items: start !important;
+    gap: clamp(.9rem, 2.4vw, 1.25rem) !important;
+  }
+  #home .hero-swiper .swiper-slide .hero-copy-col,
+  #home .hero-swiper .swiper-slide .hero-slide-copy,
+  #home .hero-swiper .swiper-slide .hero-media-col {
+    min-height: 0 !important;
+  }
+  #home .hero-swiper .swiper-slide .hero-media-col {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  #home .hero-swiper .swiper-slide .hero-media-col .hero-img {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  #home .hero-swiper .hero-swiper-controls {
+    position: relative !important;
+    inset: auto !important;
+    margin: .35rem auto .3rem !important;
+  }
+}
+@media (max-width: 767.98px) {
+  #home .hero-swiper .swiper-slide .hero-slide-grid {
+    padding: 0 !important;
+    gap: .9rem !important;
+  }
+  #home .hero-swiper .swiper-slide .hero-slide-copy { padding: 0 !important; }
+  #home .hero-swiper .swiper-slide .hero-media-col .hero-card { padding: 0 !important; }
+  #home .hero-swiper .swiper-slide .hero-media-col .hero-img {
+    display: block;
+    aspect-ratio: 16 / 10 !important;
+    max-height: 310px !important;
+    width: 100% !important;
+  }
+  #home .hero-swiper .hero-swiper-controls { margin: .25rem auto .25rem !important; }
+}
