@@ -44,7 +44,7 @@ session_set_cookie_params([
 ]);
 session_start();
 
-define('CMS_VERSION', '0.11.66');
+define('CMS_VERSION', '0.11.68');
 define('DATA_FILE', __DIR__ . '/data.json');
 define('MAIL_LOG_FILE', __DIR__ . '/.lpcms-mail.log');
 define('HTACCESS_FILE', __DIR__ . '/.htaccess');
@@ -3662,6 +3662,22 @@ function cms_media_stats(array $data): array {
 }
 
 $data = cms_load_data();
+// Public deployment check returns the actual executing PHP build, not a static file.
+if (isset($_GET['dp_release_check'])) {
+  header('Content-Type: application/json; charset=utf-8');
+  header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+  header('Pragma: no-cache');
+  header('X-DigitalPulse-Build: ' . CMS_VERSION);
+  echo json_encode([
+    'ok' => true,
+    'build' => CMS_VERSION,
+    'public_bundle' => 'assets/js/lpcms-public-v68.js',
+    'public_bundle_present' => is_file(ASSETS_DIR . '/js/lpcms-public-v68.js'),
+    'admin_bundle_present' => is_file(ASSETS_DIR . '/js/.lpcms-admin-v68.js'),
+    'ui_css_present' => is_file(ASSETS_DIR . '/css/dp-ui-fixes-v68.css'),
+  ], JSON_UNESCAPED_SLASHES);
+  exit;
+}
 if (isset($_GET['asset']) && $_GET['asset'] === 'theme-css') {
   header('Content-Type: text/css; charset=utf-8');
   header('Cache-Control: public, max-age=31536000, immutable');
@@ -3680,7 +3696,7 @@ if (isset($_GET['asset']) && $_GET['asset'] === 'theme-css') {
   exit;
 }
 if (isset($_GET['asset']) && $_GET['asset'] === 'app-js') {
-  $adminBundle = ASSETS_DIR . '/js/.lpcms-admin.js';
+  $adminBundle = ASSETS_DIR . '/js/.lpcms-admin-v68.js';
   $publicBundle = ASSETS_DIR . '/js/lpcms-public.js';
   $scope = strtolower(trim((string)($_GET['scope'] ?? 'public')));
   $isAdmin = cms_is_admin();
@@ -4325,10 +4341,11 @@ $i18nPack = cms_i18n_pack();
   <?php foreach (($activeThemeAssets['css'] ?? []) as $themeCss): ?>
   <link rel="stylesheet" href="<?= cms_e($themeCss) ?>" data-lpcms-theme-asset="css">
   <?php endforeach; ?>
-  <!-- DigitalPulse UI v0.11.66: compact pricing accordions and footer login -->
+  <!-- DigitalPulse UI v0.11.67: pricing, footer and hero preheader -->
+  <meta name="digitalpulse-build" content="v0.11.68">
   <!-- Shared desktop header grid, applied after editable theme CSS. -->
   <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/css/dp-header-grid-v57.css?v=64">
-  <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/css/dp-pricing-accordion-v66.css?v=66">
+  <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/css/dp-ui-fixes-v68.css?v=68" data-dp-ui-version="68">
   <?php
     $orgId = rtrim($base, '/') . '/#organization';
     $orgEntity = [
@@ -4429,7 +4446,7 @@ $i18nPack = cms_i18n_pack();
   <?php if (cms_is_admin()): ?>
   <script src="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/?asset=app-js&amp;scope=admin&amp;v=<?= rawurlencode(CMS_VERSION) ?>" defer></script>
   <?php else: ?>
-  <script src="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/js/lpcms-public.js?v=<?= rawurlencode(CMS_VERSION) ?>" defer></script>
+  <script src="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/js/lpcms-public-v68.js?v=<?= rawurlencode(CMS_VERSION) ?>" defer></script>
   <?php endif; ?>
 </body>
 </html>
