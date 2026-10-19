@@ -4326,7 +4326,7 @@ $i18nPack = cms_i18n_pack();
   <link rel="stylesheet" href="<?= cms_e($themeCss) ?>" data-lpcms-theme-asset="css">
   <?php endforeach; ?>
   <!-- Shared desktop header grid, applied after editable theme CSS. -->
-  <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/css/dp-header-grid-v57.css?v=62">
+  <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/css/dp-header-grid-v57.css?v=64">
   <?php
     $orgId = rtrim($base, '/') . '/#organization';
     $orgEntity = [

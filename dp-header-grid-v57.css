@@ -333,3 +333,28 @@
   }
   #home .hero-swiper .hero-swiper-controls { margin: .25rem auto .25rem !important; }
 }
+
+
+/* DigitalPulse v0.11.64: Mobile hero preheader first-glyph safe area. */
+/* Only the small-screen slide labels need extra internal space. Keep the
+   outer edge on the same column grid as the heading and header logo. */
+@media (max-width: 1199.98px) {
+  #home.hero .hero-swiper .swiper-slide .hero-slide-copy > .eyebrow {
+    display: inline-block !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+    padding: .34rem clamp(14px, 3.3vw, 18px) !important;
+    border-radius: 12px !important;
+    background: rgba(255, 111, 59, .09) !important;
+    line-height: 1.45 !important;
+    text-indent: 0 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+  #home.hero .hero-swiper .swiper-slide .hero-slide-copy > .eyebrow > .cms-editable {
+    display: inline !important;
+    padding-inline-start: 2px !important;
+  }
+}
