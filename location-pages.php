@@ -121,6 +121,7 @@ function dp_loc_header(array $cms,array $locale,string $lang,string $canonical,s
 <meta name="twitter:image" content="<?= dp_loc_escape($imageUrl) ?>">
 <link rel="preload" as="style" href="<?= dp_loc_escape(rtrim(cms_route_prefix(),'/').'/assets/css/location-pages.css?v=3') ?>">
 <link rel="stylesheet" href="<?= dp_loc_escape(rtrim(cms_route_prefix(),'/').'/assets/css/location-pages.css?v=3') ?>">
+<link rel="stylesheet" href="<?= dp_loc_escape(rtrim(cms_route_prefix(),'/').'/assets/css/dp-header-grid-v57.css?v=1') ?>">
 <script type="application/ld+json"><?= json_encode(['@context'=>'https://schema.org','@graph'=>$ld],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT) ?></script>
 </head>
 <body class="dp-loc-page">

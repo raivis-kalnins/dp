@@ -1,0 +1,168 @@
+/* DigitalPulse — one responsive header content grid for homepage, routed pages and locations.
+   Loaded after the editable theme CSS so CMS colour/design settings remain intact. */
+:root {
+  --dp-header-max: 1480px;
+  --dp-header-gutter: clamp(20px, 4.2vw, 66px);
+  --dp-header-gap: clamp(8px, 1vw, 18px);
+}
+
+/* Standard LPCMS pages: equal side tracks keep navigation truly centred. */
+@media (min-width: 1200px) {
+  .site-header .header-inner {
+    width: min(calc(100% - 2 * var(--dp-header-gutter)), var(--dp-header-max)) !important;
+    max-width: var(--dp-header-max) !important;
+    margin-inline: auto !important;
+    padding: 9px 0 !important;
+    min-height: 74px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr) !important;
+    column-gap: var(--dp-header-gap) !important;
+    align-items: center !important;
+    justify-content: initial !important;
+  }
+  .site-header .header-inner > .brand-mark {
+    grid-column: 1;
+    justify-self: start;
+    min-width: 0 !important;
+    width: auto;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+  .site-header .brand-mark img {
+    display: block;
+    width: clamp(195px, 16.2vw, 248px) !important;
+    max-width: 100% !important;
+    max-height: 52px !important;
+    height: auto !important;
+    object-fit: contain;
+  }
+  .site-header .header-inner > .main-nav {
+    grid-column: 2;
+    justify-self: center;
+    display: flex !important;
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+  .site-header .main-nav > ul {
+    display: flex;
+    flex-wrap: nowrap !important;
+    gap: clamp(0px, .1vw, 2px) !important;
+  }
+  .site-header .main-nav .nav-linkx {
+    white-space: nowrap;
+    font-size: clamp(.8rem, .88vw, .91rem) !important;
+    padding: .6rem clamp(.36rem, .54vw, .57rem) !important;
+    line-height: 1.25;
+  }
+  .site-header .header-inner > .nav-actions {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    flex: none !important;
+    min-width: max-content;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .5rem;
+  }
+}
+
+/* Small desktop widths: keep all 8 items without squeezing the logo or controls. */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  :root { --dp-header-gutter: clamp(23px, 3.2vw, 44px); }
+  .site-header .brand-mark img { width: clamp(180px, 16.4vw, 228px) !important; }
+  .site-header .main-nav .nav-linkx {
+    font-size: .8rem !important;
+    padding-inline: .36rem !important;
+  }
+}
+
+/* Keep the existing, accessible hamburger navigation on tablet and mobile. */
+@media (max-width: 1199.98px) {
+  .site-header .header-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: min(calc(100% - 2 * clamp(14px, 3vw, 36px)), var(--dp-header-max)) !important;
+    max-width: none !important;
+    margin-inline: auto !important;
+  }
+  .site-header .main-nav { display: none !important; }
+}
+
+/* Location SEO pages: same width, 3-column grid and breakpoints. */
+.dp-loc-page { --dp-max: var(--dp-header-max); }
+.dp-loc-page .dp-wrap {
+  width: min(calc(100% - 2 * var(--dp-header-gutter)), var(--dp-header-max));
+  max-width: var(--dp-header-max);
+}
+@media (min-width: 1200px) {
+  .dp-loc-page .dp-topbar-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr);
+    align-items: center;
+    justify-content: initial;
+    column-gap: var(--dp-header-gap);
+    min-height: 74px;
+    padding-block: 8px;
+  }
+  .dp-loc-page .dp-topbar-inner > .dp-brand {
+    grid-column: 1;
+    min-width: 0;
+    max-width: 100%;
+    justify-self: start;
+    overflow: visible;
+  }
+  .dp-loc-page .dp-brand img {
+    width: clamp(195px, 16.2vw, 248px);
+    max-width: 100%;
+    max-height: 52px;
+  }
+  .dp-loc-page .dp-topbar-inner > .dp-topnav {
+    grid-column: 2;
+    display: flex;
+    justify-self: center;
+    flex-wrap: nowrap;
+    gap: clamp(0px, .1vw, 2px);
+    white-space: nowrap;
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .dp-loc-page .dp-topnav .dp-nav-link {
+    font-size: clamp(.8rem, .88vw, .91rem);
+    padding: 9px clamp(6px, .54vw, 9px);
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+  .dp-loc-page .dp-topbar-inner > .dp-header-actions {
+    grid-column: 3;
+    display: flex;
+    justify-self: end;
+    align-items: center;
+    justify-content: flex-end;
+    flex: none;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .dp-loc-page .dp-brand img { width: clamp(180px, 16.4vw, 228px); }
+  .dp-loc-page .dp-topnav .dp-nav-link {
+    font-size: .8rem;
+    padding-inline: 6px;
+  }
+}
+@media (max-width: 1199.98px) {
+  .dp-loc-page .dp-topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .dp-loc-page .dp-topnav { display: none; }
+  .dp-loc-page .dp-mobile-toggle { display: inline-grid; }
+}
+@media (max-width: 550px) {
+  .dp-loc-page .dp-topbar-inner {
+    width: calc(100% - 28px);
+  }
+}
