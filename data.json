@@ -10123,63 +10123,52 @@
         }
       },
       {
-        "slug": "your-app-idea",
-        "title": "Your App",
-        "url": "#contact",
-        "icon": "bi bi-plus-square",
-        "text": "Have a new app idea? Let’s plan and build a custom tool for your business, team or customers.",
+        "slug": "warehouse-central",
+        "title": "Warehouse Central",
+        "url": "https://warehouse.learning.id.lv/",
+        "icon": "bi bi-box-seam",
+        "logo": "/assets/img/apps/warehouse-central.svg",
+        "image": "/assets/img/apps/warehouse-central-preview.webp",
+        "text": "Simple warehouse management with products, stock, delivery notes, QR codes, analytics, users and WooCommerce sync.",
         "i18n": {
           "lv": {
-            "title": "Tava lietotne",
-            "text": "Ir jauna lietotnes ideja? Izplānosim un izstrādāsim pielāgotu rīku jūsu biznesam, komandai vai klientiem."
+            "text": "Vienkārša noliktavas uzskaite ar precēm, atlikumiem, pavadzīmēm, QR kodiem, analītiku, lietotājiem un WooCommerce sinhronizāciju."
           },
           "ru": {
-            "title": "Ваше приложение",
-            "text": "Есть идея приложения? Мы поможем спланировать и разработать инструмент для вашей компании, команды или клиентов."
+            "text": "Простой складской учёт: товары, остатки, накладные, QR-коды, аналитика, пользователи и синхронизация WooCommerce."
           },
           "fr": {
-            "title": "Votre application",
-            "text": "Une idée d’application ? Créons ensemble un outil sur mesure pour votre entreprise, votre équipe ou vos clients."
+            "text": "Gestion simple de stock avec produits, quantités, bons de livraison, QR codes, analyses, utilisateurs et synchronisation WooCommerce."
           },
           "es": {
-            "title": "Tu aplicación",
-            "text": "¿Tienes una idea para una app? Diseñemos y desarrollemos una herramienta a medida para tu negocio, equipo o clientes."
+            "text": "Gestión sencilla de almacén con productos, stock, albaranes, códigos QR, analítica, usuarios y sincronización con WooCommerce."
           },
           "de": {
-            "title": "Ihre App",
-            "text": "Sie haben eine App-Idee? Gemeinsam planen und entwickeln wir eine individuelle Lösung für Ihr Unternehmen und Ihre Kunden."
+            "text": "Einfache Lagerverwaltung mit Produkten, Beständen, Lieferscheinen, QR-Codes, Analysen, Benutzern und WooCommerce-Synchronisierung."
           },
           "pl": {
-            "title": "Twoja aplikacja",
-            "text": "Masz pomysł na aplikację? Zaplanujmy i stwórzmy narzędzie dla Twojej firmy, zespołu lub klientów."
+            "text": "Prosta gospodarka magazynowa: produkty, stany, dokumenty WZ, kody QR, analityka, użytkownicy i synchronizacja WooCommerce."
           },
           "lt": {
-            "title": "Jūsų programėlė",
-            "text": "Turite programėlės idėją? Suplanuokime ir sukurkime individualų sprendimą jūsų verslui ar klientams."
+            "text": "Paprastas sandėlio valdymas: prekės, likučiai, važtaraščiai, QR kodai, analitika, naudotojai ir WooCommerce sinchronizacija."
           },
           "et": {
-            "title": "Sinu rakendus",
-            "text": "Sul on rakenduse idee? Planeerime ja arendame tööriista sinu ettevõttele, meeskonnale või klientidele."
+            "text": "Lihtne laohaldus toodete, laoseisu, saatelehtede, QR-koodide, analüütika, kasutajate ja WooCommerce’i sünkroonimisega."
           },
           "da": {
-            "title": "Din app",
-            "text": "Har du en app-idé? Lad os planlægge og udvikle et skræddersyet værktøj til din virksomhed og dine kunder."
+            "text": "Enkel lagerstyring med produkter, lagerbeholdning, følgesedler, QR-koder, analyser, brugere og WooCommerce-synkronisering."
           },
           "no": {
-            "title": "Din app",
-            "text": "Har du en appidé? La oss planlegge og bygge et skreddersydd verktøy for bedriften eller kundene dine."
+            "text": "Enkel lagerstyring med produkter, lagerbeholdning, følgesedler, QR-koder, analyser, brukere og WooCommerce-synkronisering."
           },
           "sv": {
-            "title": "Din app",
-            "text": "Har du en appidé? Vi hjälper dig att planera och bygga ett anpassat verktyg för ditt företag eller dina kunder."
+            "text": "Enkel lagerhantering med produkter, lagersaldo, följesedlar, QR-koder, analys, användare och WooCommerce-synkronisering."
           },
           "fi": {
-            "title": "Sinun sovelluksesi",
-            "text": "Onko sinulla sovellusidea? Suunnitellaan ja toteutetaan yrityksellesi tai asiakkaillesi räätälöity työkalu."
+            "text": "Helppo varastonhallinta tuotteille, saldoille, lähetysasiakirjoille, QR-koodeille, analytiikalle, käyttäjille ja WooCommerce-synkronoinnille."
           },
           "is": {
-            "title": "Þitt app",
-            "text": "Ertu með hugmynd að appi? Við skipuleggjum og þróum sérsniðið verkfæri fyrir fyrirtækið þitt eða viðskiptavini."
+            "text": "Einföld lagerstjórnun með vörum, birgðastöðu, fylgiskjölum, QR-kóðum, greiningu, notendum og WooCommerce-samstillingu."
           }
         }
       }
@@ -10188,68 +10177,111 @@
       "lv": {
         "preheader": "DIGITALPULSE LIETOTNES",
         "title": "Lietotnes darbam, radošumam un ikdienai.",
-        "subtitle": "No ikdienas rīkiem līdz mūzikai, mācībām un biznesa paneļiem. Atveriet jebkuru lietotni jaunā cilnē."
+        "subtitle": "No ikdienas rīkiem līdz mūzikai, mācībām un biznesa paneļiem. Atveriet jebkuru lietotni jaunā cilnē.",
+        "ctaTitle": "Vēlaties savu lietotni?",
+        "ctaText": "Vajag individuālu lietotni uzņēmumam, komandai vai klientiem? Uzrakstiet, kas nepieciešams, un izplānosim praktisku risinājumu.",
+        "ctaButton": "Sazināties ar DigitalPulse"
       },
       "ru": {
         "preheader": "ПРИЛОЖЕНИЯ DIGITALPULSE",
         "title": "Приложения для работы, творчества и повседневной жизни.",
-        "subtitle": "От полезных инструментов до музыки, обучения и бизнес-панелей. Каждое приложение открывается в новой вкладке."
+        "subtitle": "От полезных инструментов до музыки, обучения и бизнес-панелей. Каждое приложение открывается в новой вкладке.",
+        "ctaTitle": "Хотите своё приложение?",
+        "ctaText": "Нужно индивидуальное приложение для бизнеса, команды или клиентов? Напишите, что вам нужно, и мы спланируем практичное решение.",
+        "ctaButton": "Связаться с DigitalPulse"
       },
       "fr": {
         "preheader": "LES APPS DIGITALPULSE",
         "title": "Des applications pour le travail, la créativité et le quotidien.",
-        "subtitle": "Des outils pratiques à la musique, l’apprentissage et les tableaux de bord. Chaque application s’ouvre dans un nouvel onglet."
+        "subtitle": "Des outils pratiques à la musique, l’apprentissage et les tableaux de bord. Chaque application s’ouvre dans un nouvel onglet.",
+        "ctaTitle": "Vous voulez votre propre application ?",
+        "ctaText": "Besoin d’une application sur mesure pour votre entreprise, votre équipe ou vos clients ? Dites-nous ce qu’il vous faut et nous préparerons une solution pratique.",
+        "ctaButton": "Contacter DigitalPulse"
       },
       "es": {
         "preheader": "APPS DE DIGITALPULSE",
         "title": "Aplicaciones para trabajar, crear y el día a día.",
-        "subtitle": "Herramientas prácticas, música, aprendizaje y paneles de negocio. Cada aplicación se abre en una pestaña nueva."
+        "subtitle": "Herramientas prácticas, música, aprendizaje y paneles de negocio. Cada aplicación se abre en una pestaña nueva.",
+        "ctaTitle": "¿Quieres tu propia aplicación?",
+        "ctaText": "¿Necesitas una aplicación a medida para tu empresa, equipo o clientes? Cuéntanos qué necesitas y diseñaremos una solución práctica.",
+        "ctaButton": "Contactar con DigitalPulse"
       },
       "de": {
         "preheader": "DIGITALPULSE APPS",
         "title": "Apps für Arbeit, Kreativität und den Alltag.",
-        "subtitle": "Von Alltagshelfern über Musik und Lernen bis zu Business-Dashboards. Jede App öffnet sich in einem neuen Tab."
+        "subtitle": "Von Alltagshelfern über Musik und Lernen bis zu Business-Dashboards. Jede App öffnet sich in einem neuen Tab.",
+        "ctaTitle": "Möchten Sie Ihre eigene App?",
+        "ctaText": "Benötigen Sie eine individuelle App für Ihr Unternehmen, Team oder Ihre Kunden? Schreiben Sie uns, was Sie brauchen, und wir planen eine praktische Lösung.",
+        "ctaButton": "DigitalPulse kontaktieren"
       },
       "pl": {
         "preheader": "APLIKACJE DIGITALPULSE",
         "title": "Aplikacje do pracy, twórczości i codziennych zadań.",
-        "subtitle": "Od praktycznych narzędzi po muzykę, naukę i panele biznesowe. Każda aplikacja otwiera się w nowej karcie."
+        "subtitle": "Od praktycznych narzędzi po muzykę, naukę i panele biznesowe. Każda aplikacja otwiera się w nowej karcie.",
+        "ctaTitle": "Chcesz własną aplikację?",
+        "ctaText": "Potrzebujesz indywidualnej aplikacji dla firmy, zespołu lub klientów? Napisz, czego potrzebujesz, a zaplanujemy praktyczne rozwiązanie.",
+        "ctaButton": "Skontaktuj się z DigitalPulse"
       },
       "lt": {
         "preheader": "DIGITALPULSE PROGRAMĖLĖS",
         "title": "Programėlės darbui, kūrybai ir kasdienai.",
-        "subtitle": "Nuo naudingų įrankių iki muzikos, mokymosi ir verslo skydelių. Kiekviena atsidaro naujame skirtuke."
+        "subtitle": "Nuo naudingų įrankių iki muzikos, mokymosi ir verslo skydelių. Kiekviena atsidaro naujame skirtuke.",
+        "ctaTitle": "Norite savo programėlės?",
+        "ctaText": "Reikia individualios programėlės verslui, komandai ar klientams? Parašykite, ko reikia, ir suplanuosime praktišką sprendimą.",
+        "ctaButton": "Susisiekti su DigitalPulse"
       },
       "et": {
         "preheader": "DIGITALPULSE RAKENDUSED",
         "title": "Rakendused tööks, loovuseks ja igapäevaeluks.",
-        "subtitle": "Kasulikest tööriistadest muusika, õppimise ja äri töölaudadeni. Iga rakendus avaneb uuel vahelehel."
+        "subtitle": "Kasulikest tööriistadest muusika, õppimise ja äri töölaudadeni. Iga rakendus avaneb uuel vahelehel.",
+        "ctaTitle": "Soovid oma rakendust?",
+        "ctaText": "Vajad ettevõttele, meeskonnale või klientidele kohandatud rakendust? Kirjuta meile, mida vajad, ja planeerime praktilise lahenduse.",
+        "ctaButton": "Võta DigitalPulse’iga ühendust"
       },
       "da": {
         "preheader": "DIGITALPULSE APPS",
         "title": "Apps til arbejde, kreativitet og hverdagen.",
-        "subtitle": "Fra praktiske værktøjer til musik, læring og virksomhedsoverblik. Hver app åbnes i en ny fane."
+        "subtitle": "Fra praktiske værktøjer til musik, læring og virksomhedsoverblik. Hver app åbnes i en ny fane.",
+        "ctaTitle": "Vil du have din egen app?",
+        "ctaText": "Har du brug for en skræddersyet app til din virksomhed, dit team eller dine kunder? Fortæl os, hvad du har brug for, så planlægger vi en praktisk løsning.",
+        "ctaButton": "Kontakt DigitalPulse"
       },
       "no": {
         "preheader": "DIGITALPULSE-APPER",
         "title": "Apper for arbeid, kreativitet og hverdagen.",
-        "subtitle": "Fra praktiske verktøy til musikk, læring og bedriftsoversikt. Hver app åpnes i en ny fane."
+        "subtitle": "Fra praktiske verktøy til musikk, læring og bedriftsoversikt. Hver app åpnes i en ny fane.",
+        "ctaTitle": "Vil du ha din egen app?",
+        "ctaText": "Trenger du en skreddersydd app for bedriften, teamet eller kundene dine? Fortell oss hva du trenger, så planlegger vi en praktisk løsning.",
+        "ctaButton": "Kontakt DigitalPulse"
       },
       "sv": {
         "preheader": "DIGITALPULSE-APPAR",
         "title": "Appar för arbete, kreativitet och vardag.",
-        "subtitle": "Från praktiska verktyg till musik, lärande och företagsöversikt. Varje app öppnas i en ny flik."
+        "subtitle": "Från praktiska verktyg till musik, lärande och företagsöversikt. Varje app öppnas i en ny flik.",
+        "ctaTitle": "Vill du ha en egen app?",
+        "ctaText": "Behöver du en skräddarsydd app för företaget, teamet eller kunderna? Berätta vad du behöver så planerar vi en praktisk lösning.",
+        "ctaButton": "Kontakta DigitalPulse"
       },
       "fi": {
         "preheader": "DIGITALPULSE-SOVELLUKSET",
         "title": "Sovelluksia työhön, luovuuteen ja arkeen.",
-        "subtitle": "Käytännön työkaluista musiikkiin, oppimiseen ja yritysnäkymiin. Jokainen sovellus avautuu uuteen välilehteen."
+        "subtitle": "Käytännön työkaluista musiikkiin, oppimiseen ja yritysnäkymiin. Jokainen sovellus avautuu uuteen välilehteen.",
+        "ctaTitle": "Haluatko oman sovelluksen?",
+        "ctaText": "Tarvitsetko räätälöidyn sovelluksen yritykselle, tiimille tai asiakkaille? Kerro mitä tarvitset, niin suunnittelemme käytännöllisen ratkaisun.",
+        "ctaButton": "Ota yhteyttä DigitalPulseen"
       },
       "is": {
         "preheader": "DIGITALPULSE ÖPP",
         "title": "Öpp fyrir vinnu, sköpun og daglegt líf.",
-        "subtitle": "Frá nytsamlegum tólum til tónlistar, náms og rekstraryfirlita. Hvert app opnast í nýjum flipa."
+        "subtitle": "Frá nytsamlegum tólum til tónlistar, náms og rekstraryfirlita. Hvert app opnast í nýjum flipa.",
+        "ctaTitle": "Viltu þitt eigið app?",
+        "ctaText": "Vantar þig sérsniðið app fyrir fyrirtækið, teymið eða viðskiptavini? Segðu okkur hvað þú þarft og við skipuleggjum hagnýta lausn.",
+        "ctaButton": "Hafa samband við DigitalPulse"
       }
-    }
+    },
+    "ctaTitle": "Want your own app?",
+    "ctaText": "Need a custom app for your business, team or customers? Tell us what you need and we will plan a practical solution.",
+    "ctaButton": "Contact DigitalPulse",
+    "ctaUrl": "https://digitalpulse.click/#contact"
   }
 }

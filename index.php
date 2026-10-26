@@ -44,7 +44,7 @@ session_set_cookie_params([
 ]);
 session_start();
 
-define('CMS_VERSION', '0.11.69');
+define('CMS_VERSION', '0.11.70');
 define('DATA_FILE', __DIR__ . '/data.json');
 define('MAIL_LOG_FILE', __DIR__ . '/.lpcms-mail.log');
 define('HTACCESS_FILE', __DIR__ . '/.htaccess');
@@ -4342,7 +4342,7 @@ $i18nPack = cms_i18n_pack();
   <link rel="stylesheet" href="<?= cms_e($themeCss) ?>" data-lpcms-theme-asset="css">
   <?php endforeach; ?>
   <!-- DigitalPulse UI v0.11.67: pricing, footer and hero preheader -->
-  <meta name="digitalpulse-build" content="v0.11.68">
+  <meta name="digitalpulse-build" content="v0.11.70">
   <!-- Shared desktop header grid, applied after editable theme CSS. -->
   <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/css/dp-header-grid-v57.css?v=64">
   <link rel="stylesheet" href="<?= cms_e(rtrim(cms_route_prefix(), '/')) ?>/assets/css/dp-ui-fixes-v68.css?v=69" data-dp-ui-version="68">

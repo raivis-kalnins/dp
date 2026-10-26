@@ -1,5 +1,13 @@
 **v0.11.44 — custom WordPress plugins / apps / smart e-commerce SEO expansion**
 
+## v0.11.70 - Warehouse Central app and multilingual custom-app CTA
+
+- Replaced DigitalPulse Apps item 18 (previously “Your App”) with **Warehouse Central** linking to `https://warehouse.learning.id.lv/`.
+- Added the Warehouse Central brand icon and local preview asset.
+- Added a dedicated CTA below the Apps grid inviting visitors to request their own custom app from DigitalPulse.
+- CTA copy is localized for all 14 configured site languages.
+
+
 - New **33 UK, Baltic and Nordic market pages** in **14 languages**, server rendered, with distinct original optimized WebP illustrations, canonical and hreflang tags, schema.org structured data, internal links, FAQ sections, and a sitemap.
 - Main homepage and SEO descriptions promote **custom WordPress plugins / Gutenberg / ACF**, **bespoke PHP/React apps**, and **smart WooCommerce development** in all 14 languages.
 - Social 63 portfolio entry uses a lightweight **concept preview** with an honest **In development** label.
