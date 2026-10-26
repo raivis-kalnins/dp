@@ -1,0 +1,15 @@
+DigitalPulse pricing responsive fix v0.11.69
+
+Replace the files in your site using the same directory paths from this ZIP.
+
+Fixes:
+- Tablet: reduces excessive blank space before the Pricing heading.
+- Mobile: removes the unreliable pricing Swiper behaviour that could show only orange pagination dots and hide the cards.
+- Mobile: pricing cards now stack reliably at full width.
+- Mobile: pricing category filters use a responsive 2-column grid and no longer overflow/cut off the viewport.
+- Adds the versioned CSS/JS assets referenced by index.php.
+- Build/cache version updated to 0.11.69.
+
+Validation performed:
+- PHP syntax check: index.php passed.
+- JavaScript syntax checks: active public and admin v68 bundles passed.

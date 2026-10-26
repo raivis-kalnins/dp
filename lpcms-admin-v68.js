@@ -1100,17 +1100,9 @@
       useEffect(()=>{
         const setup=()=>{
           if(!swiperEl.current||!window.Swiper)return;
-          if(window.innerWidth<768){
-            if(instRef.current){try{instRef.current.update()}catch(e){}return;}
-            const paginationEl=swiperEl.current.querySelector('.pricing-swiper-pagination');
-            instRef.current=new window.Swiper(swiperEl.current,{
-              slidesPerView:1,spaceBetween:18,speed:450,loop:false,rewind:false,
-              autoHeight:true,watchOverflow:true,observer:true,observeParents:true,
-              autoplay:false,
-              pagination:{el:paginationEl,clickable:true,hideOnClick:false,dynamicBullets:false},
-              a11y:{enabled:true}
-            });
-          }else if(instRef.current){try{instRef.current.destroy(true,true)}catch(e){}instRef.current=null;}
+          /* Pricing cards stack natively on phones. Avoid Swiper transforms here:
+             they can calculate a zero-height wrapper and leave only pagination visible. */
+          if(instRef.current){try{instRef.current.destroy(true,true)}catch(e){}instRef.current=null;}
         };
         setup();
         const paginationEl=swiperEl.current?.querySelector('.pricing-swiper-pagination');
