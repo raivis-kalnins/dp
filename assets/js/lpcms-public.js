@@ -773,17 +773,25 @@
           const url=/^(https?:\/\/[^\s]+|#[A-Za-z][\w-]*|\/[^\s]*)$/i.test(rawUrl)?rawUrl:'#apps';
           const external=/^https?:\/\//i.test(url);
           const name=api.localizedValue(`apps.items.${i}.title`)||app.title||'App';
-          return h('a',{key:app.slug||i,className:'digitalpulse-app-tile',href:url,target:external?'_blank':undefined,rel:external?'noopener noreferrer':undefined,
+          return h('a',{key:app.slug||i,className:cls('digitalpulse-app-tile',app.slug==='warehouse-central'&&'is-featured-app'),href:url,target:external?'_blank':undefined,rel:external?'noopener noreferrer':undefined,
             'aria-label':api.t('Open app in a new tab')+': '+name,
             onClick:api.admin?e=>{e.preventDefault()}:undefined},
-            h('span',{className:'digitalpulse-app-icon','aria-hidden':'true'},icon(app.icon||'bi bi-app-indicator')),
+            h('span',{className:'digitalpulse-app-icon','aria-hidden':'true'},app.logo?h('img',{src:app.logo,alt:'',className:'digitalpulse-app-logo'}):icon(app.icon||'bi bi-app-indicator')),
             h('span',{className:'digitalpulse-app-content'},
               h(E,{path:`apps.items.${i}.title`,tag:'strong',className:'digitalpulse-app-name'}),
               h(E,{path:`apps.items.${i}.text`,tag:'span',className:'digitalpulse-app-description'})
             ),
             h('span',{className:'digitalpulse-app-arrow','aria-hidden':'true'},icon('bi bi-arrow-up-right'))
           );
-        }))
+        })),
+        h('div',{className:'digitalpulse-apps-cta'},
+          h('span',{className:'digitalpulse-apps-cta-icon','aria-hidden':'true'},icon('bi bi-lightbulb')),
+          h('div',{className:'digitalpulse-apps-cta-copy'},
+            h(E,{path:'apps.ctaTitle',tag:'strong',className:'digitalpulse-apps-cta-title'}),
+            h(E,{path:'apps.ctaText',tag:'span',className:'digitalpulse-apps-cta-text'})
+          ),
+          h('a',{className:'btn-cms digitalpulse-apps-cta-button',href:cfg.ctaUrl||'https://digitalpulse.click/#contact'},h('span',{className:'digitalpulse-apps-cta-button-copy'},h('strong',null,api.localizedValue('apps.ctaButton')||'Contact DigitalPulse'),h('small',null,'digitalpulse.click')),icon('bi bi-arrow-right'))
+        )
       ));
     }
 
