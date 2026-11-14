@@ -1885,8 +1885,8 @@
         "group": "commerce",
         "title": "WooCommerce Store",
         "badge": "Starter online store",
-        "price": "£3,290",
-        "secondaryPrice": "€3,790",
+        "price": "£995",
+        "secondaryPrice": "€1,195",
         "latviaPrice": "€2,490",
         "isFrom": true,
         "period": "/ project",
@@ -1987,8 +1987,8 @@
         "group": "commerce",
         "title": "Advanced WooCommerce / B2B",
         "badge": "Complex catalogue & integrations",
-        "price": "£8,500",
-        "secondaryPrice": "€9,500",
+        "price": "£1,499",
+        "secondaryPrice": "€1,799",
         "latviaPrice": "€7,500",
         "isFrom": true,
         "period": "/ project",
@@ -2090,8 +2090,8 @@
         "group": "custom",
         "title": "Custom WordPress Plugin",
         "badge": "Bespoke plugin development",
-        "price": "£1,290",
-        "secondaryPrice": "€1,490",
+        "price": "£399",
+        "secondaryPrice": "€469",
         "latviaPrice": "€990",
         "isFrom": true,
         "period": "/ project",
@@ -2191,8 +2191,8 @@
         "group": "custom",
         "title": "Custom Web Apps / AI",
         "badge": "Bespoke apps & platforms",
-        "price": "£9,500",
-        "secondaryPrice": "€10,500",
+        "price": "£399",
+        "secondaryPrice": "€469",
         "latviaPrice": "€8,000",
         "isFrom": true,
         "period": "/ project",
@@ -2492,8 +2492,8 @@
         "group": "care",
         "title": "Website Maintenance",
         "badge": "Ongoing support plan",
-        "price": "£89",
-        "secondaryPrice": "€99",
+        "price": "£29",
+        "secondaryPrice": "€34",
         "latviaPrice": "€69",
         "isFrom": true,
         "period": "/ month",
@@ -2814,7 +2814,7 @@
         "note": "Byrjunarverð fyrir samþykkt umfang, án viðeigandi VSK, hýsingar, léna, greiddra leyfa og gjalda þriðju aðila. Aukasiður, tungumál og tengingar eru verðlagðar sér."
       }
     },
-    "faqShortAnswer": "LPCMS subscriptions start at £3.50 / €4 per month (Premium) or £6.50 / €7 (Premium Pro). Custom WordPress business sites start from £1,690 / €1,890, WooCommerce stores from £3,290 / €3,790 and custom applications from £9,500 / €10,500. Separate prices apply to Latvia. Final prices follow an agreed scope."
+    "faqShortAnswer": "LPCMS subscriptions start at £3.50 / €4 per month (Premium) or £6.50 / €7 (Premium Pro). Custom WordPress business sites start from £1,690 / €1,890, WooCommerce stores from £995 / €1,195 and custom applications from £399 / €469. Separate prices apply to Latvia. Final prices follow an agreed scope."
   },
   "faq": {
     "enabled": true,
@@ -2832,7 +2832,7 @@
       },
       {
         "question": "How much does a website cost?",
-        "answer": "LPCMS subscriptions start at £3.50 / €4 per month (Premium) or £6.50 / €7 (Premium Pro). Custom WordPress business sites start from £1,690 / €1,890, WooCommerce stores from £3,290 / €3,790 and custom applications from £9,500 / €10,500. Separate prices apply to Latvia. Final prices follow an agreed scope."
+        "answer": "LPCMS subscriptions start at £3.50 / €4 per month (Premium) or £6.50 / €7 (Premium Pro). Custom WordPress business sites start from £1,690 / €1,890, WooCommerce stores from £995 / €1,195 and custom applications from £399 / €469. Separate prices apply to Latvia. Final prices follow an agreed scope."
       },
       {
         "question": "How long does a website project take?",
@@ -6783,8 +6783,8 @@
         "id": "woocommerce",
         "title": "WooCommerce Store",
         "description": "Starter online store",
-        "price": "from £3,290 / €3,790",
-        "priceEur": "from €3,790",
+        "price": "from £995 / €1,195",
+        "priceEur": "from €1,195",
         "priceLatvia": "from €2,490"
       }
     ],
